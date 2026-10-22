@@ -1,6 +1,6 @@
 # Loot's Gaming Roundup: page generator
 
-Each daily roundup is a single self-contained HTML file. All CSS is inline, there's no JavaScript, and it uses system fonts. It's built from a JSON file by `build.py`, so every day's page has the same design.
+Each daily roundup is a single HTML file. All CSS is inline (the theme lives in `brand/theme.css` and is copied into the `CSS` string in `build.py`) and there's no JavaScript. Fonts (Inter Tight, Inter, JetBrains Mono) come from Google Fonts with system-font fallbacks. The logo, favicons and share image live in `brand/` and are referenced from every page, so keep `brand/` deployed alongside the pages. It's built from a JSON file by `build.py`, so every day's page has the same design.
 
 ## Files
 - `build.py`: the generator (needs only the Python 3 standard library)
@@ -38,13 +38,15 @@ If a section is empty or missing, it's left off the page.
 - `Switch` / `Switch 2` / `Nintendo` / `Pokémon`: red
 - `Xbox`: green
 - `PC`: grey
-- Any other tag (a game or franchise name): gold
+- Any other tag (a game or franchise name): neutral outline
+
+See `brand/theme.md` for the full palette, fonts and layout notes.
 
 ## Checking a build visually
 ```bash
 google-chrome --headless=new --no-sandbox --hide-scrollbars --force-device-scale-factor=2 \
-  --window-size=390,3700 --screenshot=preview-mobile.png file://$PWD/index.html
+  --window-size=390,7100 --screenshot=preview-mobile.png file://$PWD/index.html
 google-chrome --headless=new --no-sandbox --hide-scrollbars \
-  --window-size=1280,2550 --screenshot=preview-desktop.png file://$PWD/index.html
+  --window-size=1280,6100 --screenshot=preview-desktop.png file://$PWD/index.html
 ```
 If the page is longer than the window, the bottom gets cut off. Raise the window height when that happens.

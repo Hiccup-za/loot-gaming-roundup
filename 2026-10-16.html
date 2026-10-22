@@ -3,68 +3,133 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d14">
+<meta name="theme-color" content="#0f1012">
 <meta name="color-scheme" content="dark">
 <title>Loot's Gaming Roundup · Friday 16 October 2026</title>
+<meta name="description" content="Daily gaming news: your games, industry news and what's out this week.">
+<link rel="icon" href="/brand/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/brand/favicon-16.png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Loot's Gaming Roundup">
+<meta property="og:title" content="Loot's Gaming Roundup · Friday 16 October 2026">
+<meta property="og:description" content="Daily gaming news: your games, industry news and what's out this week.">
+<meta property="og:image" content="https://loot-gaming-roundup.vercel.app/brand/og-1200x630.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Loot's Gaming Roundup">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loot's Gaming Roundup · Friday 16 October 2026">
+<meta name="twitter:description" content="Daily gaming news: your games, industry news and what's out this week.">
+<meta name="twitter:image" content="https://loot-gaming-roundup.vercel.app/brand/og-1200x630.png">
 <style>
-:root{--bg:#0b0d14;--bg2:#121624;--card:#161b2c;--card2:#1b2135;--line:#272f48;--text:#e8ebf5;--muted:#9aa3bd;
---accent:#ffb627;--accent2:#7c5cff;--ps:#2f7dff;--nin:#ff3b4a;--xbox:#33c45a;--pc:#a0a8bd;}
+/* Loot's Gaming Roundup: clean modern news theme, dark mode
+   Drop-in replacement for the CSS string in build.py (same class names).
+   Fonts: Inter Tight (headlines/UI), Inter (body), JetBrains Mono (small meta). Free Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@500&display=swap");
+
+:root{
+  --bg:#0f1012;          /* page */
+  --surface:#17191c;     /* cards */
+  --surface-2:#1e2125;   /* hover, inset blocks */
+  --border:#2a2d32;      /* hairlines */
+  --border-strong:#3a3e45;
+  --text:#ededef;        /* 15.1:1 on surface */
+  --text-2:#b3b7bf;      /* body copy, 8.8:1 */
+  --text-3:#8b9099;      /* meta, 5.5:1 */
+  --accent:#f0b445;      /* crown gold: links, kicker, focus (9.5:1) */
+  --accent-hover:#ffc85e;
+  --accent-tint:rgba(240,180,69,.12);
+  /* Platform colours: functional only */
+  --ps:#6aa5ff; --nin:#ff6f6f; --xbox:#5ad18a; --pc:#b9bfca;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --head:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,rgba(124,92,255,.22),transparent 60%),
-radial-gradient(900px 500px at 110% 0%,rgba(255,182,39,.12),transparent 60%),var(--bg);
-color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-min-height:100vh;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-.wrap{max-width:1040px;margin:0 auto;padding:28px 18px 40px}
-header{padding:18px 0 22px;border-bottom:1px solid var(--line);margin-bottom:8px}
-.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
-.kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-h1{margin:10px 0 6px;font-size:clamp(30px,8vw,52px);line-height:1.05;letter-spacing:-.02em;font-weight:800;
-background:linear-gradient(90deg,#fff 0%,#ffd77a 45%,var(--accent) 70%,#ff8a3d 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.date{color:var(--muted);font-size:15px;font-weight:500}
-nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-nav.jump a{color:var(--text);text-decoration:none;font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
-nav.jump a:hover{border-color:var(--accent)}
-section{margin-top:30px}
-h2{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;font-weight:700}
-h2::before{content:"";width:4px;height:18px;border-radius:2px;background:linear-gradient(var(--accent),var(--accent2))}
-h2 .count{margin-left:auto;font-size:12px;color:var(--muted);letter-spacing:.05em}
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}.wrap{padding:44px 28px 56px}}
-.card{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;overflow:hidden;transition:border-color .2s,transform .2s}
-.card::after{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));opacity:.7}
-.card:hover{border-color:#3a4466;transform:translateY(-2px)}
-.card h3{margin:8px 0 6px;font-size:19px;line-height:1.25;letter-spacing:-.01em}
-.card p{margin:0;color:#cfd4e4;font-size:15.5px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px 48px}
+@media(min-width:720px){.wrap{padding:48px 32px 72px}}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Header */
+header{display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center;padding:0;margin-bottom:0}
+header>*{grid-column:1 / -1}
+header .logo{grid-column:1;grid-row:1 / span 2;width:84px;height:84px;object-fit:contain}
+header .logo~.kicker,header .logo~h1{grid-column:2}
+@media(max-width:560px){header .logo{width:60px;height:60px}}
+.kicker{display:inline-flex;align-items:center;gap:8px;align-self:end;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1{margin:6px 0 0;align-self:start;font:800 clamp(30px,6.4vw,56px)/1.04 var(--head);letter-spacing:-.03em;color:var(--text)}
+.date{margin-top:16px;font:500 13px/1.4 var(--mono);color:var(--text-3)}
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+nav.jump a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);text-decoration:none;font:500 14px/1 var(--sans);transition:border-color .15s,color .15s}
+nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+
+/* Sections: editorial breaks, no boxes */
+section{margin-top:56px}
+header+section{margin-top:44px}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
+  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
+
+/* Story feed: one column, hairline dividers, no card boxes */
+.grid{display:block}
+.card{padding:28px 0 30px}
+.card+.card{border-top:1px solid var(--border)}
+.card h3{margin:12px 0 10px;font:700 clamp(21px,3.4vw,25px)/1.25 var(--head);letter-spacing:-.018em;color:var(--text);text-wrap:balance}
+.card p{margin:0;color:var(--text-2);font-size:16.5px;line-height:1.68}
+
+/* Platform chips: flat tags, coloured dot + coloured text on a faint tint */
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px;border:1px solid;line-height:1.4}
-.chip-ps{color:#8fb6ff;border-color:rgba(47,125,255,.5);background:rgba(47,125,255,.14)}
-.chip-nin{color:#ff8f98;border-color:rgba(255,59,74,.5);background:rgba(255,59,74,.13)}
-.chip-xbox{color:#7fe59a;border-color:rgba(51,196,90,.5);background:rgba(51,196,90,.13)}
-.chip-pc{color:#d3d8e6;border-color:rgba(160,168,189,.45);background:rgba(160,168,189,.12)}
-.chip-game{color:#ffd27a;border-color:rgba(255,182,39,.45);background:rgba(255,182,39,.12)}
-.sources{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
-.src-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}
-a.src{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px;background:rgba(255,182,39,.08);border:1px solid rgba(255,182,39,.25);min-height:32px;display:inline-flex;align-items:center}
-a.src:hover{background:rgba(255,182,39,.16)}
-ul.releases{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.release{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-.rel-date{flex:0 0 56px;text-align:center;background:linear-gradient(160deg,rgba(124,92,255,.25),rgba(255,182,39,.15));border:1px solid var(--line);border-radius:10px;padding:6px 0}
-.rel-date .d{display:block;font-size:22px;font-weight:800;line-height:1.1}
-.rel-date .m{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700}
-.rel-body h3{margin:2px 0 4px;font-size:17px;line-height:1.3}
-.rel-note{margin:0 0 8px;color:var(--muted);font-size:14.5px}
-.full-list{display:inline-block;margin-top:14px;color:var(--accent);font-weight:600;text-decoration:none;font-size:14px}
-.full-list:hover{text-decoration:underline}
-footer{margin-top:36px}
-.note{display:flex;gap:12px;align-items:flex-start;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.35);border-radius:14px;padding:14px 16px;color:#d9d3ff;font-size:15px}
-.note .ico{font-size:18px;line-height:1.3}
-.sign{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+.chip{--c:var(--text-3);display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:6px;
+  font:600 11.5px/1.5 var(--sans);letter-spacing:.02em;color:var(--c);
+  background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 26%,transparent)}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip-ps{--c:var(--ps)}
+.chip-nin{--c:var(--nin)}
+.chip-xbox{--c:var(--xbox)}
+.chip-pc{--c:var(--pc)}
+.chip-game{--c:var(--text-2);background:transparent;border-color:var(--border-strong)}
+.chip-game::before{display:none}
+
+/* Sources: quiet meta row */
+.sources{display:flex;flex-wrap:wrap;align-items:center;gap:2px 16px;margin-top:14px}
+.src-label{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+a.src{display:inline-flex;align-items:center;min-height:32px;color:var(--text-2);text-decoration:none;font:500 14px/1.2 var(--sans)}
+a.src span{color:var(--text-3)}
+a.src:hover{color:var(--accent)}
+a.src:hover span{color:var(--accent)}
+
+/* Releases: unboxed list, hairline rows */
+ul.releases{list-style:none;margin:0;padding:0}
+.release{display:flex;gap:20px;align-items:flex-start;padding:18px 0}
+.release+.release{border-top:1px solid var(--border)}
+.rel-date{flex:0 0 64px;padding-top:1px;white-space:nowrap}
+.rel-date .d{display:block;font:700 20px/1.05 var(--head);letter-spacing:-.02em;color:var(--text)}
+.rel-date .m{display:block;margin-top:5px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+.rel-body h3{margin:0 0 4px;font:600 18px/1.3 var(--head);letter-spacing:-.01em;color:var(--text)}
+.rel-note{margin:0 0 8px;color:var(--text-3);font-size:15px}
+.full-list{display:inline-block;margin-top:14px;color:var(--accent);font:600 14px/1.4 var(--sans);text-decoration:none}
+.full-list:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+
+/* Footer */
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+.note{display:flex;gap:12px;align-items:flex-start;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--text-2);font-size:15.5px;line-height:1.6}
+.note .ico{font-size:15px;line-height:1.6}
+.sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
+<img class="logo" src="brand/logo-256.png" alt="Loot" width="84" height="84">
 <div class="kicker"><span class="dot"></span>Daily gaming news</div>
 <h1>Loot's Gaming Roundup</h1>
 <div class="date">Friday 16 October 2026</div>

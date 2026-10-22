@@ -1,0 +1,99 @@
+/* Loot's Gaming Roundup: clean modern news theme, dark mode
+   Drop-in replacement for the CSS string in build.py (same class names).
+   Fonts: Inter Tight (headlines/UI), Inter (body), JetBrains Mono (small meta). Free Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@500&display=swap");
+
+:root{
+  --bg:#0f1012;          /* page */
+  --surface:#17191c;     /* cards */
+  --surface-2:#1e2125;   /* hover, inset blocks */
+  --border:#2a2d32;      /* hairlines */
+  --border-strong:#3a3e45;
+  --text:#ededef;        /* 15.1:1 on surface */
+  --text-2:#b3b7bf;      /* body copy, 8.8:1 */
+  --text-3:#8b9099;      /* meta, 5.5:1 */
+  --accent:#f0b445;      /* crown gold: links, kicker, focus (9.5:1) */
+  --accent-hover:#ffc85e;
+  --accent-tint:rgba(240,180,69,.12);
+  /* Platform colours: functional only */
+  --ps:#6aa5ff; --nin:#ff6f6f; --xbox:#5ad18a; --pc:#b9bfca;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --head:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px 48px}
+@media(min-width:720px){.wrap{padding:48px 32px 72px}}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Header */
+header{display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center;padding:0;margin-bottom:0}
+header>*{grid-column:1 / -1}
+header .logo{grid-column:1;grid-row:1 / span 2;width:84px;height:84px;object-fit:contain}
+header .logo~.kicker,header .logo~h1{grid-column:2}
+@media(max-width:560px){header .logo{width:60px;height:60px}}
+.kicker{display:inline-flex;align-items:center;gap:8px;align-self:end;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1{margin:6px 0 0;align-self:start;font:800 clamp(30px,6.4vw,56px)/1.04 var(--head);letter-spacing:-.03em;color:var(--text)}
+.date{margin-top:16px;font:500 13px/1.4 var(--mono);color:var(--text-3)}
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+nav.jump a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);text-decoration:none;font:500 14px/1 var(--sans);transition:border-color .15s,color .15s}
+nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+
+/* Sections: editorial breaks, no boxes */
+section{margin-top:56px}
+header+section{margin-top:44px}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
+  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
+
+/* Story feed: one column, hairline dividers, no card boxes */
+.grid{display:block}
+.card{padding:28px 0 30px}
+.card+.card{border-top:1px solid var(--border)}
+.card h3{margin:12px 0 10px;font:700 clamp(21px,3.4vw,25px)/1.25 var(--head);letter-spacing:-.018em;color:var(--text);text-wrap:balance}
+.card p{margin:0;color:var(--text-2);font-size:16.5px;line-height:1.68}
+
+/* Platform chips: flat tags, coloured dot + coloured text on a faint tint */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{--c:var(--text-3);display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:6px;
+  font:600 11.5px/1.5 var(--sans);letter-spacing:.02em;color:var(--c);
+  background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 26%,transparent)}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip-ps{--c:var(--ps)}
+.chip-nin{--c:var(--nin)}
+.chip-xbox{--c:var(--xbox)}
+.chip-pc{--c:var(--pc)}
+.chip-game{--c:var(--text-2);background:transparent;border-color:var(--border-strong)}
+.chip-game::before{display:none}
+
+/* Sources: quiet meta row */
+.sources{display:flex;flex-wrap:wrap;align-items:center;gap:2px 16px;margin-top:14px}
+.src-label{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+a.src{display:inline-flex;align-items:center;min-height:32px;color:var(--text-2);text-decoration:none;font:500 14px/1.2 var(--sans)}
+a.src span{color:var(--text-3)}
+a.src:hover{color:var(--accent)}
+a.src:hover span{color:var(--accent)}
+
+/* Releases: unboxed list, hairline rows */
+ul.releases{list-style:none;margin:0;padding:0}
+.release{display:flex;gap:20px;align-items:flex-start;padding:18px 0}
+.release+.release{border-top:1px solid var(--border)}
+.rel-date{flex:0 0 64px;padding-top:1px;white-space:nowrap}
+.rel-date .d{display:block;font:700 20px/1.05 var(--head);letter-spacing:-.02em;color:var(--text)}
+.rel-date .m{display:block;margin-top:5px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+.rel-body h3{margin:0 0 4px;font:600 18px/1.3 var(--head);letter-spacing:-.01em;color:var(--text)}
+.rel-note{margin:0 0 8px;color:var(--text-3);font-size:15px}
+.full-list{display:inline-block;margin-top:14px;color:var(--accent);font:600 14px/1.4 var(--sans);text-decoration:none}
+.full-list:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+
+/* Footer */
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+.note{display:flex;gap:12px;align-items:flex-start;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--text-2);font-size:15.5px;line-height:1.6}
+.note .ico{font-size:15px;line-height:1.6}
+.sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
