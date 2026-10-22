@@ -1,6 +1,6 @@
 # Loot's Gaming Roundup: page generator
 
-Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages are **generated** — do not edit them by hand. All CSS is inline (the theme lives in `brand/theme.css` and is copied into the `CSS` string in `build.py`) and there's no JavaScript. Fonts (Inter Tight, Inter, JetBrains Mono) come from Google Fonts with system-font fallbacks. The logo, favicons and share image live in `brand/` and are referenced from every page, so keep `brand/` deployed alongside the pages.
+Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages are **generated** — do not edit them by hand. All CSS is inline (the theme lives in `brand/theme.css` and is copied into the `CSS` string in `build.py`). Edition pages load a small inline script that fetches readership stats from `/api/views` (no build-time numbers). Fonts (Inter Tight, Inter, JetBrains Mono) come from Google Fonts with system-font fallbacks. The logo, favicons and share image live in `brand/` and are referenced from every page, so keep `brand/` deployed alongside the pages.
 
 ## Source of truth and publishing
 
@@ -30,8 +30,17 @@ Each edition page links to **Past roundups** (`/archive.html`) in the footer and
 ## Files
 
 - `build.py`: the generator (Python 3 standard library only)
+- `api/views.js`: Vercel serverless route — queries Databuddy for daily page views (not run at build time)
 - `vercel.json`: Vercel build command and clean-URL rewrites
 - `.github/workflows/build.yml`: CI build and drift check
+
+## Databuddy page views (Vercel)
+
+Edition pages show a **daily views** line chart loaded in the browser via `GET /api/views?date=YYYY-MM-DD`. The route merges hits on both `/YYYY-MM-DD.html` and `/YYYY-MM-DD`, caches responses for about ten minutes, and never exposes credentials to the client.
+
+Set **`DATABUDDY_API_KEY`** in the Vercel project environment (Production and Preview). Do **not** commit the key or add it to the repo. Without the key, the API returns `503` and edition pages show “Views unavailable” without breaking the rest of the page.
+
+View tracking for this site began on **22 October 2026**; older editions show an honest note rather than zero-filled days before tracking existed.
 
 ## Making a single edition (local)
 

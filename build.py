@@ -169,6 +169,24 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
+/* Edition readership chart (client-loaded) */
+.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
+.views h2{font-size:20px;margin-bottom:12px}
+.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
+.views-stat strong{color:var(--accent);font-weight:600}
+.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
+.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
+.views-figure{margin:0}
+.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
+.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
+.views-axis{stroke:var(--border);stroke-width:1}
+.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
+.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.views-area{fill:var(--accent-tint)}
+.views-dot{fill:var(--accent)}
+.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
+@media(min-width:1000px){.views{margin-top:28px}}
+
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
   :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
@@ -204,6 +222,108 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 }
 """
 
+VIEWS_SCRIPT = r"""
+(function(){
+  var root=document.getElementById("edition-views");
+  if(!root)return;
+  var edition=root.getAttribute("data-edition-date");
+  if(!edition)return;
+  var statEl=document.getElementById("views-stat");
+  var noteEl=document.getElementById("views-note");
+  var unavailEl=document.getElementById("views-unavail");
+  var figEl=document.getElementById("views-figure");
+  var svgEl=document.getElementById("views-svg");
+  var capEl=document.getElementById("views-caption");
+  function showUnavailable(){
+    root.hidden=false;
+    if(unavailEl)unavailEl.hidden=false;
+    if(figEl)figEl.hidden=true;
+    if(statEl)statEl.textContent="";
+    if(noteEl)noteEl.hidden=true;
+  }
+  function fmt(n){return n.toLocaleString("en-ZA");}
+  function shortDate(iso){
+    var p=iso.split("-");
+    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
+  }
+  function drawChart(tracked){
+    if(!tracked.length||!svgEl)return;
+    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
+    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+    var maxPv=0;
+    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
+    if(maxPv<1)maxPv=1;
+    var pts=[];
+    for(var j=0;j<tracked.length;j++){
+      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
+      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
+      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+    }
+    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
+    var line="M"+pts[0].x+" "+pts[0].y;
+    for(var k=1;k<pts.length;k++){
+      line+=" L"+pts[k].x+" "+pts[k].y;
+      area+=" L"+pts[k].x+" "+pts[k].y;
+    }
+    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
+    var grid="";
+    for(var g=0;g<=3;g++){
+      var gy=pad.t+(ih*g/3);
+      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
+    }
+    var dots="",labels="";
+    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
+    for(var m=0;m<pts.length;m++){
+      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
+      if(m===0||m===pts.length-1||m%labelEvery===0){
+        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
+      }
+    }
+    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
+    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
+      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
+    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+  }
+  fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(data){
+      if(!data||data.unavailable)throw 0;
+      root.hidden=false;
+      if(unavailEl)unavailEl.hidden=true;
+      var tracked=(data.series||[]).filter(function(p){return p.tracked;});
+      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
+      var parts=[];
+      if(data.launchDayViews!=null){
+        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      }
+      if(typeof data.totalViews==="number"){
+        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
+      }
+      if(statEl)statEl.innerHTML=parts.join(" · ");
+      if(tracked.length&&figEl){
+        figEl.hidden=false;
+        drawChart(tracked);
+      }else if(figEl)figEl.hidden=true;
+    })
+    .catch(function(){showUnavailable();});
+})();
+"""
+
+def views_section(edition_date):
+    d = escape(edition_date)
+    return (
+        f'<section class="views" id="edition-views" data-edition-date="{d}" hidden>'
+        f'<h2>Daily views</h2>'
+        f'<p class="views-stat" id="views-stat"></p>'
+        f'<p class="views-note" id="views-note" hidden></p>'
+        f'<p class="views-unavail" id="views-unavail" hidden>Views unavailable</p>'
+        f'<figure class="views-figure" id="views-figure" hidden>'
+        f'<svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg>'
+        f'<figcaption class="views-caption" id="views-caption"></figcaption>'
+        f'</figure></section>'
+    )
+
+
 def render(data):
     games = data.get("your_games", [])
     industry = data.get("industry", [])
@@ -227,6 +347,7 @@ def render(data):
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
+    edition_date = data.get("date", "")
     parts = []
     if sections:
         parts.append(f'<main class="feed">{"".join(sections)}</main>')
@@ -275,9 +396,11 @@ def render(data):
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>
+{views_section(edition_date)}
 {layout}
 <footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>{VIEWS_SCRIPT}</script>
 </body>
 </html>
 """

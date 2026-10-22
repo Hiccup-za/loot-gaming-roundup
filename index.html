@@ -147,6 +147,24 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
+/* Edition readership chart (client-loaded) */
+.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
+.views h2{font-size:20px;margin-bottom:12px}
+.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
+.views-stat strong{color:var(--accent);font-weight:600}
+.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
+.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
+.views-figure{margin:0}
+.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
+.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
+.views-axis{stroke:var(--border);stroke-width:1}
+.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
+.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.views-area{fill:var(--accent-tint)}
+.views-dot{fill:var(--accent)}
+.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
+@media(min-width:1000px){.views{margin-top:28px}}
+
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
   :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
@@ -191,8 +209,95 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">Thursday 22 October 2026</div></div>
+<section class="views" id="edition-views" data-edition-date="2026-10-22" hidden><h2>Daily views</h2><p class="views-stat" id="views-stat"></p><p class="views-note" id="views-note" hidden></p><p class="views-unavail" id="views-unavail" hidden>Views unavailable</p><figure class="views-figure" id="views-figure" hidden><svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg><figcaption class="views-caption" id="views-caption"></figcaption></figure></section>
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">5 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-game">Dragon Age</span><span class="chip chip-game">Mass Effect</span></div><h3>EA is closing BioWare, and the next Mass Effect is cancelled</h3><p>The studio behind Dragon Age (including The Veilguard), Mass Effect, Baldur&#x27;s Gate and Knights of the Old Republic is shutting down after more than 30 years, along with its Edmonton office. Early development on the next Mass Effect has ended. It&#x27;s part of an EA restructure that cuts around 400 jobs (about 3% of staff), roughly 50 of them at BioWare. EA says it will focus on fewer big action-adventure games and is still making Marvel&#x27;s Iron Man and the next Star Wars Jedi game. The Sims&#x27; Project Lotus has also been paused.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.bioware.com/2026/10/21/bioware-update/" target="_blank" rel="noopener noreferrer">BioWare statement<span aria-hidden="true"> ↗</span></a><a class="src" href="https://apnews.com/article/bioware-ea-electronic-arts-shutdown-mass-effect-6b6e5c930fe56dd2cd18985d89f6ef24" target="_blank" rel="noopener noreferrer">AP News<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.investing.com/news/stock-market-news/ea-to-shutter-bioware-studio-cut-jobs-as-it-narrows-game-slate-4963824" target="_blank" rel="noopener noreferrer">Reuters<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Cyberpunk 2077</span></div><h3>Cyberpunk 2077 Update 2.5 is out today, with the official patch notes now up</h3><p>The Edgerunners 2 Update lands today on PS5, Xbox and PC, while Switch 2 gets it &quot;in the days to follow&quot; but with everything included, mod support too. Highlights: a new side quest, Clampdown (finish The Heist and two gigs for Wakako, then wait for her message), which rewards a five-piece King gear set; another new quest narrated by Richard Night that unlocks at Street Cred 15; the HKGN 102.0 FM radio station; dual-wielding pistols and revolvers via the new Double Trouble perk in the Cool tree; custom skins for hand cyberware at five Glamdocs; new outfits; and cross-platform mods through mod.io. It also fixes HDR settings doing nothing on PS5 and a &#x27;save failed&#x27; error on Switch 2. It&#x27;s also now part of Xbox Play Anywhere.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/cyberpunk-2077-edgerunners-2-update-2-5-officially-revealed-here-are-the-full-patch-notes" target="_blank" rel="noopener noreferrer">Nintendo Life (full notes)<span aria-hidden="true"> ↗</span></a><a class="src" href="https://insider-gaming.com/cyberpunk-2-5-patch-notes-edgerunners-2-update/" target="_blank" rel="noopener noreferrer">Insider Gaming<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-game">GTA</span></div><h3>Sony&#x27;s new Pulse headset launches with GTA 6 on 19 Nov</h3><p>The PlayStation Pulse wireless headset costs $99.99 / £89.99 / €99.99, comes in White or Midnight Black, and has planar magnetic drivers and PlayStation Link. Pre-orders open on 29 Oct at 10:00 local time. South Africa isn&#x27;t on the first list of launch regions. The pricier Pulse Edge, with noise cancelling, follows next year.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.playstation.com/2026/09/15/introducing-the-next-line-of-ps5-audio-products-playstation-pulse-and-pulse-edge-wireless-headsets/" target="_blank" rel="noopener noreferrer">PlayStation Blog<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/sonys-revamped-ps5-pulse-headset-launches-alongside-gta-6-on-19th-november" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-ps">PS Plus</span></div><h3>PS Store&#x27;s Planet of the Deals sale is live until 4 Nov</h3><p>It replaces the Player&#x27;s Choice sale, which ended yesterday. Push Square has picked out 40+ games worth a look. Also cheap right now: the Shadow of the Colossus remake is $4.99 in the US and 88% off in the UK, and Demon&#x27;s Souls is at an all-time low.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.playstation.com/2026/10/21/playstation-stores-planet-of-the-deals-promotion-is-live-now/" target="_blank" rel="noopener noreferrer">PlayStation Blog<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/features/40plus-ps5-ps4-games-to-buy-in-ps-stores-planet-of-the-deals-sale" target="_blank" rel="noopener noreferrer">Push Square picks<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-game">Crimson Desert</span></div><h3>Crimson Desert&#x27;s big Charting the Unknown DLC gets an overview trailer</h3><p>It&#x27;s out on 29 Oct, and the trailer shows new storylines, ocean voyages, underwater exploration, shipbuilding, strongholds, running a business, expanded housing and deeper character relationships.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/crimson-desert-reveals-just-how-big-its-ps5-dlc-really-is-in-new-trailer" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">3 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Star Wars</span></div><h3>Report: Star Wars Battlefront 3 is in development at DICE and Respawn</h3><p>EA&#x27;s restructure memo says DICE and Respawn will team up on a future shooter. EA didn&#x27;t name it, but Variety&#x27;s sources say it&#x27;s Battlefront 3 for Lucasfilm. Nothing is officially announced yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://variety.com/2026/digital/news/ea-layoffs-bioware-shutting-down-respawn-dice-star-wars-battlefront-3-1236918715/" target="_blank" rel="noopener noreferrer">Variety<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/star-wars-battlefront-3-in-dev-at-dice-and-respawn-multiple-sources-say" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span></div><h3>Xbox is testing pay-as-you-go cloud gaming without Game Pass</h3><p>It&#x27;s called Cloud Playtime, and Xbox Insiders can try it now. Packs of hours are 10 hours for $3.99, 25 for $7.99 and 50 for $11.99. They&#x27;re ad-free, unused hours don&#x27;t expire, and there&#x27;s also a free option with ads. The wider launch is due in November.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://news.xbox.com/en-us/2026/10/21/cloud-playtime-now-available-to-test-with-xbox-insiders/" target="_blank" rel="noopener noreferrer">Xbox Wire<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.purexbox.com/news/2026/10/three-price-tiers-revealed-as-xbox-rolls-out-cloud-playtime-to-insiders" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Report: Game Pass could go à la carte</h3><p>From Fortune&#x27;s new profile of Xbox CEO Asha Sharma: Game Pass would stay tiered, but you&#x27;d pay for add-ons such as console games, cloud gaming and multiplayer. There&#x27;s no price or date, and Microsoft hasn&#x27;t confirmed it.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gamesradar.com/games/xbox-game-pass-overhaul-would-have-you-pay-for-add-ons-like-multiplayer-and-cloud-gaming-ala-carte-says-new-report/" target="_blank" rel="noopener noreferrer">GamesRadar+<span aria-hidden="true"> ↗</span></a><a class="src" href="https://kotaku.com/a-big-overhaul-of-xbox-game-pass-is-in-the-works-2000748041" target="_blank" rel="noopener noreferrer">Kotaku<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Nintendo Switch Sports Resort</h3><p class="rel-note">Day-one patch 1.1.0 is already out</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Cyberpunk 2077 Update 2.5</h3><p class="rel-note">Switch 2 in the days after</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><p class="rel-note">HD-2D RPG, strong reviews</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Cult of the Lamb Switch 2 Edition</h3><p class="rel-note">Free upgrade</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Hitman: Absolution Switch 2 Edition</h3><p class="rel-note">Physical pre-orders from 30 Oct</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><p class="rel-note">Full launch with multiplayer</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Ace Combat 8 bug-fix patch</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">26</span><span class="m">Oct</span></div><div class="rel-body"><h3>Steam Next Fest ends</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Minecraft for Switch 2</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Crimson Desert: Charting the Unknown</h3><p class="rel-note">Big DLC</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>PlayStation Pulse pre-orders</h3><p class="rel-note">10:00 local time</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><p class="rel-note">About 135GB install</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>The Wolf Among Us Remastered</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Pokémon TCG Pocket: Dual Fusion</h3><p class="rel-note">First dual-type cards</p><div class=chips><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Mouthwashing</h3><p class="rel-note">PS5 debut (Switch also this month)</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Nov</span></div><div class="rel-body"><h3>Planet of the Deals sale ends</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">10</span><span class="m">Nov</span></div><div class="rel-body"><h3>Shrek 2 Remastered</h3><p class="rel-note">$29.99</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">17</span><span class="m">Nov</span></div><div class="rel-body"><h3>GTA V and RDR2 leave PS Plus Extra</h3><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><p class="rel-note">Plus the new Pulse headset</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Dec</span></div><div class="rel-body"><h3>Monster Hunter Wilds</h3><p class="rel-note">Switch 2 version</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">9</span><span class="m">Dec</span></div><div class="rel-body"><h3>Riders Republic</h3><p class="rel-note">Switch 2, plus offline play</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li></ul><a class="full-list" href="https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-next-week-19th-25th-october" target="_blank" rel="noopener noreferrer">See the full release list ↗</a></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>Still waiting: The Blood of Dawnwalker Update 1.1 on PS5 (no exact date yet) and the Cyberpunk 2.5 date for Switch 2.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  var root=document.getElementById("edition-views");
+  if(!root)return;
+  var edition=root.getAttribute("data-edition-date");
+  if(!edition)return;
+  var statEl=document.getElementById("views-stat");
+  var noteEl=document.getElementById("views-note");
+  var unavailEl=document.getElementById("views-unavail");
+  var figEl=document.getElementById("views-figure");
+  var svgEl=document.getElementById("views-svg");
+  var capEl=document.getElementById("views-caption");
+  function showUnavailable(){
+    root.hidden=false;
+    if(unavailEl)unavailEl.hidden=false;
+    if(figEl)figEl.hidden=true;
+    if(statEl)statEl.textContent="";
+    if(noteEl)noteEl.hidden=true;
+  }
+  function fmt(n){return n.toLocaleString("en-ZA");}
+  function shortDate(iso){
+    var p=iso.split("-");
+    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
+  }
+  function drawChart(tracked){
+    if(!tracked.length||!svgEl)return;
+    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
+    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+    var maxPv=0;
+    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
+    if(maxPv<1)maxPv=1;
+    var pts=[];
+    for(var j=0;j<tracked.length;j++){
+      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
+      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
+      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+    }
+    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
+    var line="M"+pts[0].x+" "+pts[0].y;
+    for(var k=1;k<pts.length;k++){
+      line+=" L"+pts[k].x+" "+pts[k].y;
+      area+=" L"+pts[k].x+" "+pts[k].y;
+    }
+    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
+    var grid="";
+    for(var g=0;g<=3;g++){
+      var gy=pad.t+(ih*g/3);
+      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
+    }
+    var dots="",labels="";
+    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
+    for(var m=0;m<pts.length;m++){
+      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
+      if(m===0||m===pts.length-1||m%labelEvery===0){
+        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
+      }
+    }
+    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
+    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
+      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
+    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+  }
+  fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(data){
+      if(!data||data.unavailable)throw 0;
+      root.hidden=false;
+      if(unavailEl)unavailEl.hidden=true;
+      var tracked=(data.series||[]).filter(function(p){return p.tracked;});
+      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
+      var parts=[];
+      if(data.launchDayViews!=null){
+        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      }
+      if(typeof data.totalViews==="number"){
+        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
+      }
+      if(statEl)statEl.innerHTML=parts.join(" · ");
+      if(tracked.length&&figEl){
+        figEl.hidden=false;
+        drawChart(tracked);
+      }else if(figEl)figEl.hidden=true;
+    })
+    .catch(function(){showUnavailable();});
+})();
+</script>
 </body>
 </html>

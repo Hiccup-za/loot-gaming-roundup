@@ -136,6 +136,24 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
+/* Edition readership chart (client-loaded) */
+.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
+.views h2{font-size:20px;margin-bottom:12px}
+.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
+.views-stat strong{color:var(--accent);font-weight:600}
+.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
+.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
+.views-figure{margin:0}
+.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
+.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
+.views-axis{stroke:var(--border);stroke-width:1}
+.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
+.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.views-area{fill:var(--accent-tint)}
+.views-dot{fill:var(--accent)}
+.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
+@media(min-width:1000px){.views{margin-top:28px}}
+
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
   :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}

@@ -147,6 +147,24 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
+/* Edition readership chart (client-loaded) */
+.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
+.views h2{font-size:20px;margin-bottom:12px}
+.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
+.views-stat strong{color:var(--accent);font-weight:600}
+.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
+.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
+.views-figure{margin:0}
+.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
+.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
+.views-axis{stroke:var(--border);stroke-width:1}
+.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
+.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.views-area{fill:var(--accent-tint)}
+.views-dot{fill:var(--accent)}
+.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
+@media(min-width:1000px){.views{margin-top:28px}}
+
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
   :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
@@ -191,8 +209,95 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">Monday 19 October 2026</div></div>
+<section class="views" id="edition-views" data-edition-date="2026-10-19" hidden><h2>Daily views</h2><p class="views-stat" id="views-stat"></p><p class="views-note" id="views-note" hidden></p><p class="views-unavail" id="views-unavail" hidden>Views unavailable</p><figure class="views-figure" id="views-figure" hidden><svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg><figcaption class="views-caption" id="views-caption"></figcaption></figure></section>
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">5 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-game">GTA</span></div><h3>Digital Foundry doesn&#x27;t think GTA 6&#x27;s launch trailer uses the PS5&#x27;s new QSSR upscaler</h3><p>Sony&#x27;s QSSR, a lighter version of the PS5 Pro&#x27;s PSSR upscaling for the base PS5, is so far only in Marvel&#x27;s Wolverine and Ghost of Yōtei. Digital Foundry&#x27;s Richard Leadbetter says the PS5-captured launch trailer looks like it renders at about 1440p and upscales to 4K the usual way, and that QSSR would eat roughly 4ms of a 30fps game&#x27;s 33ms frame budget. The trailer may also use older footage, so it doesn&#x27;t rule QSSR out for the final game, and Rockstar hasn&#x27;t said either way. GTA 6 is out 19 Nov.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/i-dont-think-were-seeing-it-here-gta-6-launch-trailer-not-using-ps5s-new-qssr-upscaler" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.digitalfoundry.net/features/gta-6-launch-trailer-analysis-has-a-long-standing-tech-issue-been-fixed" target="_blank" rel="noopener noreferrer">Digital Foundry<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-game">Cyberpunk 2077</span></div><h3>Cyberpunk: Edgerunners 2 hits Netflix tomorrow, and Cyberpunk 2077 is 70% off on Steam</h3><p>The new 10-episode series lands on 20 Oct. It&#x27;s a standalone story in Night City with a new crew of mercenaries, a new voice cast and a reimagined animation style. If it pulls you back in, Cyberpunk 2077 is $17.99 on Steam and Phantom Liberty is also $17.99 (40% off), both until 26 Oct at 20:00 SAST.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.netflix.com/tudum/articles/cyberpunk-edgerunners-2-release-date-news" target="_blank" rel="noopener noreferrer">Netflix Tudum<span aria-hidden="true"> ↗</span></a><a class="src" href="https://gamingroute.com/pc-game-deals-this-week-october-19/" target="_blank" rel="noopener noreferrer">Gaming Route PC deals<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-game">Call of Duty</span></div><h3>Modern Warfare 4 is the best-reviewed Call of Duty on Steam in years</h3><p>With campaign early access live for digital pre-orders, about 90% of Steam user reviews are positive (&quot;Very Positive&quot;). For comparison, SteamDB rates Black Ops 7 at under 39% and Black Ops 6 at under 46%. These are early, enthusiastic players who&#x27;ve only seen the campaign, though: multiplayer and DMZ only arrive with the full launch on 23 Oct, and the score could shift once they do.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.techpowerup.com/353835/call-of-duty-modern-warfare-4-gets-a-warm-steam-welcome-with-90-positive-reviews" target="_blank" rel="noopener noreferrer">TechPowerUp<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span></div><h3>Game Freak&#x27;s last Beast of Reincarnation patch is due now</h3><p>The Pokémon studio says this update (around 20 Oct in Japan, so today or tomorrow for you) is the final one in its run of major post-launch patches, the ninth since the action RPG came out in August. It&#x27;ll still take support tickets for problems, but this all but rules out DLC.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/pokemon-dev-already-finished-with-beast-of-reincarnation-ps5-patches" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.gamesradar.com/games/action-rpg/game-freak-is-moving-on-from-beast-of-reincarnation-with-major-updates-for-the-pokemon-devs-action-rpg-coming-to-an-end/" target="_blank" rel="noopener noreferrer">GamesRadar+<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span></div><h3>Survival-crafting demos worth grabbing in Steam Next Fest</h3><p>Next Fest starts tonight at 19:00 SAST. For survival fans: Frostrail, a co-op survival shooter where your base is an upgradeable steam train (70,000+ joined its closed beta); Never Wither, an open-world survival-crafting ARPG where you can turn into creatures you meet (demo from 20 Oct); and No Mortal Space, a voxel survival game where you rise to become a cosmic deity. Its new demo won&#x27;t load old saves. Keelblade (pirate co-op for up to six) and Arctic Drive (road-trip survival) demos are already out.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gamebrief.net/blog/steam-next-fest-october-2026-survival-games" target="_blank" rel="noopener noreferrer">GameBrief<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">5 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PlayStation</span></div><h3>PS6 memory alone could cost Sony over $680 a console, a leaker claims</h3><p>Hardware leaker KeplerL2 says RAM and SSD storage for the PS6 now cost more than $680 per unit, blaming prices pushed up by AI data centre demand. That doesn&#x27;t include the chip, cooling, power supply or assembly, which has people worried about a $1,000+ price. Sony hasn&#x27;t announced PS6 pricing or confirmed any of this, so treat it as rumour.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.videogameschronicle.com/news/playstation-6s-memory-costs-alone-exceed-680-per-console-its-claimed/" target="_blank" rel="noopener noreferrer">VGC<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.tweaktown.com/news/114138/ps6-memory-and-ssd-cost-more-than-an-entire-ps5-fueling-dollars1000-plus-price-fears-for-ps6/index.html" target="_blank" rel="noopener noreferrer">TweakTown<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">Street Fighter</span></div><h3>The Street Fighter movie wins its opening weekend</h3><p>Paramount&#x27;s live-action film opened at No. 1 in the US with $31 million, and about $51 million worldwide. That&#x27;s below Resident Evil&#x27;s and Mortal Kombat II&#x27;s US debuts, but it was enough to top the weekend. Street Fighter 6 is 60% off on Steam ($15.99) until 21 Oct.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320/" target="_blank" rel="noopener noreferrer">Deadline<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Eight games leave Xbox Game Pass on 31 Oct</h3><p>Deep Rock Galactic, LEGO Star Wars: The Skywalker Saga, Wartales, Day of the Tentacle Remastered, Full Throttle Remastered, Wildgate, Dead Static Drive and Lara Croft and the Temple of Osiris are all marked as leaving soon. You can buy them at a discount before they go.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/news/2026/10/eight-games-are-leaving-xbox-game-pass-in-late-october-2026" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div><h3>Some studios are sticking with physical games as Sony drops discs</h3><p>Bloober Team&#x27;s CEO, whose studio made the Silent Hill 2 remake, told GamesRadar+ it wants to keep making boxed copies &quot;for as long as possible&quot; even though digital is cheaper and more profitable. Separately, Xbox is hiring a Games Supply Strategist to coordinate physical Xbox game launches &quot;across all platforms&quot;. Microsoft hasn&#x27;t commented on what that means for its next console.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gamesradar.com/games/horror/the-physical-element-of-gaming-will-always-always-be-there-bloober-team-and-broken-mirror-games-want-to-make-physical-media-for-as-long-as-possible/" target="_blank" rel="noopener noreferrer">GamesRadar+<span aria-hidden="true"> ↗</span></a><a class="src" href="https://thedailygame.news/story/2026-10-18-xbox-hires-supply-strategist-to-keep-physical-game-releases-going-as-son--9c629dfb" target="_blank" rel="noopener noreferrer">Xbox job listing report<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span></div><h3>Next Fest is huge this time, with over 8,000 demos</h3><p>That&#x27;s roughly double June&#x27;s fest, and PC Gamer reckons a lot of it is quick AI-made clones. One studio, Alliance Arts, even pulled its planned demo over fears it would be copied before launch.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pcgamer.com/gaming-industry/steam-week-in-review-steam-next-fest-has-over-8-000-demos-as-worthless-vibe-coded-slop-levels-up/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Now</span><span class="m"></span></div><div class="rel-body"><h3>Pokémon Pokopia: Pumpkaboo&#x27;s Sweet Surprises</h3><p class="rel-note">Live until 1 Nov</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Steam Next Fest</h3><p class="rel-note">19:00 SAST, until 26 Oct</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Battlefield 6 free trial ends</h3><p class="rel-note">19:00 SAST on Steam</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19-20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Beast of Reincarnation final update</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cyberpunk: Edgerunners 2</h3><p class="rel-note">Netflix</p><div class=chips><span class="chip chip-game">Cyberpunk 2077</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>PS Plus Extra/Premium October games</h3><p class="rel-note">Mafia, Horizon FW, Mycopunk and more</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Dino Crisis 2</h3><p class="rel-note">PS1 classic, in PS Plus Premium</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Helldivers 2: Scope of Authority</h3><p class="rel-note">Premium Warbond</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>ID@Xbox Showcase</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>MW4 DMZ Early Access</h3><p class="rel-note">Digital pre-orders</p><div class=chips><span class="chip chip-game">Call of Duty</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Nintendo Switch Sports Resort</h3><p class="rel-note">$49.99</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cult of the Lamb Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut with cross-play</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><p class="rel-note">HD-2D RPG, demo out now</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Next</span><span class="m">week</span></div><div class="rel-body"><h3>The Blood of Dawnwalker Update 1.1</h3><p class="rel-note">No exact date yet</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Minecraft for Switch 2</h3><p class="rel-note">Free for digital Switch owners until 31 Jan</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Zelda 40th Anniversary Switch 2 console</h3><p class="rel-note">Restocks planned, no dates</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">31</span><span class="m">Oct</span></div><div class="rel-body"><h3>Eight games leave Game Pass</h3><p class="rel-note">Incl. Deep Rock Galactic</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li></ul><a class="full-list" href="https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-next-week-19th-25th-october" target="_blank" rel="noopener noreferrer">See the full release list ↗</a></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>A quiet Sunday for news. Still waiting: Dragonwilds&#x27; Air Staff 4th-hit fix (targeted for this week), Helldivers 2 Update 7.2 (undated, with Liberty Day in-game on 26 Oct), and the full list of games leaving PS Plus Extra in November, due 20 Oct.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  var root=document.getElementById("edition-views");
+  if(!root)return;
+  var edition=root.getAttribute("data-edition-date");
+  if(!edition)return;
+  var statEl=document.getElementById("views-stat");
+  var noteEl=document.getElementById("views-note");
+  var unavailEl=document.getElementById("views-unavail");
+  var figEl=document.getElementById("views-figure");
+  var svgEl=document.getElementById("views-svg");
+  var capEl=document.getElementById("views-caption");
+  function showUnavailable(){
+    root.hidden=false;
+    if(unavailEl)unavailEl.hidden=false;
+    if(figEl)figEl.hidden=true;
+    if(statEl)statEl.textContent="";
+    if(noteEl)noteEl.hidden=true;
+  }
+  function fmt(n){return n.toLocaleString("en-ZA");}
+  function shortDate(iso){
+    var p=iso.split("-");
+    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
+  }
+  function drawChart(tracked){
+    if(!tracked.length||!svgEl)return;
+    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
+    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+    var maxPv=0;
+    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
+    if(maxPv<1)maxPv=1;
+    var pts=[];
+    for(var j=0;j<tracked.length;j++){
+      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
+      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
+      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+    }
+    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
+    var line="M"+pts[0].x+" "+pts[0].y;
+    for(var k=1;k<pts.length;k++){
+      line+=" L"+pts[k].x+" "+pts[k].y;
+      area+=" L"+pts[k].x+" "+pts[k].y;
+    }
+    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
+    var grid="";
+    for(var g=0;g<=3;g++){
+      var gy=pad.t+(ih*g/3);
+      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
+    }
+    var dots="",labels="";
+    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
+    for(var m=0;m<pts.length;m++){
+      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
+      if(m===0||m===pts.length-1||m%labelEvery===0){
+        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
+      }
+    }
+    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
+    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
+      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
+    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+  }
+  fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(data){
+      if(!data||data.unavailable)throw 0;
+      root.hidden=false;
+      if(unavailEl)unavailEl.hidden=true;
+      var tracked=(data.series||[]).filter(function(p){return p.tracked;});
+      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
+      var parts=[];
+      if(data.launchDayViews!=null){
+        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      }
+      if(typeof data.totalViews==="number"){
+        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
+      }
+      if(statEl)statEl.innerHTML=parts.join(" · ");
+      if(tracked.length&&figEl){
+        figEl.hidden=false;
+        drawChart(tracked);
+      }else if(figEl)figEl.hidden=true;
+    })
+    .catch(function(){showUnavailable();});
+})();
+</script>
 </body>
 </html>
