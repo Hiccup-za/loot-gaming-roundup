@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-11",
+  "date_label": "Sunday 11 October 2026",
+  "your_games": [
+    {"title": "GTA 6", "tags": ["PS5", "Xbox"],
+     "body": "A leaker called CyberLeek says they'll post a full build of the game unless their demands are met. Rockstar also revealed six radio stations, including a metal station hosted by Tom Araya and Kerry King from Slayer. Still due 19 Nov on PS5 and Xbox.",
+     "links": [{"label": "Forbes", "url": "https://www.forbes.com/sites/paultassi/2026/10/10/gta-6-leaker-to-release-the-entire-game-build-if-rockstar-doesnt-meet-demands/"},
+               {"label": "DualShockers", "url": "https://www.dualshockers.com/gta-6-brings-back-heavy-metal-with-slayer-legends-hosting-new-radio-station/"}]},
+    {"title": "Witcher 3", "tags": ["PS5"],
+     "body": "Patch 5.01 is live. On PS5 it stops your settings resetting every launch, fixes the frame rate caps on the base PS5, and adds bloom and depth-of-field options.",
+     "links": [{"label": "TheWitcher.com", "url": "https://www.thewitcher.com/us/en/news/52085/patch-5-01-for-the-witcher-3-wild-hunt-remastered-is-live"}]},
+    {"title": "RuneScape: Dragonwilds", "tags": ["Dragonwilds"],
+     "body": "A hotfix stops world saves from vanishing. Update 1.0.1 comes next week and should bring back lost worlds and compensate players whose characters got corrupted.",
+     "links": [{"label": "Jagex", "url": "https://dragonwilds.runescape.com/news/save-corruptions---an-update"}]},
+    {"title": "Pokémon", "tags": ["Switch", "Pokémon"],
+     "body": "Pokémon HOME 4.1.0 adds one-way FireRed and LeafGreen transfers, and you get a Celebi for completing the Kanto Pokédex. Flareon and Jolteon join Pokémon UNITE on 13 Oct.",
+     "links": [{"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/pokemon-homes-firered-and-leafgreen-compatibility-update-is-now-live-version-4-1-0"},
+               {"label": "Screen Rant", "url": "https://screenrant.com/pokemon-unite-new-eeveelutions-october-13/"}]},
+    {"title": "Cyberpunk 2077", "tags": ["Cyberpunk"],
+     "body": "Paramount is making a live-action movie with CD Projekt Red. Edgerunners season 2 hits Netflix later this month.",
+     "links": [{"label": "BBC", "url": "https://www.bbc.com/news/articles/c60e048r02lgo"}]},
+    {"title": "Red Dead Online", "tags": ["Red Dead"],
+     "body": "The Halloween event is on, and the Dead of Night mode is back.",
+     "links": [{"label": "OpenCritic", "url": "https://opencritic.com/news/37416/red-dead-redemption-2-dead-of-night-officially-announced"}]},
+    {"title": "PS Plus", "tags": ["PS5"],
+     "body": "October's monthly games are F1 25, Hunt: Showdown 1896 and Earth Defense Force: World Brothers 2, claimable until 2 Nov.",
+     "links": [{"label": "PlayStation Blog", "url": "https://blog.playstation.com/2026/09/30/playstation-plus-monthly-games-for-october-f1-25-hunt-showdown-1896-earth-defense-force-world-brothers-2/"}]}
+  ],
+  "industry": [
+    {"title": "Console sales slump", "tags": ["PlayStation", "Xbox"],
+     "body": "PlayStation hardware sales in the US are down 25% this year, the lowest since 2013, and Xbox is down 33%. Rising prices seem to be the main reason.",
+     "links": [{"label": "Push Square", "url": "https://www.pushsquare.com/news/2026/10/playstation-hardware-sales-hit-lowest-point-since-2013-in-us-and-ps5s-price-is-the-problem"}]},
+    {"title": "Switch 2: GTA 6 and MW4", "tags": ["Switch"],
+     "body": "Nintendo won't confirm GTA 6 for Switch 2, but confirmed Call of Duty: Modern Warfare 4 is coming to it.",
+     "links": [{"label": "Polygon", "url": "https://www.polygon.com/gta-6-switch2-release-nintendo-boss-comments/"}]},
+    {"title": "Xbox launches XP", "tags": ["Xbox"],
+     "body": "Xbox launched XP, a new film, TV and theme-park division.",
+     "links": [{"label": "Xbox Wire", "url": "https://news.xbox.com/en-us/2026/10/08/introducing-xp/"}]}
+  ],
+  "releases_link": "https://warppipes.com/en/articles/releases-for-october-12-18-2026-castlevania-enshrouded-boltgun-2",
+  "releases": [
+    {"date": "13 Oct", "title": "Valor Mortis", "note": "A Soulslike from the Ghostrunner team", "tags": ["PS5", "Xbox", "PC"]},
+    {"date": "15 Oct", "title": "Enshrouded 1.0", "note": "Survival crafting, worth a look if you like Valheim", "tags": ["PS5", "PC"]},
+    {"date": "15 Oct", "title": "Castlevania: Belmont's Curse", "note": "", "tags": ["PS5", "Xbox", "Switch", "PC"]},
+    {"date": "16 Oct", "title": "Tales of Eternia Remastered", "note": "", "tags": ["PS5", "Switch", "Xbox", "PC"]},
+    {"date": "23 Oct", "title": "Call of Duty: Modern Warfare 4", "note": "", "tags": []}
+  ],
+  "footer_note": "Helldivers 2 update 7.2 is still expected in October, but there's no official date yet."
+}

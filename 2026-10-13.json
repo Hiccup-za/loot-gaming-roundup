@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-13",
+  "date_label": "Tuesday 13 October 2026",
+  "your_games": [
+    {"title": "Valor Mortis is out today", "tags": ["PS5", "Xbox", "PC"],
+     "body": "The Ghostrunner team's Napoleonic first-person soulslike launches today on PS5, Xbox Series, Steam and Day One Game Pass. You rise as a fallen Grande Armée soldier with supernatural powers; unlock is 17:00 UTC (19:00 SAST). New Game+ is planned for later this year.",
+     "links": [{"label": "Xbox Wire", "url": "https://news.xbox.com/en-us/2026/10/07/xbox-game-pass-october-2026-wave-1/"},
+               {"label": "PlayStation", "url": "https://www.playstation.com/en-us/games/valor-mortis/"}]},
+    {"title": "Pokémon UNITE: Flareon & Jolteon", "tags": ["Switch", "Pokémon"],
+     "body": "Flareon (All-Rounder) and Jolteon (Speedster) join Unite Battles today from 4PM JST. The Eevee Festival runs through 1 Dec with a special Appeal-o-rama quick battle — Flareon's license is free during the event.",
+     "links": [{"label": "Pokémon UNITE", "url": "https://www.pokemonunite.jp/en/topics/news/20260930/"},
+               {"label": "Screen Rant", "url": "https://screenrant.com/pokemon-unite-new-eeveelutions-october-13/"}]},
+    {"title": "Enshrouded 1.0 in two days", "tags": ["PS5", "PC"],
+     "body": "Keen Games leaves early access Thursday 15 Oct on PC and PS5 (Xbox slips to spring 2027). Survival crafting with Sparkworks creator tools — the closest big release this week to a Valheim-style loop.",
+     "links": [{"label": "Enshrouded", "url": "https://enshrouded.com/en-US/news/enshrouded-10-release-date-reveal"}]},
+    {"title": "Resident Evil on Switch 2 this Friday", "tags": ["Switch 2", "Resident Evil"],
+     "body": "RE2 Deluxe, RE3 and RE4 Gold Edition (with Separate Ways) go digital on Switch 2 on 16 Oct. Boxed copies follow 29 Jan 2027 — handy if you want RE4 portable after the PS5 run.",
+     "links": [{"label": "Capcom", "url": "https://www.capcom.co.jp/ir/english/news/html/e260910.html"},
+               {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/09/a-trio-of-resident-evil-remakes-hit-switch-2-in-october"}]},
+    {"title": "It Takes Two hits Switch 2 Thursday", "tags": ["Switch 2"],
+     "body": "Hazelight's co-op adventure lands 15 Oct with a free upgrade for Switch owners, Friend's Pass, GameShare, and same-day cross-play with PC, Xbox and PlayStation. Docked targets 1080p60.",
+     "links": [{"label": "EA", "url": "https://www.ea.com/games/it-takes-two/it-takes-two/news/launching-on-nintendo-switch-2"},
+               {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/it-takes-two-hops-onto-switch-2-next-week-marrying-visual-upgrades-and-cross-play"}]}
+  ],
+  "industry": [
+    {"title": "Battlefield 6 joins Game Pass today", "tags": ["Xbox", "PC"],
+     "body": "EA's all-out warfare shooter hits Game Pass Ultimate and PC Game Pass today (cloud, Series X|S and PC). Ultimate includes EA Play perks like the Deployment Pack and Season 5 rewards — a big freebie if you have the sub.",
+     "links": [{"label": "Xbox Wire", "url": "https://news.xbox.com/en-us/2026/10/07/xbox-game-pass-october-2026-wave-1/"}]},
+    {"title": "Deep Dish Dungeon day-one Game Pass", "tags": ["Xbox", "PC"],
+     "body": "Also out today: a survival exploration dungeon crawler with metroidvania and crafting, solo or online co-op. Day one on Game Pass Ultimate and PC Game Pass.",
+     "links": [{"label": "Xbox Wire", "url": "https://news.xbox.com/en-us/2026/10/07/xbox-game-pass-october-2026-wave-1/"}]},
+    {"title": "Japan Midnight Black PS5 Digital", "tags": ["PS5", "PlayStation"],
+     "body": "SIE announced a Japan-only Midnight Black PS5 Digital Edition for 19 Nov (¥55,000) — same day as GTA 6 — plus a matching disc drive. Japanese language and Japan-region account required; pre-orders open 20 Oct in Japan.",
+     "links": [{"label": "PlayStation Blog JP", "url": "https://blog.ja.playstation.com/2026/10/13/20261013-ps5-dej-black-announcement-s/"}]}
+  ],
+  "releases_link": "https://warppipes.com/en/articles/releases-for-october-12-18-2026-castlevania-enshrouded-boltgun-2",
+  "releases": [
+    {"date": "13 Oct", "title": "Valor Mortis", "note": "OUT TODAY — soulslike; Day One Game Pass", "tags": ["PS5", "Xbox", "PC"]},
+    {"date": "13 Oct", "title": "Pokémon UNITE: Flareon & Jolteon", "note": "OUT TODAY — free during Eevee Festival", "tags": ["Switch", "Pokémon"]},
+    {"date": "13 Oct", "title": "Battlefield 6", "note": "Joins Game Pass Ultimate / PC Game Pass", "tags": ["Xbox", "PC"]},
+    {"date": "14 Oct", "title": "Warhammer 40K: Boltgun 2", "note": "Mick Gordon on the final boss; Switch 2 later", "tags": ["PS5", "Xbox", "PC"]},
+    {"date": "15 Oct", "title": "Enshrouded 1.0", "note": "Survival crafting leaves early access; Sparkworks tools", "tags": ["PS5", "PC"]},
+    {"date": "15 Oct", "title": "Castlevania: Belmont's Curse", "note": "Demo save carries over", "tags": ["PS5", "Xbox", "Switch", "PC"]},
+    {"date": "15 Oct", "title": "It Takes Two", "note": "Free Switch upgrade; Friend's Pass; cross-play", "tags": ["Switch 2"]},
+    {"date": "15 Oct", "title": "Ratatan 1.0", "note": "Rhythm roguelike leaves early access", "tags": ["Switch 2"]},
+    {"date": "16 Oct", "title": "Resident Evil 2 / 3 / 4", "note": "Digital on Switch 2; physical Jan 2027", "tags": ["Switch 2"]},
+    {"date": "16 Oct", "title": "Tales of Eternia Remastered", "note": "", "tags": ["PS5", "Switch", "Xbox", "PC"]},
+    {"date": "23 Oct", "title": "Call of Duty: Modern Warfare 4", "note": "", "tags": ["PS5", "Xbox", "Switch 2", "PC"]}
+  ],
+  "footer_note": "Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet."
+}
