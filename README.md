@@ -7,7 +7,7 @@ Each daily roundup is a single HTML file. All CSS is inline (the theme lives in 
 - `YYYY-MM-DD.json`: the stories for one day (example: `2026-10-11.json`)
 - `YYYY-MM-DD.html`: the page built for that day
 - `index.html`: a copy of the latest day's page
-- `preview-mobile.png` / `preview-desktop.png`: screenshots of the latest build
+- `preview-mobile-top.png` / `preview-mobile-scrolled.png` / `preview-desktop.png`: viewport screenshots of the latest build (mobile is 390px at 2x; the scrolled shot shows the sticky header)
 
 ## Making a new roundup
 1. Copy yesterday's JSON to `YYYY-MM-DD.json` and replace the content.
@@ -50,3 +50,6 @@ google-chrome --headless=new --no-sandbox --hide-scrollbars \
   --window-size=1280,6100 --screenshot=preview-desktop.png file://$PWD/index.html
 ```
 If the page is longer than the window, the bottom gets cut off. Raise the window height when that happens.
+
+## Header
+The masthead is a sticky bar (`header.masthead` > `.bar`) holding the logo, the one-line title and the section nav, which scrolls sideways on phones. The kicker and date sit in `.intro` just under it and scroll away. Sections have `scroll-margin-top` so the jump links land below the bar. Keep `brand/theme.css` and the `CSS` string in `build.py` identical.

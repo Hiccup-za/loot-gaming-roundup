@@ -74,30 +74,47 @@ CSS = r"""
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-.wrap{max-width:760px;margin:0 auto;padding:24px 18px 48px}
-@media(min-width:720px){.wrap{padding:48px 32px 72px}}
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
+:root{--gutter:18px;--bar-h:104px}
+@media(min-width:720px){:root{--gutter:32px;--bar-h:80px}}
+.wrap{max-width:760px;margin:0 auto;padding:20px max(var(--gutter),env(safe-area-inset-right)) max(48px,env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
+@media(min-width:720px){.wrap{padding-top:28px;padding-bottom:72px}}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 
-/* Header */
-header{display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center;padding:0;margin-bottom:0}
-header>*{grid-column:1 / -1}
-header .logo{grid-column:1;grid-row:1 / span 2;width:84px;height:84px;object-fit:contain}
-header .logo~.kicker,header .logo~h1{grid-column:2}
-@media(max-width:560px){header .logo{width:60px;height:60px}}
-.kicker{display:inline-flex;align-items:center;gap:8px;align-self:end;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-h1{margin:6px 0 0;align-self:start;font:800 clamp(30px,6.4vw,56px)/1.04 var(--head);letter-spacing:-.03em;color:var(--text)}
-.date{margin-top:16px;font:500 13px/1.4 var(--mono);color:var(--text-3)}
-nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-nav.jump a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border);
-  background:var(--surface);color:var(--text-2);text-decoration:none;font:500 14px/1 var(--sans);transition:border-color .15s,color .15s}
+/* Sticky masthead bar: full-width background, contents on the column's left edge */
+header.masthead{position:sticky;top:0;z-index:50;background:rgba(15,16,18,.9);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){header.masthead{background:var(--bg)}}
+.bar{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px;
+  padding:10px max(var(--gutter),env(safe-area-inset-right)) 10px max(var(--gutter),env(safe-area-inset-left))}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;color:var(--text);text-decoration:none}
+.brand .logo{flex:0 0 auto;width:38px;height:38px;object-fit:contain;display:block}
+h1{margin:0;min-width:0;font:800 20px/1.1 var(--head);letter-spacing:-.025em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.jump{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter)}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+@media(min-width:720px){
+  .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
+  .brand{gap:14px}
+  .brand .logo{width:50px;height:50px}
+  h1{font-size:24px}
+  nav.jump{margin:0;padding:0;overflow:visible}
+  nav.jump a{min-height:34px;font-size:14px}
+}
+
+/* Intro line under the bar (scrolls away) */
+.intro{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.date{font:500 13px/1.4 var(--mono);color:var(--text-3)}
 
 /* Sections: editorial breaks, no boxes */
-section{margin-top:56px}
-header+section{margin-top:44px}
+section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
+.intro+section{margin-top:28px}
 h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
   font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
@@ -200,14 +217,14 @@ def render(data):
 <style>{CSS}</style>
 </head>
 <body>
-<div class="wrap">
-<header>
-<img class="logo" src="brand/logo-256.png" alt="Loot" width="84" height="84">
-<div class="kicker"><span class="dot"></span>Daily gaming news</div>
-<h1>Loot's Gaming Roundup</h1>
-<div class="date">{date_label}</div>
-<nav class="jump">{"".join(nav)}</nav>
+<header class="masthead">
+<div class="bar">
+<a class="brand" href="#top" aria-label="Loot's Gaming Roundup, back to top"><img class="logo" src="brand/logo-256.png" alt="Loot" width="50" height="50"><h1>Loot's Gaming Roundup</h1></a>
+<nav class="jump" aria-label="Sections">{"".join(nav)}</nav>
+</div>
 </header>
+<div class="wrap" id="top">
+<div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>
 {"".join(sections)}
 <footer>{note}<div class="sign">Compiled by Loot · links open in a new tab</div></footer>
 </div>
