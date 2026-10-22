@@ -7,7 +7,7 @@ Each daily roundup is a single HTML file. All CSS is inline (the theme lives in 
 - `YYYY-MM-DD.json`: the stories for one day (example: `2026-10-11.json`)
 - `YYYY-MM-DD.html`: the page built for that day
 - `index.html`: a copy of the latest day's page
-- `preview-mobile-top.png` / `preview-mobile-scrolled.png` / `preview-desktop.png`: viewport screenshots of the latest build (mobile is 390px at 2x; the scrolled shot shows the sticky header)
+- `preview-mobile-top.png`, `preview-mobile-scrolled.png` (390px at 2x), `preview-1024.png`, `preview-1440.png`, `preview-1440-scrolled.png`, `preview-1920.png`: viewport screenshots of the latest build
 
 ## Making a new roundup
 1. Copy yesterday's JSON to `YYYY-MM-DD.json` and replace the content.
@@ -53,3 +53,8 @@ If the page is longer than the window, the bottom gets cut off. Raise the window
 
 ## Header
 The masthead is a sticky bar (`header.masthead` > `.bar`) holding the logo, the one-line title and the section nav, which scrolls sideways on phones. The kicker and date sit in `.intro` just under it and scroll away. Sections have `scroll-margin-top` so the jump links land below the bar. Keep `brand/theme.css` and the `CSS` string in `build.py` identical.
+
+## Responsive layout
+- Under 1000px: one 760px column (phones and tablets).
+- 1000px and up: a 1200px container with the story feed (`main.feed`) on the left and a sticky "Out this week" sidebar (`aside.side`, 300px) on the right. Story text is capped at 38em (about 70 characters a line). The sidebar scrolls on its own if it's taller than the window.
+- 1440px and up: a 1280px container, a 360px sidebar and slightly larger headings and spacing.

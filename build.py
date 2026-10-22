@@ -75,9 +75,9 @@ CSS = r"""
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
-:root{--gutter:18px;--bar-h:104px}
+:root{--gutter:18px;--bar-h:104px;--max:760px}
 @media(min-width:720px){:root{--gutter:32px;--bar-h:80px}}
-.wrap{max-width:760px;margin:0 auto;padding:20px max(var(--gutter),env(safe-area-inset-right)) max(48px,env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
+.wrap{max-width:var(--max);margin:0 auto;padding:20px max(var(--gutter),env(safe-area-inset-right)) max(48px,env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
 @media(min-width:720px){.wrap{padding-top:28px;padding-bottom:72px}}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 
@@ -86,7 +86,7 @@ header.masthead{position:sticky;top:0;z-index:50;background:rgba(15,16,18,.9);
   -webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);
   border-bottom:1px solid var(--border);padding-top:env(safe-area-inset-top)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){header.masthead{background:var(--bg)}}
-.bar{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px;
+.bar{max-width:var(--max);margin:0 auto;display:flex;flex-direction:column;gap:8px;
   padding:10px max(var(--gutter),env(safe-area-inset-right)) 10px max(var(--gutter),env(safe-area-inset-left))}
 .brand{display:flex;align-items:center;gap:10px;min-width:0;color:var(--text);text-decoration:none}
 .brand .logo{flex:0 0 auto;width:38px;height:38px;object-fit:contain;display:block}
@@ -114,7 +114,7 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
-.intro+section{margin-top:28px}
+.intro+.layout>:first-child>section:first-child{margin-top:28px}
 h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
   font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
@@ -164,13 +164,47 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note{display:flex;gap:12px;align-items:flex-start;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--text-2);font-size:15.5px;line-height:1.6}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
+
+/* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
+@media(min-width:1000px){
+  :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
+  .layout.has-side{display:grid;grid-template-columns:minmax(0,1fr) var(--side);column-gap:var(--col-gap);align-items:start;margin-top:36px}
+  .layout.has-side>*>section:first-child,.intro+.layout.has-side>*>section:first-child{margin-top:0}
+  .layout.has-side+footer{margin-right:calc(var(--side) + var(--col-gap))}
+  .side{position:sticky;top:calc(var(--bar-h) + env(safe-area-inset-top) + 28px);
+    max-height:calc(100vh - var(--bar-h) - env(safe-area-inset-top) - 52px);overflow-y:auto;overscroll-behavior:contain;
+    scrollbar-width:thin;scrollbar-color:var(--border-strong) transparent;padding:0 6px 44px 0;margin-right:-6px;
+    -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
+  .side::-webkit-scrollbar{width:6px}
+  .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
+  .side h2{font-size:20px}
+  .side .release{gap:14px;padding:14px 0}
+  .side .rel-date{flex-basis:52px}
+  .side .rel-date .d{font-size:18px}
+  .side .rel-body h3{font-size:15.5px;line-height:1.35}
+  .side .rel-note{font-size:13.5px;margin-bottom:6px}
+  .side .full-list{margin:10px 0 4px}
+  .feed .card p,.feed .card .sources,.note{max-width:38em}
+}
+@media(min-width:1440px){
+  :root{--max:1280px;--gutter:48px;--side:360px;--col-gap:80px;--bar-h:84px}
+  h1{font-size:26px}
+  .brand .logo{width:54px;height:54px}
+  section{margin-top:64px}
+  h2{font-size:26px}
+  .side h2{font-size:21px}
+  .card{padding:32px 0 34px}
+  .card h3{font-size:28px}
+  .card p{font-size:17.5px;line-height:1.7}
+  .side .rel-body h3{font-size:16px}
+}
 """
 
 def render(data):
     games = data.get("your_games", [])
     industry = data.get("industry", [])
     releases = data.get("releases", [])
-    sections, nav = [], []
+    sections, side, nav = [], [], []
     if games:
         nav.append('<a href="#your-games">Your games</a>')
         sections.append(f'<section id="your-games"><h2>Your games<span class="count">{len(games)} stories</span></h2>'
@@ -183,11 +217,17 @@ def render(data):
         nav.append('<a href="#out-this-week">Out this week</a>')
         full = (f'<a class="full-list" href="{escape(data["releases_link"], quote=True)}" target="_blank" rel="noopener noreferrer">'
                 f'See the full release list ↗</a>') if data.get("releases_link") else ""
-        sections.append(f'<section id="out-this-week"><h2>Out this week</h2>'
+        side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul>{full}</section>')
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
+    parts = []
+    if sections:
+        parts.append(f'<main class="feed">{"".join(sections)}</main>')
+    if side:
+        parts.append(f'<aside class="side" aria-label="Out this week">{"".join(side)}</aside>')
+    layout = f'<div class="layout{" has-side" if sections and side else ""}">{"".join(parts)}</div>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -225,7 +265,7 @@ def render(data):
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>
-{"".join(sections)}
+{layout}
 <footer>{note}<div class="sign">Compiled by Loot · links open in a new tab</div></footer>
 </div>
 </body>
