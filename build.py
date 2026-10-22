@@ -3,11 +3,15 @@
 
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
+    python3 build.py --all                      # rebuild every edition, index, archive, sitemap
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
 """
-import argparse, json, os, shutil, sys
+import argparse, json, os, re, shutil, sys
 from html import escape
+
+EDITION_JSON = re.compile(r"^\d{4}-\d{2}-\d{2}\.json$")
+SITE_URL = os.environ.get("LOOT_SITE_URL", "https://loot-gaming-roundup.vercel.app")
 
 TAG_CLASS = {
     "ps5": "ps", "playstation": "ps", "ps plus": "ps",
@@ -219,6 +223,7 @@ def render(data):
                 f'See the full release list ↗</a>') if data.get("releases_link") else ""
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul>{full}</section>')
+    nav.append('<a href="/archive.html">Archive</a>')
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
@@ -264,36 +269,165 @@ def render(data):
 <body>
 <header class="masthead">
 <div class="bar">
-<a class="brand" href="#top" aria-label="Loot's Gaming Roundup, back to top"><img class="logo" src="brand/logo-mascot-256.png" alt="Loot" width="56" height="56"><h1>Loot's Gaming Roundup</h1></a>
+<a class="brand" href="/" aria-label="Loot's Gaming Roundup, home"><img class="logo" src="brand/logo-mascot-256.png" alt="Loot" width="56" height="56"><h1>Loot's Gaming Roundup</h1></a>
 <nav class="jump" aria-label="Sections">{"".join(nav)}</nav>
 </div>
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>
 {layout}
-<footer>{note}<div class="sign">Compiled by Loot · links open in a new tab</div></footer>
+<footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
 </body>
 </html>
 """
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("json_file")
-    ap.add_argument("-o", "--output")
-    ap.add_argument("--no-index", action="store_true")
-    a = ap.parse_args()
-    with open(a.json_file, encoding="utf-8") as f:
-        data = json.load(f)
-    here = os.path.dirname(os.path.abspath(__file__))
-    out = a.output or os.path.join(here, f'{data["date"]}.html')
+def list_edition_jsons(root):
+    paths = []
+    for name in os.listdir(root):
+        if EDITION_JSON.match(name):
+            paths.append(os.path.join(root, name))
+    return sorted(paths)
+
+
+def load_editions(root):
+    editions = []
+    for path in list_edition_jsons(root):
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        editions.append(data)
+    editions.sort(key=lambda d: d["date"], reverse=True)
+    return editions
+
+
+def head_common(title, description, nav, body):
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1012">
+<script src="https://cdn.databuddy.cc/databuddy.js" data-client-id="d2f227a9-4c59-4917-b672-37f4eb3d81f9" data-track-outgoing-links="true" data-track-interactions="false" crossorigin="anonymous" async></script>
+<meta name="color-scheme" content="dark">
+<title>{escape(title)}</title>
+<meta name="description" content="{escape(description)}">
+<link rel="icon" href="/brand/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="/brand/favicon-16.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/brand/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/brand/favicon-192.png?v=2">
+<link rel="icon" type="image/png" sizes="512x512" href="/brand/favicon-512.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon-180.png?v=2">
+<link rel="manifest" href="/site.webmanifest?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>{CSS}</style>
+</head>
+<body>
+<header class="masthead">
+<div class="bar">
+<a class="brand" href="/" aria-label="Loot's Gaming Roundup, home"><img class="logo" src="brand/logo-mascot-256.png" alt="Loot" width="56" height="56"><h1>Loot's Gaming Roundup</h1></a>
+<nav class="jump" aria-label="Sections">{nav}</nav>
+</div>
+</header>
+<div class="wrap" id="top">
+{body}
+<footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot · links open in a new tab</div></footer>
+</div>
+</body>
+</html>"""
+
+
+def render_archive(editions):
+    items = []
+    for ed in editions:
+        slug = escape(ed["date"])
+        label = escape(ed.get("date_label", ed["date"]))
+        items.append(
+            f'<li class="release"><div class="rel-body">'
+            f'<h3><a class="full-list" href="/{slug}.html">{label}</a></h3>'
+            f'</div></li>')
+    nav = '<a href="/">Latest</a>'
+    body = (
+        '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
+        '<div class="date">Every past edition</div></div>'
+        f'<section id="archive"><h2>Past roundups<span class="count">{len(editions)} editions</span></h2>'
+        f'<ul class="releases">{"".join(items)}</ul></section>')
+    return head_common("Loot's Gaming Roundup · Archive",
+                       "Every daily gaming roundup, newest first.",
+                       nav, body)
+
+
+def render_sitemap(editions):
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html"]
+    for ed in sorted(editions, key=lambda d: d["date"]):
+        urls.append(f'{SITE_URL}/{ed["date"]}.html')
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for loc in urls:
+        lines.append("  <url>")
+        lines.append(f"    <loc>{escape(loc)}</loc>")
+        lines.append("  </url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+def write_site_extras(root, editions, latest_html=None, update_index=False):
+    archive_path = os.path.join(root, "archive.html")
+    with open(archive_path, "w", encoding="utf-8") as f:
+        f.write(render_archive(editions))
+    print("wrote", archive_path)
+    sitemap_path = os.path.join(root, "sitemap.xml")
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write(render_sitemap(editions))
+    print("wrote", sitemap_path)
+    if update_index and latest_html:
+        idx = os.path.join(root, "index.html")
+        shutil.copyfile(latest_html, idx)
+        print("wrote", idx)
+
+
+def build_edition(root, data, output=None, no_index=False):
+    out = output or os.path.join(root, f'{data["date"]}.html')
     with open(out, "w", encoding="utf-8") as f:
         f.write(render(data))
     print("wrote", out)
-    if not a.output and not a.no_index:
-        idx = os.path.join(here, "index.html")
-        shutil.copyfile(out, idx)
-        print("wrote", idx)
+    return out
+
+
+def build_all(root):
+    editions = load_editions(root)
+    if not editions:
+        print("no edition JSON files found", file=sys.stderr)
+        sys.exit(1)
+    latest_path = None
+    for data in sorted(editions, key=lambda d: d["date"]):
+        latest_path = build_edition(root, data)
+    write_site_extras(root, editions, latest_html=latest_path, update_index=True)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("json_file", nargs="?")
+    ap.add_argument("--all", action="store_true", help="rebuild all editions, index, archive, and sitemap")
+    ap.add_argument("-o", "--output")
+    ap.add_argument("--no-index", action="store_true")
+    a = ap.parse_args()
+    here = os.path.dirname(os.path.abspath(__file__))
+    if a.all:
+        build_all(here)
+        return
+    if not a.json_file:
+        ap.error("json_file is required unless --all is set")
+    with open(a.json_file, encoding="utf-8") as f:
+        data = json.load(f)
+    out = build_edition(here, data, a.output, a.no_index)
+    if not a.output:
+        editions = load_editions(here)
+        latest = max(editions, key=lambda d: d["date"])["date"]
+        write_site_extras(here, editions,
+                          latest_html=out,
+                          update_index=not a.no_index and data["date"] == latest)
 
 if __name__ == "__main__":
     main()

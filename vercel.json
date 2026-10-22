@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "python3 build.py --all",
+  "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/:date(\\d{4}-\\d{2}-\\d{2})",
+      "destination": "/:date.html"
+    }
+  ]
+}
