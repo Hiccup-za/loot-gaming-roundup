@@ -52,8 +52,8 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
-:root{--gutter:18px;--bar-h:104px;--max:760px}
-@media(min-width:720px){:root{--gutter:32px;--bar-h:80px}}
+:root{--gutter:18px;--bar-h:106px;--max:760px}
+@media(min-width:720px){:root{--gutter:32px;--bar-h:86px}}
 .wrap{max-width:var(--max);margin:0 auto;padding:20px max(var(--gutter),env(safe-area-inset-right)) max(48px,env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
 @media(min-width:720px){.wrap{padding-top:28px;padding-bottom:72px}}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
@@ -66,7 +66,7 @@ header.masthead{position:sticky;top:0;z-index:50;background:rgba(15,16,18,.9);
 .bar{max-width:var(--max);margin:0 auto;display:flex;flex-direction:column;gap:8px;
   padding:10px max(var(--gutter),env(safe-area-inset-right)) 10px max(var(--gutter),env(safe-area-inset-left))}
 .brand{display:flex;align-items:center;gap:10px;min-width:0;color:var(--text);text-decoration:none}
-.brand .logo{flex:0 0 auto;width:38px;height:38px;object-fit:contain;display:block}
+.brand .logo{flex:0 0 auto;width:44px;height:44px;object-fit:contain;display:block;border-radius:0;background:none;border:0;box-shadow:none}
 h1{margin:0;min-width:0;font:800 20px/1.1 var(--head);letter-spacing:-.025em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 nav.jump{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
   margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter)}
@@ -77,7 +77,7 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
-  .brand .logo{width:50px;height:50px}
+  .brand .logo{width:56px;height:56px}
   h1{font-size:24px}
   nav.jump{margin:0;padding:0;overflow:visible}
   nav.jump a{min-height:34px;font-size:14px}
@@ -164,9 +164,9 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
   .feed .card p,.feed .card .sources,.note{max-width:38em}
 }
 @media(min-width:1440px){
-  :root{--max:1280px;--gutter:48px;--side:360px;--col-gap:80px;--bar-h:84px}
+  :root{--max:1280px;--gutter:48px;--side:360px;--col-gap:80px;--bar-h:90px}
   h1{font-size:26px}
-  .brand .logo{width:54px;height:54px}
+  .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
   h2{font-size:26px}
   .side h2{font-size:21px}
@@ -180,7 +180,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 <body>
 <header class="masthead">
 <div class="bar">
-<a class="brand" href="#top" aria-label="Loot's Gaming Roundup, back to top"><img class="logo" src="brand/logo-256.png" alt="Loot" width="50" height="50"><h1>Loot's Gaming Roundup</h1></a>
+<a class="brand" href="#top" aria-label="Loot's Gaming Roundup, back to top"><img class="logo" src="brand/logo-mascot-256.png" alt="Loot" width="56" height="56"><h1>Loot's Gaming Roundup</h1></a>
 <nav class="jump" aria-label="Sections"><a href="#your-games">Your games</a><a href="#industry">Industry</a><a href="#out-this-week">Out this week</a></nav>
 </div>
 </header>
