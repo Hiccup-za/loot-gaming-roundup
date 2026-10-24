@@ -234,10 +234,9 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .archive-card-title{margin:0;flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0}
 .archive-card-weekday{font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;color:var(--text);white-space:nowrap}
-.archive-date-badge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto;
-  min-width:42px;padding:5px 9px 6px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;line-height:1}
-.archive-date-day{font:700 17px/1 var(--head);letter-spacing:-.02em;color:var(--text)}
-.archive-date-mon{font:600 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.archive-date-badge{display:inline-flex;align-items:center;flex:0 0 auto;padding:2px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:999px;font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap}
 .archive-year-section+.archive-year-section{margin-top:48px}
 .archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
   font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
