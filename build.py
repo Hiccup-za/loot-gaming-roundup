@@ -3,7 +3,7 @@
 
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
-    python3 build.py --all                      # rebuild every edition, index, archive, sitemap
+    python3 build.py --all                      # rebuild every edition, index, archive, badges, sitemap
     python3 build.py --backfill-views           # fetch views snapshots for all editions (needs DATABUDDY_API_KEY)
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
@@ -276,6 +276,17 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-top{stop-color:var(--accent-tint)}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
+
+/* Badges: every story/release tag across all editions */
+.wrap--badges{--max:960px}
+@media(min-width:1000px){.wrap--badges{--max:1080px}}
+.badges-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.badges-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(min-width:900px){.badges-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+.badge-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
+.badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
 """
 
 # Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
@@ -446,6 +457,7 @@ def render(data):
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
+    nav.append('<a href="/badges.html">Badges</a>')
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
@@ -769,6 +781,57 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 </html>"""
 
 
+def collect_tag_counts(editions):
+    """Occurrences of each tag on stories and releases across all editions."""
+    counts = {}
+    for ed in editions:
+        for section in ("your_games", "industry"):
+            for story in ed.get(section) or []:
+                for tag in story.get("tags") or []:
+                    t = tag.strip()
+                    if t:
+                        counts[t] = counts.get(t, 0) + 1
+        for release in ed.get("releases") or []:
+            for tag in release.get("tags") or []:
+                t = tag.strip()
+                if t:
+                    counts[t] = counts.get(t, 0) + 1
+    return counts
+
+
+def render_badges(editions):
+    counts = collect_tag_counts(editions)
+    ordered = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
+    n_badges = len(ordered)
+    n_editions = len(editions)
+    edition_word = "edition" if n_editions == 1 else "editions"
+    items = []
+    for tag, count in ordered:
+        label = escape(f"{count} appearances")
+        items.append(
+            f'<li class="badge-item">{chip(tag)}'
+            f'<span class="badge-count" aria-label="{label}">{fmt_views(count)}</span></li>'
+        )
+    nav = (
+        '<a href="/">Latest</a>'
+        '<a href="/archive.html">Archive</a>'
+        '<a href="/badges.html" aria-current="true">Badges</a>'
+    )
+    body = (
+        '<div class="intro"><div class="kicker"><span class="dot"></span>Badges</div>'
+        f'<div class="date">{n_badges} tags across {n_editions} {edition_word}</div></div>'
+        f'<section id="badges"><h2>All badges<span class="count">sorted by frequency</span></h2>'
+        f'<ul class="badges-list">{"".join(items)}</ul></section>'
+    )
+    return head_common(
+        "Loot's Gaming Roundup · Badges",
+        "Every platform and game tag used across Loot's daily gaming roundups.",
+        nav,
+        body,
+        wrap_class="wrap wrap--badges",
+    )
+
+
 def render_archive(editions):
     ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
     by_year = {}
@@ -786,7 +849,11 @@ def render_archive(editions):
             f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
             f"</section>"
         )
-    nav = '<a href="/">Latest</a>'
+    nav = (
+        '<a href="/">Latest</a>'
+        '<a href="/archive.html" aria-current="true">Archive</a>'
+        '<a href="/badges.html">Badges</a>'
+    )
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
         '<div class="date">Every past edition, newest first</div></div>'
@@ -801,7 +868,7 @@ def render_archive(editions):
 
 
 def render_sitemap(editions):
-    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html"]
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html", f"{SITE_URL}/badges.html"]
     for ed in sorted(editions, key=lambda d: d["date"]):
         urls.append(f'{SITE_URL}/{ed["date"]}.html')
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -819,6 +886,10 @@ def write_site_extras(root, editions, latest_html=None, update_index=False):
     with open(archive_path, "w", encoding="utf-8") as f:
         f.write(render_archive(editions))
     print("wrote", archive_path)
+    badges_path = os.path.join(root, "badges.html")
+    with open(badges_path, "w", encoding="utf-8") as f:
+        f.write(render_badges(editions))
+    print("wrote", badges_path)
     sitemap_path = os.path.join(root, "sitemap.xml")
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write(render_sitemap(editions))
@@ -853,7 +924,11 @@ def build_all(root, *, refresh_views=False, backfill_views=False):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("json_file", nargs="?")
-    ap.add_argument("--all", action="store_true", help="rebuild all editions, index, archive, and sitemap")
+    ap.add_argument(
+        "--all",
+        action="store_true",
+        help="rebuild all editions, index, archive, badges, and sitemap",
+    )
     ap.add_argument(
         "--backfill-views",
         action="store_true",

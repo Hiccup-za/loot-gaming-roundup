@@ -239,13 +239,24 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-top{stop-color:var(--accent-tint)}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
+
+/* Badges: every story/release tag across all editions */
+.wrap--badges{--max:960px}
+@media(min-width:1000px){.wrap--badges{--max:1080px}}
+.badges-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.badges-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(min-width:900px){.badges-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+.badge-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
+.badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
 <header class="masthead">
 <div class="bar">
 <a class="brand" href="/" aria-label="Loot's Gaming Roundup, home"><img class="logo" src="brand/logo-mascot-256.png" alt="Loot" width="56" height="56"><h1>Loot's Gaming Roundup</h1></a>
-<nav class="jump" aria-label="Sections"><a href="/">Latest</a></nav>
+<nav class="jump" aria-label="Sections"><a href="/">Latest</a><a href="/archive.html" aria-current="true">Archive</a><a href="/badges.html">Badges</a></nav>
 </div>
 </header>
 <div class="wrap wrap--archive" id="top">
