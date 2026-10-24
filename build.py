@@ -9,6 +9,7 @@ Usage:
     python3 build.py data.json --no-index       # skip updating index.html
 """
 import argparse, json, os, re, shutil, sys
+from datetime import datetime
 from html import escape
 
 import views_fetch
@@ -502,6 +503,31 @@ def edition_story_count(ed):
     return len(ed.get("your_games") or []) + len(ed.get("industry") or [])
 
 
+def edition_release_day_label(iso_date):
+    """Edition calendar day as in release rows, e.g. 22 Oct."""
+    d = datetime.strptime(iso_date, "%Y-%m-%d")
+    return f"{d.day} {d.strftime('%b')}"
+
+
+def edition_out_today_count(ed):
+    """Releases dated Today or this edition's D Mon — not Out now / later calendar rows."""
+    day_mon = edition_release_day_label(ed["date"])
+    count = 0
+    for release in ed.get("releases") or []:
+        raw = (release.get("date") or "").strip()
+        if not raw:
+            continue
+        low = raw.lower()
+        if low == "today" or low == day_mon.lower():
+            count += 1
+    return count
+
+
+def archive_card_short_label(ed):
+    d = datetime.strptime(ed["date"], "%Y-%m-%d")
+    return f"{d.strftime('%a')} {d.day} {d.strftime('%b')}"
+
+
 def archive_views_untracked(ed):
     snap = ed.get("views_snapshot")
     if not snap:
@@ -574,9 +600,10 @@ def archive_chart_panel(ed):
 
 def archive_card(ed):
     slug = escape(ed["date"])
-    label = escape(ed.get("date_label", ed["date"]))
+    full_label = escape(ed.get("date_label", ed["date"]))
+    short_label = escape(archive_card_short_label(ed))
     stories = edition_story_count(ed)
-    releases = len(ed.get("releases") or [])
+    out_today = edition_out_today_count(ed)
     if archive_views_untracked(ed):
         views_val = "—"
         views_muted = True
@@ -586,13 +613,13 @@ def archive_card(ed):
         views_muted = False
     stats = (
         archive_stat_block("Stories", str(stories))
-        + archive_stat_block("Releases", str(releases))
+        + archive_stat_block("Out today", str(out_today))
         + archive_stat_block("Views", views_val, muted=views_muted)
     )
     return (
-        f'<a class="archive-card" href="/{slug}.html">'
+        f'<a class="archive-card" href="/{slug}.html" aria-label="{full_label}">'
         f'<div class="archive-card-head">'
-        f'<h3 class="archive-card-title">{label}</h3>'
+        f'<h3 class="archive-card-title">{short_label}</h3>'
         f'<span class="archive-card-read">Read<span class="arr" aria-hidden="true">→</span></span>'
         f"</div>"
         f'<div class="archive-stat-grid">{stats}</div>'
