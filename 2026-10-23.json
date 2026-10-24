@@ -361,12 +361,12 @@
   "views_snapshot": {
     "window_start": "2026-10-23T08:00:00+02:00",
     "window_end": "2026-10-24T08:00:00+02:00",
-    "fetched_at": "2026-10-24T14:41:28.578752+02:00",
-    "total_views": 0,
+    "fetched_at": "2026-10-24T14:43:47.296045+02:00",
+    "total_views": 17,
     "series": [
       {
         "date": "2026-10-23",
-        "pageviews": 0,
+        "pageviews": 17,
         "tracked": true
       },
       {
