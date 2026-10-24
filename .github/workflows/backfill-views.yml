@@ -2,6 +2,10 @@ name: Backfill views
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/backfill-views.request
 
 permissions:
   contents: write
