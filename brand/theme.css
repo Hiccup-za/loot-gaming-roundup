@@ -25,7 +25,7 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
-:root{--gutter:18px;--bar-h:106px;--max:760px}
+:root{--gutter:18px;--bar-h:106px;--max:760px;--section-head-gap:12px}
 @media(min-width:720px){:root{--gutter:32px;--bar-h:86px}}
 .wrap{max-width:var(--max);margin:0 auto;padding:20px max(var(--gutter),env(safe-area-inset-right)) max(48px,env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left))}
 @media(min-width:720px){.wrap{padding-top:28px;padding-bottom:72px}}
@@ -66,7 +66,7 @@ nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var
 .date{font:500 13px/1.4 var(--mono);color:var(--text-3)}
 
 /* Sections: editorial breaks, no boxes */
-section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
+section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + var(--section-head-gap))}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
 h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
   font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
@@ -152,11 +152,11 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
-  :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
+  :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px;--section-head-gap:28px}
   .layout.has-side{display:grid;grid-template-columns:minmax(0,1fr) var(--side);column-gap:var(--col-gap);align-items:start;margin-top:36px}
   .layout.has-side>*>section:first-child,.intro+.layout.has-side>*>section:first-child{margin-top:0}
   .layout.has-side+footer{margin-right:calc(var(--side) + var(--col-gap))}
-  .side{position:sticky;top:calc(var(--bar-h) + env(safe-area-inset-top) + 28px);
+  .side{position:sticky;top:calc(var(--bar-h) + env(safe-area-inset-top) + var(--section-head-gap));
     max-height:calc(100vh - var(--bar-h) - env(safe-area-inset-top) - 52px);overflow-y:auto;overscroll-behavior:contain;
     scrollbar-width:thin;scrollbar-color:var(--border-strong) transparent;padding:0 6px 44px 0;margin-right:-6px;
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
