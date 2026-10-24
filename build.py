@@ -218,6 +218,26 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: edition cards with stats and baked views sparkline */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+.archive-card{display:flex;flex-direction:column;gap:14px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;transition:border-color .15s,background .15s}
+.archive-card:hover{border-color:var(--border-strong);background:var(--surface-2)}
+.archive-card h3{margin:0;font:700 clamp(17px,2.8vw,19px)/1.25 var(--head);letter-spacing:-.015em}
+.archive-card h3 a{color:var(--text);text-decoration:none}
+.archive-card h3 a:hover{color:var(--accent)}
+.archive-card-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;
+  padding-top:12px;border-top:1px solid var(--border)}
+.archive-stats{display:flex;flex-wrap:wrap;gap:6px 12px;font:500 12px/1.3 var(--mono);color:var(--text-3)}
+.archive-stat{white-space:nowrap}
+.archive-card .edition-views{margin:0;padding:0;flex:1 1 auto;justify-content:flex-end;min-width:min(100%,200px)}
+.archive-card .edition-views-muted{justify-content:flex-start;font-size:12px}
+@media(max-width:479px){.archive-card .edition-views{width:auto;justify-content:flex-start}}
 """
 
 def fmt_views(n):
@@ -468,7 +488,37 @@ def finalize_previous_edition(root, current_date, *, refresh=False, backfill=Fal
     write_edition_json(prev["path"], prev["data"])
 
 
-def head_common(title, description, nav, body):
+def edition_story_count(ed):
+    return len(ed.get("your_games") or []) + len(ed.get("industry") or [])
+
+
+def archive_stats_html(ed):
+    stories = edition_story_count(ed)
+    releases = len(ed.get("releases") or [])
+    parts = [
+        f'<span class="archive-stat">{stories} {"story" if stories == 1 else "stories"}</span>'
+    ]
+    if releases:
+        parts.append(
+            f'<span class="archive-stat">{releases} {"release" if releases == 1 else "releases"}</span>'
+        )
+    return "".join(parts)
+
+
+def archive_card(ed):
+    slug = escape(ed["date"])
+    label = escape(ed.get("date_label", ed["date"]))
+    return (
+        f'<article class="archive-card">'
+        f'<h3><a href="/{slug}.html">{label}</a></h3>'
+        f'<div class="archive-card-foot">'
+        f'<div class="archive-stats">{archive_stats_html(ed)}</div>'
+        f"{views_sparkline(ed)}"
+        f"</div></article>"
+    )
+
+
+def head_common(title, description, nav, body, wrap_class="wrap"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -498,7 +548,7 @@ def head_common(title, description, nav, body):
 <nav class="jump" aria-label="Sections">{nav}</nav>
 </div>
 </header>
-<div class="wrap" id="top">
+<div class="{wrap_class}" id="top">
 {body}
 <footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
@@ -507,23 +557,21 @@ def head_common(title, description, nav, body):
 
 
 def render_archive(editions):
-    items = []
-    for ed in editions:
-        slug = escape(ed["date"])
-        label = escape(ed.get("date_label", ed["date"]))
-        items.append(
-            f'<li class="release"><div class="rel-body">'
-            f'<h3><a class="full-list" href="/{slug}.html">{label}</a></h3>'
-            f'</div></li>')
+    ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
+    cards = "".join(archive_card(ed) for ed in ordered)
     nav = '<a href="/">Latest</a>'
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
-        '<div class="date">Every past edition</div></div>'
+        '<div class="date">Every past edition, newest first</div></div>'
         f'<section id="archive"><h2>Past roundups<span class="count">{len(editions)} editions</span></h2>'
-        f'<ul class="releases">{"".join(items)}</ul></section>')
-    return head_common("Loot's Gaming Roundup · Archive",
-                       "Every daily gaming roundup, newest first.",
-                       nav, body)
+        f'<div class="archive-grid">{cards}</div></section>')
+    return head_common(
+        "Loot's Gaming Roundup · Archive",
+        "Every daily gaming roundup, newest first.",
+        nav,
+        body,
+        wrap_class="wrap wrap--archive",
+    )
 
 
 def render_sitemap(editions):
