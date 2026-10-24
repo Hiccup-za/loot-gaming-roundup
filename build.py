@@ -191,6 +191,8 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
   transition:border-color .15s ease,background .15s ease}
 .archive-card:hover,.archive-card:focus-within{border-color:var(--border-strong);background:var(--surface-2)}
 .archive-card-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px}
+.archive-card-main{flex:1 1 auto;min-width:0}
+.archive-card-stats{margin:6px 0 0;font:500 12.5px/1.4 var(--sans);color:var(--text-3)}
 a.archive-card-title{flex:1 1 auto;min-width:0;font:600 17px/1.3 var(--head);letter-spacing:-.01em;
   color:var(--accent);text-decoration:none}
 a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
@@ -339,6 +341,20 @@ def archive_card_views(data):
     return views_sparkline(
         data, elem="div", spark_w=72, spark_h=24, muted_only=True
     )
+
+
+def edition_stats_line(ed):
+    parts = []
+    ng = len(ed.get("your_games") or [])
+    ni = len(ed.get("industry") or [])
+    nr = len(ed.get("releases") or [])
+    if ng:
+        parts.append(f"{ng} your games")
+    if ni:
+        parts.append(f"{ni} industry")
+    if nr:
+        parts.append(f"{nr} releases")
+    return " · ".join(parts) if parts else "No stories"
 
 
 def render(data):
@@ -554,10 +570,14 @@ def render_archive(editions):
     for ed in reversed(editions):
         slug = escape(ed["date"])
         label = escape(ed.get("date_label", ed["date"]))
+        stats = escape(edition_stats_line(ed))
         items.append(
             f'<li class="archive-card">'
             f'<div class="archive-card-inner">'
+            f'<div class="archive-card-main">'
             f'<a class="archive-card-title" href="/{slug}.html">{label}</a>'
+            f'<p class="archive-card-stats">{stats}</p>'
+            f"</div>"
             f"{archive_card_views(ed)}"
             f"</div></li>"
         )
