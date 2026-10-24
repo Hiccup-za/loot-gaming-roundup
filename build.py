@@ -149,8 +149,8 @@ h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);lette
 .src-label{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
 a.src{display:inline-flex;align-items:center;min-height:32px;color:var(--text-2);text-decoration:none;font:500 14px/1.2 var(--sans)}
 a.src span{color:var(--text-3)}
-a.src:hover{color:var(--accent)}
-a.src:hover span{color:var(--accent)}
+a.src:hover{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+a.src:hover span{color:var(--text-2)}
 
 /* Releases: unboxed list, hairline rows */
 ul.releases{list-style:none;margin:0;padding:0}
@@ -300,10 +300,8 @@ def render(data):
                         f'<div class="grid">{"".join(story_card(s) for s in industry)}</div></section>')
     if releases:
         nav.append('<a href="#out-this-week">Out this week</a>')
-        full = (f'<a class="full-list" href="{escape(data["releases_link"], quote=True)}" target="_blank" rel="noopener noreferrer">'
-                f'See the full release list ↗</a>') if data.get("releases_link") else ""
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
-                        f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul>{full}</section>')
+                        f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
