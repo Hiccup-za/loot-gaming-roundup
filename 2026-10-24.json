@@ -371,14 +371,45 @@
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says \"in the days to follow\").",
   "views_snapshot": {
     "window_start": "2026-10-24T08:00:00+02:00",
-    "window_end": "2026-10-24T14:43:46.285215+02:00",
-    "fetched_at": "2026-10-24T14:43:48.105134+02:00",
-    "total_views": 21,
+    "window_end": "2026-10-24T14:47:35.670359+02:00",
+    "fetched_at": "2026-10-24T14:47:38.671124+02:00",
+    "granularity": "hourly",
+    "total_views": 24,
     "series": [
       {
-        "date": "2026-10-24",
-        "pageviews": 21,
-        "tracked": true
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T08:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T09:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T10:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T11:00:00+02:00"
+      },
+      {
+        "pageviews": 1,
+        "tracked": true,
+        "timestamp": "2026-10-24T12:00:00+02:00"
+      },
+      {
+        "pageviews": 12,
+        "tracked": true,
+        "timestamp": "2026-10-24T13:00:00+02:00"
+      },
+      {
+        "pageviews": 11,
+        "tracked": true,
+        "timestamp": "2026-10-24T14:00:00+02:00"
       }
     ]
   }
