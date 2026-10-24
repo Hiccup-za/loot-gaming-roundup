@@ -529,11 +529,7 @@ def archive_card_title_html(ed):
     d = datetime.strptime(ed["date"], "%Y-%m-%d")
     wd = escape(d.strftime("%a"))
     rest = escape(f"{d.day} {d.strftime('%B')}")
-    return (
-        f'<h3 class="archive-card-title">'
-        f'<span class="archive-card-wd">{wd}</span> · {rest}'
-        f"</h3>"
-    )
+    return f'<h3 class="archive-card-title">{wd} · {rest}</h3>'
 
 
 def archive_views_untracked(ed):
