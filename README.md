@@ -9,7 +9,7 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | `YYYY-MM-DD.json` | **Source of truth** for each day's stories and **views snapshot** |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
-| `archive.html` | Generated archive: one card per edition (newest first), with story counts and baked views sparkline |
+| `archive.html` | Generated archive: KPI and views-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
 | `badges.html` | Generated index of every story/release tag across all editions, with occurrence counts |
 | `sitemap.xml` | Generated sitemap for search engines |
 
