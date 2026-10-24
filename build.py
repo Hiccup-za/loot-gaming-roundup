@@ -180,11 +180,30 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .edition-views-muted{color:var(--text-3);opacity:.85;font-size:12px}
 .views-num{font:500 13px/1 var(--mono);color:var(--text-2)}
 .views-word{white-space:nowrap;letter-spacing:.02em}
-.views-spark{display:block;width:88px;height:28px;flex:0 0 auto;opacity:.88;overflow:visible}
-#views-line{stroke:var(--accent);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.views-spark{display:block;flex:0 0 auto;opacity:.88;overflow:visible}
+.views-line{stroke:var(--accent);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
 .views-stop-top{stop-color:var(--accent-tint)}
 .views-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 @media(max-width:479px){.edition-views{width:100%;justify-content:flex-end}}
+
+/* Archive: one card per edition, newest first */
+.archive-cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.archive-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  transition:border-color .15s ease,background .15s ease}
+.archive-card:hover,.archive-card:focus-within{border-color:var(--border-strong);background:var(--surface-2)}
+.archive-card-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px}
+a.archive-card-title{flex:1 1 auto;min-width:0;font:600 17px/1.3 var(--head);letter-spacing:-.01em;
+  color:var(--accent);text-decoration:none}
+a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+.archive-card .edition-views{min-height:24px;padding:0}
+.archive-card .views-spark{width:72px;height:24px}
+.archive-card-meta{flex:0 0 auto;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:right;max-width:min(220px,42vw)}
+.archive-card-meta-muted{opacity:.85}
+@media(max-width:479px){
+  .archive-card-inner{flex-wrap:wrap;padding:14px 16px}
+  a.archive-card-title{flex:1 1 100%}
+  .archive-card .edition-views,.archive-card-meta{margin-left:auto}
+}
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
@@ -258,7 +277,8 @@ def fmt_views(n):
     return f"{int(n):,}"
 
 
-def sparkline_paths(cum_vals, w=88, h=28, pad=2):
+def sparkline_paths(cum_vals, *, width=88, height=28, pad=2):
+    w, h = width, height
     if not cum_vals:
         return "", ""
     iw, ih = w - pad * 2, h - pad * 2
@@ -287,10 +307,18 @@ def _series_sort_key(point):
     return ""
 
 
-def views_sparkline(data):
+def views_sparkline(
+    data,
+    *,
+    elem="p",
+    spark_w=88,
+    spark_h=28,
+    muted_only=False,
+):
     snap = data.get("views_snapshot")
+    muted = f'<{elem} class="edition-views edition-views-muted">Views not recorded</{elem}>'
     if not snap:
-        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+        return muted
     series = sorted(snap.get("series") or [], key=_series_sort_key)
     tracked = [
         p
@@ -301,33 +329,43 @@ def views_sparkline(data):
     if total is None:
         total = sum(int(p.get("pageviews") or 0) for p in tracked)
     note = snap.get("tracking_note")
-    if not tracked and total == 0 and not note:
-        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+    if not tracked and total == 0:
+        if muted_only:
+            tip = escape(note) if note else ""
+            title_attr = f' title="{tip}"' if tip else ""
+            return (
+                f'<span class="archive-card-meta archive-card-meta-muted"{title_attr}>'
+                f"Views not recorded</span>"
+            )
+        if not note:
+            return muted
     cum, cum_vals = 0, []
     for p in tracked:
         cum += int(p.get("pageviews") or 0)
         cum_vals.append(cum)
     if len(cum_vals) == 1:
         cum_vals = [0, cum_vals[0]]
-    line_d, fill_d = sparkline_paths(cum_vals)
+    line_d, fill_d = sparkline_paths(cum_vals, width=spark_w, height=spark_h)
     tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
     label = escape(f"{fmt_views(total)} total views")
     grad_id = f"views-grad-{data.get('date', 'x').replace('-', '')}"
     svg = ""
     if line_d:
         svg = (
-            f'<svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false">'
+            f'<svg class="views-spark" viewBox="0 0 {spark_w} {spark_h}" width="{spark_w}" height="{spark_h}" '
+            f'aria-hidden="true" focusable="false">'
             f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
             f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
             f"</linearGradient></defs>"
             f'<path fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
-            f'<path id="views-line" d="{line_d}" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path class="views-line" d="{line_d}" fill="none" stroke-width="1.25" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>'
             f"</svg>"
         )
     return (
-        f'<p class="edition-views" title="{tip}" aria-label="{label}">'
+        f'<{elem} class="edition-views" title="{tip}" aria-label="{label}">'
         f'<span class="views-num">{fmt_views(total)}</span>'
-        f'<span class="views-word">total views</span>{svg}</p>'
+        f'<span class="views-word">total views</span>{svg}</{elem}>'
     )
 
 
@@ -582,7 +620,9 @@ def archive_chart_panel(ed):
     total, cum_vals, note = archive_cumulative_series(ed)
     if not cum_vals:
         cum_vals = [0, 0]
-    line_d, fill_d = sparkline_paths(cum_vals, w=chart_w, h=chart_h, pad=chart_pad)
+    line_d, fill_d = sparkline_paths(
+        cum_vals, width=chart_w, height=chart_h, pad=chart_pad
+    )
     grad_id = f"archive-grad-{ed.get('date', 'x').replace('-', '')}"
     tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
     svg = (
