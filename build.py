@@ -231,9 +231,15 @@ a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16p
   transition:border-color .15s,background .15s,box-shadow .15s}
 a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
 a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.archive-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.6vw,18px)/1.3 var(--head);letter-spacing:-.015em;color:var(--text)}
-.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;padding-top:2px;
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0}
+.archive-card-weekday{font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;color:var(--text);white-space:nowrap}
+.archive-date-badge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto;
+  min-width:42px;padding:5px 9px 6px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;line-height:1}
+.archive-date-day{font:700 17px/1 var(--head);letter-spacing:-.02em;color:var(--text)}
+.archive-date-mon{font:600 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
   font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
 .archive-card-read .arr{font-size:14px;line-height:1}
 .archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
@@ -523,9 +529,19 @@ def edition_out_today_count(ed):
     return count
 
 
-def archive_card_short_label(ed):
+def archive_card_title_html(ed):
     d = datetime.strptime(ed["date"], "%Y-%m-%d")
-    return f"{d.strftime('%a')} {d.day} {d.strftime('%b')}"
+    wd = escape(d.strftime("%a"))
+    day = escape(str(d.day))
+    mon = escape(d.strftime("%b"))
+    return (
+        f'<h3 class="archive-card-title">'
+        f'<span class="archive-card-weekday">{wd}</span>'
+        f'<span class="archive-date-badge" aria-hidden="true">'
+        f'<span class="archive-date-day">{day}</span>'
+        f'<span class="archive-date-mon">{mon}</span>'
+        f"</span></h3>"
+    )
 
 
 def archive_views_untracked(ed):
@@ -601,7 +617,6 @@ def archive_chart_panel(ed):
 def archive_card(ed):
     slug = escape(ed["date"])
     full_label = escape(ed.get("date_label", ed["date"]))
-    short_label = escape(archive_card_short_label(ed))
     stories = edition_story_count(ed)
     out_today = edition_out_today_count(ed)
     if archive_views_untracked(ed):
@@ -619,7 +634,7 @@ def archive_card(ed):
     return (
         f'<a class="archive-card" href="/{slug}.html" aria-label="{full_label}">'
         f'<div class="archive-card-head">'
-        f'<h3 class="archive-card-title">{short_label}</h3>'
+        f"{archive_card_title_html(ed)}"
         f'<span class="archive-card-read">Read<span class="arr" aria-hidden="true">→</span></span>'
         f"</div>"
         f'<div class="archive-stat-grid">{stats}</div>'
@@ -668,13 +683,26 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 
 def render_archive(editions):
     ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
-    cards = "".join(archive_card(ed) for ed in ordered)
+    by_year = {}
+    for ed in ordered:
+        by_year.setdefault(ed["date"][:4], []).append(ed)
+    year_sections = []
+    for year in sorted(by_year.keys(), reverse=True):
+        year_eds = by_year[year]
+        sec_id = "archive" if len(by_year) == 1 else f"archive-{year}"
+        sec_cls = "archive-year-section" if len(by_year) > 1 else ""
+        cls_attr = f' class="{sec_cls}"' if sec_cls else ""
+        year_sections.append(
+            f'<section id="{sec_id}"{cls_attr}>'
+            f'<h2>Past roundups - {year}<span class="count">{len(year_eds)} editions</span></h2>'
+            f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
+            f"</section>"
+        )
     nav = '<a href="/">Latest</a>'
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
         '<div class="date">Every past edition, newest first</div></div>'
-        f'<section id="archive"><h2>Past roundups<span class="count">{len(editions)} editions</span></h2>'
-        f'<div class="archive-grid">{cards}</div></section>')
+        f'{"".join(year_sections)}')
     return head_common(
         "Loot's Gaming Roundup · Archive",
         "Every daily gaming roundup, newest first.",

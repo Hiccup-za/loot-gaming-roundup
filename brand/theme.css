@@ -173,9 +173,15 @@ a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16p
   transition:border-color .15s,background .15s,box-shadow .15s}
 a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
 a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.archive-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.6vw,18px)/1.3 var(--head);letter-spacing:-.015em;color:var(--text)}
-.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;padding-top:2px;
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0}
+.archive-card-weekday{font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;color:var(--text);white-space:nowrap}
+.archive-date-badge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto;
+  min-width:42px;padding:5px 9px 6px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;line-height:1}
+.archive-date-day{font:700 17px/1 var(--head);letter-spacing:-.02em;color:var(--text)}
+.archive-date-mon{font:600 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
   font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
 .archive-card-read .arr{font-size:14px;line-height:1}
 .archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
