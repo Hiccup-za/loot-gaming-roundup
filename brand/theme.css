@@ -229,22 +229,25 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
 .badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
-.badges-summary{margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.badges-summary{margin-top:28px;--summary-chart-h:96px;display:flex;flex-direction:column;gap:16px}
 @media(min-width:960px){.badges-summary{flex-direction:row;align-items:stretch;gap:24px}}
-.badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px}
-@media(min-width:960px){.badges-kpi-panel{flex:0 0 min(300px,34%)}}
+.badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
+@media(min-width:960px){.badges-kpi-panel{flex:0 0 min(300px,34%);align-self:stretch}}
 .badges-kpi-hero{display:flex;flex-direction:column;gap:8px;padding:20px 18px;background:var(--surface);
   border:1px solid var(--border);border-radius:12px}
+@media(min-width:960px){.badges-kpi-hero{flex:1 1 auto;justify-content:center;min-height:0}}
 .badges-kpi-hero-value{font:700 clamp(34px,4.5vw,44px)/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
 .badges-kpi-hero-label{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
-.badges-kpi-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.badges-kpi-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;flex:0 0 auto}
+@media(min-width:960px){.badges-kpi-row .archive-stat-block{padding:14px 10px}}
 .badges-trend-panel{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px 18px 14px;
   background:var(--surface);border:1px solid var(--border);border-radius:12px}
-.badges-trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+@media(min-width:960px){.badges-trend-panel{align-self:stretch}}
+.badges-trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex:0 0 auto}
 .badges-trend-title{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
 .badges-trend-range{font:500 12px/1.35 var(--mono);color:var(--text-3);white-space:nowrap}
-.badges-trend-chart{flex:1 1 auto;min-height:132px;display:flex;align-items:center}
-.badges-trend-chart svg{width:100%;height:132px;display:block}
+.badges-trend-chart{flex:0 0 auto;display:flex;align-items:center;height:var(--summary-chart-h)}
+.badges-trend-chart svg{width:100%;height:var(--summary-chart-h);display:block}
 .badges-trend-axis{font:500 10px/1 var(--mono);fill:var(--text-3)}
 .badges-trend-line{stroke:var(--accent);fill:none;stroke-width:1.75;vector-effect:non-scaling-stroke;
   stroke-linecap:round;stroke-linejoin:round}
