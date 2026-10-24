@@ -33,21 +33,36 @@ function parseEditionDate(raw) {
   return raw;
 }
 
+function unwrapParameterBlocks(items) {
+  if (!items.length) return items;
+  const first = items[0];
+  if (!first || typeof first !== 'object' || !('parameter' in first)) {
+    return items;
+  }
+  const rows = [];
+  for (const block of items) {
+    if (!block || typeof block !== 'object') continue;
+    if (Array.isArray(block.data)) rows.push(...block.data);
+    else if (Array.isArray(block.rows)) rows.push(...block.rows);
+  }
+  return rows.length ? rows : items;
+}
+
 function extractRows(payload) {
   if (!payload || typeof payload !== 'object') return [];
-  if (Array.isArray(payload)) return payload;
-  if (Array.isArray(payload.rows)) return payload.rows;
-  if (Array.isArray(payload.data)) return payload.data;
+  if (Array.isArray(payload)) return unwrapParameterBlocks(payload);
+  if (Array.isArray(payload.rows)) return unwrapParameterBlocks(payload.rows);
+  if (Array.isArray(payload.data)) return unwrapParameterBlocks(payload.data);
   if (payload.data && typeof payload.data === 'object') {
     for (const key of Object.keys(payload.data)) {
       const val = payload.data[key];
-      if (Array.isArray(val)) return val;
+      if (Array.isArray(val)) return unwrapParameterBlocks(val);
     }
   }
   for (const key of Object.keys(payload)) {
     const val = payload[key];
     if (Array.isArray(val) && val.length && typeof val[0] === 'object') {
-      return val;
+      return unwrapParameterBlocks(val);
     }
   }
   return [];
@@ -103,16 +118,17 @@ async function buildViewsResponse(editionDate, apiKey) {
   const queryStart =
     editionDate > TRACKING_START ? editionDate : TRACKING_START;
 
-  const htmlPath = `/${editionDate}.html`;
-  const cleanPath = `/${editionDate}`;
+  const paths = [`/${editionDate}.html`, `/${editionDate}`, '/'];
 
-  let htmlViews = new Map();
-  let cleanViews = new Map();
+  /** @type {Map<string, number>[]} */
+  const pathMaps = paths.map(() => new Map());
   if (queryStart <= endDate) {
-    [htmlViews, cleanViews] = await Promise.all([
-      queryPathPageviews(apiKey, htmlPath, queryStart, endDate),
-      queryPathPageviews(apiKey, cleanPath, queryStart, endDate),
-    ]);
+    const results = await Promise.all(
+      paths.map((path) => queryPathPageviews(apiKey, path, queryStart, endDate)),
+    );
+    results.forEach((m, i) => {
+      pathMaps[i] = m;
+    });
   }
 
   const allDays = datesBetween(editionDate, endDate);
@@ -120,8 +136,7 @@ async function buildViewsResponse(editionDate, apiKey) {
     if (date < TRACKING_START) {
       return { date, pageviews: null, tracked: false };
     }
-    const pv =
-      (htmlViews.get(date) || 0) + (cleanViews.get(date) || 0);
+    const pv = pathMaps.reduce((sum, m) => sum + (m.get(date) || 0), 0);
     return { date, pageviews: pv, tracked: true };
   });
 

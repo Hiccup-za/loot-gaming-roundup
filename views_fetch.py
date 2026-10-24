@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -21,6 +22,11 @@ TRACKING_NOTE_PARTIAL = (
 TRACKING_NOTE_BEFORE = (
     "View tracking began on 22 October 2026 at about 15:00 SAST. "
     "This edition's measurement window ended before tracking was live."
+)
+
+VIEWS_PATHS_TOOLTIP = (
+    "Page views for this edition's publish window "
+    "(/YYYY-MM-DD.html, clean URL, and / while this edition was the home page)."
 )
 
 
@@ -63,22 +69,44 @@ def dates_inclusive(start: date, end: date) -> list[date]:
     return out
 
 
+def _unwrap_parameter_blocks(items: list) -> list:
+    """Flatten Databuddy batch items like {parameter, data: [...]}."""
+    if not items:
+        return []
+    if not isinstance(items[0], dict):
+        return items
+    if "parameter" not in items[0] and "data" not in items[0]:
+        return items
+    rows: list = []
+    for block in items:
+        if not isinstance(block, dict):
+            continue
+        inner = block.get("data")
+        if isinstance(inner, list):
+            rows.extend(inner)
+        elif isinstance(block.get("rows"), list):
+            rows.extend(block["rows"])
+    return rows if rows else items
+
+
 def extract_rows(payload) -> list:
-    if not payload or not isinstance(payload, dict):
+    if payload is None:
         return []
     if isinstance(payload, list):
-        return payload
+        return _unwrap_parameter_blocks(payload)
+    if not isinstance(payload, dict):
+        return []
     for key in ("rows", "data"):
         val = payload.get(key)
         if isinstance(val, list):
-            return val
+            return _unwrap_parameter_blocks(val)
         if isinstance(val, dict):
             for sub in val.values():
                 if isinstance(sub, list):
-                    return sub
+                    return _unwrap_parameter_blocks(sub)
     for val in payload.values():
         if isinstance(val, list) and val and isinstance(val[0], dict):
-            return val
+            return _unwrap_parameter_blocks(val)
     return []
 
 
@@ -149,6 +177,12 @@ def query_path_pageviews(
             continue
         ts = ts.astimezone(TZ)
         by_bucket[ts] = by_bucket.get(ts, 0) + row_pageviews(row)
+    if os.environ.get("VIEWS_FETCH_DEBUG"):
+        total = sum(by_bucket.values())
+        print(
+            f"views_fetch: path={path!r} {granularity} rows={len(rows)} buckets={len(by_bucket)} pv={total}",
+            file=sys.stderr,
+        )
     return by_bucket
 
 
@@ -190,6 +224,43 @@ def aggregate_daily_from_hourly(hourly: dict[datetime, int]) -> dict[date, int]:
     return daily
 
 
+def fetch_window_pageviews(
+    api_key: str,
+    paths: list[str],
+    start: datetime,
+    end: datetime,
+) -> tuple[dict[date, int], str]:
+    """Query paths; prefer hourly inside 30d windows, fall back to daily if hourly is empty."""
+    granularity = choose_granularity(start, end)
+    merged = filter_buckets(
+        merge_path_maps(
+            *(query_path_pageviews(api_key, p, start, end, granularity) for p in paths)
+        ),
+        start,
+        end,
+        granularity,
+    )
+    if granularity == "hourly" and sum(merged.values()) == 0:
+        granularity = "daily"
+        merged = filter_buckets(
+            merge_path_maps(
+                *(query_path_pageviews(api_key, p, start, end, granularity) for p in paths)
+            ),
+            start,
+            end,
+            granularity,
+        )
+    if granularity == "hourly":
+        daily_pv = aggregate_daily_from_hourly(merged)
+    else:
+        daily_pv = {ts.date(): n for ts, n in merged.items()}
+    return daily_pv, granularity
+
+
+def edition_view_paths(edition_date: str) -> list[str]:
+    return [f"/{edition_date}.html", f"/{edition_date}", "/"]
+
+
 def build_views_snapshot(
     edition_date: str,
     window_start: datetime,
@@ -217,26 +288,17 @@ def build_views_snapshot(
     if effective_start >= window_end:
         return {**base, "total_views": 0, "series": [], "tracking_note": tracking_note}
 
-    granularity = choose_granularity(effective_start, window_end)
-    query_end = window_end - timedelta(microseconds=1)
-    if query_end < effective_start:
-        query_end = effective_start
-
-    html_path = f"/{edition_date}.html"
-    clean_path = f"/{edition_date}"
-
-    html_raw = query_path_pageviews(api_key, html_path, effective_start, window_end, granularity)
-    clean_raw = query_path_pageviews(api_key, clean_path, effective_start, window_end, granularity)
-    merged = filter_buckets(
-        merge_path_maps(html_raw, clean_raw), effective_start, window_end, granularity
+    paths = edition_view_paths(edition_date)
+    daily_pv, granularity = fetch_window_pageviews(
+        api_key, paths, effective_start, window_end
     )
-
-    if granularity == "hourly":
-        daily_pv = aggregate_daily_from_hourly(merged)
-    else:
-        daily_pv = {ts.date(): n for ts, n in merged.items()}
-
     total_views = sum(daily_pv.values())
+
+    if os.environ.get("VIEWS_FETCH_DEBUG"):
+        print(
+            f"views_fetch: edition={edition_date} granularity={granularity} total={total_views}",
+            file=sys.stderr,
+        )
 
     series: list[dict] = []
     for day in dates_inclusive(window_start.date(), (window_end - timedelta(seconds=1)).date()):

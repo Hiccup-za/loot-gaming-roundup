@@ -47,7 +47,7 @@ Each edition page links to **Past roundups** (`/archive.html`) in the footer and
 - **Website ID:** `d2f227a9-4c59-4917-b672-37f4eb3d81f9`, timezone **Africa/Johannesburg**
 - **API:** `POST https://api.databuddy.cc/v1/query` with header **`x-api-key`** from env **`DATABUDDY_API_KEY`**
 - **Measurement window:** from this edition's **`published_at`** until the **next** edition's `published_at` (not calendar midnight). If `published_at` is omitted, the build assumes **08:00 Africa/Johannesburg** on the edition `date` (override in JSON when you publish at a different time).
-- **Paths merged:** `/YYYY-MM-DD.html` and `/YYYY-MM-DD`
+- **Paths merged:** `/YYYY-MM-DD.html`, `/YYYY-MM-DD`, and **`/`** (home page while that edition was live)
 - **Tracking live from ~15:00 SAST on 22 October 2026** — older portions of a window get an honest `tracking_note`; the build does not invent zero views before tracking existed.
 
 Set **`DATABUDDY_API_KEY`** in:

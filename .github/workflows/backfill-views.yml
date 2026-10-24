@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Backfill Databuddy views and rebuild HTML
-        run: python3 build.py --backfill-views
+        run: python3 build.py --backfill-views --refresh-views
 
       - name: Commit snapshot updates
         run: |
