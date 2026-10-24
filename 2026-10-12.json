@@ -2,53 +2,255 @@
   "date": "2026-10-12",
   "date_label": "Monday 12 October 2026",
   "your_games": [
-    {"title": "Kingdom Hearts on Switch 2", "tags": ["Switch", "Switch 2"],
-     "body": "Three Kingdom Hearts collections are out now on Switch 2, and HD 1.5+2.5 ReMIX is also on Switch. A free Re Mind DLC demo is live, and buying Collection I–III or III + Re Mind unlocks the exclusive Long Night Keyblade.",
-     "links": [{"label": "Nintendo", "url": "https://www.nintendo.com/au/news-and-articles/experience-the-epic-kingdom-hearts-saga/"}]},
-    {"title": "Enshrouded 1.0", "tags": ["PS5", "PC"],
-     "body": "Keen Games leaves early access on Thursday 15 Oct on PC and PS5 (Xbox is spring 2027). Sparkworks creator tools land with it, so you can build shared puzzles, dungeons and mini-games — worth a look if you like Valheim-style survival crafting.",
-     "links": [{"label": "Enshrouded", "url": "https://enshrouded.com/en-US/news/enshrouded-10-release-date-reveal"},
-               {"label": "GameWatcher", "url": "https://www.gamewatcher.com/enshrouded-1-0-launches-with-sparkworks-letting-players-create-their-own-adventures"}]},
-    {"title": "Resident Evil on Switch 2", "tags": ["Switch", "Switch 2"],
-     "body": "RE2 Deluxe, RE3 and RE4 Gold Edition land digitally on Switch 2 this Friday 16 Oct. Boxed copies follow 29 Jan 2027. Gold Edition includes Separate Ways.",
-     "links": [{"label": "Capcom", "url": "https://www.capcom.co.jp/ir/english/news/html/e260910.html"},
-               {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/09/a-trio-of-resident-evil-remakes-hit-switch-2-in-october"}]},
-    {"title": "Valor Mortis", "tags": ["PS5", "Xbox", "PC"],
-     "body": "Launch trailer is out for the Ghostrunner team's Napoleonic soulslike. It drops tomorrow (13 Oct) on PS5, Xbox Series, Game Pass and Steam, with New Game+ planned for Q4.",
-     "links": [{"label": "Console Creatures", "url": "https://www.consolecreatures.com/valor-mortis-gets-a-launch-trailer/"}]},
-    {"title": "Pokémon UNITE", "tags": ["Switch", "Pokémon"],
-     "body": "Flareon (All-Rounder) and Jolteon (Speedster) join tomorrow, 13 Oct, free during the Eevee Festival through 1 Dec.",
-     "links": [{"label": "Pokémon UNITE", "url": "https://www.pokemonunite.jp/en/topics/news/20260930/"},
-               {"label": "Screen Rant", "url": "https://screenrant.com/pokemon-unite-new-eeveelutions-october-13/"}]},
-    {"title": "Tomb Raider × The Crew Motorfest", "tags": ["Switch", "PS5", "Tomb Raider"],
-     "body": "Season 11: Expeditions is live across platforms, and Motorfest is now on Switch 2. The premium Tomb Raider: Secrets of Ni'ihau DLC adds Lara Croft (voiced by Alix Wilton Regan), a new island and vehicles; Kauai is free for everyone.",
-     "links": [{"label": "Ubisoft", "url": "https://news.ubisoft.com/en-us/article/1zAol396xSNVENVbOtHgwJ/the-crew-motorfest-out-now-on-switch-2-play-tomb-raider-dlc"}]}
+    {
+      "title": "Kingdom Hearts on Switch 2",
+      "tags": [
+        "Switch",
+        "Switch 2"
+      ],
+      "body": "Three Kingdom Hearts collections are out now on Switch 2, and HD 1.5+2.5 ReMIX is also on Switch. A free Re Mind DLC demo is live, and buying Collection I–III or III + Re Mind unlocks the exclusive Long Night Keyblade.",
+      "links": [
+        {
+          "label": "Nintendo",
+          "url": "https://www.nintendo.com/au/news-and-articles/experience-the-epic-kingdom-hearts-saga/"
+        }
+      ]
+    },
+    {
+      "title": "Enshrouded 1.0",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "Keen Games leaves early access on Thursday 15 Oct on PC and PS5 (Xbox is spring 2027). Sparkworks creator tools land with it, so you can build shared puzzles, dungeons and mini-games — worth a look if you like Valheim-style survival crafting.",
+      "links": [
+        {
+          "label": "Enshrouded",
+          "url": "https://enshrouded.com/en-US/news/enshrouded-10-release-date-reveal"
+        },
+        {
+          "label": "GameWatcher",
+          "url": "https://www.gamewatcher.com/enshrouded-1-0-launches-with-sparkworks-letting-players-create-their-own-adventures"
+        }
+      ]
+    },
+    {
+      "title": "Resident Evil on Switch 2",
+      "tags": [
+        "Switch",
+        "Switch 2"
+      ],
+      "body": "RE2 Deluxe, RE3 and RE4 Gold Edition land digitally on Switch 2 this Friday 16 Oct. Boxed copies follow 29 Jan 2027. Gold Edition includes Separate Ways.",
+      "links": [
+        {
+          "label": "Capcom",
+          "url": "https://www.capcom.co.jp/ir/english/news/html/e260910.html"
+        },
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/09/a-trio-of-resident-evil-remakes-hit-switch-2-in-october"
+        }
+      ]
+    },
+    {
+      "title": "Valor Mortis",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ],
+      "body": "Launch trailer is out for the Ghostrunner team's Napoleonic soulslike. It drops tomorrow (13 Oct) on PS5, Xbox Series, Game Pass and Steam, with New Game+ planned for Q4.",
+      "links": [
+        {
+          "label": "Console Creatures",
+          "url": "https://www.consolecreatures.com/valor-mortis-gets-a-launch-trailer/"
+        }
+      ]
+    },
+    {
+      "title": "Pokémon UNITE",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ],
+      "body": "Flareon (All-Rounder) and Jolteon (Speedster) join tomorrow, 13 Oct, free during the Eevee Festival through 1 Dec.",
+      "links": [
+        {
+          "label": "Pokémon UNITE",
+          "url": "https://www.pokemonunite.jp/en/topics/news/20260930/"
+        },
+        {
+          "label": "Screen Rant",
+          "url": "https://screenrant.com/pokemon-unite-new-eeveelutions-october-13/"
+        }
+      ]
+    },
+    {
+      "title": "Tomb Raider × The Crew Motorfest",
+      "tags": [
+        "Switch",
+        "PS5",
+        "Tomb Raider"
+      ],
+      "body": "Season 11: Expeditions is live across platforms, and Motorfest is now on Switch 2. The premium Tomb Raider: Secrets of Ni'ihau DLC adds Lara Croft (voiced by Alix Wilton Regan), a new island and vehicles; Kauai is free for everyone.",
+      "links": [
+        {
+          "label": "Ubisoft",
+          "url": "https://news.ubisoft.com/en-us/article/1zAol396xSNVENVbOtHgwJ/the-crew-motorfest-out-now-on-switch-2-play-tomb-raider-dlc"
+        }
+      ]
+    }
   ],
   "industry": [
-    {"title": "Nintendo keeps physical games", "tags": ["Switch 2", "Nintendo"],
-     "body": "Nintendo's Latin America VP says there are no plans to ditch physical Switch 2 releases. The company will keep both cartridges and game-key cards as long as players want them — a clear contrast with Sony ending new discs from Jan 2028.",
-     "links": [{"label": "TweakTown", "url": "https://www.tweaktown.com/news/114027/nintendo-vp-says-there-are-no-plans-to-ditch-physical-games-on-switch-2/index.html"}]},
-    {"title": "PS5 Pro shortage", "tags": ["PS5", "PlayStation"],
-     "body": "Engadget reports Playfront saying Sony told partners Pro supply constraints will run into 2027. Resale prices are climbing hard ahead of GTA 6 on 19 Nov; Rockstar still has not confirmed a meaningful Pro-only performance bump beyond the Enhanced label.",
-     "links": [{"label": "Engadget", "url": "https://www.engadget.com/2280934/playstation-5-pro-shortage-gta-6-only-make-worse/"}]},
-    {"title": "Marvel Tokon Year 1 DLC", "tags": ["PS5", "PC"],
-     "body": "At EVO France, Arc System Works locked the rest of Year 1: Phoenix Cyclops on 2 Nov, then Jane Foster's Thor (winter 2027), Venom (spring) and Jubilee (summer).",
-     "links": [{"label": "Polygon", "url": "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-characters/"}]},
-    {"title": "ECC: Redline vs Warzone", "tags": ["PC", "Call of Duty"],
-     "body": "NetEase's free-to-play ECC: Redline reveal has CoD fans calling it a near Warzone clone — some are angry, some are wishlist-curious. No release date yet; Steam wishlist is open. MW4 still lands 23 Oct.",
-     "links": [{"label": "IGN", "url": "https://nordic.ign.com/call-of-duty-warzone/114011/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it"}]}
+    {
+      "title": "Nintendo keeps physical games",
+      "tags": [
+        "Switch 2",
+        "Nintendo"
+      ],
+      "body": "Nintendo's Latin America VP says there are no plans to ditch physical Switch 2 releases. The company will keep both cartridges and game-key cards as long as players want them — a clear contrast with Sony ending new discs from Jan 2028.",
+      "links": [
+        {
+          "label": "TweakTown",
+          "url": "https://www.tweaktown.com/news/114027/nintendo-vp-says-there-are-no-plans-to-ditch-physical-games-on-switch-2/index.html"
+        }
+      ]
+    },
+    {
+      "title": "PS5 Pro shortage",
+      "tags": [
+        "PS5",
+        "PlayStation"
+      ],
+      "body": "Engadget reports Playfront saying Sony told partners Pro supply constraints will run into 2027. Resale prices are climbing hard ahead of GTA 6 on 19 Nov; Rockstar still has not confirmed a meaningful Pro-only performance bump beyond the Enhanced label.",
+      "links": [
+        {
+          "label": "Engadget",
+          "url": "https://www.engadget.com/2280934/playstation-5-pro-shortage-gta-6-only-make-worse/"
+        }
+      ]
+    },
+    {
+      "title": "Marvel Tokon Year 1 DLC",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "At EVO France, Arc System Works locked the rest of Year 1: Phoenix Cyclops on 2 Nov, then Jane Foster's Thor (winter 2027), Venom (spring) and Jubilee (summer).",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-characters/"
+        }
+      ]
+    },
+    {
+      "title": "ECC: Redline vs Warzone",
+      "tags": [
+        "PC",
+        "Call of Duty"
+      ],
+      "body": "NetEase's free-to-play ECC: Redline reveal has CoD fans calling it a near Warzone clone — some are angry, some are wishlist-curious. No release date yet; Steam wishlist is open. MW4 still lands 23 Oct.",
+      "links": [
+        {
+          "label": "IGN",
+          "url": "https://nordic.ign.com/call-of-duty-warzone/114011/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it"
+        }
+      ]
+    }
   ],
   "releases_link": "https://warppipes.com/en/articles/releases-for-october-12-18-2026-castlevania-enshrouded-boltgun-2",
   "releases": [
-    {"date": "13 Oct", "title": "Valor Mortis", "note": "Soulslike from the Ghostrunner team; Day One Game Pass", "tags": ["PS5", "Xbox", "PC"]},
-    {"date": "13 Oct", "title": "Pokémon UNITE: Flareon & Jolteon", "note": "Free during Eevee Festival", "tags": ["Switch", "Pokémon"]},
-    {"date": "14 Oct", "title": "Warhammer 40K: Boltgun 2", "note": "Mick Gordon on the final boss; Switch 2 later", "tags": ["PS5", "Xbox", "PC"]},
-    {"date": "15 Oct", "title": "Enshrouded 1.0", "note": "Survival crafting leaves early access; Sparkworks tools", "tags": ["PS5", "PC"]},
-    {"date": "15 Oct", "title": "Castlevania: Belmont's Curse", "note": "Demo save carries over", "tags": ["PS5", "Xbox", "Switch", "PC"]},
-    {"date": "15 Oct", "title": "It Takes Two", "note": "Free upgrade if you own Switch; Friend's Pass", "tags": ["Switch 2"]},
-    {"date": "16 Oct", "title": "Resident Evil 2 / 3 / 4", "note": "Digital on Switch 2; physical Jan 2027", "tags": ["Switch 2"]},
-    {"date": "16 Oct", "title": "Tales of Eternia Remastered", "note": "", "tags": ["PS5", "Switch", "Xbox", "PC"]},
-    {"date": "23 Oct", "title": "Call of Duty: Modern Warfare 4", "note": "", "tags": []}
+    {
+      "date": "13 Oct",
+      "title": "Valor Mortis",
+      "note": "Soulslike from the Ghostrunner team; Day One Game Pass",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "13 Oct",
+      "title": "Pokémon UNITE: Flareon & Jolteon",
+      "note": "Free during Eevee Festival",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "14 Oct",
+      "title": "Warhammer 40K: Boltgun 2",
+      "note": "Mick Gordon on the final boss; Switch 2 later",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Oct",
+      "title": "Enshrouded 1.0",
+      "note": "Survival crafting leaves early access; Sparkworks tools",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Oct",
+      "title": "Castlevania: Belmont's Curse",
+      "note": "Demo save carries over",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch",
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Oct",
+      "title": "It Takes Two",
+      "note": "Free upgrade if you own Switch; Friend's Pass",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "16 Oct",
+      "title": "Resident Evil 2 / 3 / 4",
+      "note": "Digital on Switch 2; physical Jan 2027",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "16 Oct",
+      "title": "Tales of Eternia Remastered",
+      "note": "",
+      "tags": [
+        "PS5",
+        "Switch",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "23 Oct",
+      "title": "Call of Duty: Modern Warfare 4",
+      "note": "",
+      "tags": []
+    }
   ],
-  "footer_note": "Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet."
+  "footer_note": "Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet.",
+  "views_snapshot": {
+    "window_start": "2026-10-12T08:00:00+02:00",
+    "window_end": "2026-10-13T08:00:00+02:00",
+    "fetched_at": "2026-10-24T14:31:50.061878+02:00",
+    "total_views": 0,
+    "series": [],
+    "tracking_note": "View tracking began on 22 October 2026 at about 15:00 SAST. This edition's measurement window ended before tracking was live."
+  }
 }

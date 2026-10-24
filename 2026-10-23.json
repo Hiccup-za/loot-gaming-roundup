@@ -1,126 +1,379 @@
 {
- "date": "2026-10-23",
- "date_label": "Friday 23 October 2026",
- "your_games": [
-  {
-   "title": "The leaked Mass Effect trailer is real, and shows what BioWare was making before it closed",
-   "tags": ["Mass Effect", "Dragon Age"],
-   "body": "A day after EA shut BioWare, an in-engine trailer for the cancelled next Mass Effect turned up on the series subreddit. Bloomberg's Jason Schreier and IGN have both confirmed it's genuine. The title card calls it Mass Effect Universe: it would have returned to the Milky Way thousands of years after Mass Effect 3, with Liara back. It was still very early, made by a small team using pre-production assets, and may have been meant for N7 Day on 7 Nov. Separately, Amazon's Mass Effect TV series is reportedly still in production.",
-   "links": [
-    {"label": "Push Square", "url": "https://www.pushsquare.com/news/2026/10/leaked-mass-effect-5-trailer-is-real-offers-glimpse-of-cancelled-game"},
-    {"label": "VGC", "url": "https://www.videogameschronicle.com/news/mass-effect-universe-trailer-leaks-online-showcases-what-bioware-was-working-on-before-being-shut-down/"},
-    {"label": "VGC (TV series)", "url": "https://www.videogameschronicle.com/news/mass-effect-tv-series-still-in-production-despite-bioware-closure-as-game-director-writes-at-least-i-can-play-gta-6/"}
-   ]
-  },
-  {
-   "title": "The Blood of Dawnwalker Update 1.1 is out now on PS5",
-   "tags": ["PS5", "Dawnwalker"],
-   "body": "The first major patch is a 12.9GB download with over 1,100 improvements. Main additions: a Draught of Mind Rebirth (respec), the ability to pet animals, an easier difficulty mode, better combat targeting and camera tweaks. Quest-related notes are behind a spoiler click on Rebel Wolves' site.",
-   "links": [
-    {"label": "Push Square", "url": "https://www.pushsquare.com/news/2026/10/dawnwalker-ps5-patch-1-1-is-available-to-download-now-13gb-update-with-over-1100-improvements"}
-   ]
-  },
-  {
-   "title": "Call of Duty: Modern Warfare 4 launches in full today",
-   "tags": ["PS5", "Switch 2", "Xbox", "PC", "Call of Duty"],
-   "body": "Multiplayer and the rest of the package go live today after last week's campaign early access. Nintendo Life gave the Switch 2 version 9/10, calling it best-in-class and saying it doesn't shortchange Nintendo players.",
-   "links": [
-    {"label": "Nintendo Life review", "url": "https://www.nintendolife.com/reviews/nintendo-switch-2/call-of-duty-modern-warfare-4"},
-    {"label": "Pure Xbox (campaign reviews)", "url": "https://www.purexbox.com/news/2026/10/heres-what-the-reviews-are-saying-about-call-of-duty-modern-warfare-4s-campaign"}
-   ]
-  },
-  {
-   "title": "Shadow of the Tomb Raider has shadow-dropped on Switch 2",
-   "tags": ["Switch 2", "Tomb Raider"],
-   "body": "Aspyr's Definitive Edition finishes the Survivor trilogy on Switch 2. It's $39.99 with all seven DLC Challenge Tombs, two-player online co-op and all the downloadable gear, and 10% off on the eShop until 4 Nov. The full Definitive Survivor Trilogy bundle is also out at $69.99.",
-   "links": [
-    {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/surprise-shadow-of-the-tomb-raider-definitive-edition-has-shadow-dropped-on-switch-2"}
-   ]
-  },
-  {
-   "title": "Capcom data breach hits more than 11.7 million Capcom ID accounts",
-   "tags": ["Capcom", "Resident Evil"],
-   "body": "Exposed data includes email addresses, last-login IP addresses and account creation dates; 43 cases also leaked birth dates, gender, region and nicknames. Capcom says card details weren't affected and it has reset 196 passwords that were changed. If you have a Capcom ID, now's a good time to change your password.",
-   "links": [
-    {"label": "Capcom notice", "url": "https://www.capcom.co.jp/ir/english/news/html/e261022.html"},
-    {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/capcom-data-breach-results-in-unauthorised-access-to-more-than-11-7-million-capcom-id-accounts"}
-   ]
-  },
-  {
-   "title": "Three more Game Boy games join Switch Online on 27 Oct",
-   "tags": ["Switch", "Switch 2", "Nintendo"],
-   "body": "Avenging Spirit, Mole Mania and Pinball: Revenge of the 'Gator arrive next week, following last week's three GBA additions.",
-   "links": [
-    {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/nintendo-expands-switch-onlines-game-boy-library-with-three-more-titles"}
-   ]
+  "date": "2026-10-23",
+  "date_label": "Friday 23 October 2026",
+  "your_games": [
+    {
+      "title": "The leaked Mass Effect trailer is real, and shows what BioWare was making before it closed",
+      "tags": [
+        "Mass Effect",
+        "Dragon Age"
+      ],
+      "body": "A day after EA shut BioWare, an in-engine trailer for the cancelled next Mass Effect turned up on the series subreddit. Bloomberg's Jason Schreier and IGN have both confirmed it's genuine. The title card calls it Mass Effect Universe: it would have returned to the Milky Way thousands of years after Mass Effect 3, with Liara back. It was still very early, made by a small team using pre-production assets, and may have been meant for N7 Day on 7 Nov. Separately, Amazon's Mass Effect TV series is reportedly still in production.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/leaked-mass-effect-5-trailer-is-real-offers-glimpse-of-cancelled-game"
+        },
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/mass-effect-universe-trailer-leaks-online-showcases-what-bioware-was-working-on-before-being-shut-down/"
+        },
+        {
+          "label": "VGC (TV series)",
+          "url": "https://www.videogameschronicle.com/news/mass-effect-tv-series-still-in-production-despite-bioware-closure-as-game-director-writes-at-least-i-can-play-gta-6/"
+        }
+      ]
+    },
+    {
+      "title": "The Blood of Dawnwalker Update 1.1 is out now on PS5",
+      "tags": [
+        "PS5",
+        "Dawnwalker"
+      ],
+      "body": "The first major patch is a 12.9GB download with over 1,100 improvements. Main additions: a Draught of Mind Rebirth (respec), the ability to pet animals, an easier difficulty mode, better combat targeting and camera tweaks. Quest-related notes are behind a spoiler click on Rebel Wolves' site.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/dawnwalker-ps5-patch-1-1-is-available-to-download-now-13gb-update-with-over-1100-improvements"
+        }
+      ]
+    },
+    {
+      "title": "Call of Duty: Modern Warfare 4 launches in full today",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC",
+        "Call of Duty"
+      ],
+      "body": "Multiplayer and the rest of the package go live today after last week's campaign early access. Nintendo Life gave the Switch 2 version 9/10, calling it best-in-class and saying it doesn't shortchange Nintendo players.",
+      "links": [
+        {
+          "label": "Nintendo Life review",
+          "url": "https://www.nintendolife.com/reviews/nintendo-switch-2/call-of-duty-modern-warfare-4"
+        },
+        {
+          "label": "Pure Xbox (campaign reviews)",
+          "url": "https://www.purexbox.com/news/2026/10/heres-what-the-reviews-are-saying-about-call-of-duty-modern-warfare-4s-campaign"
+        }
+      ]
+    },
+    {
+      "title": "Shadow of the Tomb Raider has shadow-dropped on Switch 2",
+      "tags": [
+        "Switch 2",
+        "Tomb Raider"
+      ],
+      "body": "Aspyr's Definitive Edition finishes the Survivor trilogy on Switch 2. It's $39.99 with all seven DLC Challenge Tombs, two-player online co-op and all the downloadable gear, and 10% off on the eShop until 4 Nov. The full Definitive Survivor Trilogy bundle is also out at $69.99.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/surprise-shadow-of-the-tomb-raider-definitive-edition-has-shadow-dropped-on-switch-2"
+        }
+      ]
+    },
+    {
+      "title": "Capcom data breach hits more than 11.7 million Capcom ID accounts",
+      "tags": [
+        "Capcom",
+        "Resident Evil"
+      ],
+      "body": "Exposed data includes email addresses, last-login IP addresses and account creation dates; 43 cases also leaked birth dates, gender, region and nicknames. Capcom says card details weren't affected and it has reset 196 passwords that were changed. If you have a Capcom ID, now's a good time to change your password.",
+      "links": [
+        {
+          "label": "Capcom notice",
+          "url": "https://www.capcom.co.jp/ir/english/news/html/e261022.html"
+        },
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/capcom-data-breach-results-in-unauthorised-access-to-more-than-11-7-million-capcom-id-accounts"
+        }
+      ]
+    },
+    {
+      "title": "Three more Game Boy games join Switch Online on 27 Oct",
+      "tags": [
+        "Switch",
+        "Switch 2",
+        "Nintendo"
+      ],
+      "body": "Avenging Spirit, Mole Mania and Pinball: Revenge of the 'Gator arrive next week, following last week's three GBA additions.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/nintendo-expands-switch-onlines-game-boy-library-with-three-more-titles"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Wolverine tops US sales in September as PS5 outsells Switch 2",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox"
+      ],
+      "body": "Circana says Marvel's Wolverine was September's best-seller, with Sony's biggest launch-month dollar sales since Helldivers 2. PS5 hardware spending rose 43% year on year (units up 22%), while Switch 2 fell 12% and Xbox Series 2%. Xbox console unit sales hit an all-time September low.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/wolverine-was-uss-best-selling-game-in-september-with-ps5-sales-up-43/"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/ps5-beats-switch-2-in-strongest-us-sales-month-since-may-2025"
+        }
+      ]
+    },
+    {
+      "title": "Report: Xbox plans a first-party handheld for 2027 and the Helix console for 2028",
+      "tags": [
+        "Xbox"
+      ],
+      "body": "Fortune reports a next-gen handheld \"by the 2027 holiday season\" after internal clashes over whether it should run trimmed-down Windows or Xbox's own software, with Xbox now largely steering the OS. Microsoft hasn't announced either device's timing.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028"
+        }
+      ]
+    },
+    {
+      "title": "Rumour: Gears of War: E-Day cost around $500 million",
+      "tags": [
+        "Xbox",
+        "PC",
+        "Gears of War"
+      ],
+      "body": "Kotaku's sources put the budget at about half a billion dollars, which they say is why Microsoft axed the near-finished PS5 version. Some insiders back the figure while others dispute how it's counted, so treat it with caution.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/gears-of-war-e-day-cancelled-last-minute-for-ps5-may-have-cost-half-a-billion-to-make"
+        },
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/new-rumour-says-xbox-spent-usd500-million-on-gears-of-war-e-day-but-not-everyone-agrees"
+        }
+      ]
+    },
+    {
+      "title": "Switch 2 reportedly jailbroken; Nintendo pulls SmileBASIC 4 from the eShop",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "A software-only, tethered exploit on firmware 23.0.1 relies on SmileBASIC 4, which has since vanished from the eShop. It resets when the console is powered off. Nintendo hasn't commented.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/switch-2-supposedly-jailbroken-via-software-only-exploit"
+        }
+      ]
+    },
+    {
+      "title": "EA Sports confirms Fight Night is coming back",
+      "tags": [
+        "EA"
+      ],
+      "body": "The boxing series returns after 15 years away (the last one was 2011's Fight Night Champion). No platforms or date yet.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/ea-sports-is-officially-reviving-its-fight-night-boxing-series/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-this-week-19th-25th-october",
+  "releases": [
+    {
+      "date": "Today",
+      "title": "Call of Duty: Modern Warfare 4",
+      "note": "Full launch with multiplayer",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "Today",
+      "title": "Ace Combat 8 bug-fix patch",
+      "note": "",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "Out now",
+      "title": "Shadow of the Tomb Raider: Definitive Edition",
+      "note": "$39.99, 10% off until 4 Nov",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "Out now",
+      "title": "The Blood of Dawnwalker Update 1.1",
+      "note": "12.9GB",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "26 Oct",
+      "title": "Steam Next Fest ends",
+      "note": "19:00 SAST",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Oct",
+      "title": "Minecraft for Switch 2",
+      "note": "",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "27 Oct",
+      "title": "Three Game Boy titles on Switch Online",
+      "note": "Incl. Mole Mania",
+      "tags": [
+        "Switch",
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Crimson Desert: Charting the Unknown",
+      "note": "Big DLC",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "PlayStation Pulse pre-orders",
+      "note": "10:00 local time",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Phantom Blade Zero",
+      "note": "Digital; physical in 2027",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "The Wolf Among Us Remastered",
+      "note": "",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Pokémon TCG Pocket: Dual Fusion",
+      "note": "First dual-type cards",
+      "tags": [
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Mouthwashing",
+      "note": "PS5 debut (Switch also this month)",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Nov",
+      "title": "Planet of the Deals sale ends",
+      "note": "",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "5 Nov",
+      "title": "Zelda: Ocarina of Time",
+      "note": "Switch 2 remake",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Shrek 2 Remastered",
+      "note": "$29.99",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "GTA V and RDR2 leave PS Plus Extra",
+      "note": "",
+      "tags": [
+        "PS Plus"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "Plus the new Pulse headset",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Riders Republic",
+      "note": "Switch 2, plus offline play",
+      "tags": [
+        "Switch 2"
+      ]
+    }
+  ],
+  "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says \"in the days to follow\").",
+  "views_snapshot": {
+    "window_start": "2026-10-23T08:00:00+02:00",
+    "window_end": "2026-10-24T08:00:00+02:00",
+    "fetched_at": "2026-10-24T14:31:50.580889+02:00",
+    "total_views": 0,
+    "series": [
+      {
+        "date": "2026-10-23",
+        "pageviews": 0,
+        "tracked": true
+      },
+      {
+        "date": "2026-10-24",
+        "pageviews": 0,
+        "tracked": true
+      }
+    ]
   }
- ],
- "industry": [
-  {
-   "title": "Wolverine tops US sales in September as PS5 outsells Switch 2",
-   "tags": ["PS5", "Switch 2", "Xbox"],
-   "body": "Circana says Marvel's Wolverine was September's best-seller, with Sony's biggest launch-month dollar sales since Helldivers 2. PS5 hardware spending rose 43% year on year (units up 22%), while Switch 2 fell 12% and Xbox Series 2%. Xbox console unit sales hit an all-time September low.",
-   "links": [
-    {"label": "VGC", "url": "https://www.videogameschronicle.com/news/wolverine-was-uss-best-selling-game-in-september-with-ps5-sales-up-43/"},
-    {"label": "Push Square", "url": "https://www.pushsquare.com/news/2026/10/ps5-beats-switch-2-in-strongest-us-sales-month-since-may-2025"}
-   ]
-  },
-  {
-   "title": "Report: Xbox plans a first-party handheld for 2027 and the Helix console for 2028",
-   "tags": ["Xbox"],
-   "body": "Fortune reports a next-gen handheld \"by the 2027 holiday season\" after internal clashes over whether it should run trimmed-down Windows or Xbox's own software, with Xbox now largely steering the OS. Microsoft hasn't announced either device's timing.",
-   "links": [
-    {"label": "Pure Xbox", "url": "https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028"}
-   ]
-  },
-  {
-   "title": "Rumour: Gears of War: E-Day cost around $500 million",
-   "tags": ["Xbox", "PC", "Gears of War"],
-   "body": "Kotaku's sources put the budget at about half a billion dollars, which they say is why Microsoft axed the near-finished PS5 version. Some insiders back the figure while others dispute how it's counted, so treat it with caution.",
-   "links": [
-    {"label": "Push Square", "url": "https://www.pushsquare.com/news/2026/10/gears-of-war-e-day-cancelled-last-minute-for-ps5-may-have-cost-half-a-billion-to-make"},
-    {"label": "Pure Xbox", "url": "https://www.purexbox.com/news/2026/10/new-rumour-says-xbox-spent-usd500-million-on-gears-of-war-e-day-but-not-everyone-agrees"}
-   ]
-  },
-  {
-   "title": "Switch 2 reportedly jailbroken; Nintendo pulls SmileBASIC 4 from the eShop",
-   "tags": ["Switch 2"],
-   "body": "A software-only, tethered exploit on firmware 23.0.1 relies on SmileBASIC 4, which has since vanished from the eShop. It resets when the console is powered off. Nintendo hasn't commented.",
-   "links": [
-    {"label": "Nintendo Life", "url": "https://www.nintendolife.com/news/2026/10/switch-2-supposedly-jailbroken-via-software-only-exploit"}
-   ]
-  },
-  {
-   "title": "EA Sports confirms Fight Night is coming back",
-   "tags": ["EA"],
-   "body": "The boxing series returns after 15 years away (the last one was 2011's Fight Night Champion). No platforms or date yet.",
-   "links": [
-    {"label": "VGC", "url": "https://www.videogameschronicle.com/news/ea-sports-is-officially-reviving-its-fight-night-boxing-series/"}
-   ]
-  }
- ],
- "releases_link": "https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-this-week-19th-25th-october",
- "releases": [
-  {"date": "Today", "title": "Call of Duty: Modern Warfare 4", "note": "Full launch with multiplayer", "tags": ["PS5", "Xbox", "Switch 2", "PC"]},
-  {"date": "Today", "title": "Ace Combat 8 bug-fix patch", "note": "", "tags": ["PS5"]},
-  {"date": "Out now", "title": "Shadow of the Tomb Raider: Definitive Edition", "note": "$39.99, 10% off until 4 Nov", "tags": ["Switch 2"]},
-  {"date": "Out now", "title": "The Blood of Dawnwalker Update 1.1", "note": "12.9GB", "tags": ["PS5"]},
-  {"date": "26 Oct", "title": "Steam Next Fest ends", "note": "19:00 SAST", "tags": ["PC"]},
-  {"date": "27 Oct", "title": "Minecraft for Switch 2", "note": "", "tags": ["Switch 2"]},
-  {"date": "27 Oct", "title": "Three Game Boy titles on Switch Online", "note": "Incl. Mole Mania", "tags": ["Switch", "Switch 2"]},
-  {"date": "29 Oct", "title": "Crimson Desert: Charting the Unknown", "note": "Big DLC", "tags": ["PS5"]},
-  {"date": "29 Oct", "title": "PlayStation Pulse pre-orders", "note": "10:00 local time", "tags": ["PS5"]},
-  {"date": "29 Oct", "title": "Phantom Blade Zero", "note": "Digital; physical in 2027", "tags": ["PS5"]},
-  {"date": "29 Oct", "title": "The Wolf Among Us Remastered", "note": "", "tags": ["PS5", "Xbox", "PC"]},
-  {"date": "29 Oct", "title": "Pokémon TCG Pocket: Dual Fusion", "note": "First dual-type cards", "tags": ["Pokémon"]},
-  {"date": "29 Oct", "title": "Mouthwashing", "note": "PS5 debut (Switch also this month)", "tags": ["PS5"]},
-  {"date": "4 Nov", "title": "Planet of the Deals sale ends", "note": "", "tags": ["PS5"]},
-  {"date": "5 Nov", "title": "Zelda: Ocarina of Time", "note": "Switch 2 remake", "tags": ["Switch 2"]},
-  {"date": "10 Nov", "title": "Shrek 2 Remastered", "note": "$29.99", "tags": ["PS5", "Xbox"]},
-  {"date": "17 Nov", "title": "GTA V and RDR2 leave PS Plus Extra", "note": "", "tags": ["PS Plus"]},
-  {"date": "19 Nov", "title": "Grand Theft Auto VI", "note": "Plus the new Pulse headset", "tags": ["PS5", "Xbox"]},
-  {"date": "4 Dec", "title": "Monster Hunter Wilds", "note": "Switch 2 version", "tags": ["Switch 2"]},
-  {"date": "9 Dec", "title": "Riders Republic", "note": "Switch 2, plus offline play", "tags": ["Switch 2"]}
- ],
- "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says \"in the days to follow\")."
 }

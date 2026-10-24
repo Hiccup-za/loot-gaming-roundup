@@ -1,411 +1,419 @@
 {
- "date": "2026-10-21",
- "date_label": "Wednesday 21 October 2026",
- "your_games": [
-  {
-   "title": "Cyberpunk 2077 Update 2.5 lands tomorrow, and the details have already leaked",
-   "tags": [
-    "PS5",
-    "Switch 2",
-    "Cyberpunk 2077"
-   ],
-   "body": "CD Projekt Red's free Edgerunners 2 Update (2.5) arrives on 22 Oct to tie in with the anime's second season, which hit Netflix yesterday. The official tease promises cyberware customisation and a new dual-wielding playstyle. A content creator's video went up early before being pulled, and according to reports it shows dual-wield pistols, a new Edgerunners side quest, a new radio station, a field-of-view slider on consoles and mod.io support (though reportedly not on Switch 2). The full reveal is in a REDstream today at 17:00 SAST.",
-   "links": [
+  "date": "2026-10-21",
+  "date_label": "Wednesday 21 October 2026",
+  "your_games": [
     {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/cyberpunk-2077-ps5-patch-2-5-leaks-get-the-big-details-and-updates-here"
+      "title": "Cyberpunk 2077 Update 2.5 lands tomorrow, and the details have already leaked",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Cyberpunk 2077"
+      ],
+      "body": "CD Projekt Red's free Edgerunners 2 Update (2.5) arrives on 22 Oct to tie in with the anime's second season, which hit Netflix yesterday. The official tease promises cyberware customisation and a new dual-wielding playstyle. A content creator's video went up early before being pulled, and according to reports it shows dual-wield pistols, a new Edgerunners side quest, a new radio station, a field-of-view slider on consoles and mod.io support (though reportedly not on Switch 2). The full reveal is in a REDstream today at 17:00 SAST.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/cyberpunk-2077-ps5-patch-2-5-leaks-get-the-big-details-and-updates-here"
+        },
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/cyberpunk-2077-edgerunners-2-free-update-2-5-arrives-this-week"
+        }
+      ]
     },
     {
-     "label": "Nintendo Life",
-     "url": "https://www.nintendolife.com/news/2026/10/cyberpunk-2077-edgerunners-2-free-update-2-5-arrives-this-week"
-    }
-   ]
-  },
-  {
-   "title": "Helldivers 2 Update 7.2.0 is out, with a big weapon balance pass",
-   "tags": [
-    "PS5",
-    "PC",
-    "Helldivers 2"
-   ],
-   "body": "The one we were waiting on arrived alongside yesterday's Scope of Authority Warbond. The M90A shotgun goes from 605 to 726 damage, the Orbital Airburst Strike cooldown drops from 100 to 90 seconds, the Maxigun no longer locks your movement after firing, and there are balance passes on the Killzone and Halo Legendary Warbond weapons, the Sickle and several stratagems. On PC, the game has also swapped GameGuard for Easy Anti-Cheat.",
-   "links": [
-    {
-     "label": "Arrowhead patch notes",
-     "url": "https://arrowhead.zendesk.com/hc/en-us/articles/31176395885596-Devoid-of-Liberty-7-2-0"
+      "title": "Helldivers 2 Update 7.2.0 is out, with a big weapon balance pass",
+      "tags": [
+        "PS5",
+        "PC",
+        "Helldivers 2"
+      ],
+      "body": "The one we were waiting on arrived alongside yesterday's Scope of Authority Warbond. The M90A shotgun goes from 605 to 726 damage, the Orbital Airburst Strike cooldown drops from 100 to 90 seconds, the Maxigun no longer locks your movement after firing, and there are balance passes on the Killzone and Halo Legendary Warbond weapons, the Sickle and several stratagems. On PC, the game has also swapped GameGuard for Easy Anti-Cheat.",
+      "links": [
+        {
+          "label": "Arrowhead patch notes",
+          "url": "https://arrowhead.zendesk.com/hc/en-us/articles/31176395885596-Devoid-of-Liberty-7-2-0"
+        },
+        {
+          "label": "Steam announcement",
+          "url": "https://steamcommunity.com/app/553850/announcements/?l=english"
+        }
+      ]
     },
     {
-     "label": "Steam announcement",
-     "url": "https://steamcommunity.com/app/553850/announcements/?l=english"
-    }
-   ]
-  },
-  {
-   "title": "Palworld's next big free update, Side by Side, is due this winter",
-   "tags": [
-    "PS5",
-    "Xbox",
-    "PC",
-    "Palworld"
-   ],
-   "body": "Pocketpair hasn't said what's in it yet, but the teaser art shows human bosses Zoe, Saya and Auri, which has fans hoping you'll finally be able to fight alongside them. The 2026 popularity poll results are also out, with Zoe voted top again.",
-   "links": [
-    {
-     "label": "Gematsu",
-     "url": "https://www.gematsu.com/2026/10/palworld-update-side-by-side-launches-this-winter"
-    }
-   ]
-  },
-  {
-   "title": "Full list confirmed: 11 games leave PS Plus Extra on 17 Nov",
-   "tags": [
-    "PS5",
-    "PS Plus",
-    "GTA",
-    "Red Dead Redemption 2"
-   ],
-   "body": "Sony's Last Chance to Play section is now live, and GTA V and Red Dead Redemption 2 are both on it, as yesterday's early list suggested. Push Square reckons The Talos Principle 2 and Earth Defense Force 4.1 are the hidden gems worth squeezing in before they go.",
-   "links": [
-    {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/11-ps-plus-extra-game-removals-for-november-2026-confirmed"
-    }
-   ]
-  },
-  {
-   "title": "Pokémon TCG Pocket's Dual Fusion expansion brings the first dual-type cards on 29 Oct",
-   "tags": [
-    "Pokémon"
-   ],
-   "body": "Mega Mewtwo X ex (Psychic and Fighting) and Mega Greninja ex (Water and Dark) headline it. A year-long Pikachu login event started yesterday: log in on any 10 days for a special immersive Pikachu ex card. Separately, a physical Pokémon Legends: Z-A Switch 2 Edition plus Mega Dimension bundle is out on 29 Oct.",
-   "links": [
-    {
-     "label": "Pokémon press site",
-     "url": "https://pokemon.gamespress.com/Dual-type-Cards-to-Debut-in-Pokemon-TCG-Pocket-with-new-Dual-Fusion-Ex"
+      "title": "Palworld's next big free update, Side by Side, is due this winter",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "Palworld"
+      ],
+      "body": "Pocketpair hasn't said what's in it yet, but the teaser art shows human bosses Zoe, Saya and Auri, which has fans hoping you'll finally be able to fight alongside them. The 2026 popularity poll results are also out, with Zoe voted top again.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/10/palworld-update-side-by-side-launches-this-winter"
+        }
+      ]
     },
     {
-     "label": "Nintendo AU",
-     "url": "https://www.nintendo.com/au/news-and-articles/its-pokeween-season-aussie-and-kiwi-pokemon-trainers/"
+      "title": "Full list confirmed: 11 games leave PS Plus Extra on 17 Nov",
+      "tags": [
+        "PS5",
+        "PS Plus",
+        "GTA",
+        "Red Dead Redemption 2"
+      ],
+      "body": "Sony's Last Chance to Play section is now live, and GTA V and Red Dead Redemption 2 are both on it, as yesterday's early list suggested. Push Square reckons The Talos Principle 2 and Earth Defense Force 4.1 are the hidden gems worth squeezing in before they go.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/11-ps-plus-extra-game-removals-for-november-2026-confirmed"
+        }
+      ]
+    },
+    {
+      "title": "Pokémon TCG Pocket's Dual Fusion expansion brings the first dual-type cards on 29 Oct",
+      "tags": [
+        "Pokémon"
+      ],
+      "body": "Mega Mewtwo X ex (Psychic and Fighting) and Mega Greninja ex (Water and Dark) headline it. A year-long Pikachu login event started yesterday: log in on any 10 days for a special immersive Pikachu ex card. Separately, a physical Pokémon Legends: Z-A Switch 2 Edition plus Mega Dimension bundle is out on 29 Oct.",
+      "links": [
+        {
+          "label": "Pokémon press site",
+          "url": "https://pokemon.gamespress.com/Dual-type-Cards-to-Debut-in-Pokemon-TCG-Pocket-with-new-Dual-Fusion-Ex"
+        },
+        {
+          "label": "Nintendo AU",
+          "url": "https://www.nintendo.com/au/news-and-articles/its-pokeween-season-aussie-and-kiwi-pokemon-trainers/"
+        }
+      ]
     }
-   ]
+  ],
+  "industry": [
+    {
+      "title": "Report: Xbox handheld in 2027, Project Helix console in 2028, and more job cuts",
+      "tags": [
+        "Xbox"
+      ],
+      "body": "Fortune says a first-party Xbox handheld is due by the 2027 holiday season, and the Helix console in 2028, with an internal price projection of $1,200 to $1,800 unless Microsoft subsidises it. The same report says CEO Asha Sharma has cut 1,868 jobs so far out of 3,200 planned, with more cuts this month, in November and in January. Treat it as a report, not an announcement.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/xbox-to-slash-even-more-jobs-this-month-with-further-cuts-in-november-and-january"
+        }
+      ]
+    },
+    {
+      "title": "Shrek 2 Remastered is official and out on 10 Nov",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Shrek"
+      ],
+      "body": "Aspyr confirmed it at last night's ID@Xbox Showcase. It's $29.99, with 4K, better textures, a photo mode, unlockable cheats and four-player co-op, locally or online.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/shrek-2-remastered-takes-ps5-to-a-nostalgic-era-of-gaming-this-november"
+        },
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/shrek-2-remastered-gets-official-november-release-date-for-xbox-series-xs"
+        }
+      ]
+    },
+    {
+      "title": "Nintendo Switch Sports Resort reviews well ahead of tomorrow's launch",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "It's sitting at a Metascore of 79 from 46 reviews. Nintendo Life and GameSpot both gave it 9/10, Game Informer gave it 8 and IGN 7, with most praising the multiplayer and the new skateboarding, which uses the Joy-Con 2 mouse mode.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/round-up-the-reviews-are-in-for-nintendo-switch-sports-resort"
+        }
+      ]
+    },
+    {
+      "title": "Riders Republic comes to Switch 2 on 9 Dec, with offline play",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "Ubisoft's open-world extreme sports game launches on Switch 2 the same day it adds an Offline Play option on every platform.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/ubisofts-extreme-sports-playground-riders-republic-launches-on-switch-2-this-december"
+        }
+      ]
+    },
+    {
+      "title": "EA's Fight Night is coming back",
+      "tags": [
+        "Fight Night"
+      ],
+      "body": "A new official account posted \"Fight Night is coming back\". There are no other details yet, and it's the first new Fight Night since Fight Night Champion in 2011.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/for-the-first-time-since-the-xbox-360-fight-night-is-making-a-comeback"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/ea-boxing-series-fight-night-back-for-another-round-new-game-teased"
+        }
+      ]
+    },
+    {
+      "title": "Final Fantasy VII Remake heads to Game Pass in the next batch",
+      "tags": [
+        "Xbox",
+        "PC"
+      ],
+      "body": "Eight games join Game Pass between 21 Oct and 3 Nov, including FF7 Remake Intergrade, Terrible Lizards and The Séance of Blake Manor.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/10/these-eight-games-are-coming-to-xbox-game-pass-october-21-november-3"
+        }
+      ]
+    },
+    {
+      "title": "Mortal Shell 2 gets a free Rotten Autumn update",
+      "tags": [
+        "PS5"
+      ],
+      "body": "It's out now and adds 15 new dungeons (the game launched with 36), 10 new tarstones (one turns you into a sheep), plus more music and Shell customisation.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/mortal-shell-2-gets-even-better-in-big-free-content-patch-live-now-on-ps5"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-next-week-19th-25th-october",
+  "releases": [
+    {
+      "date": "Today",
+      "title": "Cyberpunk 2077 2.5 REDstream",
+      "note": "17:00 SAST",
+      "tags": [
+        "Cyberpunk 2077"
+      ]
+    },
+    {
+      "date": "Today",
+      "title": "PS Store Player's Choice sale ends",
+      "note": "",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "Nintendo Switch Sports Resort",
+      "note": "12 sports, Switch 2 only",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "Cult of the Lamb Switch 2 Edition",
+      "note": "Free upgrade for Switch owners",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "Hitman: Absolution Switch 2 Edition",
+      "note": "60fps performance mode",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "PEAK",
+      "note": "Console debut",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "Final Fantasy Resonance",
+      "note": "HD-2D RPG",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "22 Oct",
+      "title": "Cyberpunk 2077 Update 2.5",
+      "note": "Free, Edgerunners 2 tie-in",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "23 Oct",
+      "title": "Call of Duty: Modern Warfare 4",
+      "note": "Full launch with multiplayer",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "23 Oct",
+      "title": "Golden Joysticks voting closes",
+      "note": "",
+      "tags": [
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "23 Oct",
+      "title": "Ace Combat 8 bug-fix patch",
+      "note": "",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "26 Oct",
+      "title": "Steam Next Fest ends",
+      "note": "19:00 SAST",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Oct",
+      "title": "Minecraft for Switch 2",
+      "note": "",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Phantom Blade Zero",
+      "note": "About 135GB install",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "The Wolf Among Us Remastered",
+      "note": "Switch version delayed",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Pokémon TCG Pocket: Dual Fusion",
+      "note": "First dual-type cards",
+      "tags": [
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Mouthwashing",
+      "note": "PS5 debut",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "31 Oct",
+      "title": "Eight games leave Game Pass",
+      "note": "Incl. Deep Rock Galactic",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "5 Nov",
+      "title": "Zelda: Ocarina of Time",
+      "note": "Switch 2 remake",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Shrek 2 Remastered",
+      "note": "$29.99",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "GTA V and RDR2 leave PS Plus Extra",
+      "note": "",
+      "tags": [
+        "PS Plus"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Riders Republic",
+      "note": "Switch 2, plus offline play",
+      "tags": [
+        "Switch 2"
+      ]
+    }
+  ],
+  "footer_note": "Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date). The Cyberpunk 2.5 details come from a leaked video, so tonight's REDstream is the word to trust.",
+  "views_snapshot": {
+    "window_start": "2026-10-21T08:00:00+02:00",
+    "window_end": "2026-10-22T08:00:00+02:00",
+    "fetched_at": "2026-10-24T14:31:50.065741+02:00",
+    "total_views": 0,
+    "series": [],
+    "tracking_note": "View tracking began on 22 October 2026 at about 15:00 SAST. This edition's measurement window ended before tracking was live."
   }
- ],
- "industry": [
-  {
-   "title": "Report: Xbox handheld in 2027, Project Helix console in 2028, and more job cuts",
-   "tags": [
-    "Xbox"
-   ],
-   "body": "Fortune says a first-party Xbox handheld is due by the 2027 holiday season, and the Helix console in 2028, with an internal price projection of $1,200 to $1,800 unless Microsoft subsidises it. The same report says CEO Asha Sharma has cut 1,868 jobs so far out of 3,200 planned, with more cuts this month, in November and in January. Treat it as a report, not an announcement.",
-   "links": [
-    {
-     "label": "Pure Xbox",
-     "url": "https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028"
-    },
-    {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/xbox-to-slash-even-more-jobs-this-month-with-further-cuts-in-november-and-january"
-    }
-   ]
-  },
-  {
-   "title": "Shrek 2 Remastered is official and out on 10 Nov",
-   "tags": [
-    "PS5",
-    "Xbox",
-    "Shrek"
-   ],
-   "body": "Aspyr confirmed it at last night's ID@Xbox Showcase. It's $29.99, with 4K, better textures, a photo mode, unlockable cheats and four-player co-op, locally or online.",
-   "links": [
-    {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/shrek-2-remastered-takes-ps5-to-a-nostalgic-era-of-gaming-this-november"
-    },
-    {
-     "label": "Pure Xbox",
-     "url": "https://www.purexbox.com/news/2026/10/shrek-2-remastered-gets-official-november-release-date-for-xbox-series-xs"
-    }
-   ]
-  },
-  {
-   "title": "Nintendo Switch Sports Resort reviews well ahead of tomorrow's launch",
-   "tags": [
-    "Switch 2"
-   ],
-   "body": "It's sitting at a Metascore of 79 from 46 reviews. Nintendo Life and GameSpot both gave it 9/10, Game Informer gave it 8 and IGN 7, with most praising the multiplayer and the new skateboarding, which uses the Joy-Con 2 mouse mode.",
-   "links": [
-    {
-     "label": "Nintendo Life",
-     "url": "https://www.nintendolife.com/news/2026/10/round-up-the-reviews-are-in-for-nintendo-switch-sports-resort"
-    }
-   ]
-  },
-  {
-   "title": "Riders Republic comes to Switch 2 on 9 Dec, with offline play",
-   "tags": [
-    "Switch 2"
-   ],
-   "body": "Ubisoft's open-world extreme sports game launches on Switch 2 the same day it adds an Offline Play option on every platform.",
-   "links": [
-    {
-     "label": "Nintendo Life",
-     "url": "https://www.nintendolife.com/news/2026/10/ubisofts-extreme-sports-playground-riders-republic-launches-on-switch-2-this-december"
-    }
-   ]
-  },
-  {
-   "title": "EA's Fight Night is coming back",
-   "tags": [
-    "Fight Night"
-   ],
-   "body": "A new official account posted \"Fight Night is coming back\". There are no other details yet, and it's the first new Fight Night since Fight Night Champion in 2011.",
-   "links": [
-    {
-     "label": "Pure Xbox",
-     "url": "https://www.purexbox.com/news/2026/10/for-the-first-time-since-the-xbox-360-fight-night-is-making-a-comeback"
-    },
-    {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/ea-boxing-series-fight-night-back-for-another-round-new-game-teased"
-    }
-   ]
-  },
-  {
-   "title": "Final Fantasy VII Remake heads to Game Pass in the next batch",
-   "tags": [
-    "Xbox",
-    "PC"
-   ],
-   "body": "Eight games join Game Pass between 21 Oct and 3 Nov, including FF7 Remake Intergrade, Terrible Lizards and The Séance of Blake Manor.",
-   "links": [
-    {
-     "label": "Pure Xbox",
-     "url": "https://www.purexbox.com/news/2026/10/these-eight-games-are-coming-to-xbox-game-pass-october-21-november-3"
-    }
-   ]
-  },
-  {
-   "title": "Mortal Shell 2 gets a free Rotten Autumn update",
-   "tags": [
-    "PS5"
-   ],
-   "body": "It's out now and adds 15 new dungeons (the game launched with 36), 10 new tarstones (one turns you into a sheep), plus more music and Shell customisation.",
-   "links": [
-    {
-     "label": "Push Square",
-     "url": "https://www.pushsquare.com/news/2026/10/mortal-shell-2-gets-even-better-in-big-free-content-patch-live-now-on-ps5"
-    }
-   ]
-  }
- ],
- "releases_link": "https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-next-week-19th-25th-october",
- "releases": [
-  {
-   "date": "Today",
-   "title": "Cyberpunk 2077 2.5 REDstream",
-   "note": "17:00 SAST",
-   "tags": [
-    "Cyberpunk 2077"
-   ]
-  },
-  {
-   "date": "Today",
-   "title": "PS Store Player's Choice sale ends",
-   "note": "",
-   "tags": [
-    "PS5"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "Nintendo Switch Sports Resort",
-   "note": "12 sports, Switch 2 only",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "Cult of the Lamb Switch 2 Edition",
-   "note": "Free upgrade for Switch owners",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "Hitman: Absolution Switch 2 Edition",
-   "note": "60fps performance mode",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "PEAK",
-   "note": "Console debut",
-   "tags": [
-    "PS5",
-    "Xbox",
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "Final Fantasy Resonance",
-   "note": "HD-2D RPG",
-   "tags": [
-    "PS5",
-    "Switch 2",
-    "Xbox",
-    "PC"
-   ]
-  },
-  {
-   "date": "22 Oct",
-   "title": "Cyberpunk 2077 Update 2.5",
-   "note": "Free, Edgerunners 2 tie-in",
-   "tags": [
-    "PS5",
-    "Switch 2",
-    "PC"
-   ]
-  },
-  {
-   "date": "23 Oct",
-   "title": "Call of Duty: Modern Warfare 4",
-   "note": "Full launch with multiplayer",
-   "tags": [
-    "PS5",
-    "Xbox",
-    "Switch 2",
-    "PC"
-   ]
-  },
-  {
-   "date": "23 Oct",
-   "title": "Golden Joysticks voting closes",
-   "note": "",
-   "tags": [
-    "Pokémon"
-   ]
-  },
-  {
-   "date": "23 Oct",
-   "title": "Ace Combat 8 bug-fix patch",
-   "note": "",
-   "tags": [
-    "PS5"
-   ]
-  },
-  {
-   "date": "26 Oct",
-   "title": "Steam Next Fest ends",
-   "note": "19:00 SAST",
-   "tags": [
-    "PC"
-   ]
-  },
-  {
-   "date": "27 Oct",
-   "title": "Minecraft for Switch 2",
-   "note": "",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "29 Oct",
-   "title": "Phantom Blade Zero",
-   "note": "About 135GB install",
-   "tags": [
-    "PS5"
-   ]
-  },
-  {
-   "date": "29 Oct",
-   "title": "The Wolf Among Us Remastered",
-   "note": "Switch version delayed",
-   "tags": [
-    "PS5",
-    "Xbox",
-    "PC"
-   ]
-  },
-  {
-   "date": "29 Oct",
-   "title": "Pokémon TCG Pocket: Dual Fusion",
-   "note": "First dual-type cards",
-   "tags": [
-    "Pokémon"
-   ]
-  },
-  {
-   "date": "29 Oct",
-   "title": "Mouthwashing",
-   "note": "PS5 debut",
-   "tags": [
-    "PS5"
-   ]
-  },
-  {
-   "date": "31 Oct",
-   "title": "Eight games leave Game Pass",
-   "note": "Incl. Deep Rock Galactic",
-   "tags": [
-    "Xbox"
-   ]
-  },
-  {
-   "date": "5 Nov",
-   "title": "Zelda: Ocarina of Time",
-   "note": "Switch 2 remake",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "10 Nov",
-   "title": "Shrek 2 Remastered",
-   "note": "$29.99",
-   "tags": [
-    "PS5",
-    "Xbox"
-   ]
-  },
-  {
-   "date": "17 Nov",
-   "title": "GTA V and RDR2 leave PS Plus Extra",
-   "note": "",
-   "tags": [
-    "PS Plus"
-   ]
-  },
-  {
-   "date": "19 Nov",
-   "title": "Grand Theft Auto VI",
-   "note": "",
-   "tags": [
-    "PS5",
-    "Xbox"
-   ]
-  },
-  {
-   "date": "4 Dec",
-   "title": "Monster Hunter Wilds",
-   "note": "Switch 2 version",
-   "tags": [
-    "Switch 2"
-   ]
-  },
-  {
-   "date": "9 Dec",
-   "title": "Riders Republic",
-   "note": "Switch 2, plus offline play",
-   "tags": [
-    "Switch 2"
-   ]
-  }
- ],
- "footer_note": "Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date). The Cyberpunk 2.5 details come from a leaked video, so tonight's REDstream is the word to trust."
 }
