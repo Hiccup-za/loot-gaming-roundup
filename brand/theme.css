@@ -95,8 +95,8 @@ h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);lette
 .src-label{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
 a.src{display:inline-flex;align-items:center;min-height:32px;color:var(--text-2);text-decoration:none;font:500 14px/1.2 var(--sans)}
 a.src span{color:var(--text-3)}
-a.src:hover{color:var(--accent)}
-a.src:hover span{color:var(--accent)}
+a.src:hover{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+a.src:hover span{color:var(--text-2)}
 
 /* Releases: unboxed list, hairline rows */
 ul.releases{list-style:none;margin:0;padding:0}
