@@ -219,33 +219,43 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
   .side .rel-body h3{font-size:16px}
 }
 
-/* Archive: edition cards with stats and baked views sparkline */
+/* Archive: structured edition cards */
 .wrap--archive{--max:960px}
 @media(min-width:1000px){.wrap--archive{--max:1080px}}
-.archive-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
-@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
-@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
-.archive-card{display:flex;flex-direction:column;gap:14px;padding:18px 18px 16px;background:var(--surface);
-  border:1px solid var(--border);border-radius:12px;transition:border-color .15s,background .15s}
-.archive-card:hover{border-color:var(--border-strong);background:var(--surface-2)}
-.archive-card h3{margin:0;font:700 clamp(17px,2.8vw,19px)/1.25 var(--head);letter-spacing:-.015em}
-.archive-card h3 a{color:var(--text);text-decoration:none}
-.archive-card h3 a:hover{color:var(--accent)}
-.archive-card-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;
-  padding-top:12px;border-top:1px solid var(--border)}
-.archive-stats{display:flex;flex-wrap:wrap;gap:6px 12px;font:500 12px/1.3 var(--mono);color:var(--text-3)}
-.archive-stat{white-space:nowrap}
-.archive-card .edition-views{margin:0;padding:0;flex:1 1 auto;justify-content:flex-end;min-width:min(100%,200px)}
-.archive-card .edition-views-muted{justify-content:flex-start;font-size:12px}
-@media(max-width:479px){.archive-card .edition-views{width:auto;justify-content:flex-start}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.6vw,18px)/1.3 var(--head);letter-spacing:-.015em;color:var(--text)}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;padding-top:2px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 """
 
 def fmt_views(n):
     return f"{int(n):,}"
 
 
-def sparkline_paths(cum_vals):
-    w, h, pad = 88, 28, 2
+def sparkline_paths(cum_vals, w=88, h=28, pad=2):
     if not cum_vals:
         return "", ""
     iw, ih = w - pad * 2, h - pad * 2
@@ -492,29 +502,102 @@ def edition_story_count(ed):
     return len(ed.get("your_games") or []) + len(ed.get("industry") or [])
 
 
-def archive_stats_html(ed):
-    stories = edition_story_count(ed)
-    releases = len(ed.get("releases") or [])
-    parts = [
-        f'<span class="archive-stat">{stories} {"story" if stories == 1 else "stories"}</span>'
+def archive_views_untracked(ed):
+    snap = ed.get("views_snapshot")
+    if not snap:
+        return True
+    note = snap.get("tracking_note") or ""
+    if note == views_fetch.TRACKING_NOTE_BEFORE or "ended before tracking was live" in note:
+        return True
+    return False
+
+
+def archive_cumulative_series(ed):
+    snap = ed.get("views_snapshot") or {}
+    series = sorted(snap.get("series") or [], key=_series_sort_key)
+    tracked = [
+        p
+        for p in series
+        if p.get("tracked", True) and p.get("pageviews") is not None
     ]
-    if releases:
-        parts.append(
-            f'<span class="archive-stat">{releases} {"release" if releases == 1 else "releases"}</span>'
+    total = snap.get("total_views")
+    if total is None:
+        total = sum(int(p.get("pageviews") or 0) for p in tracked)
+    cum, cum_vals = 0, []
+    for p in tracked:
+        cum += int(p.get("pageviews") or 0)
+        cum_vals.append(cum)
+    if len(cum_vals) == 1:
+        cum_vals = [0, cum_vals[0]]
+    return int(total), cum_vals, snap.get("tracking_note")
+
+
+def archive_stat_block(label, value, *, muted=False):
+    val_cls = "archive-stat-value is-muted" if muted else "archive-stat-value"
+    return (
+        f'<div class="archive-stat-block">'
+        f'<span class="archive-stat-label">{escape(label)}</span>'
+        f'<span class="{val_cls}">{escape(value)}</span>'
+        f"</div>"
+    )
+
+
+def archive_chart_panel(ed):
+    chart_w, chart_h, chart_pad = 400, 72, 8
+    if archive_views_untracked(ed):
+        return (
+            '<div class="archive-chart-panel" aria-hidden="true">'
+            '<p class="archive-chart-empty">Views not tracked yet</p></div>'
         )
-    return "".join(parts)
+    total, cum_vals, note = archive_cumulative_series(ed)
+    if not cum_vals:
+        cum_vals = [0, 0]
+    line_d, fill_d = sparkline_paths(cum_vals, w=chart_w, h=chart_h, pad=chart_pad)
+    grad_id = f"archive-grad-{ed.get('date', 'x').replace('-', '')}"
+    tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
+    svg = (
+        f'<svg class="archive-chart-svg" viewBox="0 0 {chart_w} {chart_h}" '
+        f'preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+        f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
+        f'<stop class="archive-chart-stop-top" offset="0%"/>'
+        f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
+        f"</linearGradient></defs>"
+        f'<path class="archive-chart-fill" fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
+        f'<path class="archive-chart-line" d="{line_d}"/>'
+        f"</svg>"
+    )
+    return (
+        f'<div class="archive-chart-panel" title="{tip}" '
+        f'aria-label="{escape(f"{fmt_views(total)} total views chart")}">{svg}</div>'
+    )
 
 
 def archive_card(ed):
     slug = escape(ed["date"])
     label = escape(ed.get("date_label", ed["date"]))
+    stories = edition_story_count(ed)
+    releases = len(ed.get("releases") or [])
+    if archive_views_untracked(ed):
+        views_val = "—"
+        views_muted = True
+    else:
+        total, _, _ = archive_cumulative_series(ed)
+        views_val = fmt_views(total)
+        views_muted = False
+    stats = (
+        archive_stat_block("Stories", str(stories))
+        + archive_stat_block("Releases", str(releases))
+        + archive_stat_block("Views", views_val, muted=views_muted)
+    )
     return (
-        f'<article class="archive-card">'
-        f'<h3><a href="/{slug}.html">{label}</a></h3>'
-        f'<div class="archive-card-foot">'
-        f'<div class="archive-stats">{archive_stats_html(ed)}</div>'
-        f"{views_sparkline(ed)}"
-        f"</div></article>"
+        f'<a class="archive-card" href="/{slug}.html">'
+        f'<div class="archive-card-head">'
+        f'<h3 class="archive-card-title">{label}</h3>'
+        f'<span class="archive-card-read">Read<span class="arr" aria-hidden="true">→</span></span>'
+        f"</div>"
+        f'<div class="archive-stat-grid">{stats}</div>'
+        f"{archive_chart_panel(ed)}"
+        f"</a>"
     )
 
 
