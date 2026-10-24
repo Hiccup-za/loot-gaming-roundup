@@ -179,11 +179,30 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .edition-views-muted{color:var(--text-3);opacity:.85;font-size:12px}
 .views-num{font:500 13px/1 var(--mono);color:var(--text-2)}
 .views-word{white-space:nowrap;letter-spacing:.02em}
-.views-spark{display:block;width:88px;height:28px;flex:0 0 auto;opacity:.88;overflow:visible}
-#views-line{stroke:var(--accent);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.views-spark{display:block;flex:0 0 auto;opacity:.88;overflow:visible}
+.views-line{stroke:var(--accent);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
 .views-stop-top{stop-color:var(--accent-tint)}
 .views-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 @media(max-width:479px){.edition-views{width:100%;justify-content:flex-end}}
+
+/* Archive: one card per edition, newest first */
+.archive-cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.archive-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  transition:border-color .15s ease,background .15s ease}
+.archive-card:hover,.archive-card:focus-within{border-color:var(--border-strong);background:var(--surface-2)}
+.archive-card-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px}
+a.archive-card-title{flex:1 1 auto;min-width:0;font:600 17px/1.3 var(--head);letter-spacing:-.01em;
+  color:var(--accent);text-decoration:none}
+a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+.archive-card .edition-views{min-height:24px;padding:0}
+.archive-card .views-spark{width:72px;height:24px}
+.archive-card-meta{flex:0 0 auto;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:right;max-width:min(220px,42vw)}
+.archive-card-meta-muted{opacity:.85}
+@media(max-width:479px){
+  .archive-card-inner{flex-wrap:wrap;padding:14px 16px}
+  a.archive-card-title{flex:1 1 100%}
+  .archive-card .edition-views,.archive-card-meta{margin-left:auto}
+}
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
@@ -224,8 +243,8 @@ def fmt_views(n):
     return f"{int(n):,}"
 
 
-def sparkline_paths(cum_vals):
-    w, h, pad = 88, 28, 2
+def sparkline_paths(cum_vals, *, width=88, height=28):
+    w, h, pad = width, height, 2
     if not cum_vals:
         return "", ""
     iw, ih = w - pad * 2, h - pad * 2
@@ -254,10 +273,18 @@ def _series_sort_key(point):
     return ""
 
 
-def views_sparkline(data):
+def views_sparkline(
+    data,
+    *,
+    elem="p",
+    spark_w=88,
+    spark_h=28,
+    muted_only=False,
+):
     snap = data.get("views_snapshot")
+    muted = f'<{elem} class="edition-views edition-views-muted">Views not recorded</{elem}>'
     if not snap:
-        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+        return muted
     series = sorted(snap.get("series") or [], key=_series_sort_key)
     tracked = [
         p
@@ -268,33 +295,49 @@ def views_sparkline(data):
     if total is None:
         total = sum(int(p.get("pageviews") or 0) for p in tracked)
     note = snap.get("tracking_note")
-    if not tracked and total == 0 and not note:
-        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+    if not tracked and total == 0:
+        if muted_only:
+            tip = escape(note) if note else ""
+            title_attr = f' title="{tip}"' if tip else ""
+            return (
+                f'<span class="archive-card-meta archive-card-meta-muted"{title_attr}>'
+                f"Views not recorded</span>"
+            )
+        if not note:
+            return muted
     cum, cum_vals = 0, []
     for p in tracked:
         cum += int(p.get("pageviews") or 0)
         cum_vals.append(cum)
     if len(cum_vals) == 1:
         cum_vals = [0, cum_vals[0]]
-    line_d, fill_d = sparkline_paths(cum_vals)
+    line_d, fill_d = sparkline_paths(cum_vals, width=spark_w, height=spark_h)
     tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
     label = escape(f"{fmt_views(total)} total views")
     grad_id = f"views-grad-{data.get('date', 'x').replace('-', '')}"
     svg = ""
     if line_d:
         svg = (
-            f'<svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false">'
+            f'<svg class="views-spark" viewBox="0 0 {spark_w} {spark_h}" width="{spark_w}" height="{spark_h}" '
+            f'aria-hidden="true" focusable="false">'
             f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
             f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
             f"</linearGradient></defs>"
             f'<path fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
-            f'<path id="views-line" d="{line_d}" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<path class="views-line" d="{line_d}" fill="none" stroke-width="1.25" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>'
             f"</svg>"
         )
     return (
-        f'<p class="edition-views" title="{tip}" aria-label="{label}">'
+        f'<{elem} class="edition-views" title="{tip}" aria-label="{label}">'
         f'<span class="views-num">{fmt_views(total)}</span>'
-        f'<span class="views-word">total views</span>{svg}</p>'
+        f'<span class="views-word">total views</span>{svg}</{elem}>'
+    )
+
+
+def archive_card_views(data):
+    return views_sparkline(
+        data, elem="div", spark_w=72, spark_h=24, muted_only=True
     )
 
 
@@ -508,19 +551,22 @@ def head_common(title, description, nav, body):
 
 def render_archive(editions):
     items = []
-    for ed in editions:
+    for ed in reversed(editions):
         slug = escape(ed["date"])
         label = escape(ed.get("date_label", ed["date"]))
         items.append(
-            f'<li class="release"><div class="rel-body">'
-            f'<h3><a class="full-list" href="/{slug}.html">{label}</a></h3>'
-            f'</div></li>')
+            f'<li class="archive-card">'
+            f'<div class="archive-card-inner">'
+            f'<a class="archive-card-title" href="/{slug}.html">{label}</a>'
+            f"{archive_card_views(ed)}"
+            f"</div></li>"
+        )
     nav = '<a href="/">Latest</a>'
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
         '<div class="date">Every past edition</div></div>'
         f'<section id="archive"><h2>Past roundups<span class="count">{len(editions)} editions</span></h2>'
-        f'<ul class="releases">{"".join(items)}</ul></section>')
+        f'<ul class="archive-cards">{"".join(items)}</ul></section>')
     return head_common("Loot's Gaming Roundup · Archive",
                        "Every daily gaming roundup, newest first.",
                        nav, body)
