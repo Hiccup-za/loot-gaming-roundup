@@ -232,11 +232,9 @@ a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16p
 a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
 a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.archive-card-title{margin:0;flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0}
-.archive-card-weekday{font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;color:var(--text);white-space:nowrap}
-.archive-date-badge{display:inline-flex;align-items:center;flex:0 0 auto;padding:2px 8px;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:999px;font:700 clamp(16px,2.4vw,17px)/1 var(--head);letter-spacing:-.015em;
-  color:var(--text);white-space:nowrap}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-card-title .archive-card-wd{color:var(--text-2);font-weight:600}
 .archive-year-section+.archive-year-section{margin-top:48px}
 .archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
   font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
@@ -531,15 +529,12 @@ def edition_out_today_count(ed):
 def archive_card_title_html(ed):
     d = datetime.strptime(ed["date"], "%Y-%m-%d")
     wd = escape(d.strftime("%a"))
-    day = escape(str(d.day))
-    mon = escape(d.strftime("%b"))
+    badge = escape(f"{d.day} {d.strftime('%b')}")
     return (
         f'<h3 class="archive-card-title">'
         f'<span class="archive-card-weekday">{wd}</span>'
-        f'<span class="archive-date-badge" aria-hidden="true">'
-        f'<span class="archive-date-day">{day}</span>'
-        f'<span class="archive-date-mon">{mon}</span>'
-        f"</span></h3>"
+        f'<span class="archive-date-badge" aria-hidden="true">{badge}</span>'
+        f"</h3>"
     )
 
 
