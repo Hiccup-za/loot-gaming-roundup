@@ -229,11 +229,14 @@ def sparkline_paths(cum_vals):
     if not cum_vals:
         return "", ""
     iw, ih = w - pad * 2, h - pad * 2
-    mx = max(cum_vals) or 1
+    mx = max(cum_vals)
     xs, ys = [], []
     for j, val in enumerate(cum_vals):
         x = pad + (iw / 2 if len(cum_vals) == 1 else iw * j / (len(cum_vals) - 1))
-        ys.append(pad + ih - (val / mx) * ih)
+        if mx == 0:
+            ys.append(h - pad - 1.25)
+        else:
+            ys.append(pad + ih - (val / mx) * ih)
         xs.append(x)
     line = f"M{xs[0]:.2f},{ys[0]:.2f}"
     for k in range(1, len(xs)):
@@ -262,10 +265,7 @@ def views_sparkline(data):
     if len(cum_vals) == 1:
         cum_vals = [0, cum_vals[0]]
     line_d, fill_d = sparkline_paths(cum_vals)
-    tip = escape(
-        note
-        or "Page views for this edition's publish window (/YYYY-MM-DD.html and clean URL combined)."
-    )
+    tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
     label = escape(f"{fmt_views(total)} total views")
     grad_id = f"views-grad-{data.get('date', 'x').replace('-', '')}"
     svg = ""
