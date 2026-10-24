@@ -529,11 +529,10 @@ def edition_out_today_count(ed):
 def archive_card_title_html(ed):
     d = datetime.strptime(ed["date"], "%Y-%m-%d")
     wd = escape(d.strftime("%a"))
-    badge = escape(f"{d.day} {d.strftime('%b')}")
+    rest = escape(f"{d.day} {d.strftime('%B')}")
     return (
         f'<h3 class="archive-card-title">'
-        f'<span class="archive-card-weekday">{wd}</span>'
-        f'<span class="archive-date-badge" aria-hidden="true">{badge}</span>'
+        f'<span class="archive-card-wd">{wd}</span> · {rest}'
         f"</h3>"
     )
 
