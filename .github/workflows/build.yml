@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DATABUDDY_API_KEY: ${{ secrets.DATABUDDY_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - name: Regenerate HTML from JSON
