@@ -222,6 +222,7 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
   h2{font-size:36px}
   .side h2{font-size:30px}
+  nav.jump a.jump-side{display:none}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -440,7 +441,8 @@ def render(data):
         sections.append(f'<section id="industry"><h2>Industry<span class="count">{len(industry)} stories</span></h2>'
                         f'<div class="grid">{"".join(story_card(s) for s in industry)}</div></section>')
     if releases:
-        nav.append('<a href="#out-this-week">Out this week</a>')
+        side_cls = ' class="jump-side"' if sections else ""
+        nav.append(f'<a{side_cls} href="#out-this-week">Out this week</a>')
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
