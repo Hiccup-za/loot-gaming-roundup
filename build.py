@@ -9,6 +9,7 @@ Usage:
     python3 build.py data.json --no-index       # skip updating index.html
 """
 import argparse, json, os, re, shutil, sys
+from datetime import datetime
 from html import escape
 
 import views_fetch
@@ -237,14 +238,47 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: structured edition cards */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 """
 
 def fmt_views(n):
     return f"{int(n):,}"
 
 
-def sparkline_paths(cum_vals, *, width=88, height=28):
-    w, h, pad = width, height, 2
+def sparkline_paths(cum_vals, *, width=88, height=28, pad=2):
+    w, h = width, height
     if not cum_vals:
         return "", ""
     iw, ih = w - pad * 2, h - pad * 2
@@ -332,12 +366,6 @@ def views_sparkline(
         f'<{elem} class="edition-views" title="{tip}" aria-label="{label}">'
         f'<span class="views-num">{fmt_views(total)}</span>'
         f'<span class="views-word">total views</span>{svg}</{elem}>'
-    )
-
-
-def archive_card_views(data):
-    return views_sparkline(
-        data, elem="div", spark_w=72, spark_h=24, muted_only=True
     )
 
 
@@ -511,7 +539,139 @@ def finalize_previous_edition(root, current_date, *, refresh=False, backfill=Fal
     write_edition_json(prev["path"], prev["data"])
 
 
-def head_common(title, description, nav, body):
+def edition_story_count(ed):
+    return len(ed.get("your_games") or []) + len(ed.get("industry") or [])
+
+
+def edition_release_day_label(iso_date):
+    """Edition calendar day as in release rows, e.g. 22 Oct."""
+    d = datetime.strptime(iso_date, "%Y-%m-%d")
+    return f"{d.day} {d.strftime('%b')}"
+
+
+def edition_out_today_count(ed):
+    """Releases dated Today or this edition's D Mon — not Out now / later calendar rows."""
+    day_mon = edition_release_day_label(ed["date"])
+    count = 0
+    for release in ed.get("releases") or []:
+        raw = (release.get("date") or "").strip()
+        if not raw:
+            continue
+        low = raw.lower()
+        if low == "today" or low == day_mon.lower():
+            count += 1
+    return count
+
+
+def archive_card_title_html(ed):
+    d = datetime.strptime(ed["date"], "%Y-%m-%d")
+    wd = escape(d.strftime("%a"))
+    rest = escape(f"{d.day} {d.strftime('%B')}")
+    return f'<h3 class="archive-card-title">{wd} · {rest}</h3>'
+
+
+def archive_views_untracked(ed):
+    snap = ed.get("views_snapshot")
+    if not snap:
+        return True
+    note = snap.get("tracking_note") or ""
+    if note == views_fetch.TRACKING_NOTE_BEFORE or "ended before tracking was live" in note:
+        return True
+    return False
+
+
+def archive_cumulative_series(ed):
+    snap = ed.get("views_snapshot") or {}
+    series = sorted(snap.get("series") or [], key=_series_sort_key)
+    tracked = [
+        p
+        for p in series
+        if p.get("tracked", True) and p.get("pageviews") is not None
+    ]
+    total = snap.get("total_views")
+    if total is None:
+        total = sum(int(p.get("pageviews") or 0) for p in tracked)
+    cum, cum_vals = 0, []
+    for p in tracked:
+        cum += int(p.get("pageviews") or 0)
+        cum_vals.append(cum)
+    if len(cum_vals) == 1:
+        cum_vals = [0, cum_vals[0]]
+    return int(total), cum_vals, snap.get("tracking_note")
+
+
+def archive_stat_block(label, value, *, muted=False):
+    val_cls = "archive-stat-value is-muted" if muted else "archive-stat-value"
+    return (
+        f'<div class="archive-stat-block">'
+        f'<span class="archive-stat-label">{escape(label)}</span>'
+        f'<span class="{val_cls}">{escape(value)}</span>'
+        f"</div>"
+    )
+
+
+def archive_chart_panel(ed):
+    chart_w, chart_h, chart_pad = 400, 72, 8
+    if archive_views_untracked(ed):
+        return (
+            '<div class="archive-chart-panel" aria-hidden="true">'
+            '<p class="archive-chart-empty">Views not tracked yet</p></div>'
+        )
+    total, cum_vals, note = archive_cumulative_series(ed)
+    if not cum_vals:
+        cum_vals = [0, 0]
+    line_d, fill_d = sparkline_paths(
+        cum_vals, width=chart_w, height=chart_h, pad=chart_pad
+    )
+    grad_id = f"archive-grad-{ed.get('date', 'x').replace('-', '')}"
+    tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
+    svg = (
+        f'<svg class="archive-chart-svg" viewBox="0 0 {chart_w} {chart_h}" '
+        f'preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+        f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
+        f'<stop class="archive-chart-stop-top" offset="0%"/>'
+        f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
+        f"</linearGradient></defs>"
+        f'<path class="archive-chart-fill" fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
+        f'<path class="archive-chart-line" d="{line_d}"/>'
+        f"</svg>"
+    )
+    return (
+        f'<div class="archive-chart-panel" title="{tip}" '
+        f'aria-label="{escape(f"{fmt_views(total)} total views chart")}">{svg}</div>'
+    )
+
+
+def archive_card(ed):
+    slug = escape(ed["date"])
+    full_label = escape(ed.get("date_label", ed["date"]))
+    stories = edition_story_count(ed)
+    out_today = edition_out_today_count(ed)
+    if archive_views_untracked(ed):
+        views_val = "—"
+        views_muted = True
+    else:
+        total, _, _ = archive_cumulative_series(ed)
+        views_val = fmt_views(total)
+        views_muted = False
+    stats = (
+        archive_stat_block("Stories", str(stories))
+        + archive_stat_block("Out today", str(out_today))
+        + archive_stat_block("Views", views_val, muted=views_muted)
+    )
+    return (
+        f'<a class="archive-card" href="/{slug}.html" aria-label="{full_label}">'
+        f'<div class="archive-card-head">'
+        f"{archive_card_title_html(ed)}"
+        f'<span class="archive-card-read">Read<span class="arr" aria-hidden="true">→</span></span>'
+        f"</div>"
+        f'<div class="archive-stat-grid">{stats}</div>'
+        f"{archive_chart_panel(ed)}"
+        f"</a>"
+    )
+
+
+def head_common(title, description, nav, body, wrap_class="wrap"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -541,7 +701,7 @@ def head_common(title, description, nav, body):
 <nav class="jump" aria-label="Sections">{nav}</nav>
 </div>
 </header>
-<div class="wrap" id="top">
+<div class="{wrap_class}" id="top">
 {body}
 <footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
@@ -550,26 +710,34 @@ def head_common(title, description, nav, body):
 
 
 def render_archive(editions):
-    items = []
-    for ed in reversed(editions):
-        slug = escape(ed["date"])
-        label = escape(ed.get("date_label", ed["date"]))
-        items.append(
-            f'<li class="archive-card">'
-            f'<div class="archive-card-inner">'
-            f'<a class="archive-card-title" href="/{slug}.html">{label}</a>'
-            f"{archive_card_views(ed)}"
-            f"</div></li>"
+    ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
+    by_year = {}
+    for ed in ordered:
+        by_year.setdefault(ed["date"][:4], []).append(ed)
+    year_sections = []
+    for year in sorted(by_year.keys(), reverse=True):
+        year_eds = by_year[year]
+        sec_id = "archive" if len(by_year) == 1 else f"archive-{year}"
+        sec_cls = "archive-year-section" if len(by_year) > 1 else ""
+        cls_attr = f' class="{sec_cls}"' if sec_cls else ""
+        year_sections.append(
+            f'<section id="{sec_id}"{cls_attr}>'
+            f'<h2>Past roundups - {year}<span class="count">{len(year_eds)} editions</span></h2>'
+            f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
+            f"</section>"
         )
     nav = '<a href="/">Latest</a>'
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
-        '<div class="date">Every past edition</div></div>'
-        f'<section id="archive"><h2>Past roundups<span class="count">{len(editions)} editions</span></h2>'
-        f'<ul class="archive-cards">{"".join(items)}</ul></section>')
-    return head_common("Loot's Gaming Roundup · Archive",
-                       "Every daily gaming roundup, newest first.",
-                       nav, body)
+        '<div class="date">Every past edition, newest first</div></div>'
+        f'{"".join(year_sections)}')
+    return head_common(
+        "Loot's Gaming Roundup · Archive",
+        "Every daily gaming roundup, newest first.",
+        nav,
+        body,
+        wrap_class="wrap wrap--archive",
+    )
 
 
 def render_sitemap(editions):

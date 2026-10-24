@@ -9,7 +9,7 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | `YYYY-MM-DD.json` | **Source of truth** for each day's stories and **views snapshot** |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
-| `archive.html` | Generated list of every past edition |
+| `archive.html` | Generated archive: one card per edition (newest first), with story counts and baked views sparkline |
 | `sitemap.xml` | Generated sitemap for search engines |
 
 On every Vercel deploy, the build command runs `python3 build.py --all`, which rebuilds every edition from JSON, refreshes views snapshots when rules allow, and updates `index.html`, `archive.html`, and `sitemap.xml`.
