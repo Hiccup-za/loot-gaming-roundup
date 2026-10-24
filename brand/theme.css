@@ -176,7 +176,6 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
   color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.archive-card-title .archive-card-wd{color:var(--text-2);font-weight:600}
 .archive-year-section+.archive-year-section{margin-top:48px}
 .archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
   font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
