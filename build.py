@@ -246,12 +246,24 @@ def sparkline_paths(cum_vals):
     return line, area
 
 
+def _series_sort_key(point):
+    if point.get("timestamp"):
+        return point["timestamp"]
+    if point.get("date"):
+        return point["date"]
+    return ""
+
+
 def views_sparkline(data):
     snap = data.get("views_snapshot")
     if not snap:
         return '<p class="edition-views edition-views-muted">Views not recorded</p>'
-    series = snap.get("series") or []
-    tracked = [p for p in series if p.get("tracked") and p.get("pageviews") is not None]
+    series = sorted(snap.get("series") or [], key=_series_sort_key)
+    tracked = [
+        p
+        for p in series
+        if p.get("tracked", True) and p.get("pageviews") is not None
+    ]
     total = snap.get("total_views")
     if total is None:
         total = sum(int(p.get("pageviews") or 0) for p in tracked)
