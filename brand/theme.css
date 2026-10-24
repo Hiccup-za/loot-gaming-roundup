@@ -47,6 +47,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -66,8 +68,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -159,7 +162,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -173,8 +177,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}

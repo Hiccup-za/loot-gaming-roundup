@@ -105,6 +105,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -124,8 +126,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -217,7 +220,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -231,8 +235,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}
@@ -271,6 +275,59 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-top{stop-color:var(--accent-tint)}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
+"""
+
+# Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
+# trigger: the active section is the last one whose top has crossed it. On wide
+# screens "Out this week" is a sticky sidebar that never scrolls past the line, so
+# only the main feed sections drive the state there.
+SCROLL_SPY_JS = r"""
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var header=document.querySelector('header.masthead');
+  var links=[].slice.call(document.querySelectorAll('nav.jump a[href^="#"]'));
+  var footer=document.querySelector('footer');
+  var wide=window.matchMedia('(min-width:1000px)');
+  var hasSide=!!document.querySelector('.layout.has-side');
+  var observers=[],current=null;
+  function setActive(id){
+    if(id===current)return;
+    current=id;
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function spied(){
+    return links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));})
+      .filter(function(s){return s&&!(hasSide&&wide.matches&&s.closest('.side'));});
+  }
+  function line(){return header.getBoundingClientRect().bottom+16;}
+  function update(){
+    var secs=spied(),y=line(),id=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)id=s.id;});
+    var atEnd=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+    if(atEnd&&secs.length&&secs[secs.length-1].getBoundingClientRect().top<window.innerHeight)id=secs[secs.length-1].id;
+    setActive(id);
+  }
+  function observe(){
+    observers.forEach(function(o){o.disconnect();});
+    var top=Math.round(line());
+    var bottom=Math.max(0,window.innerHeight-top-1);
+    var spy=new IntersectionObserver(update,{rootMargin:'-'+top+'px 0px -'+bottom+'px 0px'});
+    spied().forEach(function(s){spy.observe(s);});
+    observers=[spy];
+    if(footer){
+      var end=new IntersectionObserver(update,{threshold:[0,1]});
+      end.observe(footer);
+      observers.push(end);
+    }
+    update();
+  }
+  var t;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(observe,150);});
+  observe();
+})();
 """
 
 def fmt_views(n):
@@ -441,6 +498,7 @@ def render(data):
 {layout}
 <footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>{SCROLL_SPY_JS}</script>
 </body>
 </html>
 """

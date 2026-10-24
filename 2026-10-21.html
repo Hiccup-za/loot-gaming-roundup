@@ -79,6 +79,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -98,8 +100,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -191,7 +194,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -205,13 +209,46 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: structured edition cards */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 </style>
 </head>
 <body>
@@ -226,5 +263,53 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">5 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Cyberpunk 2077</span></div><h3>Cyberpunk 2077 Update 2.5 lands tomorrow, and the details have already leaked</h3><p>CD Projekt Red&#x27;s free Edgerunners 2 Update (2.5) arrives on 22 Oct to tie in with the anime&#x27;s second season, which hit Netflix yesterday. The official tease promises cyberware customisation and a new dual-wielding playstyle. A content creator&#x27;s video went up early before being pulled, and according to reports it shows dual-wield pistols, a new Edgerunners side quest, a new radio station, a field-of-view slider on consoles and mod.io support (though reportedly not on Switch 2). The full reveal is in a REDstream today at 17:00 SAST.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/cyberpunk-2077-ps5-patch-2-5-leaks-get-the-big-details-and-updates-here" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.nintendolife.com/news/2026/10/cyberpunk-2077-edgerunners-2-free-update-2-5-arrives-this-week" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Helldivers 2</span></div><h3>Helldivers 2 Update 7.2.0 is out, with a big weapon balance pass</h3><p>The one we were waiting on arrived alongside yesterday&#x27;s Scope of Authority Warbond. The M90A shotgun goes from 605 to 726 damage, the Orbital Airburst Strike cooldown drops from 100 to 90 seconds, the Maxigun no longer locks your movement after firing, and there are balance passes on the Killzone and Halo Legendary Warbond weapons, the Sickle and several stratagems. On PC, the game has also swapped GameGuard for Easy Anti-Cheat.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://arrowhead.zendesk.com/hc/en-us/articles/31176395885596-Devoid-of-Liberty-7-2-0" target="_blank" rel="noopener noreferrer">Arrowhead patch notes<span aria-hidden="true"> ↗</span></a><a class="src" href="https://steamcommunity.com/app/553850/announcements/?l=english" target="_blank" rel="noopener noreferrer">Steam announcement<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Palworld</span></div><h3>Palworld&#x27;s next big free update, Side by Side, is due this winter</h3><p>Pocketpair hasn&#x27;t said what&#x27;s in it yet, but the teaser art shows human bosses Zoe, Saya and Auri, which has fans hoping you&#x27;ll finally be able to fight alongside them. The 2026 popularity poll results are also out, with Zoe voted top again.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gematsu.com/2026/10/palworld-update-side-by-side-launches-this-winter" target="_blank" rel="noopener noreferrer">Gematsu<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-ps">PS Plus</span><span class="chip chip-game">GTA</span><span class="chip chip-game">Red Dead Redemption 2</span></div><h3>Full list confirmed: 11 games leave PS Plus Extra on 17 Nov</h3><p>Sony&#x27;s Last Chance to Play section is now live, and GTA V and Red Dead Redemption 2 are both on it, as yesterday&#x27;s early list suggested. Push Square reckons The Talos Principle 2 and Earth Defense Force 4.1 are the hidden gems worth squeezing in before they go.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/11-ps-plus-extra-game-removals-for-november-2026-confirmed" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Pokémon</span></div><h3>Pokémon TCG Pocket&#x27;s Dual Fusion expansion brings the first dual-type cards on 29 Oct</h3><p>Mega Mewtwo X ex (Psychic and Fighting) and Mega Greninja ex (Water and Dark) headline it. A year-long Pikachu login event started yesterday: log in on any 10 days for a special immersive Pikachu ex card. Separately, a physical Pokémon Legends: Z-A Switch 2 Edition plus Mega Dimension bundle is out on 29 Oct.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://pokemon.gamespress.com/Dual-type-Cards-to-Debut-in-Pokemon-TCG-Pocket-with-new-Dual-Fusion-Ex" target="_blank" rel="noopener noreferrer">Pokémon press site<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.nintendo.com/au/news-and-articles/its-pokeween-season-aussie-and-kiwi-pokemon-trainers/" target="_blank" rel="noopener noreferrer">Nintendo AU<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">7 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span></div><h3>Report: Xbox handheld in 2027, Project Helix console in 2028, and more job cuts</h3><p>Fortune says a first-party Xbox handheld is due by the 2027 holiday season, and the Helix console in 2028, with an internal price projection of $1,200 to $1,800 unless Microsoft subsidises it. The same report says CEO Asha Sharma has cut 1,868 jobs so far out of 3,200 planned, with more cuts this month, in November and in January. Treat it as a report, not an announcement.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/xbox-to-slash-even-more-jobs-this-month-with-further-cuts-in-november-and-january" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-game">Shrek</span></div><h3>Shrek 2 Remastered is official and out on 10 Nov</h3><p>Aspyr confirmed it at last night&#x27;s ID@Xbox Showcase. It&#x27;s $29.99, with 4K, better textures, a photo mode, unlockable cheats and four-player co-op, locally or online.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/shrek-2-remastered-takes-ps5-to-a-nostalgic-era-of-gaming-this-november" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.purexbox.com/news/2026/10/shrek-2-remastered-gets-official-november-release-date-for-xbox-series-xs" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span></div><h3>Nintendo Switch Sports Resort reviews well ahead of tomorrow&#x27;s launch</h3><p>It&#x27;s sitting at a Metascore of 79 from 46 reviews. Nintendo Life and GameSpot both gave it 9/10, Game Informer gave it 8 and IGN 7, with most praising the multiplayer and the new skateboarding, which uses the Joy-Con 2 mouse mode.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/round-up-the-reviews-are-in-for-nintendo-switch-sports-resort" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span></div><h3>Riders Republic comes to Switch 2 on 9 Dec, with offline play</h3><p>Ubisoft&#x27;s open-world extreme sports game launches on Switch 2 the same day it adds an Offline Play option on every platform.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/ubisofts-extreme-sports-playground-riders-republic-launches-on-switch-2-this-december" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">Fight Night</span></div><h3>EA&#x27;s Fight Night is coming back</h3><p>A new official account posted &quot;Fight Night is coming back&quot;. There are no other details yet, and it&#x27;s the first new Fight Night since Fight Night Champion in 2011.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/news/2026/10/for-the-first-time-since-the-xbox-360-fight-night-is-making-a-comeback" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/ea-boxing-series-fight-night-back-for-another-round-new-game-teased" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Final Fantasy VII Remake heads to Game Pass in the next batch</h3><p>Eight games join Game Pass between 21 Oct and 3 Nov, including FF7 Remake Intergrade, Terrible Lizards and The Séance of Blake Manor.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/news/2026/10/these-eight-games-are-coming-to-xbox-game-pass-october-21-november-3" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span></div><h3>Mortal Shell 2 gets a free Rotten Autumn update</h3><p>It&#x27;s out now and adds 15 new dungeons (the game launched with 36), 10 new tarstones (one turns you into a sheep), plus more music and Shell customisation.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/mortal-shell-2-gets-even-better-in-big-free-content-patch-live-now-on-ps5" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Cyberpunk 2077 2.5 REDstream</h3><p class="rel-note">17:00 SAST</p><div class=chips><span class="chip chip-game">Cyberpunk 2077</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>PS Store Player&#x27;s Choice sale ends</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Nintendo Switch Sports Resort</h3><p class="rel-note">12 sports, Switch 2 only</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cult of the Lamb Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Hitman: Absolution Switch 2 Edition</h3><p class="rel-note">60fps performance mode</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><p class="rel-note">HD-2D RPG</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cyberpunk 2077 Update 2.5</h3><p class="rel-note">Free, Edgerunners 2 tie-in</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><p class="rel-note">Full launch with multiplayer</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Golden Joysticks voting closes</h3><div class=chips><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Ace Combat 8 bug-fix patch</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">26</span><span class="m">Oct</span></div><div class="rel-body"><h3>Steam Next Fest ends</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Minecraft for Switch 2</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><p class="rel-note">About 135GB install</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>The Wolf Among Us Remastered</h3><p class="rel-note">Switch version delayed</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Pokémon TCG Pocket: Dual Fusion</h3><p class="rel-note">First dual-type cards</p><div class=chips><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Mouthwashing</h3><p class="rel-note">PS5 debut</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">31</span><span class="m">Oct</span></div><div class="rel-body"><h3>Eight games leave Game Pass</h3><p class="rel-note">Incl. Deep Rock Galactic</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">10</span><span class="m">Nov</span></div><div class="rel-body"><h3>Shrek 2 Remastered</h3><p class="rel-note">$29.99</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">17</span><span class="m">Nov</span></div><div class="rel-body"><h3>GTA V and RDR2 leave PS Plus Extra</h3><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Dec</span></div><div class="rel-body"><h3>Monster Hunter Wilds</h3><p class="rel-note">Switch 2 version</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">9</span><span class="m">Dec</span></div><div class="rel-body"><h3>Riders Republic</h3><p class="rel-note">Switch 2, plus offline play</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li></ul></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date). The Cyberpunk 2.5 details come from a leaked video, so tonight&#x27;s REDstream is the word to trust.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var header=document.querySelector('header.masthead');
+  var links=[].slice.call(document.querySelectorAll('nav.jump a[href^="#"]'));
+  var footer=document.querySelector('footer');
+  var wide=window.matchMedia('(min-width:1000px)');
+  var hasSide=!!document.querySelector('.layout.has-side');
+  var observers=[],current=null;
+  function setActive(id){
+    if(id===current)return;
+    current=id;
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function spied(){
+    return links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));})
+      .filter(function(s){return s&&!(hasSide&&wide.matches&&s.closest('.side'));});
+  }
+  function line(){return header.getBoundingClientRect().bottom+16;}
+  function update(){
+    var secs=spied(),y=line(),id=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)id=s.id;});
+    var atEnd=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+    if(atEnd&&secs.length&&secs[secs.length-1].getBoundingClientRect().top<window.innerHeight)id=secs[secs.length-1].id;
+    setActive(id);
+  }
+  function observe(){
+    observers.forEach(function(o){o.disconnect();});
+    var top=Math.round(line());
+    var bottom=Math.max(0,window.innerHeight-top-1);
+    var spy=new IntersectionObserver(update,{rootMargin:'-'+top+'px 0px -'+bottom+'px 0px'});
+    spied().forEach(function(s){spy.observe(s);});
+    observers=[spy];
+    if(footer){
+      var end=new IntersectionObserver(update,{threshold:[0,1]});
+      end.observe(footer);
+      observers.push(end);
+    }
+    update();
+  }
+  var t;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(observe,150);});
+  observe();
+})();
+</script>
 </body>
 </html>
