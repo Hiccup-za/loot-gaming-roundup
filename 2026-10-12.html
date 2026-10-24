@@ -147,6 +147,24 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
+/* Edition readership chart (client-loaded) */
+.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
+.views h2{font-size:20px;margin-bottom:12px}
+.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
+.views-stat strong{color:var(--accent);font-weight:600}
+.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
+.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
+.views-figure{margin:0}
+.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
+.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
+.views-axis{stroke:var(--border);stroke-width:1}
+.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
+.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.views-area{fill:var(--accent-tint)}
+.views-dot{fill:var(--accent)}
+.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
+@media(min-width:1000px){.views{margin-top:28px}}
+
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
   :root{--max:1200px;--gutter:40px;--side:300px;--col-gap:56px}
@@ -191,8 +209,95 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 </header>
 <div class="wrap" id="top">
 <div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">Monday 12 October 2026</div></div>
+<section class="views" id="edition-views" data-edition-date="2026-10-12" hidden><h2>Daily views</h2><p class="views-stat" id="views-stat"></p><p class="views-note" id="views-note" hidden></p><p class="views-unavail" id="views-unavail" hidden>Views unavailable</p><figure class="views-figure" id="views-figure" hidden><svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg><figcaption class="views-caption" id="views-caption"></figcaption></figure></section>
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">6 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Switch 2</span></div><h3>Kingdom Hearts on Switch 2</h3><p>Three Kingdom Hearts collections are out now on Switch 2, and HD 1.5+2.5 ReMIX is also on Switch. A free Re Mind DLC demo is live, and buying Collection I–III or III + Re Mind unlocks the exclusive Long Night Keyblade.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendo.com/au/news-and-articles/experience-the-epic-kingdom-hearts-saga/" target="_blank" rel="noopener noreferrer">Nintendo<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div><h3>Enshrouded 1.0</h3><p>Keen Games leaves early access on Thursday 15 Oct on PC and PS5 (Xbox is spring 2027). Sparkworks creator tools land with it, so you can build shared puzzles, dungeons and mini-games — worth a look if you like Valheim-style survival crafting.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://enshrouded.com/en-US/news/enshrouded-10-release-date-reveal" target="_blank" rel="noopener noreferrer">Enshrouded<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.gamewatcher.com/enshrouded-1-0-launches-with-sparkworks-letting-players-create-their-own-adventures" target="_blank" rel="noopener noreferrer">GameWatcher<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Switch 2</span></div><h3>Resident Evil on Switch 2</h3><p>RE2 Deluxe, RE3 and RE4 Gold Edition land digitally on Switch 2 this Friday 16 Oct. Boxed copies follow 29 Jan 2027. Gold Edition includes Separate Ways.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.capcom.co.jp/ir/english/news/html/e260910.html" target="_blank" rel="noopener noreferrer">Capcom<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.nintendolife.com/news/2026/09/a-trio-of-resident-evil-remakes-hit-switch-2-in-october" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Valor Mortis</h3><p>Launch trailer is out for the Ghostrunner team&#x27;s Napoleonic soulslike. It drops tomorrow (13 Oct) on PS5, Xbox Series, Game Pass and Steam, with New Game+ planned for Q4.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.consolecreatures.com/valor-mortis-gets-a-launch-trailer/" target="_blank" rel="noopener noreferrer">Console Creatures<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Pokémon</span></div><h3>Pokémon UNITE</h3><p>Flareon (All-Rounder) and Jolteon (Speedster) join tomorrow, 13 Oct, free during the Eevee Festival through 1 Dec.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pokemonunite.jp/en/topics/news/20260930/" target="_blank" rel="noopener noreferrer">Pokémon UNITE<span aria-hidden="true"> ↗</span></a><a class="src" href="https://screenrant.com/pokemon-unite-new-eeveelutions-october-13/" target="_blank" rel="noopener noreferrer">Screen Rant<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch</span><span class="chip chip-ps">PS5</span><span class="chip chip-game">Tomb Raider</span></div><h3>Tomb Raider × The Crew Motorfest</h3><p>Season 11: Expeditions is live across platforms, and Motorfest is now on Switch 2. The premium Tomb Raider: Secrets of Ni&#x27;ihau DLC adds Lara Croft (voiced by Alix Wilton Regan), a new island and vehicles; Kauai is free for everyone.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://news.ubisoft.com/en-us/article/1zAol396xSNVENVbOtHgwJ/the-crew-motorfest-out-now-on-switch-2-play-tomb-raider-dlc" target="_blank" rel="noopener noreferrer">Ubisoft<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">4 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-nin">Nintendo</span></div><h3>Nintendo keeps physical games</h3><p>Nintendo&#x27;s Latin America VP says there are no plans to ditch physical Switch 2 releases. The company will keep both cartridges and game-key cards as long as players want them — a clear contrast with Sony ending new discs from Jan 2028.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.tweaktown.com/news/114027/nintendo-vp-says-there-are-no-plans-to-ditch-physical-games-on-switch-2/index.html" target="_blank" rel="noopener noreferrer">TweakTown<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-ps">PlayStation</span></div><h3>PS5 Pro shortage</h3><p>Engadget reports Playfront saying Sony told partners Pro supply constraints will run into 2027. Resale prices are climbing hard ahead of GTA 6 on 19 Nov; Rockstar still has not confirmed a meaningful Pro-only performance bump beyond the Enhanced label.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.engadget.com/2280934/playstation-5-pro-shortage-gta-6-only-make-worse/" target="_blank" rel="noopener noreferrer">Engadget<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div><h3>Marvel Tokon Year 1 DLC</h3><p>At EVO France, Arc System Works locked the rest of Year 1: Phoenix Cyclops on 2 Nov, then Jane Foster&#x27;s Thor (winter 2027), Venom (spring) and Jubilee (summer).</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.polygon.com/marvel-tokon-fighting-souls-year-1-dlc-characters/" target="_blank" rel="noopener noreferrer">Polygon<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-game">Call of Duty</span></div><h3>ECC: Redline vs Warzone</h3><p>NetEase&#x27;s free-to-play ECC: Redline reveal has CoD fans calling it a near Warzone clone — some are angry, some are wishlist-curious. No release date yet; Steam wishlist is open. MW4 still lands 23 Oct.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://nordic.ign.com/call-of-duty-warzone/114011/new-netease-fps-sparks-warzone-rip-off-claims-but-some-call-of-duty-fans-are-happy-to-see-it" target="_blank" rel="noopener noreferrer">IGN<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">13</span><span class="m">Oct</span></div><div class="rel-body"><h3>Valor Mortis</h3><p class="rel-note">Soulslike from the Ghostrunner team; Day One Game Pass</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">13</span><span class="m">Oct</span></div><div class="rel-body"><h3>Pokémon UNITE: Flareon &amp; Jolteon</h3><p class="rel-note">Free during Eevee Festival</p><div class=chips><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">14</span><span class="m">Oct</span></div><div class="rel-body"><h3>Warhammer 40K: Boltgun 2</h3><p class="rel-note">Mick Gordon on the final boss; Switch 2 later</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">15</span><span class="m">Oct</span></div><div class="rel-body"><h3>Enshrouded 1.0</h3><p class="rel-note">Survival crafting leaves early access; Sparkworks tools</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">15</span><span class="m">Oct</span></div><div class="rel-body"><h3>Castlevania: Belmont&#x27;s Curse</h3><p class="rel-note">Demo save carries over</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">15</span><span class="m">Oct</span></div><div class="rel-body"><h3>It Takes Two</h3><p class="rel-note">Free upgrade if you own Switch; Friend&#x27;s Pass</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">16</span><span class="m">Oct</span></div><div class="rel-body"><h3>Resident Evil 2 / 3 / 4</h3><p class="rel-note">Digital on Switch 2; physical Jan 2027</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">16</span><span class="m">Oct</span></div><div class="rel-body"><h3>Tales of Eternia Remastered</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3></div></li></ul><a class="full-list" href="https://warppipes.com/en/articles/releases-for-october-12-18-2026-castlevania-enshrouded-boltgun-2" target="_blank" rel="noopener noreferrer">See the full release list ↗</a></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  var root=document.getElementById("edition-views");
+  if(!root)return;
+  var edition=root.getAttribute("data-edition-date");
+  if(!edition)return;
+  var statEl=document.getElementById("views-stat");
+  var noteEl=document.getElementById("views-note");
+  var unavailEl=document.getElementById("views-unavail");
+  var figEl=document.getElementById("views-figure");
+  var svgEl=document.getElementById("views-svg");
+  var capEl=document.getElementById("views-caption");
+  function showUnavailable(){
+    root.hidden=false;
+    if(unavailEl)unavailEl.hidden=false;
+    if(figEl)figEl.hidden=true;
+    if(statEl)statEl.textContent="";
+    if(noteEl)noteEl.hidden=true;
+  }
+  function fmt(n){return n.toLocaleString("en-ZA");}
+  function shortDate(iso){
+    var p=iso.split("-");
+    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
+  }
+  function drawChart(tracked){
+    if(!tracked.length||!svgEl)return;
+    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
+    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
+    var maxPv=0;
+    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
+    if(maxPv<1)maxPv=1;
+    var pts=[];
+    for(var j=0;j<tracked.length;j++){
+      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
+      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
+      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+    }
+    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
+    var line="M"+pts[0].x+" "+pts[0].y;
+    for(var k=1;k<pts.length;k++){
+      line+=" L"+pts[k].x+" "+pts[k].y;
+      area+=" L"+pts[k].x+" "+pts[k].y;
+    }
+    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
+    var grid="";
+    for(var g=0;g<=3;g++){
+      var gy=pad.t+(ih*g/3);
+      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
+    }
+    var dots="",labels="";
+    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
+    for(var m=0;m<pts.length;m++){
+      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
+      if(m===0||m===pts.length-1||m%labelEvery===0){
+        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
+      }
+    }
+    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
+    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
+      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
+    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+  }
+  fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(data){
+      if(!data||data.unavailable)throw 0;
+      root.hidden=false;
+      if(unavailEl)unavailEl.hidden=true;
+      var tracked=(data.series||[]).filter(function(p){return p.tracked;});
+      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
+      var parts=[];
+      if(data.launchDayViews!=null){
+        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      }
+      if(typeof data.totalViews==="number"){
+        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
+      }
+      if(statEl)statEl.innerHTML=parts.join(" · ");
+      if(tracked.length&&figEl){
+        figEl.hidden=false;
+        drawChart(tracked);
+      }else if(figEl)figEl.hidden=true;
+    })
+    .catch(function(){showUnavailable();});
+})();
+</script>
 </body>
 </html>
