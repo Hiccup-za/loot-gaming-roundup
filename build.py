@@ -3,7 +3,7 @@
 
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
-    python3 build.py --all                      # rebuild every edition, index, archive, sitemap
+    python3 build.py --all                      # rebuild every edition, index, archive, badges, sitemap
     python3 build.py --backfill-views           # fetch views snapshots for all editions (needs DATABUDDY_API_KEY)
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
@@ -276,6 +276,41 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-top{stop-color:var(--accent-tint)}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
+
+/* Badges: every story/release tag across all editions */
+.wrap--badges{--max:960px}
+@media(min-width:1000px){.wrap--badges{--max:1080px}}
+.badges-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.badges-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(min-width:900px){.badges-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+.badge-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
+.badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
+.badges-summary{margin-top:28px;--summary-chart-h:96px;display:flex;flex-direction:column;gap:16px}
+@media(min-width:960px){.badges-summary{flex-direction:row;align-items:stretch;gap:24px}}
+.badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
+@media(min-width:960px){.badges-kpi-panel{flex:0 0 min(300px,34%);align-self:stretch}}
+.badges-kpi-hero{display:flex;flex-direction:column;gap:8px;padding:20px 18px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px}
+@media(min-width:960px){.badges-kpi-hero{flex:1 1 auto;justify-content:center;min-height:0}}
+.badges-kpi-hero-value{font:700 clamp(34px,4.5vw,44px)/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.badges-kpi-hero-label{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.badges-kpi-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;flex:0 0 auto}
+@media(min-width:960px){.badges-kpi-row .archive-stat-block{padding:14px 10px}}
+.badges-trend-panel{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px 18px 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px}
+@media(min-width:960px){.badges-trend-panel{align-self:stretch}}
+.badges-trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex:0 0 auto}
+.badges-trend-title{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.badges-trend-range{font:500 12px/1.35 var(--mono);color:var(--text-3);white-space:nowrap}
+.badges-trend-chart{flex:0 0 auto;display:flex;align-items:center;height:var(--summary-chart-h)}
+.badges-trend-chart svg{width:100%;height:var(--summary-chart-h);display:block}
+.badges-trend-axis{font:500 10px/1 var(--mono);fill:var(--text-3)}
+.badges-trend-line{stroke:var(--accent);fill:none;stroke-width:1.75;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.badges-trend-dot{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
+.badges-trend-fill{stroke:none}
 """
 
 # Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
@@ -446,6 +481,7 @@ def render(data):
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
+    nav.append('<a href="/badges.html">Badges</a>')
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
@@ -660,6 +696,23 @@ def archive_cumulative_series(ed):
     return int(total), cum_vals, snap.get("tracking_note")
 
 
+def edition_total_views(ed):
+    """Page views for an edition's publish window (Databuddy snapshot in JSON)."""
+    snap = ed.get("views_snapshot")
+    if not snap:
+        return 0
+    total, _, _ = archive_cumulative_series(ed)
+    return int(total)
+
+
+def collect_views_by_edition(editions):
+    """Per-edition page view totals, sorted by edition date."""
+    return [
+        (ed["date"], edition_total_views(ed))
+        for ed in sorted(editions, key=lambda d: d["date"])
+    ]
+
+
 def archive_stat_block(label, value, *, muted=False):
     val_cls = "archive-stat-value is-muted" if muted else "archive-stat-value"
     return (
@@ -769,6 +822,190 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 </html>"""
 
 
+def iter_edition_tags(ed):
+    for section in ("your_games", "industry"):
+        for story in ed.get(section) or []:
+            for tag in story.get("tags") or []:
+                t = tag.strip()
+                if t:
+                    yield t
+    for release in ed.get("releases") or []:
+        for tag in release.get("tags") or []:
+            t = tag.strip()
+            if t:
+                yield t
+
+
+def collect_tag_counts(editions):
+    """Occurrences of each tag on stories and releases across all editions."""
+    counts = {}
+    for ed in editions:
+        for t in iter_edition_tags(ed):
+            counts[t] = counts.get(t, 0) + 1
+    return counts
+
+
+def collect_tag_usage_by_edition(editions):
+    """Tag occurrences per edition, sorted by edition date."""
+    series = []
+    for ed in sorted(editions, key=lambda d: d["date"]):
+        series.append((ed["date"], sum(1 for _ in iter_edition_tags(ed))))
+    return series
+
+
+def edition_short_label(iso_date):
+    d = datetime.strptime(iso_date, "%Y-%m-%d")
+    return d.strftime("%d %b")
+
+
+def render_trend_chart(
+    series,
+    *,
+    panel_title,
+    grad_id,
+    empty_message,
+    tip_for,
+    aria_for,
+):
+    """Shared KPI line chart (badges uses or archive page views per edition)."""
+    chart_w, chart_h = 560, 96
+    pad_l, pad_r, pad_t, pad_b = 40, 14, 14, 30
+    if not series:
+        return (
+            '<div class="badges-trend-panel">'
+            f'<p class="archive-chart-empty">{escape(empty_message)}</p></div>'
+        )
+    vals = [c for _, c in series]
+    mx = max(vals) if vals else 1
+    if mx == 0:
+        mx = 1
+    n = len(series)
+    iw = chart_w - pad_l - pad_r
+    ih = chart_h - pad_t - pad_b
+    xs, ys = [], []
+    for i, val in enumerate(vals):
+        x = pad_l + (iw * i / (n - 1) if n > 1 else iw / 2)
+        y = pad_t + ih - (val / mx) * ih if val else pad_t + ih
+        xs.append(x)
+        ys.append(y)
+    line = f"M{xs[0]:.2f},{ys[0]:.2f}"
+    for k in range(1, len(xs)):
+        line += f" L{xs[k]:.2f},{ys[k]:.2f}"
+    base = pad_t + ih
+    area = f"{line} L{xs[-1]:.2f},{base:.2f} L{xs[0]:.2f},{base:.2f} Z"
+    dots = []
+    for (iso, val), x, y in zip(series, xs, ys):
+        dots.append(
+            f'<circle class="badges-trend-dot" cx="{x:.2f}" cy="{y:.2f}" r="3.5">'
+            f"<title>{tip_for(iso, val)}</title></circle>"
+        )
+    y_max_val = max(c for _, c in series)
+    y_max_y = pad_t
+    y_zero_y = pad_t + ih
+    y_max_lbl = escape(fmt_views(y_max_val) if y_max_val else "0")
+    x_first = escape(edition_short_label(series[0][0]))
+    x_last = escape(edition_short_label(series[-1][0]))
+    x_first_x = xs[0]
+    x_last_x = xs[-1]
+    first_date, last_date = series[0][0], series[-1][0]
+    range_lbl = escape(f"{edition_short_label(first_date)} – {edition_short_label(last_date)}")
+    svg = (
+        f'<svg viewBox="0 0 {chart_w} {chart_h}" preserveAspectRatio="none" '
+        f'role="img" aria-label="{aria_for(series, y_max_val)}">'
+        f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
+        f'<stop class="archive-chart-stop-top" offset="0%"/>'
+        f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
+        f"</linearGradient></defs>"
+        f'<text class="badges-trend-axis" x="{pad_l - 6}" y="{y_max_y + 4}" text-anchor="end">{y_max_lbl}</text>'
+        f'<text class="badges-trend-axis" x="{pad_l - 6}" y="{y_zero_y + 4}" text-anchor="end">0</text>'
+        f'<text class="badges-trend-axis" x="{x_first_x:.2f}" y="{chart_h - 6}" text-anchor="start">{x_first}</text>'
+        f'<text class="badges-trend-axis" x="{x_last_x:.2f}" y="{chart_h - 6}" text-anchor="end">{x_last}</text>'
+        f'<path class="badges-trend-fill" fill="url(#{grad_id})" d="{area}"/>'
+        f'<path class="badges-trend-line" d="{line}"/>'
+        f'{"".join(dots)}'
+        f"</svg>"
+    )
+    return (
+        f'<div class="badges-trend-panel">'
+        f'<div class="badges-trend-head">'
+        f'<span class="badges-trend-title">{escape(panel_title)}</span>'
+        f'<span class="badges-trend-range">{range_lbl}</span></div>'
+        f'<div class="badges-trend-chart">{svg}</div></div>'
+    )
+
+
+def _badge_chart_tip(iso, val):
+    return escape(f"{edition_short_label(iso)}: {val} badge uses")
+
+
+def _badge_chart_aria(series, peak):
+    return escape(
+        f"Badge uses per edition from {series[0][0]} to {series[-1][0]}. "
+        f"Peak day: {peak} uses."
+    )
+
+
+def _views_chart_tip(iso, val):
+    return escape(f"{edition_short_label(iso)}: {fmt_views(val)} page views")
+
+
+def _views_chart_aria(series, peak):
+    return escape(
+        f"Page views per edition from {series[0][0]} to {series[-1][0]}. "
+        f"Peak day: {fmt_views(peak)} views."
+    )
+
+
+def render_badges(editions):
+    counts = collect_tag_counts(editions)
+    ordered = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
+    usage_series = collect_tag_usage_by_edition(editions)
+    total_uses = sum(c for _, c in usage_series)
+    n_distinct = len(ordered)
+    n_editions = len(editions)
+    edition_word = "edition" if n_editions == 1 else "editions"
+    items = []
+    for tag, count in ordered:
+        label = escape(f"{count} appearances")
+        items.append(
+            f'<li class="badge-item">{chip(tag)}'
+            f'<span class="badge-count" aria-label="{label}">{fmt_views(count)}</span></li>'
+        )
+    kpi = (
+        '<div class="badges-summary">'
+        '<div class="badges-kpi-panel">'
+        '<div class="badges-kpi-hero">'
+        f'<span class="badges-kpi-hero-label">Total badge uses</span>'
+        f'<span class="badges-kpi-hero-value">{fmt_views(total_uses)}</span>'
+        "</div>"
+        '<div class="badges-kpi-row">'
+        f"{archive_stat_block('Distinct tags', str(n_distinct))}"
+        f"{archive_stat_block('Editions', str(n_editions))}"
+        "</div></div>"
+        f"{render_trend_chart(usage_series, panel_title='Uses per edition', grad_id='badges-trend-grad', empty_message='No badge data yet', tip_for=_badge_chart_tip, aria_for=_badge_chart_aria)}"
+        "</div>"
+    )
+    nav = (
+        '<a href="/">Latest</a>'
+        '<a href="/archive.html">Archive</a>'
+        '<a href="/badges.html" aria-current="true">Badges</a>'
+    )
+    body = (
+        '<div class="intro"><div class="kicker"><span class="dot"></span>Badges</div>'
+        f'<div class="date">Platforms and games tagged across every daily roundup</div></div>'
+        f"{kpi}"
+        f'<section id="badges"><h2>All badges<span class="count">sorted by frequency</span></h2>'
+        f'<ul class="badges-list">{"".join(items)}</ul></section>'
+    )
+    return head_common(
+        "Loot's Gaming Roundup · Badges",
+        "Every platform and game tag used across Loot's daily gaming roundups.",
+        nav,
+        body,
+        wrap_class="wrap wrap--badges",
+    )
+
+
 def render_archive(editions):
     ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
     by_year = {}
@@ -786,10 +1023,33 @@ def render_archive(editions):
             f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
             f"</section>"
         )
-    nav = '<a href="/">Latest</a>'
+    views_series = collect_views_by_edition(editions)
+    total_views = sum(v for _, v in views_series)
+    n_editions = len(editions)
+    total_stories = sum(edition_story_count(ed) for ed in editions)
+    kpi = (
+        '<div class="badges-summary">'
+        '<div class="badges-kpi-panel">'
+        '<div class="badges-kpi-hero">'
+        '<span class="badges-kpi-hero-label">Total page views</span>'
+        f'<span class="badges-kpi-hero-value">{fmt_views(total_views)}</span>'
+        "</div>"
+        '<div class="badges-kpi-row">'
+        f"{archive_stat_block('Editions', str(n_editions))}"
+        f"{archive_stat_block('Stories', str(total_stories))}"
+        "</div></div>"
+        f"{render_trend_chart(views_series, panel_title='Views per edition', grad_id='archive-trend-grad', empty_message='No view data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria)}"
+        "</div>"
+    )
+    nav = (
+        '<a href="/">Latest</a>'
+        '<a href="/archive.html" aria-current="true">Archive</a>'
+        '<a href="/badges.html">Badges</a>'
+    )
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
         '<div class="date">Every past edition, newest first</div></div>'
+        f"{kpi}"
         f'{"".join(year_sections)}')
     return head_common(
         "Loot's Gaming Roundup · Archive",
@@ -801,7 +1061,7 @@ def render_archive(editions):
 
 
 def render_sitemap(editions):
-    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html"]
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html", f"{SITE_URL}/badges.html"]
     for ed in sorted(editions, key=lambda d: d["date"]):
         urls.append(f'{SITE_URL}/{ed["date"]}.html')
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -819,6 +1079,10 @@ def write_site_extras(root, editions, latest_html=None, update_index=False):
     with open(archive_path, "w", encoding="utf-8") as f:
         f.write(render_archive(editions))
     print("wrote", archive_path)
+    badges_path = os.path.join(root, "badges.html")
+    with open(badges_path, "w", encoding="utf-8") as f:
+        f.write(render_badges(editions))
+    print("wrote", badges_path)
     sitemap_path = os.path.join(root, "sitemap.xml")
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write(render_sitemap(editions))
@@ -853,7 +1117,11 @@ def build_all(root, *, refresh_views=False, backfill_views=False):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("json_file", nargs="?")
-    ap.add_argument("--all", action="store_true", help="rebuild all editions, index, archive, and sitemap")
+    ap.add_argument(
+        "--all",
+        action="store_true",
+        help="rebuild all editions, index, archive, badges, and sitemap",
+    )
     ap.add_argument(
         "--backfill-views",
         action="store_true",
