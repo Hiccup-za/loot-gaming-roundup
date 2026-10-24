@@ -79,6 +79,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -98,8 +100,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -191,7 +194,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -205,13 +209,46 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: structured edition cards */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 </style>
 </head>
 <body>
@@ -226,5 +263,53 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">6 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Dragonwilds</span></div><h3>RuneScape: Dragonwilds hotfix 1.001.001 is out</h3><p>Jagex pushed a small hotfix on Saturday on every platform except Switch 2. It fixes the &quot;Corrupted Save File Detected&quot; popup that controller players couldn&#x27;t get past, and a dedicated-server crash when Ranged Special Attacks hit certain enemies. Switch 2 doesn&#x27;t get it yet, but Jagex has found a way to keep crossplay working with updated players while Nintendo approves it. A fix for the Air Staff&#x27;s 4th combo hit doing no damage, and a freeze when splitting stacks in chests, is targeted for next week.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://mp1st.com/title-updates-and-patches/runescape-dragonwilds-hotfix-released-october-17-update-1-001-001" target="_blank" rel="noopener noreferrer">MP1st patch notes<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Zelda</span></div><h3>Nintendo underestimated Ocarina of Time demand and is planning restocks</h3><p>Nintendo Latin America boss Bill van Zyll called the remake &quot;a global phenomenon&quot; and said pre-sales are hitting their limits everywhere. Nintendo is working on restocks of the 40th Anniversary Switch 2 console, its controller and the game, but can&#x27;t give dates or quantities yet. The console is out 29 Oct and the game on 5 Nov.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://nintendoeverything.com/nintendo-zelda-ocarina-of-time-switch-2-anniversary-restock/" target="_blank" rel="noopener noreferrer">Nintendo Everything<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>The Blood of Dawnwalker&#x27;s big 1.1 update lands next week</h3><p>The vampire RPG from The Witcher 3&#x27;s director gets over 1,100 changes. Highlights are a respec potion (the Draught of Mind Rebirth), which reportedly also gives back the in-game time you spent learning skills, a new, easier Story mode (the old one is renamed Forgiving), better combat targeting and lock-on, subtitles for all dialogue, bigger text options and, yes, directional dog and cat petting. There&#x27;s no exact date yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pcgamer.com/games/rpg/the-blood-of-dawnwalkers-first-major-update-will-add-directional-animal-petting-and-a-new-story-mode-thats-easier-than-the-previous-story-mode/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.tweaktown.com/news/114124/rebel-wolves-details-the-blood-of-dawnwalker-update-1-1-launching-next-week/index.html" target="_blank" rel="noopener noreferrer">TweakTown<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div><h3>No Rest for the Wicked 1.0 hits PS5 in March 2027</h3><p>Moon Studios locked in March 2027 for the full release and the PS5 debut, after delaying it out of October. A new showcase shows 1.0 replacing attributes with a weapon-based class system, adding faction questlines and Cerim Cores, and, in the studio&#x27;s words, roughly doubling the size of the game. There&#x27;s no exact day or Xbox date yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/1-0-roughly-doubles-the-size-of-the-game-no-rest-for-the-wicked-confirms-march-2027-release-on-ps5" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.gematsu.com/2026/10/no-rest-for-the-wicked-details-new-class-systems-version-1-0-enhancements" target="_blank" rel="noopener noreferrer">Gematsu<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-game">GTA</span></div><h3>GTA 6 gets its Japanese rating</h3><p>After weeks of &quot;rating pending&quot;, the Japanese PlayStation and Microsoft Store pages now show CERO Z (18+ only) with Crime and Violence icons, the same as GTA V. Rockstar hasn&#x27;t said whether the Japanese version will be edited the way GTA V&#x27;s was. It&#x27;s out 19 Nov.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gamespark.jp/article/2026/10/17/173739.html" target="_blank" rel="noopener noreferrer">Game*Spark (Japanese)<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Tomb Raider</span></div><h3>Rise of the Tomb Raider is getting a physical Switch 2 release</h3><p>Limited Run Games opened pre-orders for the 20 Year Celebration edition on a Switch 2 game card, with all the DLC included: $49.99 standard or $99.99 for a collector&#x27;s edition with a steelcase and a light-up Divine Source ornament. Pre-orders close 15 Nov and there&#x27;s no shipping date yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://limitedrungames.com/products/switch-2-limited-run-8-rise-of-the-tomb-raider-20-year-celebration-standard-edition" target="_blank" rel="noopener noreferrer">Limited Run Games<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">3 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div><h3>Funcom cuts staff to focus on Conan Exiles and Dune: Awakening</h3><p>The survival-game studio is restructuring with an undisclosed number of layoffs, its second round in a year, now that Dune: Awakening&#x27;s big production phase is done. CEO Rui Casais leaves at the end of 2026, and Dune&#x27;s executive producer Scott Junior takes over. Funcom says both games will keep getting new content for years.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pcgamer.com/gaming-industry/funcom-is-laying-off-yet-more-developers-as-it-pivots-to-supporting-dune-awakening-and-conan-exiles/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a><a class="src" href="https://pr.funcom.com/Funcom-veteran-Scott-Junior-steps-up-as-CEO" target="_blank" rel="noopener noreferrer">Funcom press release<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span></div><h3>Steam Next Fest starts tomorrow</h3><p>A week of free demos runs from Monday 19 Oct at 19:00 SAST until 26 Oct at 19:00 SAST.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest/2026october" target="_blank" rel="noopener noreferrer">Steamworks<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span></div><h3>Steam is testing achievement sets</h3><p>A new Steam Client beta lets developers split achievements into sets like base game, DLC and seasonal, so new DLC achievements no longer knock your base-game completion off 100%. Retired achievements stay visible for anyone who earned them but no longer count against completion.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.theverge.com/games/1012541/valve-steam-achievement-sets" target="_blank" rel="noopener noreferrer">The Verge<span aria-hidden="true"> ↗</span></a><a class="src" href="https://store.steampowered.com/news/app/593110/view/710037059469839141" target="_blank" rel="noopener noreferrer">Steam announcement<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Now</span><span class="m"></span></div><div class="rel-body"><h3>Pokémon Pokopia: Pumpkaboo&#x27;s Sweet Surprises</h3><p class="rel-note">Live until 1 Nov</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Oct</span></div><div class="rel-body"><h3>Steam Next Fest</h3><p class="rel-note">19:00 SAST, until 26 Oct</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Oct</span></div><div class="rel-body"><h3>Battlefield 6 free trial ends</h3><p class="rel-note">19:00 SAST on Steam</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>PS Plus Extra/Premium October games</h3><p class="rel-note">Mafia, Horizon FW, Mycopunk and more</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Helldivers 2: Scope of Authority</h3><p class="rel-note">Premium Warbond</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>ID@Xbox Showcase</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>MW4 DMZ Early Access</h3><p class="rel-note">Digital pre-orders</p><div class=chips><span class="chip chip-game">Call of Duty</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Nintendo Switch Sports Resort</h3><p class="rel-note">$49.99</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cult of the Lamb Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut with cross-play</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Hitman: Absolution Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><p class="rel-note">HD-2D RPG, demo out now</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Next</span><span class="m">week</span></div><div class="rel-body"><h3>The Blood of Dawnwalker Update 1.1</h3><p class="rel-note">No exact date yet</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Zelda 40th Anniversary Switch 2 console</h3><p class="rel-note">Restocks planned, no dates</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>The Wolf Among Us Remastered</h3><p class="rel-note">Switch version delayed</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">12</span><span class="m">Nov</span></div><div class="rel-body"><h3>Pikmin 4: Switch 2 Edition</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">8</span><span class="m">Dec</span></div><div class="rel-body"><h3>Ancestors: The Humankind Odyssey</h3><p class="rel-note">Free PS5 upgrade for PS4 owners</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li></ul></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>A quieter Saturday for news. Still waiting: Dragonwilds&#x27; Air Staff fix (targeted for next week), Helldivers 2 Update 7.2 (undated, with Liberty Day in-game on 26 Oct), and the list of games leaving PS Plus Extra in November, due 20 Oct.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var header=document.querySelector('header.masthead');
+  var links=[].slice.call(document.querySelectorAll('nav.jump a[href^="#"]'));
+  var footer=document.querySelector('footer');
+  var wide=window.matchMedia('(min-width:1000px)');
+  var hasSide=!!document.querySelector('.layout.has-side');
+  var observers=[],current=null;
+  function setActive(id){
+    if(id===current)return;
+    current=id;
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function spied(){
+    return links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));})
+      .filter(function(s){return s&&!(hasSide&&wide.matches&&s.closest('.side'));});
+  }
+  function line(){return header.getBoundingClientRect().bottom+16;}
+  function update(){
+    var secs=spied(),y=line(),id=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)id=s.id;});
+    var atEnd=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+    if(atEnd&&secs.length&&secs[secs.length-1].getBoundingClientRect().top<window.innerHeight)id=secs[secs.length-1].id;
+    setActive(id);
+  }
+  function observe(){
+    observers.forEach(function(o){o.disconnect();});
+    var top=Math.round(line());
+    var bottom=Math.max(0,window.innerHeight-top-1);
+    var spy=new IntersectionObserver(update,{rootMargin:'-'+top+'px 0px -'+bottom+'px 0px'});
+    spied().forEach(function(s){spy.observe(s);});
+    observers=[spy];
+    if(footer){
+      var end=new IntersectionObserver(update,{threshold:[0,1]});
+      end.observe(footer);
+      observers.push(end);
+    }
+    update();
+  }
+  var t;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(observe,150);});
+  observe();
+})();
+</script>
 </body>
 </html>

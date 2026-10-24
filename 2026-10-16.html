@@ -79,6 +79,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -98,8 +100,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -191,7 +194,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -205,13 +209,46 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: structured edition cards */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 </style>
 </head>
 <body>
@@ -226,5 +263,53 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">7 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-game">GTA</span></div><h3>GTA 6&#x27;s launch trailer is out, captured on PS5</h3><p>Rockstar dropped a 90-second launch trailer a month ahead of release. It opens with Jason talking about leaving the army before a prison call from Lucia, shows new in-game footage, and debuts &quot;Flower in a Hurricane&quot; from score composers Justice with Tame Impala, SZA and King Gizzard &amp; The Lizard Wizard. Rockstar says it was captured entirely in-game on a PS5. Launch is still 19 Nov on PS5 and Xbox Series X|S.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.rockstargames.com/VI/launch-trailer" target="_blank" rel="noopener noreferrer">Rockstar<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.theverge.com/entertainment/1011879/gta-6-launch-trailer" target="_blank" rel="noopener noreferrer">The Verge<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-game">Valheim</span></div><h3>Valheim patch 1.0.20 fixes trophy drops</h3><p>Iron Gate&#x27;s patch makes trophy drop chance scale with a monster&#x27;s star level and stops the rare-drop luck from resetting between sessions, so drops should feel fairer. It also clears the wrong &quot;cheated&quot; flag that the 1.0 launch bug stuck on some legit items and build pieces, closes a Forge of Potential exploit, stops dedicated servers burning CPU at uncapped frame rates, and fixes Xbox settings not saving.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.valheim.com/news/patch-1-0-20/" target="_blank" rel="noopener noreferrer">Valheim patch notes<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-game">RuneScape</span></div><h3>Jagex cancels RuneScape Reignited</h3><p>Just 12 days after announcing the fresh-start servers at RuneFest, Jagex scrapped them after veterans pushed back on the separate economy, restricted interactions and a second membership. Mod Ryan said Jagex &quot;missed the mark&quot; and pointed to the Evolution of Combat backlash as the lesson. The 2 Dec update still goes ahead with the Adventure Guide, part one of the Remastered Journey and a 10-day free members&#x27; trial. This is the main RuneScape MMO, not Dragonwilds.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://secure.runescape.com/m=news/reignited-an-update-from-mod-ryan" target="_blank" rel="noopener noreferrer">RuneScape news<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pcgamer.com/games/mmo/less-than-2-weeks-after-announcing-runescape-reignited-jagex-is-scrapping-the-whole-thing/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-game">Witcher 3</span></div><h3>Witcher 3 Remastered gets PS5 and Series S fixes</h3><p>CD Projekt Red pushed a PS5 hotfix for crashes in specific missions and hitching, and players report it&#x27;s much more stable now. Hotfix 5.01b followed for Xbox Series S, swapping TAAU for FSR to fix the blurry image. The Switch 2 patch is still &quot;on the way&quot; with no date. Separately, CDPR&#x27;s CEO said its new IP Project Hadar has finished its world-building stage and is prototyping, though it&#x27;s not in pre-production yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://gamerant.com/witcher-3-remastered-update-patch-notes-october-2026/" target="_blank" rel="noopener noreferrer">Game Rant<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.polygon.com/witcher-developer-next-game-project-hadar-update/" target="_blank" rel="noopener noreferrer">Polygon on Project Hadar<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span></div><h3>PEAK climbs onto PS5, Xbox and Switch 2 on 22 Oct</h3><p>Aggro Crab and Landfall&#x27;s co-op climbing hit arrives on consoles next Thursday with cross-play for squads of up to four and all the PC post-launch content. A $19.99 physical PS5 edition comes with a passport kit and a second code to give a friend.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.playstation.com/2026/10/15/peak-climbs-its-way-onto-ps5-october-22/" target="_blank" rel="noopener noreferrer">PlayStation Blog<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.gematsu.com/2026/10/peak-coming-to-ps5-xbox-series-and-switch-2-on-october-22" target="_blank" rel="noopener noreferrer">Gematsu<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span></div><h3>Hitman: Absolution comes to Switch 2 on 22 Oct</h3><p>Feral&#x27;s Switch 2 Edition adds higher resolution, a 60fps performance mode and Joy-Con 2 mouse controls. If you own the Switch 1 version, the upgrade is free for a limited time into early November.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.feralinteractive.com/en/news/looking-sharp-hitman-absolution-switch-2-edition-arrives-on-october-22nd/" target="_blank" rel="noopener noreferrer">Feral Interactive<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Call of Duty</span></div><h3>Modern Warfare 4 Campaign Early Access starts today</h3><p>Digital pre-orders can start the campaign today, with DMZ early access on 20 Oct and the full launch on 23 Oct. In the background, Activision&#x27;s unionised QA testers voted to authorise a strike after more than two years of stalled contract talks over wages, AI guardrails and contractor use. It&#x27;s not a strike yet, but it gives the CWA union the option. Activision also confirmed the next Call of Duty after MW4 will start a brand-new sub-franchise.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://kotaku.com/modern-warfare-4-testers-vote-to-authorize-union-strike-as-contract-negotiations-stall-it-is-time-to-stop-playing-games-2000746427" target="_blank" rel="noopener noreferrer">Kotaku<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.gamesradar.com/games/call-of-duty/the-next-call-of-duty-will-be-another-brand-new-sub-franchise-like-vanguard-5-years-ago-activision-confirms/" target="_blank" rel="noopener noreferrer">GamesRadar+ on the next CoD<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">4 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch</span></div><h3>US bill would make digital games yours to own</h3><p>Rep. Ritchie Torres announced the Power To The Players Act, which would have the FTC write rules giving buyers of digital games the right to own, play and transfer them, and require online games to offer an offline mode before servers shut down. It&#x27;s announced but not yet formally introduced.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://ritchietorres.house.gov/posts/rep-torres-announces-power-to-the-players-act-legislation-to-ensure-gamers-own-their-games" target="_blank" rel="noopener noreferrer">Rep. Torres<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pcgamer.com/gaming-industry/us-lawmaker-calls-videogame-purchases-rentals-disguised-as-sales-when-you-pay-for-a-game-you-should-own-it/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span></div><h3>Steam is testing achievement sets</h3><p>In the Steam Client Beta, developers can split base-game, DLC and seasonal achievements into separate sets with their own progress bars, so unowned DLC no longer drags down your completion. You can also compare achievements with up to three friends.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.theverge.com/games/1012541/valve-steam-achievement-sets" target="_blank" rel="noopener noreferrer">The Verge<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Control Resonant passes 1 million sales in 3 weeks</h3><p>That makes it Remedy&#x27;s fastest-selling game ever, beating Alan Wake 2, which took about two months.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pcgamer.com/games/action/control-resonant-sells-1-million-copies-in-3-weeks-to-become-remedys-fastest-selling-game-ever/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-pc">PC</span><span class="chip chip-game">Battlefield</span></div><h3>Battlefield 6 is free on Steam until Sunday</h3><p>EA&#x27;s free trial includes all maps and modes and runs until 19 Oct at 17:00 UTC, which is 19:00 SAST.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.ea.com/games/battlefield/redsec/event/battlefield-6-free-trial" target="_blank" rel="noopener noreferrer">EA<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">16</span><span class="m">Oct</span></div><div class="rel-body"><h3>Resident Evil 2 / 3 / 4</h3><p class="rel-note">OUT TODAY digitally on Switch 2</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">16</span><span class="m">Oct</span></div><div class="rel-body"><h3>Modern Warfare 4 Campaign Early Access</h3><p class="rel-note">OUT TODAY for digital pre-orders</p><div class=chips><span class="chip chip-game">Call of Duty</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Oct</span></div><div class="rel-body"><h3>Battlefield 6 free trial ends</h3><p class="rel-note">19:00 SAST on Steam</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>PS Plus Extra/Premium October games</h3><p class="rel-note">Mafia, Horizon FW, Mycopunk and more</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">20</span><span class="m">Oct</span></div><div class="rel-body"><h3>Helldivers 2: Scope of Authority</h3><p class="rel-note">Premium Warbond</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut with cross-play</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Hitman: Absolution Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">12</span><span class="m">Nov</span></div><div class="rel-body"><h3>Pikmin 4: Switch 2 Edition</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li></ul></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>Still waiting: Helldivers 2 Update 7.2 is still undated, and The Witcher 3 Remastered&#x27;s Switch 2 patch is &quot;on the way&quot; with no date. The list of games leaving PS Plus Extra in November (GTA V is already confirmed) lands on 20 Oct.</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var header=document.querySelector('header.masthead');
+  var links=[].slice.call(document.querySelectorAll('nav.jump a[href^="#"]'));
+  var footer=document.querySelector('footer');
+  var wide=window.matchMedia('(min-width:1000px)');
+  var hasSide=!!document.querySelector('.layout.has-side');
+  var observers=[],current=null;
+  function setActive(id){
+    if(id===current)return;
+    current=id;
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function spied(){
+    return links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));})
+      .filter(function(s){return s&&!(hasSide&&wide.matches&&s.closest('.side'));});
+  }
+  function line(){return header.getBoundingClientRect().bottom+16;}
+  function update(){
+    var secs=spied(),y=line(),id=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)id=s.id;});
+    var atEnd=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+    if(atEnd&&secs.length&&secs[secs.length-1].getBoundingClientRect().top<window.innerHeight)id=secs[secs.length-1].id;
+    setActive(id);
+  }
+  function observe(){
+    observers.forEach(function(o){o.disconnect();});
+    var top=Math.round(line());
+    var bottom=Math.max(0,window.innerHeight-top-1);
+    var spy=new IntersectionObserver(update,{rootMargin:'-'+top+'px 0px -'+bottom+'px 0px'});
+    spied().forEach(function(s){spy.observe(s);});
+    observers=[spy];
+    if(footer){
+      var end=new IntersectionObserver(update,{threshold:[0,1]});
+      end.observe(footer);
+      observers.push(end);
+    }
+    update();
+  }
+  var t;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(observe,150);});
+  observe();
+})();
+</script>
 </body>
 </html>

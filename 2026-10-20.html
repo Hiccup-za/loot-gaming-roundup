@@ -79,6 +79,8 @@ nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--border);
   background:var(--surface);color:var(--text-2);text-decoration:none;font:500 13.5px/1 var(--sans);white-space:nowrap;transition:border-color .15s,color .15s}
 nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
+nav.jump a[aria-current="true"]{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+nav.jump a[aria-current="true"]:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
 @media(min-width:720px){
   .bar{flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding-top:14px;padding-bottom:14px}
   .brand{gap:14px}
@@ -98,8 +100,9 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 /* Sections: editorial breaks, no boxes */
 section{margin-top:56px;scroll-margin-top:calc(var(--bar-h) + env(safe-area-inset-top) + 12px)}
 .intro+.layout>:first-child>section:first-child{margin-top:28px}
-h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:14px;border-top:2px solid var(--text);
-  font:700 24px/1.2 var(--head);letter-spacing:-.015em;color:var(--text)}
+h2{display:flex;align-items:baseline;gap:12px;margin:0;padding-top:16px;border-top:3px solid var(--text);
+  font:800 30px/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+@media(min-width:720px){h2{font-size:34px}}
 h2 .count{margin-left:auto;font:500 12px/1 var(--mono);color:var(--text-3);letter-spacing:0}
 
 /* Story feed: one column, hairline dividers, no card boxes */
@@ -191,7 +194,8 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
     -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 56px),transparent)}
   .side::-webkit-scrollbar{width:6px}
   .side::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
-  .side h2{font-size:20px}
+  h2{font-size:36px}
+  .side h2{font-size:30px}
   .side .release{gap:14px;padding:14px 0}
   .side .rel-date{flex-basis:52px}
   .side .rel-date .d{font-size:18px}
@@ -205,13 +209,46 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   h1{font-size:26px}
   .brand .logo{width:60px;height:60px}
   section{margin-top:64px}
-  h2{font-size:26px}
-  .side h2{font-size:21px}
+  h2{font-size:40px}
+  .side h2{font-size:32px}
   .card{padding:32px 0 34px}
   .card h3{font-size:28px}
   .card p{font-size:17.5px;line-height:1.7}
   .side .rel-body h3{font-size:16px}
 }
+
+/* Archive: structured edition cards */
+.wrap--archive{--max:960px}
+@media(min-width:1000px){.wrap--archive{--max:1080px}}
+.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
+  transition:border-color .15s,background .15s,box-shadow .15s}
+a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
+  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.archive-card-read .arr{font-size:14px;line-height:1}
+.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
+.archive-stat-label{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-stat-value.is-muted{color:var(--text-3)}
+.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.archive-chart-panel svg{width:100%;height:100%;display:block}
+.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round}
+.archive-chart-stop-top{stop-color:var(--accent-tint)}
+.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
+.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 </style>
 </head>
 <body>
@@ -226,5 +263,53 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">6 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-ps">PS Plus</span><span class="chip chip-game">GTA</span><span class="chip chip-game">Red Dead Redemption 2</span></div><h3>GTA V and Red Dead Redemption 2 both leave PS Plus Extra on 17 Nov</h3><p>The November &quot;Last Chance to Play&quot; list has appeared on the Japanese and Asian PS Stores, and both Rockstar games are on it, leaving two days before GTA 6 launches. Football Manager 26, Thank Goodness You&#x27;re Here, The Talos Principle 2, Cricket 24 and Rock of Ages 3 go too. Our store should show the same list once it updates at noon today, though Sony sometimes tweaks it. If you&#x27;re playing either through PS Plus rather than owning it, that&#x27;s four weeks to finish up. Both have cycled on and off the service a few times, so they&#x27;ll probably be back.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.playstationlifestyle.net/2026/10/19/games-leaving-ps-plus-extra-premium-november-2026" target="_blank" rel="noopener noreferrer">PlayStation LifeStyle<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/first-ps-plus-extra-game-removal-for-november-2026-confirmed" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Helldivers 2</span></div><h3>Helldivers 2&#x27;s Scope of Authority Warbond is out today</h3><p>This Premium Warbond is all about long-range and stealth play: the R-40 Sightliner bolt-action sniper, the AMW-20 Apex anti-materiel rifle, the LAS-44 Nova energy rifle, the P-44 Mist machine pistol and G-11 Caltrops. Its two armour sets carry a new Stationary Shroud passive that cuts sway and makes you harder to spot while crouched or prone.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.playstation.com/2026/10/13/helldivers-2-scope-of-authority-premium-warbond-launches-oct-20/" target="_blank" rel="noopener noreferrer">PlayStation Blog<span aria-hidden="true"> ↗</span></a><a class="src" href="https://gamingbolt.com/helldivers-2s-next-warbond-adds-bolt-action-laser-and-anti-material-rifles-on-october-20" target="_blank" rel="noopener noreferrer">GamingBolt<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Witcher 3</span></div><h3>Witcher 3 Remastered&#x27;s 5.01 patch reaches Switch 2</h3><p>PS5 got this one on 8 Oct; the Switch 2 version started rolling out yesterday. On top of the shared fixes (auto blade oils now stick between sessions, snappier dodging, no more stamina drain when sprint-dodging, a save-data fix, and Exploding Shield now reflects damage), Switch 2 gets sharper image quality, a fix for a rare crash when changing regions, and new Bloom, Light Shafts and Depth of Field settings.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.thewitcher.com/gb/en/news/52111/patch-5-01-out-now-for-the-nintendo-switch-2-version-of-the-witcher-3-wild-hunt-remastered" target="_blank" rel="noopener noreferrer">CD Projekt Red<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.nintendolife.com/news/2026/10/the-witcher-3-remastereds-latest-update-is-now-live-here-are-the-full-patch-notes" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Monster Hunter</span></div><h3>Monster Hunter Wilds&#x27; free Switch 2 demo is live</h3><p>The Prologue Demo covers character creation through Chapter 1-3 and carries your save over to the full game, which launches on Switch 2 on 4 Dec. It&#x27;s offline-only, but supports local play for up to four hunters.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/reminder-monster-hunter-wilds-switch-2-prologue-demo-now-available" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a><a class="src" href="https://prtimes.jp/main/html/rd/p/000006118.000013450.html" target="_blank" rel="noopener noreferrer">Capcom (Japanese)<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">Moonlighter</span></div><h3>The Moonlighter studio won&#x27;t run a public playtest of its next game</h3><p>Digital Sun says a big public build of ReVamp, its &quot;tower defensevania&quot; roguelike due in March 2027, is too risky now that AI tools make it easy to clone games before they launch. It&#x27;ll do a limited Discord playtest instead.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pcgamer.com/gaming-industry/moonlighter-studio-wont-host-a-public-playtest-of-its-next-game-due-to-rampant-ai-led-cloning-we-know-were-not-the-only-developers-feeling-this-way/" target="_blank" rel="noopener noreferrer">PC Gamer<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">Palworld</span></div><h3>Palworld&#x27;s next Pals will be fewer but more memorable</h3><p>Pocketpair&#x27;s John Buckley says the studio isn&#x27;t chasing a big number like &quot;100 new Pals with the next update&quot; and wants every new Pal to stand out through its design, abilities, work suitability or personality. It&#x27;ll keep balancing them from player data and feedback. No date for the next update yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.gamesradar.com/games/survival/palworld-studio-doesnt-want-to-just-release-100-new-pals-with-the-next-update-as-pocketpair-lead-says-every-pal-should-have-something-memorable/" target="_blank" rel="noopener noreferrer">GamesRadar+<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">4 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>ID@Xbox Showcase tonight at 19:00 SAST</h3><p>Xbox and IGN are showing 18 indie games, with several world premieres. The Wolf Among Us Remastered (29 Oct on PS5, Xbox and PC; the Switch version is delayed) will be there, and Shrek 2 Remastered from Aspyr might show up after its Xbox Store page leaked last week, though that isn&#x27;t confirmed.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/guides/how-to-watch-this-weeks-xbox-indie-showcase-including-start-times-and-what-to-expect" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.purexbox.com/news/2026/10/stop-the-presses-shrek-2-is-officially-being-remastered-for-xbox-series-xs" target="_blank" rel="noopener noreferrer">Shrek 2 leak<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-game">Saros</span></div><h3>Saros gets a big free update with New Game+ and a boss rush</h3><p>Housemarque&#x27;s Zenith update (version 2.0) adds Overlord Rush, a boss-rush mode with online leaderboards, and Eclipse Layers, a New Game+ that unlocks after the campaign. There are also 20 new modifiers, six new trophies, and easier options like slower game speed and auto-fire.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://blog.playstation.com/2026/10/19/the-saros-zenith-update-out-today-brings-more-ways-to-play-for-newcomers-and-veterans-alike/" target="_blank" rel="noopener noreferrer">PlayStation Blog<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/saros-massive-zenith-update-is-available-now-on-ps5-free-for-all-players" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div><h3>Samson&#x27;s studio confirms it has closed</h3><p>Liquid Swords founder Christofer Sundberg says the open-world game sold &quot;far better&quot; on console than on PC, but not well enough to save the studio. Bankruptcy papers put sales at about 151,900 copies by 14 Oct, and the administrator is taking bids for the business and the Samson rights until tomorrow.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/samson-dev-confirms-closure-open-worlds-console-sales-were-far-better-than-on-pc" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.destructoid.com/samson-studio-shuts-down-console-success-wasnt-enough/" target="_blank" rel="noopener noreferrer">Destructoid<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Pokémon</span><span class="chip chip-nin">Switch 2</span></div><h3>Golden Joysticks voting is open, with Pokopia up for Console Game of the Year</h3><p>Pokémon Pokopia and Fire Emblem: Fortune&#x27;s Weave are on the Console GOTY shortlist alongside Saros, Resident Evil Requiem, Forza Horizon 6 and others. Voting for the first 21 categories closes on Friday 23 Oct, and the Ultimate Game of the Year shortlist is due on 26 Oct.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/pokemon-pokopia-and-fire-emblem-fortunes-weave-shortlisted-for-console-game-of-the-year" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.destructoid.com/golden-joysticks-console-goty-vote/" target="_blank" rel="noopener noreferrer">Destructoid<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>PS Plus Extra/Premium October games</h3><p class="rel-note">Mafia: The Old Country, Horizon FW, Mycopunk and more</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Dino Crisis 2 and RollerCoaster Tycoon 3</h3><p class="rel-note">PS Plus Premium</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Mortal Shell II and A Plague Tale trials</h3><p class="rel-note">PS Plus Premium Game Trials</p><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Helldivers 2: Scope of Authority</h3><p class="rel-note">Premium Warbond</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Cyberpunk: Edgerunners 2</h3><p class="rel-note">Netflix, with a Kojima cameo</p><div class=chips><span class="chip chip-game">Cyberpunk 2077</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>ID@Xbox Showcase</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Now</span><span class="m"></span></div><div class="rel-body"><h3>Monster Hunter Wilds Prologue Demo</h3><p class="rel-note">Free, save carries over</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">21</span><span class="m">Oct</span></div><div class="rel-body"><h3>PS Store Player&#x27;s Choice sale ends</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Nintendo Switch Sports Resort</h3><p class="rel-note">12 sports, Switch 2 only</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Cult of the Lamb Switch 2 Edition</h3><p class="rel-note">Free upgrade for Switch owners</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Hitman: Absolution Switch 2 Edition</h3><p class="rel-note">60fps performance mode</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>PEAK</h3><p class="rel-note">Console debut</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">22</span><span class="m">Oct</span></div><div class="rel-body"><h3>Final Fantasy Resonance</h3><p class="rel-note">HD-2D RPG</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><p class="rel-note">Full launch with multiplayer</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">23</span><span class="m">Oct</span></div><div class="rel-body"><h3>Golden Joysticks voting closes</h3><div class=chips><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">26</span><span class="m">Oct</span></div><div class="rel-body"><h3>Steam Next Fest ends</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Minecraft for Switch 2</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><p class="rel-note">About 135GB install</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>The Wolf Among Us Remastered</h3><p class="rel-note">Switch version delayed</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">31</span><span class="m">Oct</span></div><div class="rel-body"><h3>Eight games leave Game Pass</h3><p class="rel-note">Incl. Deep Rock Galactic</p><div class=chips><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">17</span><span class="m">Nov</span></div><div class="rel-body"><h3>GTA V and RDR2 leave PS Plus Extra</h3><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Dec</span></div><div class="rel-body"><h3>Monster Hunter Wilds</h3><p class="rel-note">Switch 2 version</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li></ul></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>The PS Plus leaving list comes from the Asian PS Stores, so check ours after noon today in case it differs. Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date) and Helldivers 2 Update 7.2 (still undated).</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var header=document.querySelector('header.masthead');
+  var links=[].slice.call(document.querySelectorAll('nav.jump a[href^="#"]'));
+  var footer=document.querySelector('footer');
+  var wide=window.matchMedia('(min-width:1000px)');
+  var hasSide=!!document.querySelector('.layout.has-side');
+  var observers=[],current=null;
+  function setActive(id){
+    if(id===current)return;
+    current=id;
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  function spied(){
+    return links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));})
+      .filter(function(s){return s&&!(hasSide&&wide.matches&&s.closest('.side'));});
+  }
+  function line(){return header.getBoundingClientRect().bottom+16;}
+  function update(){
+    var secs=spied(),y=line(),id=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)id=s.id;});
+    var atEnd=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+    if(atEnd&&secs.length&&secs[secs.length-1].getBoundingClientRect().top<window.innerHeight)id=secs[secs.length-1].id;
+    setActive(id);
+  }
+  function observe(){
+    observers.forEach(function(o){o.disconnect();});
+    var top=Math.round(line());
+    var bottom=Math.max(0,window.innerHeight-top-1);
+    var spy=new IntersectionObserver(update,{rootMargin:'-'+top+'px 0px -'+bottom+'px 0px'});
+    spied().forEach(function(s){spy.observe(s);});
+    observers=[spy];
+    if(footer){
+      var end=new IntersectionObserver(update,{threshold:[0,1]});
+      end.observe(footer);
+      observers.push(end);
+    }
+    update();
+  }
+  var t;
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(observe,150);});
+  observe();
+})();
+</script>
 </body>
 </html>
