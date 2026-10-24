@@ -308,6 +308,7 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   stroke-linecap:round;stroke-linejoin:round}
 .badges-trend-dot{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
 .badges-trend-fill{stroke:none}
+.badges-trend-foot{margin:0;font:500 12px/1.45 var(--sans);color:var(--text-3)}
 """
 
 # Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
@@ -693,6 +694,23 @@ def archive_cumulative_series(ed):
     return int(total), cum_vals, snap.get("tracking_note")
 
 
+def edition_total_views(ed):
+    """Page views for an edition's publish window (Databuddy snapshot in JSON)."""
+    snap = ed.get("views_snapshot")
+    if not snap:
+        return 0
+    total, _, _ = archive_cumulative_series(ed)
+    return int(total)
+
+
+def collect_views_by_edition(editions):
+    """Per-edition page view totals, sorted by edition date."""
+    return [
+        (ed["date"], edition_total_views(ed))
+        for ed in sorted(editions, key=lambda d: d["date"])
+    ]
+
+
 def archive_stat_block(label, value, *, muted=False):
     val_cls = "archive-stat-value is-muted" if muted else "archive-stat-value"
     return (
@@ -838,27 +856,35 @@ def edition_short_label(iso_date):
     return d.strftime("%d %b")
 
 
-def badges_usage_chart(series):
-    """Line chart of tag occurrences per daily edition."""
+def render_trend_chart(
+    series,
+    *,
+    panel_title,
+    grad_id,
+    empty_message,
+    tip_for,
+    aria_for,
+    footnote=None,
+):
+    """Shared KPI line chart (badges uses or archive page views per edition)."""
     chart_w, chart_h = 560, 132
     pad_l, pad_r, pad_t, pad_b = 40, 14, 14, 30
     if not series:
         return (
             '<div class="badges-trend-panel">'
-            '<p class="archive-chart-empty">No badge data yet</p></div>'
+            f'<p class="archive-chart-empty">{escape(empty_message)}</p></div>'
         )
     vals = [c for _, c in series]
     mx = max(vals) if vals else 1
+    if mx == 0:
+        mx = 1
     n = len(series)
     iw = chart_w - pad_l - pad_r
     ih = chart_h - pad_t - pad_b
     xs, ys = [], []
     for i, val in enumerate(vals):
         x = pad_l + (iw * i / (n - 1) if n > 1 else iw / 2)
-        if mx == 0:
-            y = pad_t + ih
-        else:
-            y = pad_t + ih - (val / mx) * ih
+        y = pad_t + ih - (val / mx) * ih if val else pad_t + ih
         xs.append(x)
         ys.append(y)
     line = f"M{xs[0]:.2f},{ys[0]:.2f}"
@@ -866,30 +892,25 @@ def badges_usage_chart(series):
         line += f" L{xs[k]:.2f},{ys[k]:.2f}"
     base = pad_t + ih
     area = f"{line} L{xs[-1]:.2f},{base:.2f} L{xs[0]:.2f},{base:.2f} Z"
-    grad_id = "badges-trend-grad"
     dots = []
-    for i, ((iso, val), x, y) in enumerate(zip(series, xs, ys)):
-        tip = escape(f"{edition_short_label(iso)}: {val} badge uses")
+    for (iso, val), x, y in zip(series, xs, ys):
         dots.append(
             f'<circle class="badges-trend-dot" cx="{x:.2f}" cy="{y:.2f}" r="3.5">'
-            f"<title>{tip}</title></circle>"
+            f"<title>{tip_for(iso, val)}</title></circle>"
         )
+    y_max_val = max(c for _, c in series)
     y_max_y = pad_t
     y_zero_y = pad_t + ih
-    y_max_lbl = escape(str(mx))
+    y_max_lbl = escape(fmt_views(y_max_val) if y_max_val else "0")
     x_first = escape(edition_short_label(series[0][0]))
     x_last = escape(edition_short_label(series[-1][0]))
     x_first_x = xs[0]
     x_last_x = xs[-1]
-    aria = escape(
-        f"Badge uses per edition from {series[0][0]} to {series[-1][0]}. "
-        f"Peak day: {mx} uses."
-    )
     first_date, last_date = series[0][0], series[-1][0]
     range_lbl = escape(f"{edition_short_label(first_date)} – {edition_short_label(last_date)}")
     svg = (
         f'<svg viewBox="0 0 {chart_w} {chart_h}" preserveAspectRatio="none" '
-        f'role="img" aria-label="{aria}">'
+        f'role="img" aria-label="{aria_for(series, y_max_val)}">'
         f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
         f'<stop class="archive-chart-stop-top" offset="0%"/>'
         f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
@@ -903,13 +924,44 @@ def badges_usage_chart(series):
         f'{"".join(dots)}'
         f"</svg>"
     )
+    foot = ""
+    if footnote:
+        foot = f'<p class="badges-trend-foot">{footnote}</p>'
     return (
         f'<div class="badges-trend-panel">'
         f'<div class="badges-trend-head">'
-        f'<span class="badges-trend-title">Uses per edition</span>'
+        f'<span class="badges-trend-title">{escape(panel_title)}</span>'
         f'<span class="badges-trend-range">{range_lbl}</span></div>'
-        f'<div class="badges-trend-chart">{svg}</div></div>'
+        f'<div class="badges-trend-chart">{svg}</div>{foot}</div>'
     )
+
+
+def _badge_chart_tip(iso, val):
+    return escape(f"{edition_short_label(iso)}: {val} badge uses")
+
+
+def _badge_chart_aria(series, peak):
+    return escape(
+        f"Badge uses per edition from {series[0][0]} to {series[-1][0]}. "
+        f"Peak day: {peak} uses."
+    )
+
+
+def _views_chart_tip(iso, val):
+    return escape(f"{edition_short_label(iso)}: {fmt_views(val)} page views")
+
+
+def _views_chart_aria(series, peak):
+    return escape(
+        f"Page views per edition from {series[0][0]} to {series[-1][0]}. "
+        f"Peak day: {fmt_views(peak)} views."
+    )
+
+
+VIEWS_CHART_FOOTNOTE = (
+    "Databuddy page views per edition publish window, baked into each edition JSON at build time. "
+    "Tracking live from 22 October 2026; earlier editions show zero."
+)
 
 
 def render_badges(editions):
@@ -938,7 +990,7 @@ def render_badges(editions):
         f"{archive_stat_block('Distinct tags', str(n_distinct))}"
         f"{archive_stat_block('Editions', str(n_editions))}"
         "</div></div>"
-        f"{badges_usage_chart(usage_series)}"
+        f"{render_trend_chart(usage_series, panel_title='Uses per edition', grad_id='badges-trend-grad', empty_message='No badge data yet', tip_for=_badge_chart_tip, aria_for=_badge_chart_aria)}"
         "</div>"
     )
     nav = (
@@ -979,6 +1031,24 @@ def render_archive(editions):
             f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
             f"</section>"
         )
+    views_series = collect_views_by_edition(editions)
+    total_views = sum(v for _, v in views_series)
+    n_editions = len(editions)
+    total_stories = sum(edition_story_count(ed) for ed in editions)
+    kpi = (
+        '<div class="badges-summary">'
+        '<div class="badges-kpi-panel">'
+        '<div class="badges-kpi-hero">'
+        '<span class="badges-kpi-hero-label">Total page views</span>'
+        f'<span class="badges-kpi-hero-value">{fmt_views(total_views)}</span>'
+        "</div>"
+        '<div class="badges-kpi-row">'
+        f"{archive_stat_block('Editions', str(n_editions))}"
+        f"{archive_stat_block('Stories', str(total_stories))}"
+        "</div></div>"
+        f"{render_trend_chart(views_series, panel_title='Views per edition', grad_id='archive-trend-grad', empty_message='No view data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria, footnote=escape(VIEWS_CHART_FOOTNOTE))}"
+        "</div>"
+    )
     nav = (
         '<a href="/">Latest</a>'
         '<a href="/archive.html" aria-current="true">Archive</a>'
@@ -987,6 +1057,7 @@ def render_archive(editions):
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
         '<div class="date">Every past edition, newest first</div></div>'
+        f"{kpi}"
         f'{"".join(year_sections)}')
     return head_common(
         "Loot's Gaming Roundup · Archive",
