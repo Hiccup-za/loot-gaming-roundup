@@ -69,6 +69,8 @@ CSS = r"""
   --accent:#f0b445;      /* crown gold: links, kicker, focus (9.5:1) */
   --accent-hover:#ffc85e;
   --accent-tint:rgba(240,180,69,.12);
+  --views-line:#e879f9;
+  --views-line-tint:rgba(232,121,249,.22);
   /* Platform colours: functional only */
   --ps:#6aa5ff; --nin:#ff6f6f; --xbox:#5ad18a; --pc:#b9bfca;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -111,7 +113,8 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 }
 
 /* Intro line under the bar (scrolls away) */
-.intro{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.intro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.intro-lead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;min-width:0}
 .kicker{display:inline-flex;align-items:center;gap:8px;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .date{font:500 13px/1.4 var(--mono);color:var(--text-3)}
@@ -169,23 +172,16 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
-/* Edition readership chart (client-loaded) */
-.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
-.views h2{font-size:20px;margin-bottom:12px}
-.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
-.views-stat strong{color:var(--accent);font-weight:600}
-.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
-.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
-.views-figure{margin:0}
-.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
-.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
-.views-axis{stroke:var(--border);stroke-width:1}
-.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
-.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.views-area{fill:var(--accent-tint)}
-.views-dot{fill:var(--accent)}
-.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
-@media(min-width:1000px){.views{margin-top:28px}}
+/* Edition views sparkline in sub-header (client-loaded) */
+.edition-views{display:flex;align-items:center;gap:8px;margin:0;padding:4px 0;
+  font:500 12px/1.3 var(--sans);color:var(--text-3);flex:0 0 auto;min-height:28px}
+.views-num{font:500 13px/1 var(--mono);color:var(--text-2)}
+.views-word{white-space:nowrap;letter-spacing:.02em}
+.views-spark{display:block;width:88px;height:28px;flex:0 0 auto;opacity:.88;overflow:visible}
+#views-line{stroke:var(--views-line);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.views-stop-top{stop-color:var(--views-line);stop-opacity:.22}
+.views-stop-bottom{stop-color:var(--views-line);stop-opacity:0}
+@media(max-width:479px){.edition-views{width:100%;justify-content:flex-end}}
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
@@ -228,99 +224,66 @@ VIEWS_SCRIPT = r"""
   if(!root)return;
   var edition=root.getAttribute("data-edition-date");
   if(!edition)return;
-  var statEl=document.getElementById("views-stat");
-  var noteEl=document.getElementById("views-note");
-  var unavailEl=document.getElementById("views-unavail");
-  var figEl=document.getElementById("views-figure");
-  var svgEl=document.getElementById("views-svg");
-  var capEl=document.getElementById("views-caption");
-  function showUnavailable(){
-    root.hidden=false;
-    if(unavailEl)unavailEl.hidden=false;
-    if(figEl)figEl.hidden=true;
-    if(statEl)statEl.textContent="";
-    if(noteEl)noteEl.hidden=true;
-  }
+  var numEl=document.getElementById("views-total");
+  var fillEl=document.getElementById("views-fill");
+  var lineEl=document.getElementById("views-line");
   function fmt(n){return n.toLocaleString("en-ZA");}
-  function shortDate(iso){
-    var p=iso.split("-");
-    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
-  }
-  function drawChart(tracked){
-    if(!tracked.length||!svgEl)return;
-    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
-    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
-    var maxPv=0;
-    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
-    if(maxPv<1)maxPv=1;
-    var pts=[];
-    for(var j=0;j<tracked.length;j++){
-      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
-      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
-      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+  function drawSpark(values){
+    if(!values.length||!lineEl||!fillEl)return;
+    var w=88,h=28,pad=2;
+    var iw=w-pad*2,ih=h-pad*2;
+    var max=0;
+    for(var i=0;i<values.length;i++)if(values[i]>max)max=values[i];
+    if(max<1)max=1;
+    var xs=[],ys=[];
+    for(var j=0;j<values.length;j++){
+      xs.push(pad+(values.length===1?iw/2:(iw*j/(values.length-1))));
+      ys.push(pad+ih-(values[j]/max)*ih);
     }
-    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
-    var line="M"+pts[0].x+" "+pts[0].y;
-    for(var k=1;k<pts.length;k++){
-      line+=" L"+pts[k].x+" "+pts[k].y;
-      area+=" L"+pts[k].x+" "+pts[k].y;
-    }
-    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
-    var grid="";
-    for(var g=0;g<=3;g++){
-      var gy=pad.t+(ih*g/3);
-      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
-    }
-    var dots="",labels="";
-    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
-    for(var m=0;m<pts.length;m++){
-      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
-      if(m===0||m===pts.length-1||m%labelEvery===0){
-        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
-      }
-    }
-    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
-    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
-      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
-    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+    var line="M"+xs[0]+","+ys[0];
+    for(var k=1;k<xs.length;k++)line+=" L"+xs[k]+","+ys[k];
+    var base=h-pad;
+    var area=line+" L"+xs[xs.length-1]+","+base+" L"+xs[0]+","+base+" Z";
+    lineEl.setAttribute("d",line);
+    fillEl.setAttribute("d",area);
   }
   fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
     .then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(data){
       if(!data||data.unavailable)throw 0;
-      root.hidden=false;
-      if(unavailEl)unavailEl.hidden=true;
       var tracked=(data.series||[]).filter(function(p){return p.tracked;});
-      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
-      var parts=[];
-      if(data.launchDayViews!=null){
-        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      if(!tracked.length)throw 0;
+      var total=typeof data.totalViews==="number"?data.totalViews:0;
+      if(numEl)numEl.textContent=fmt(total);
+      var cum=0,cumVals=[];
+      for(var t=0;t<tracked.length;t++){
+        cum+=tracked[t].pageviews||0;
+        cumVals.push(cum);
       }
-      if(typeof data.totalViews==="number"){
-        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
-      }
-      if(statEl)statEl.innerHTML=parts.join(" · ");
-      if(tracked.length&&figEl){
-        figEl.hidden=false;
-        drawChart(tracked);
-      }else if(figEl)figEl.hidden=true;
+      if(cumVals.length===1)cumVals=[0,cumVals[0]];
+      drawSpark(cumVals);
+      var tip=data.trackingNote||"Daily page views for this edition (HTML and clean URLs combined).";
+      root.title=tip;
+      root.setAttribute("aria-label",fmt(total)+" total views");
+      root.hidden=false;
     })
-    .catch(function(){showUnavailable();});
+    .catch(function(){});
 })();
 """
 
-def views_section(edition_date):
+def views_sparkline(edition_date):
     d = escape(edition_date)
     return (
-        f'<section class="views" id="edition-views" data-edition-date="{d}" hidden>'
-        f'<h2>Daily views</h2>'
-        f'<p class="views-stat" id="views-stat"></p>'
-        f'<p class="views-note" id="views-note" hidden></p>'
-        f'<p class="views-unavail" id="views-unavail" hidden>Views unavailable</p>'
-        f'<figure class="views-figure" id="views-figure" hidden>'
-        f'<svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg>'
-        f'<figcaption class="views-caption" id="views-caption"></figcaption>'
-        f'</figure></section>'
+        f'<p class="edition-views" id="edition-views" data-edition-date="{d}" hidden>'
+        f'<span class="views-num" id="views-total"></span>'
+        f'<span class="views-word">total views</span>'
+        f'<svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false">'
+        f'<defs><linearGradient id="views-grad" x1="0" y1="0" x2="0" y2="1">'
+        f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
+        f'</linearGradient></defs>'
+        f'<path id="views-fill" fill="url(#views-grad)" stroke="none"/>'
+        f'<path id="views-line" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
+        f'</svg></p>'
     )
 
 
@@ -395,8 +358,7 @@ def render(data):
 </div>
 </header>
 <div class="wrap" id="top">
-<div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>
-{views_section(edition_date)}
+<div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(edition_date)}</div>
 {layout}
 <footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>

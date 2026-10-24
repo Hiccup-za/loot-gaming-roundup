@@ -47,6 +47,8 @@
   --accent:#f0b445;      /* crown gold: links, kicker, focus (9.5:1) */
   --accent-hover:#ffc85e;
   --accent-tint:rgba(240,180,69,.12);
+  --views-line:#e879f9;
+  --views-line-tint:rgba(232,121,249,.22);
   /* Platform colours: functional only */
   --ps:#6aa5ff; --nin:#ff6f6f; --xbox:#5ad18a; --pc:#b9bfca;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -89,7 +91,8 @@ nav.jump a:hover{border-color:var(--border-strong);color:var(--text)}
 }
 
 /* Intro line under the bar (scrolls away) */
-.intro{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.intro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.intro-lead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;min-width:0}
 .kicker{display:inline-flex;align-items:center;gap:8px;font:600 12px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
 .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .date{font:500 13px/1.4 var(--mono);color:var(--text-3)}
@@ -147,23 +150,16 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
-/* Edition readership chart (client-loaded) */
-.views{margin-top:36px;padding-top:14px;border-top:2px solid var(--text)}
-.views h2{font-size:20px;margin-bottom:12px}
-.views-stat{margin:0 0 10px;color:var(--text-2);font-size:15px}
-.views-stat strong{color:var(--accent);font-weight:600}
-.views-note{margin:0 0 12px;color:var(--text-3);font-size:13.5px;line-height:1.5;max-width:38em}
-.views-unavail{margin:0;color:var(--text-3);font:500 13px/1.4 var(--mono)}
-.views-figure{margin:0}
-.views-svg{display:block;width:100%;height:auto;max-height:220px;color:var(--accent)}
-.views-caption{margin-top:8px;color:var(--text-3);font:500 11px/1.4 var(--mono)}
-.views-axis{stroke:var(--border);stroke-width:1}
-.views-grid{stroke:var(--border);stroke-width:1;opacity:.55}
-.views-line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.views-area{fill:var(--accent-tint)}
-.views-dot{fill:var(--accent)}
-.views-label{fill:var(--text-3);font:500 10px/1 var(--mono)}
-@media(min-width:1000px){.views{margin-top:28px}}
+/* Edition views sparkline in sub-header (client-loaded) */
+.edition-views{display:flex;align-items:center;gap:8px;margin:0;padding:4px 0;
+  font:500 12px/1.3 var(--sans);color:var(--text-3);flex:0 0 auto;min-height:28px}
+.views-num{font:500 13px/1 var(--mono);color:var(--text-2)}
+.views-word{white-space:nowrap;letter-spacing:.02em}
+.views-spark{display:block;width:88px;height:28px;flex:0 0 auto;opacity:.88;overflow:visible}
+#views-line{stroke:var(--views-line);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.views-stop-top{stop-color:var(--views-line);stop-opacity:.22}
+.views-stop-bottom{stop-color:var(--views-line);stop-opacity:0}
+@media(max-width:479px){.edition-views{width:100%;justify-content:flex-end}}
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
@@ -208,8 +204,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 </div>
 </header>
 <div class="wrap" id="top">
-<div class="intro"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">Friday 23 October 2026</div></div>
-<section class="views" id="edition-views" data-edition-date="2026-10-23" hidden><h2>Daily views</h2><p class="views-stat" id="views-stat"></p><p class="views-note" id="views-note" hidden></p><p class="views-unavail" id="views-unavail" hidden>Views unavailable</p><figure class="views-figure" id="views-figure" hidden><svg class="views-svg" id="views-svg" role="img" aria-labelledby="views-caption"></svg><figcaption class="views-caption" id="views-caption"></figcaption></figure></section>
+<div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">Friday 23 October 2026</div></div><p class="edition-views" id="edition-views" data-edition-date="2026-10-23" hidden><span class="views-num" id="views-total"></span><span class="views-word">total views</span><svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false"><defs><linearGradient id="views-grad" x1="0" y1="0" x2="0" y2="1"><stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/></linearGradient></defs><path id="views-fill" fill="url(#views-grad)" stroke="none"/><path id="views-line" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></p></div>
 <div class="layout has-side"><main class="feed"><section id="your-games"><h2>Your games<span class="count">6 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-game">Mass Effect</span><span class="chip chip-game">Dragon Age</span></div><h3>The leaked Mass Effect trailer is real, and shows what BioWare was making before it closed</h3><p>A day after EA shut BioWare, an in-engine trailer for the cancelled next Mass Effect turned up on the series subreddit. Bloomberg&#x27;s Jason Schreier and IGN have both confirmed it&#x27;s genuine. The title card calls it Mass Effect Universe: it would have returned to the Milky Way thousands of years after Mass Effect 3, with Liara back. It was still very early, made by a small team using pre-production assets, and may have been meant for N7 Day on 7 Nov. Separately, Amazon&#x27;s Mass Effect TV series is reportedly still in production.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/leaked-mass-effect-5-trailer-is-real-offers-glimpse-of-cancelled-game" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.videogameschronicle.com/news/mass-effect-universe-trailer-leaks-online-showcases-what-bioware-was-working-on-before-being-shut-down/" target="_blank" rel="noopener noreferrer">VGC<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.videogameschronicle.com/news/mass-effect-tv-series-still-in-production-despite-bioware-closure-as-game-director-writes-at-least-i-can-play-gta-6/" target="_blank" rel="noopener noreferrer">VGC (TV series)<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-game">Dawnwalker</span></div><h3>The Blood of Dawnwalker Update 1.1 is out now on PS5</h3><p>The first major patch is a 12.9GB download with over 1,100 improvements. Main additions: a Draught of Mind Rebirth (respec), the ability to pet animals, an easier difficulty mode, better combat targeting and camera tweaks. Quest-related notes are behind a spoiler click on Rebel Wolves&#x27; site.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/dawnwalker-ps5-patch-1-1-is-available-to-download-now-13gb-update-with-over-1100-improvements" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Call of Duty</span></div><h3>Call of Duty: Modern Warfare 4 launches in full today</h3><p>Multiplayer and the rest of the package go live today after last week&#x27;s campaign early access. Nintendo Life gave the Switch 2 version 9/10, calling it best-in-class and saying it doesn&#x27;t shortchange Nintendo players.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/reviews/nintendo-switch-2/call-of-duty-modern-warfare-4" target="_blank" rel="noopener noreferrer">Nintendo Life review<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.purexbox.com/news/2026/10/heres-what-the-reviews-are-saying-about-call-of-duty-modern-warfare-4s-campaign" target="_blank" rel="noopener noreferrer">Pure Xbox (campaign reviews)<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span><span class="chip chip-game">Tomb Raider</span></div><h3>Shadow of the Tomb Raider has shadow-dropped on Switch 2</h3><p>Aspyr&#x27;s Definitive Edition finishes the Survivor trilogy on Switch 2. It&#x27;s $39.99 with all seven DLC Challenge Tombs, two-player online co-op and all the downloadable gear, and 10% off on the eShop until 4 Nov. The full Definitive Survivor Trilogy bundle is also out at $69.99.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/surprise-shadow-of-the-tomb-raider-definitive-edition-has-shadow-dropped-on-switch-2" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">Capcom</span><span class="chip chip-game">Resident Evil</span></div><h3>Capcom data breach hits more than 11.7 million Capcom ID accounts</h3><p>Exposed data includes email addresses, last-login IP addresses and account creation dates; 43 cases also leaked birth dates, gender, region and nicknames. Capcom says card details weren&#x27;t affected and it has reset 196 passwords that were changed. If you have a Capcom ID, now&#x27;s a good time to change your password.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.capcom.co.jp/ir/english/news/html/e261022.html" target="_blank" rel="noopener noreferrer">Capcom notice<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.nintendolife.com/news/2026/10/capcom-data-breach-results-in-unauthorised-access-to-more-than-11-7-million-capcom-id-accounts" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-nin">Nintendo</span></div><h3>Three more Game Boy games join Switch Online on 27 Oct</h3><p>Avenging Spirit, Mole Mania and Pinball: Revenge of the &#x27;Gator arrive next week, following last week&#x27;s three GBA additions.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/nintendo-expands-switch-onlines-game-boy-library-with-three-more-titles" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article></div></section><section id="industry"><h2>Industry<span class="count">5 stories</span></h2><div class="grid"><article class="card"><div class="chips"><span class="chip chip-ps">PS5</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-xbox">Xbox</span></div><h3>Wolverine tops US sales in September as PS5 outsells Switch 2</h3><p>Circana says Marvel&#x27;s Wolverine was September&#x27;s best-seller, with Sony&#x27;s biggest launch-month dollar sales since Helldivers 2. PS5 hardware spending rose 43% year on year (units up 22%), while Switch 2 fell 12% and Xbox Series 2%. Xbox console unit sales hit an all-time September low.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.videogameschronicle.com/news/wolverine-was-uss-best-selling-game-in-september-with-ps5-sales-up-43/" target="_blank" rel="noopener noreferrer">VGC<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.pushsquare.com/news/2026/10/ps5-beats-switch-2-in-strongest-us-sales-month-since-may-2025" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span></div><h3>Report: Xbox plans a first-party handheld for 2027 and the Helix console for 2028</h3><p>Fortune reports a next-gen handheld &quot;by the 2027 holiday season&quot; after internal clashes over whether it should run trimmed-down Windows or Xbox&#x27;s own software, with Xbox now largely steering the OS. Microsoft hasn&#x27;t announced either device&#x27;s timing.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.purexbox.com/news/2026/10/report-xbox-to-release-next-gen-handheld-in-2027-and-expensive-helix-console-in-2028" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span><span class="chip chip-game">Gears of War</span></div><h3>Rumour: Gears of War: E-Day cost around $500 million</h3><p>Kotaku&#x27;s sources put the budget at about half a billion dollars, which they say is why Microsoft axed the near-finished PS5 version. Some insiders back the figure while others dispute how it&#x27;s counted, so treat it with caution.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.pushsquare.com/news/2026/10/gears-of-war-e-day-cancelled-last-minute-for-ps5-may-have-cost-half-a-billion-to-make" target="_blank" rel="noopener noreferrer">Push Square<span aria-hidden="true"> ↗</span></a><a class="src" href="https://www.purexbox.com/news/2026/10/new-rumour-says-xbox-spent-usd500-million-on-gears-of-war-e-day-but-not-everyone-agrees" target="_blank" rel="noopener noreferrer">Pure Xbox<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-nin">Switch 2</span></div><h3>Switch 2 reportedly jailbroken; Nintendo pulls SmileBASIC 4 from the eShop</h3><p>A software-only, tethered exploit on firmware 23.0.1 relies on SmileBASIC 4, which has since vanished from the eShop. It resets when the console is powered off. Nintendo hasn&#x27;t commented.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.nintendolife.com/news/2026/10/switch-2-supposedly-jailbroken-via-software-only-exploit" target="_blank" rel="noopener noreferrer">Nintendo Life<span aria-hidden="true"> ↗</span></a></div></article><article class="card"><div class="chips"><span class="chip chip-game">EA</span></div><h3>EA Sports confirms Fight Night is coming back</h3><p>The boxing series returns after 15 years away (the last one was 2011&#x27;s Fight Night Champion). No platforms or date yet.</p><div class="sources"><span class="src-label">Source</span><a class="src" href="https://www.videogameschronicle.com/news/ea-sports-is-officially-reviving-its-fight-night-boxing-series/" target="_blank" rel="noopener noreferrer">VGC<span aria-hidden="true"> ↗</span></a></div></article></div></section></main><aside class="side" aria-label="Out this week"><section id="out-this-week"><h2>Out this week</h2><ul class="releases"><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Call of Duty: Modern Warfare 4</h3><p class="rel-note">Full launch with multiplayer</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-nin">Switch 2</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Today</span><span class="m"></span></div><div class="rel-body"><h3>Ace Combat 8 bug-fix patch</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Out</span><span class="m">now</span></div><div class="rel-body"><h3>Shadow of the Tomb Raider: Definitive Edition</h3><p class="rel-note">$39.99, 10% off until 4 Nov</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">Out</span><span class="m">now</span></div><div class="rel-body"><h3>The Blood of Dawnwalker Update 1.1</h3><p class="rel-note">12.9GB</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">26</span><span class="m">Oct</span></div><div class="rel-body"><h3>Steam Next Fest ends</h3><p class="rel-note">19:00 SAST</p><div class=chips><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Minecraft for Switch 2</h3><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">27</span><span class="m">Oct</span></div><div class="rel-body"><h3>Three Game Boy titles on Switch Online</h3><p class="rel-note">Incl. Mole Mania</p><div class=chips><span class="chip chip-nin">Switch</span><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Crimson Desert: Charting the Unknown</h3><p class="rel-note">Big DLC</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>PlayStation Pulse pre-orders</h3><p class="rel-note">10:00 local time</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Phantom Blade Zero</h3><p class="rel-note">Digital; physical in 2027</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>The Wolf Among Us Remastered</h3><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span><span class="chip chip-pc">PC</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Pokémon TCG Pocket: Dual Fusion</h3><p class="rel-note">First dual-type cards</p><div class=chips><span class="chip chip-nin">Pokémon</span></div></div></li><li class="release"><div class="rel-date"><span class="d">29</span><span class="m">Oct</span></div><div class="rel-body"><h3>Mouthwashing</h3><p class="rel-note">PS5 debut (Switch also this month)</p><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Nov</span></div><div class="rel-body"><h3>Planet of the Deals sale ends</h3><div class=chips><span class="chip chip-ps">PS5</span></div></div></li><li class="release"><div class="rel-date"><span class="d">5</span><span class="m">Nov</span></div><div class="rel-body"><h3>Zelda: Ocarina of Time</h3><p class="rel-note">Switch 2 remake</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">10</span><span class="m">Nov</span></div><div class="rel-body"><h3>Shrek 2 Remastered</h3><p class="rel-note">$29.99</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">17</span><span class="m">Nov</span></div><div class="rel-body"><h3>GTA V and RDR2 leave PS Plus Extra</h3><div class=chips><span class="chip chip-ps">PS Plus</span></div></div></li><li class="release"><div class="rel-date"><span class="d">19</span><span class="m">Nov</span></div><div class="rel-body"><h3>Grand Theft Auto VI</h3><p class="rel-note">Plus the new Pulse headset</p><div class=chips><span class="chip chip-ps">PS5</span><span class="chip chip-xbox">Xbox</span></div></div></li><li class="release"><div class="rel-date"><span class="d">4</span><span class="m">Dec</span></div><div class="rel-body"><h3>Monster Hunter Wilds</h3><p class="rel-note">Switch 2 version</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li><li class="release"><div class="rel-date"><span class="d">9</span><span class="m">Dec</span></div><div class="rel-body"><h3>Riders Republic</h3><p class="rel-note">Switch 2, plus offline play</p><div class=chips><span class="chip chip-nin">Switch 2</span></div></div></li></ul><a class="full-list" href="https://www.pushsquare.com/guides/these-35plus-ps5-and-ps-plus-games-are-coming-out-this-week-19th-25th-october" target="_blank" rel="noopener noreferrer">See the full release list ↗</a></section></aside></div>
 <footer><div class="note"><span class="ico" aria-hidden="true">📌</span><div>Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says &quot;in the days to follow&quot;).</div></div><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
@@ -219,84 +214,50 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
   if(!root)return;
   var edition=root.getAttribute("data-edition-date");
   if(!edition)return;
-  var statEl=document.getElementById("views-stat");
-  var noteEl=document.getElementById("views-note");
-  var unavailEl=document.getElementById("views-unavail");
-  var figEl=document.getElementById("views-figure");
-  var svgEl=document.getElementById("views-svg");
-  var capEl=document.getElementById("views-caption");
-  function showUnavailable(){
-    root.hidden=false;
-    if(unavailEl)unavailEl.hidden=false;
-    if(figEl)figEl.hidden=true;
-    if(statEl)statEl.textContent="";
-    if(noteEl)noteEl.hidden=true;
-  }
+  var numEl=document.getElementById("views-total");
+  var fillEl=document.getElementById("views-fill");
+  var lineEl=document.getElementById("views-line");
   function fmt(n){return n.toLocaleString("en-ZA");}
-  function shortDate(iso){
-    var p=iso.split("-");
-    return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+p[1]-1];
-  }
-  function drawChart(tracked){
-    if(!tracked.length||!svgEl)return;
-    var w=640,h=180,pad={t:12,r:12,b:28,l:36};
-    var iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
-    var maxPv=0;
-    for(var i=0;i<tracked.length;i++)if(tracked[i].pageviews>maxPv)maxPv=tracked[i].pageviews;
-    if(maxPv<1)maxPv=1;
-    var pts=[];
-    for(var j=0;j<tracked.length;j++){
-      var x=pad.l+(tracked.length===1?iw/2:(iw*j/(tracked.length-1)));
-      var y=pad.t+ih-(tracked[j].pageviews/maxPv)*ih;
-      pts.push({x:x,y:y,pv:tracked[j].pageviews,d:tracked[j].date});
+  function drawSpark(values){
+    if(!values.length||!lineEl||!fillEl)return;
+    var w=88,h=28,pad=2;
+    var iw=w-pad*2,ih=h-pad*2;
+    var max=0;
+    for(var i=0;i<values.length;i++)if(values[i]>max)max=values[i];
+    if(max<1)max=1;
+    var xs=[],ys=[];
+    for(var j=0;j<values.length;j++){
+      xs.push(pad+(values.length===1?iw/2:(iw*j/(values.length-1))));
+      ys.push(pad+ih-(values[j]/max)*ih);
     }
-    var area="M"+pts[0].x+" "+(pad.t+ih)+" L"+pts[0].x+" "+pts[0].y;
-    var line="M"+pts[0].x+" "+pts[0].y;
-    for(var k=1;k<pts.length;k++){
-      line+=" L"+pts[k].x+" "+pts[k].y;
-      area+=" L"+pts[k].x+" "+pts[k].y;
-    }
-    area+=" L"+pts[pts.length-1].x+" "+(pad.t+ih)+" Z";
-    var grid="";
-    for(var g=0;g<=3;g++){
-      var gy=pad.t+(ih*g/3);
-      grid+='<line class="views-grid" x1="'+pad.l+'" y1="'+gy+'" x2="'+(w-pad.r)+'" y2="'+gy+'"/>';
-    }
-    var dots="",labels="";
-    var labelEvery=Math.max(1,Math.ceil(tracked.length/6));
-    for(var m=0;m<pts.length;m++){
-      dots+='<circle class="views-dot" cx="'+pts[m].x+'" cy="'+pts[m].y+'" r="3"/>';
-      if(m===0||m===pts.length-1||m%labelEvery===0){
-        labels+='<text class="views-label" x="'+pts[m].x+'" y="'+(h-6)+'" text-anchor="middle">'+shortDate(pts[m].d)+'</text>';
-      }
-    }
-    svgEl.setAttribute("viewBox","0 0 "+w+" "+h);
-    svgEl.innerHTML='<line class="views-axis" x1="'+pad.l+'" y1="'+(pad.t+ih)+'" x2="'+(w-pad.r)+'" y2="'+(pad.t+ih)+'"/>'+
-      grid+'<path class="views-area" d="'+area+'"/><path class="views-line" d="'+line+'"/>'+dots+labels;
-    if(capEl)capEl.textContent="Daily page views (tracked paths combined)";
+    var line="M"+xs[0]+","+ys[0];
+    for(var k=1;k<xs.length;k++)line+=" L"+xs[k]+","+ys[k];
+    var base=h-pad;
+    var area=line+" L"+xs[xs.length-1]+","+base+" L"+xs[0]+","+base+" Z";
+    lineEl.setAttribute("d",line);
+    fillEl.setAttribute("d",area);
   }
   fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
     .then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(data){
       if(!data||data.unavailable)throw 0;
-      root.hidden=false;
-      if(unavailEl)unavailEl.hidden=true;
       var tracked=(data.series||[]).filter(function(p){return p.tracked;});
-      if(data.trackingNote&&noteEl){noteEl.textContent=data.trackingNote;noteEl.hidden=false;}
-      var parts=[];
-      if(data.launchDayViews!=null){
-        parts.push("<strong>"+fmt(data.launchDayViews)+"</strong> views on launch day");
+      if(!tracked.length)throw 0;
+      var total=typeof data.totalViews==="number"?data.totalViews:0;
+      if(numEl)numEl.textContent=fmt(total);
+      var cum=0,cumVals=[];
+      for(var t=0;t<tracked.length;t++){
+        cum+=tracked[t].pageviews||0;
+        cumVals.push(cum);
       }
-      if(typeof data.totalViews==="number"){
-        parts.push("<strong>"+fmt(data.totalViews)+"</strong> total since tracking");
-      }
-      if(statEl)statEl.innerHTML=parts.join(" · ");
-      if(tracked.length&&figEl){
-        figEl.hidden=false;
-        drawChart(tracked);
-      }else if(figEl)figEl.hidden=true;
+      if(cumVals.length===1)cumVals=[0,cumVals[0]];
+      drawSpark(cumVals);
+      var tip=data.trackingNote||"Daily page views for this edition (HTML and clean URLs combined).";
+      root.title=tip;
+      root.setAttribute("aria-label",fmt(total)+" total views");
+      root.hidden=false;
     })
-    .catch(function(){showUnavailable();});
+    .catch(function(){});
 })();
 </script>
 </body>
