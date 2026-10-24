@@ -49,6 +49,7 @@ Each edition page links to **Past roundups** (`/archive.html`) in the footer and
 - **Measurement window:** from this edition's **`published_at`** until the **next** edition's `published_at` (not calendar midnight). If `published_at` is omitted, the build assumes **08:00 Africa/Johannesburg** on the edition `date` (override in JSON when you publish at a different time).
 - **Paths merged:** `/YYYY-MM-DD.html`, `/YYYY-MM-DD`, and **`/`** (home page while that edition was live)
 - **Tracking live from ~15:00 SAST on 22 October 2026** — older portions of a window get an honest `tracking_note`; the build does not invent zero views before tracking existed.
+- **`views_snapshot.series`** stores **non-cumulative** pageviews per **hour** (or per day when the window is longer than 30 days). The header sparkline plots the **cumulative** sum across those buckets so you can see *when* views landed inside the publish window, not just the total.
 
 Set **`DATABUDDY_API_KEY`** in:
 
@@ -101,8 +102,12 @@ Options:
   "views_snapshot": {
     "window_start": "2026-10-11T08:00:00+02:00",
     "window_end": "2026-10-12T08:00:00+02:00",
+    "granularity": "hourly",
     "total_views": 42,
-    "series": [{"date": "2026-10-11", "pageviews": 42, "tracked": false}],
+    "series": [
+      {"timestamp": "2026-10-11T08:00:00+02:00", "pageviews": 5, "tracked": true},
+      {"timestamp": "2026-10-11T09:00:00+02:00", "pageviews": 37, "tracked": true}
+    ],
     "fetched_at": "2026-10-13T10:00:00+02:00",
     "tracking_note": "optional string when tracking started mid-window"
   },

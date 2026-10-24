@@ -58,17 +58,6 @@ def add_days(iso: str, days: int) -> str:
     return (d + timedelta(days=days)).isoformat()
 
 
-def dates_inclusive(start: date, end: date) -> list[date]:
-    if start > end:
-        return []
-    out: list[date] = []
-    cur = start
-    while cur <= end:
-        out.append(cur)
-        cur += timedelta(days=1)
-    return out
-
-
 def _unwrap_parameter_blocks(items: list) -> list:
     """Flatten Databuddy batch items like {parameter, data: [...]}."""
     if not items:
@@ -217,11 +206,43 @@ def choose_granularity(start: datetime, end: datetime) -> str:
     return "daily"
 
 
-def aggregate_daily_from_hourly(hourly: dict[datetime, int]) -> dict[date, int]:
-    daily: dict[date, int] = {}
-    for ts, n in hourly.items():
-        daily[ts.date()] = daily.get(ts.date(), 0) + n
-    return daily
+def floor_hour(dt: datetime) -> datetime:
+    return dt.replace(minute=0, second=0, microsecond=0)
+
+
+def iter_bucket_starts(start: datetime, end: datetime, granularity: str) -> list[datetime]:
+    """Bucket starts covering [start, end) in Africa/Johannesburg."""
+    if granularity == "hourly":
+        out: list[datetime] = []
+        cur = floor_hour(start)
+        while cur < end:
+            out.append(cur)
+            cur += timedelta(hours=1)
+        return out
+    out = []
+    cur = start.date()
+    last = (end - timedelta(seconds=1)).date()
+    while cur <= last:
+        out.append(datetime.combine(cur, datetime.min.time(), tzinfo=TZ))
+        cur += timedelta(days=1)
+    return out
+
+
+def bucket_pageviews(
+    buckets: dict[datetime, int], bucket_start: datetime, granularity: str
+) -> int:
+    """Look up pageviews for a bucket start, tolerating off-by-one-hour API keys."""
+    if granularity == "hourly":
+        for key in (bucket_start, bucket_start - timedelta(hours=1)):
+            if key in buckets:
+                return buckets[key]
+        return 0
+    day = bucket_start.date()
+    total = 0
+    for ts, n in buckets.items():
+        if ts.date() == day:
+            total += n
+    return total
 
 
 def fetch_window_pageviews(
@@ -229,7 +250,7 @@ def fetch_window_pageviews(
     paths: list[str],
     start: datetime,
     end: datetime,
-) -> tuple[dict[date, int], str]:
+) -> tuple[dict[datetime, int], str]:
     """Query paths; prefer hourly inside 30d windows, fall back to daily if hourly is empty."""
     granularity = choose_granularity(start, end)
     merged = filter_buckets(
@@ -250,11 +271,30 @@ def fetch_window_pageviews(
             end,
             granularity,
         )
-    if granularity == "hourly":
-        daily_pv = aggregate_daily_from_hourly(merged)
-    else:
-        daily_pv = {ts.date(): n for ts, n in merged.items()}
-    return daily_pv, granularity
+    return merged, granularity
+
+
+def build_tracked_series(
+    bucket_pv: dict[datetime, int],
+    window_start: datetime,
+    window_end: datetime,
+    effective_start: datetime,
+    granularity: str,
+) -> list[dict]:
+    """Non-cumulative pageview buckets only for the tracked portion of the window."""
+    series: list[dict] = []
+    for bucket_start in iter_bucket_starts(effective_start, window_end, granularity):
+        pv = bucket_pageviews(bucket_pv, bucket_start, granularity)
+        point: dict = {
+            "pageviews": pv,
+            "tracked": True,
+        }
+        if granularity == "hourly":
+            point["timestamp"] = bucket_start.isoformat()
+        else:
+            point["date"] = bucket_start.date().isoformat()
+        series.append(point)
+    return series
 
 
 def edition_view_paths(edition_date: str) -> list[str]:
@@ -289,30 +329,27 @@ def build_views_snapshot(
         return {**base, "total_views": 0, "series": [], "tracking_note": tracking_note}
 
     paths = edition_view_paths(edition_date)
-    daily_pv, granularity = fetch_window_pageviews(
+    bucket_pv, granularity = fetch_window_pageviews(
         api_key, paths, effective_start, window_end
     )
-    total_views = sum(daily_pv.values())
+    series = build_tracked_series(
+        bucket_pv, window_start, window_end, effective_start, granularity
+    )
+    total_views = sum(int(p.get("pageviews") or 0) for p in series)
 
     if os.environ.get("VIEWS_FETCH_DEBUG"):
         print(
-            f"views_fetch: edition={edition_date} granularity={granularity} total={total_views}",
+            f"views_fetch: edition={edition_date} granularity={granularity} "
+            f"buckets={len(series)} total={total_views}",
             file=sys.stderr,
         )
 
-    series: list[dict] = []
-    for day in dates_inclusive(window_start.date(), (window_end - timedelta(seconds=1)).date()):
-        iso = day.isoformat()
-        if day < TRACKING_START.date():
-            series.append({"date": iso, "pageviews": None, "tracked": False})
-        elif day == TRACKING_START.date() and window_start < TRACKING_START:
-            pv = daily_pv.get(day, 0)
-            series.append({"date": iso, "pageviews": pv, "tracked": True})
-        else:
-            pv = daily_pv.get(day, 0)
-            series.append({"date": iso, "pageviews": pv, "tracked": True})
-
-    snap = {**base, "total_views": total_views, "series": series}
+    snap = {
+        **base,
+        "granularity": granularity,
+        "total_views": total_views,
+        "series": series,
+    }
     if tracking_note:
         snap["tracking_note"] = tracking_note
     return snap
