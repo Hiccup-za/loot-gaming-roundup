@@ -250,4 +250,3 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   stroke-linecap:round;stroke-linejoin:round}
 .badges-trend-dot{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
 .badges-trend-fill{stroke:none}
-.badges-trend-foot{margin:0;font:500 12px/1.45 var(--sans);color:var(--text-3)}

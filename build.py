@@ -308,7 +308,6 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   stroke-linecap:round;stroke-linejoin:round}
 .badges-trend-dot{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
 .badges-trend-fill{stroke:none}
-.badges-trend-foot{margin:0;font:500 12px/1.45 var(--sans);color:var(--text-3)}
 """
 
 # Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
@@ -864,7 +863,6 @@ def render_trend_chart(
     empty_message,
     tip_for,
     aria_for,
-    footnote=None,
 ):
     """Shared KPI line chart (badges uses or archive page views per edition)."""
     chart_w, chart_h = 560, 132
@@ -924,15 +922,12 @@ def render_trend_chart(
         f'{"".join(dots)}'
         f"</svg>"
     )
-    foot = ""
-    if footnote:
-        foot = f'<p class="badges-trend-foot">{footnote}</p>'
     return (
         f'<div class="badges-trend-panel">'
         f'<div class="badges-trend-head">'
         f'<span class="badges-trend-title">{escape(panel_title)}</span>'
         f'<span class="badges-trend-range">{range_lbl}</span></div>'
-        f'<div class="badges-trend-chart">{svg}</div>{foot}</div>'
+        f'<div class="badges-trend-chart">{svg}</div></div>'
     )
 
 
@@ -956,12 +951,6 @@ def _views_chart_aria(series, peak):
         f"Page views per edition from {series[0][0]} to {series[-1][0]}. "
         f"Peak day: {fmt_views(peak)} views."
     )
-
-
-VIEWS_CHART_FOOTNOTE = (
-    "Databuddy page views per edition publish window, baked into each edition JSON at build time. "
-    "Tracking live from 22 October 2026; earlier editions show zero."
-)
 
 
 def render_badges(editions):
@@ -1046,7 +1035,7 @@ def render_archive(editions):
         f"{archive_stat_block('Editions', str(n_editions))}"
         f"{archive_stat_block('Stories', str(total_stories))}"
         "</div></div>"
-        f"{render_trend_chart(views_series, panel_title='Views per edition', grad_id='archive-trend-grad', empty_message='No view data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria, footnote=escape(VIEWS_CHART_FOOTNOTE))}"
+        f"{render_trend_chart(views_series, panel_title='Views per edition', grad_id='archive-trend-grad', empty_message='No view data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria)}"
         "</div>"
     )
     nav = (
