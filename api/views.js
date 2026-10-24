@@ -1,3 +1,4 @@
+/** Live today-page views API (archive editions use build-time views_snapshot in JSON). */
 const WEBSITE_ID = 'd2f227a9-4c59-4917-b672-37f4eb3d81f9';
 const TIMEZONE = 'Africa/Johannesburg';
 const TRACKING_START = '2026-10-22';

@@ -4,11 +4,14 @@
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
     python3 build.py --all                      # rebuild every edition, index, archive, sitemap
+    python3 build.py --backfill-views           # fetch views snapshots for all editions (needs DATABUDDY_API_KEY)
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
 """
 import argparse, json, os, re, shutil, sys
 from html import escape
+
+import views_fetch
 
 EDITION_JSON = re.compile(r"^\d{4}-\d{2}-\d{2}\.json$")
 SITE_URL = os.environ.get("LOOT_SITE_URL", "https://loot-gaming-roundup.vercel.app")
@@ -170,9 +173,10 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
-/* Edition views sparkline in sub-header (client-loaded) */
+/* Edition views sparkline in sub-header (baked in at build time) */
 .edition-views{display:flex;align-items:center;gap:8px;margin:0;padding:4px 0;
   font:500 12px/1.3 var(--sans);color:var(--text-3);flex:0 0 auto;min-height:28px}
+.edition-views-muted{color:var(--text-3);opacity:.85;font-size:12px}
 .views-num{font:500 13px/1 var(--mono);color:var(--text-2)}
 .views-word{white-space:nowrap;letter-spacing:.02em}
 .views-spark{display:block;width:88px;height:28px;flex:0 0 auto;opacity:.88;overflow:visible}
@@ -216,72 +220,69 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 }
 """
 
-VIEWS_SCRIPT = r"""
-(function(){
-  var root=document.getElementById("edition-views");
-  if(!root)return;
-  var edition=root.getAttribute("data-edition-date");
-  if(!edition)return;
-  var numEl=document.getElementById("views-total");
-  var fillEl=document.getElementById("views-fill");
-  var lineEl=document.getElementById("views-line");
-  function fmt(n){return n.toLocaleString("en-ZA");}
-  function drawSpark(values){
-    if(!values.length||!lineEl||!fillEl)return;
-    var w=88,h=28,pad=2;
-    var iw=w-pad*2,ih=h-pad*2;
-    var max=0;
-    for(var i=0;i<values.length;i++)if(values[i]>max)max=values[i];
-    if(max<1)max=1;
-    var xs=[],ys=[];
-    for(var j=0;j<values.length;j++){
-      xs.push(pad+(values.length===1?iw/2:(iw*j/(values.length-1))));
-      ys.push(pad+ih-(values[j]/max)*ih);
-    }
-    var line="M"+xs[0]+","+ys[0];
-    for(var k=1;k<xs.length;k++)line+=" L"+xs[k]+","+ys[k];
-    var base=h-pad;
-    var area=line+" L"+xs[xs.length-1]+","+base+" L"+xs[0]+","+base+" Z";
-    lineEl.setAttribute("d",line);
-    fillEl.setAttribute("d",area);
-  }
-  fetch("/api/views?date="+encodeURIComponent(edition),{credentials:"same-origin"})
-    .then(function(r){if(!r.ok)throw 0;return r.json();})
-    .then(function(data){
-      if(!data||data.unavailable)throw 0;
-      var tracked=(data.series||[]).filter(function(p){return p.tracked;});
-      if(!tracked.length)throw 0;
-      var total=typeof data.totalViews==="number"?data.totalViews:0;
-      if(numEl)numEl.textContent=fmt(total);
-      var cum=0,cumVals=[];
-      for(var t=0;t<tracked.length;t++){
-        cum+=tracked[t].pageviews||0;
-        cumVals.push(cum);
-      }
-      if(cumVals.length===1)cumVals=[0,cumVals[0]];
-      drawSpark(cumVals);
-      var tip=data.trackingNote||"Daily page views for this edition (HTML and clean URLs combined).";
-      root.title=tip;
-      root.setAttribute("aria-label",fmt(total)+" total views");
-      root.hidden=false;
-    })
-    .catch(function(){});
-})();
-"""
+def fmt_views(n):
+    return f"{int(n):,}"
 
-def views_sparkline(edition_date):
-    d = escape(edition_date)
+
+def sparkline_paths(cum_vals):
+    w, h, pad = 88, 28, 2
+    if not cum_vals:
+        return "", ""
+    iw, ih = w - pad * 2, h - pad * 2
+    mx = max(cum_vals) or 1
+    xs, ys = [], []
+    for j, val in enumerate(cum_vals):
+        x = pad + (iw / 2 if len(cum_vals) == 1 else iw * j / (len(cum_vals) - 1))
+        ys.append(pad + ih - (val / mx) * ih)
+        xs.append(x)
+    line = f"M{xs[0]:.2f},{ys[0]:.2f}"
+    for k in range(1, len(xs)):
+        line += f" L{xs[k]:.2f},{ys[k]:.2f}"
+    base = h - pad
+    area = f"{line} L{xs[-1]:.2f},{base:.2f} L{xs[0]:.2f},{base:.2f} Z"
+    return line, area
+
+
+def views_sparkline(data):
+    snap = data.get("views_snapshot")
+    if not snap:
+        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+    series = snap.get("series") or []
+    tracked = [p for p in series if p.get("tracked") and p.get("pageviews") is not None]
+    total = snap.get("total_views")
+    if total is None:
+        total = sum(int(p.get("pageviews") or 0) for p in tracked)
+    note = snap.get("tracking_note")
+    if not tracked and total == 0 and not note:
+        return '<p class="edition-views edition-views-muted">Views not recorded</p>'
+    cum, cum_vals = 0, []
+    for p in tracked:
+        cum += int(p.get("pageviews") or 0)
+        cum_vals.append(cum)
+    if len(cum_vals) == 1:
+        cum_vals = [0, cum_vals[0]]
+    line_d, fill_d = sparkline_paths(cum_vals)
+    tip = escape(
+        note
+        or "Page views for this edition's publish window (/YYYY-MM-DD.html and clean URL combined)."
+    )
+    label = escape(f"{fmt_views(total)} total views")
+    grad_id = f"views-grad-{data.get('date', 'x').replace('-', '')}"
+    svg = ""
+    if line_d:
+        svg = (
+            f'<svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false">'
+            f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
+            f"</linearGradient></defs>"
+            f'<path fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
+            f'<path id="views-line" d="{line_d}" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
+            f"</svg>"
+        )
     return (
-        f'<p class="edition-views" id="edition-views" data-edition-date="{d}" hidden>'
-        f'<span class="views-num" id="views-total"></span>'
-        f'<span class="views-word">total views</span>'
-        f'<svg class="views-spark" viewBox="0 0 88 28" width="88" height="28" aria-hidden="true" focusable="false">'
-        f'<defs><linearGradient id="views-grad" x1="0" y1="0" x2="0" y2="1">'
-        f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
-        f'</linearGradient></defs>'
-        f'<path id="views-fill" fill="url(#views-grad)" stroke="none"/>'
-        f'<path id="views-line" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>'
-        f'</svg></p>'
+        f'<p class="edition-views" title="{tip}" aria-label="{label}">'
+        f'<span class="views-num">{fmt_views(total)}</span>'
+        f'<span class="views-word">total views</span>{svg}</p>'
     )
 
 
@@ -306,7 +307,6 @@ def render(data):
     note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
             if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
-    edition_date = data.get("date", "")
     parts = []
     if sections:
         parts.append(f'<main class="feed">{"".join(sections)}</main>')
@@ -354,11 +354,10 @@ def render(data):
 </div>
 </header>
 <div class="wrap" id="top">
-<div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(edition_date)}</div>
+<div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(data)}</div>
 {layout}
 <footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
-<script>{VIEWS_SCRIPT}</script>
 </body>
 </html>
 """
@@ -372,13 +371,89 @@ def list_edition_jsons(root):
 
 
 def load_editions(root):
-    editions = []
+    return [r["data"] for r in load_edition_records(root)]
+
+
+def load_edition_records(root):
+    records = []
     for path in list_edition_jsons(root):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
-        editions.append(data)
-    editions.sort(key=lambda d: d["date"], reverse=True)
-    return editions
+        records.append({"path": path, "data": data})
+    records.sort(key=lambda r: r["data"]["date"])
+    return records
+
+
+def write_edition_json(path, data):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    print("updated", path)
+
+
+def measurement_windows(records):
+    """Publish-to-publish windows in edition date order."""
+    windows = []
+    for i, rec in enumerate(records):
+        ws = views_fetch.infer_published_at(rec["data"])
+        if i + 1 < len(records):
+            we = views_fetch.infer_published_at(records[i + 1]["data"])
+        else:
+            we = views_fetch.now_jhb()
+        windows.append((rec, ws, we))
+    return windows
+
+
+def sync_views(root, *, refresh=False, backfill=False, only_dates=None):
+    api_key = os.environ.get("DATABUDDY_API_KEY")
+    if not api_key:
+        if refresh or backfill:
+            print("DATABUDDY_API_KEY not set; skipping views fetch", file=sys.stderr)
+        return []
+    records = load_edition_records(root)
+    updated_dates = []
+    for rec, ws, we in measurement_windows(records):
+        date_key = rec["data"]["date"]
+        if only_dates and date_key not in only_dates:
+            continue
+        if not views_fetch.needs_views_fetch(rec["data"], we, refresh=refresh, backfill=backfill):
+            continue
+        try:
+            snap = views_fetch.build_views_snapshot(date_key, ws, we, api_key)
+        except RuntimeError as e:
+            print(f"views fetch failed for {date_key}: {e}", file=sys.stderr)
+            continue
+        rec["data"]["views_snapshot"] = snap
+        write_edition_json(rec["path"], rec["data"])
+        updated_dates.append(date_key)
+    return updated_dates
+
+
+def finalize_previous_edition(root, current_date, *, refresh=False, backfill=False):
+    records = load_edition_records(root)
+    prev = None
+    for rec in records:
+        if rec["data"]["date"] == current_date:
+            break
+        prev = rec
+    if not prev:
+        return
+    ws = views_fetch.infer_published_at(prev["data"])
+    we = views_fetch.infer_published_at(
+        next(r for r in records if r["data"]["date"] == current_date)["data"]
+    )
+    if not views_fetch.needs_views_fetch(prev["data"], we, refresh=refresh, backfill=backfill):
+        return
+    api_key = os.environ.get("DATABUDDY_API_KEY")
+    if not api_key:
+        return
+    try:
+        snap = views_fetch.build_views_snapshot(prev["data"]["date"], ws, we, api_key)
+    except RuntimeError as e:
+        print(f"views fetch failed for {prev['data']['date']}: {e}", file=sys.stderr)
+        return
+    prev["data"]["views_snapshot"] = snap
+    write_edition_json(prev["path"], prev["data"])
 
 
 def head_common(title, description, nav, body):
@@ -476,14 +551,16 @@ def build_edition(root, data, output=None, no_index=False):
     return out
 
 
-def build_all(root):
-    editions = load_editions(root)
-    if not editions:
+def build_all(root, *, refresh_views=False, backfill_views=False):
+    sync_views(root, refresh=refresh_views, backfill=backfill_views)
+    records = load_edition_records(root)
+    if not records:
         print("no edition JSON files found", file=sys.stderr)
         sys.exit(1)
     latest_path = None
-    for data in sorted(editions, key=lambda d: d["date"]):
-        latest_path = build_edition(root, data)
+    for rec in records:
+        latest_path = build_edition(root, rec["data"])
+    editions = load_editions(root)
     write_site_extras(root, editions, latest_html=latest_path, update_index=True)
 
 
@@ -491,17 +568,52 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("json_file", nargs="?")
     ap.add_argument("--all", action="store_true", help="rebuild all editions, index, archive, and sitemap")
+    ap.add_argument(
+        "--backfill-views",
+        action="store_true",
+        help="fetch views snapshots for all editions (respects lock unless combined with --refresh-views)",
+    )
+    ap.add_argument(
+        "--refresh-views",
+        action="store_true",
+        help="refetch views even when a closed edition already has a snapshot",
+    )
     ap.add_argument("-o", "--output")
     ap.add_argument("--no-index", action="store_true")
     a = ap.parse_args()
     here = os.path.dirname(os.path.abspath(__file__))
+    if a.backfill_views and not a.all:
+        updated = sync_views(here, refresh=a.refresh_views, backfill=True)
+        records = load_edition_records(here)
+        latest_path = None
+        for rec in records:
+            latest_path = build_edition(here, rec["data"])
+        write_site_extras(
+            here, load_editions(here), latest_html=latest_path, update_index=True
+        )
+        if updated:
+            print("backfilled views for:", ", ".join(updated))
+        return
     if a.all:
-        build_all(here)
+        build_all(here, refresh_views=a.refresh_views, backfill_views=a.backfill_views)
         return
     if not a.json_file:
-        ap.error("json_file is required unless --all is set")
-    with open(a.json_file, encoding="utf-8") as f:
+        ap.error("json_file is required unless --all or --backfill-views is set")
+    json_path = a.json_file if os.path.isabs(a.json_file) else os.path.join(here, a.json_file)
+    with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
+    if not a.output:
+        finalize_previous_edition(
+            here, data["date"], refresh=a.refresh_views, backfill=a.backfill_views
+        )
+        sync_views(
+            here,
+            refresh=a.refresh_views,
+            backfill=a.backfill_views,
+            only_dates=[data["date"]],
+        )
+        with open(json_path, encoding="utf-8") as f:
+            data = json.load(f)
     out = build_edition(here, data, a.output, a.no_index)
     if not a.output:
         editions = load_editions(here)
