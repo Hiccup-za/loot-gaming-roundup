@@ -371,10 +371,10 @@
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says \"in the days to follow\").",
   "views_snapshot": {
     "window_start": "2026-10-24T08:00:00+02:00",
-    "window_end": "2026-10-24T14:47:35.670359+02:00",
-    "fetched_at": "2026-10-24T14:47:38.671124+02:00",
+    "window_end": "2026-10-25T08:00:00+02:00",
+    "fetched_at": "2026-10-25T11:44:50.167028+02:00",
     "granularity": "hourly",
-    "total_views": 24,
+    "total_views": 61,
     "series": [
       {
         "pageviews": 0,
@@ -407,9 +407,94 @@
         "timestamp": "2026-10-24T13:00:00+02:00"
       },
       {
-        "pageviews": 11,
+        "pageviews": 13,
         "tracked": true,
         "timestamp": "2026-10-24T14:00:00+02:00"
+      },
+      {
+        "pageviews": 5,
+        "tracked": true,
+        "timestamp": "2026-10-24T15:00:00+02:00"
+      },
+      {
+        "pageviews": 4,
+        "tracked": true,
+        "timestamp": "2026-10-24T16:00:00+02:00"
+      },
+      {
+        "pageviews": 12,
+        "tracked": true,
+        "timestamp": "2026-10-24T17:00:00+02:00"
+      },
+      {
+        "pageviews": 12,
+        "tracked": true,
+        "timestamp": "2026-10-24T18:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T19:00:00+02:00"
+      },
+      {
+        "pageviews": 1,
+        "tracked": true,
+        "timestamp": "2026-10-24T20:00:00+02:00"
+      },
+      {
+        "pageviews": 1,
+        "tracked": true,
+        "timestamp": "2026-10-24T21:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T22:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-24T23:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T00:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T01:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T02:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T03:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T04:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T05:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T06:00:00+02:00"
+      },
+      {
+        "pageviews": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T07:00:00+02:00"
       }
     ]
   }

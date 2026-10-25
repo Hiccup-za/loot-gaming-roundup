@@ -356,7 +356,7 @@
   "views_snapshot": {
     "window_start": "2026-10-22T08:00:00+02:00",
     "window_end": "2026-10-23T08:00:00+02:00",
-    "fetched_at": "2026-10-24T14:47:35.674419+02:00",
+    "fetched_at": "2026-10-25T11:44:47.737141+02:00",
     "granularity": "hourly",
     "total_views": 8,
     "series": [

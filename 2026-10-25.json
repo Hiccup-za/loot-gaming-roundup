@@ -315,15 +315,30 @@
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2, and what carries over in AC Black Flag Resynced's New Game Plus.",
   "views_snapshot": {
     "window_start": "2026-10-25T08:00:00+02:00",
-    "window_end": "2026-10-25T08:02:26.486183+02:00",
-    "fetched_at": "2026-10-25T08:02:26.486193+02:00",
-    "granularity": "daily",
-    "total_views": 0,
+    "window_end": "2026-10-25T11:44:47.734291+02:00",
+    "fetched_at": "2026-10-25T11:44:51.374945+02:00",
+    "granularity": "hourly",
+    "total_views": 6,
     "series": [
       {
-        "pageviews": 0,
+        "pageviews": 1,
         "tracked": true,
-        "date": "2026-10-25"
+        "timestamp": "2026-10-25T08:00:00+02:00"
+      },
+      {
+        "pageviews": 1,
+        "tracked": true,
+        "timestamp": "2026-10-25T09:00:00+02:00"
+      },
+      {
+        "pageviews": 2,
+        "tracked": true,
+        "timestamp": "2026-10-25T10:00:00+02:00"
+      },
+      {
+        "pageviews": 2,
+        "tracked": true,
+        "timestamp": "2026-10-25T11:00:00+02:00"
       }
     ]
   }
