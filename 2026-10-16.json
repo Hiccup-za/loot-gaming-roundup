@@ -309,9 +309,9 @@
   "views_snapshot": {
     "window_start": "2026-10-16T08:00:00+02:00",
     "window_end": "2026-10-17T08:00:00+02:00",
-    "fetched_at": "2026-10-25T11:44:47.735490+02:00",
-    "total_views": 0,
+    "fetched_at": "2026-10-25T13:03:06.510593+02:00",
+    "total_unique_visitors": 0,
     "series": [],
-    "tracking_note": "View tracking began on 22 October 2026 at about 15:00 SAST. This edition's measurement window ended before tracking was live."
+    "tracking_note": "Visitor tracking began on 22 October 2026 at about 15:00 SAST. This edition's measurement window ended before tracking was live."
   }
 }

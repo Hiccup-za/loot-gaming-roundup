@@ -372,127 +372,128 @@
   "views_snapshot": {
     "window_start": "2026-10-24T08:00:00+02:00",
     "window_end": "2026-10-25T08:00:00+02:00",
-    "fetched_at": "2026-10-25T11:44:50.167028+02:00",
+    "fetched_at": "2026-10-25T13:03:11.875792+02:00",
     "granularity": "hourly",
-    "total_views": 61,
+    "total_unique_visitors": 2,
+    "primary_path": "/2026-10-24.html",
     "series": [
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T08:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T09:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T10:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T11:00:00+02:00"
       },
       {
-        "pageviews": 1,
+        "visitors": 1,
         "tracked": true,
         "timestamp": "2026-10-24T12:00:00+02:00"
       },
       {
-        "pageviews": 12,
+        "visitors": 2,
         "tracked": true,
         "timestamp": "2026-10-24T13:00:00+02:00"
       },
       {
-        "pageviews": 13,
+        "visitors": 2,
         "tracked": true,
         "timestamp": "2026-10-24T14:00:00+02:00"
       },
       {
-        "pageviews": 5,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T15:00:00+02:00"
       },
       {
-        "pageviews": 4,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T16:00:00+02:00"
       },
       {
-        "pageviews": 12,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T17:00:00+02:00"
       },
       {
-        "pageviews": 12,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T18:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T19:00:00+02:00"
       },
       {
-        "pageviews": 1,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T20:00:00+02:00"
       },
       {
-        "pageviews": 1,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T21:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T22:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-24T23:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T00:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T01:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T02:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T03:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T04:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T05:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T06:00:00+02:00"
       },
       {
-        "pageviews": 0,
+        "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T07:00:00+02:00"
       }
