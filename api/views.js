@@ -1,4 +1,11 @@
-/** Live today-page views API (archive editions use build-time views_snapshot in JSON). */
+/** Live today-page visitor API (archive editions use build-time views_snapshot in JSON).
+
+Dated paths only (`/YYYY-MM-DD.html` and `/YYYY-MM-DD`). Series is `visitors`
+per day from `events_by_date` (the higher of the two paths, not the sum).
+The total is `summary_metrics` `unique_visitors` (or `top_pages` `visitors`),
+the higher of the two paths. Home (`/`) is not added: uniques overlap and
+cannot be combined. Do not sum the daily series into the total.
+*/
 const WEBSITE_ID = 'd2f227a9-4c59-4917-b672-37f4eb3d81f9';
 const TIMEZONE = 'Africa/Johannesburg';
 const TRACKING_START = '2026-10-22';
@@ -72,12 +79,13 @@ function rowDate(row) {
   return row.date || row.day || row.period || row.bucket;
 }
 
-function rowPageviews(row) {
-  const n = row.pageviews ?? row.page_views ?? row.views ?? row.count ?? 0;
-  return Number(n) || 0;
+function rowVisitors(row) {
+  if (row.visitors != null) return Number(row.visitors) || 0;
+  if (row.unique_visitors != null) return Number(row.unique_visitors) || 0;
+  return 0;
 }
 
-async function queryPathPageviews(apiKey, path, startDate, endDate) {
+async function postQuery(apiKey, body) {
   const qs = new URLSearchParams({
     website_id: WEBSITE_ID,
     timezone: TIMEZONE,
@@ -88,29 +96,87 @@ async function queryPathPageviews(apiKey, path, startDate, endDate) {
       'Content-Type': 'application/json',
       'x-api-key': apiKey,
     },
-    body: JSON.stringify({
-      parameters: ['events_by_date'],
-      startDate,
-      endDate,
-      granularity: 'daily',
-      filters: [{ field: 'path', op: 'eq', value: path }],
-    }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
     const text = await res.text().catch(() => '');
     throw new Error(`Databuddy ${res.status}: ${text.slice(0, 200)}`);
   }
-  const payload = await res.json();
+  return res.json();
+}
+
+function summaryUniqueVisitors(payload) {
   const rows = extractRows(payload);
+  if (rows[0] && rows[0].unique_visitors != null) {
+    return Number(rows[0].unique_visitors) || 0;
+  }
+  const data = payload && payload.data;
+  if (Array.isArray(data) && data[0]) {
+    if (data[0].unique_visitors != null) return Number(data[0].unique_visitors) || 0;
+    const inner = data[0].data;
+    if (Array.isArray(inner) && inner[0] && inner[0].unique_visitors != null) {
+      return Number(inner[0].unique_visitors) || 0;
+    }
+  }
+  return null;
+}
+
+function topPagesVisitors(payload, path) {
+  const rows = extractRows(payload);
+  let first = null;
+  for (const row of rows) {
+    if (!row || typeof row !== 'object') continue;
+    let n = null;
+    if (row.visitors != null) n = Number(row.visitors) || 0;
+    else if (row.unique_visitors != null) n = Number(row.unique_visitors) || 0;
+    if (n == null) continue;
+    if (first == null) first = n;
+    const rowPath = row.path || row.name || row.page;
+    if (rowPath === path) return n;
+  }
+  return first;
+}
+
+async function queryPathVisitors(apiKey, path, startDate, endDate) {
+  const payload = await postQuery(apiKey, {
+    parameters: ['events_by_date'],
+    startDate,
+    endDate,
+    granularity: 'daily',
+    limit: 10000,
+    filters: [{ field: 'path', op: 'eq', value: path }],
+  });
   /** @type {Map<string, number>} */
   const byDate = new Map();
-  for (const row of rows) {
+  for (const row of extractRows(payload)) {
     const d = rowDate(row);
     if (!d) continue;
     const iso = String(d).slice(0, 10);
-    byDate.set(iso, (byDate.get(iso) || 0) + rowPageviews(row));
+    const n = rowVisitors(row);
+    const prev = byDate.get(iso);
+    byDate.set(iso, prev == null ? n : Math.max(prev, n));
   }
   return byDate;
+}
+
+async function queryPathUniqueVisitors(apiKey, path, startDate, endDate) {
+  const summary = await postQuery(apiKey, {
+    parameters: ['summary_metrics'],
+    startDate,
+    endDate,
+    filters: [{ field: 'path', op: 'eq', value: path }],
+  });
+  const unique = summaryUniqueVisitors(summary);
+  if (unique != null) return unique;
+  const pages = await postQuery(apiKey, {
+    parameters: ['top_pages'],
+    startDate,
+    endDate,
+    limit: 5,
+    filters: [{ field: 'path', op: 'eq', value: path }],
+  });
+  const n = topPagesVisitors(pages, path);
+  return n == null ? 0 : n;
 }
 
 async function buildViewsResponse(editionDate, apiKey) {
@@ -118,34 +184,41 @@ async function buildViewsResponse(editionDate, apiKey) {
   const queryStart =
     editionDate > TRACKING_START ? editionDate : TRACKING_START;
 
-  const paths = [`/${editionDate}.html`, `/${editionDate}`, '/'];
+  const paths = [`/${editionDate}.html`, `/${editionDate}`];
 
   /** @type {Map<string, number>[]} */
   const pathMaps = paths.map(() => new Map());
+  /** @type {number[]} */
+  const pathTotals = paths.map(() => 0);
   if (queryStart <= endDate) {
-    const results = await Promise.all(
-      paths.map((path) => queryPathPageviews(apiKey, path, queryStart, endDate)),
+    const seriesResults = await Promise.all(
+      paths.map((path) => queryPathVisitors(apiKey, path, queryStart, endDate)),
     );
-    results.forEach((m, i) => {
-      pathMaps[i] = m;
+    seriesResults.forEach((map, i) => {
+      pathMaps[i] = map;
+    });
+    const totals = await Promise.all(
+      paths.map((path) => queryPathUniqueVisitors(apiKey, path, queryStart, endDate)),
+    );
+    totals.forEach((n, i) => {
+      pathTotals[i] = n;
     });
   }
 
   const allDays = datesBetween(editionDate, endDate);
   const series = allDays.map((date) => {
     if (date < TRACKING_START) {
-      return { date, pageviews: null, tracked: false };
+      return { date, visitors: null, tracked: false };
     }
-    const pv = pathMaps.reduce((sum, m) => sum + (m.get(date) || 0), 0);
-    return { date, pageviews: pv, tracked: true };
+    const visitors = pathMaps.reduce((best, map) => Math.max(best, map.get(date) || 0), 0);
+    return { date, visitors, tracked: true };
   });
 
-  const tracked = series.filter((p) => p.tracked);
-  const totalViews = tracked.reduce((s, p) => s + (p.pageviews || 0), 0);
-  let launchDayViews = null;
+  const totalUniqueVisitors = pathTotals.reduce((best, n) => Math.max(best, n), 0);
+  let launchDayVisitors = null;
   if (editionDate >= TRACKING_START) {
     const launch = series.find((p) => p.date === editionDate);
-    launchDayViews = launch ? launch.pageviews : 0;
+    launchDayVisitors = launch ? launch.visitors : 0;
   }
 
   return {
@@ -153,13 +226,13 @@ async function buildViewsResponse(editionDate, apiKey) {
     trackingStart: TRACKING_START,
     trackingNote:
       editionDate < TRACKING_START
-        ? 'View tracking began 22 October 2026. Earlier days on this chart are not measured.'
+        ? 'Visitor tracking began 22 October 2026. Earlier days on this chart are not measured.'
         : null,
     startDate: editionDate,
     endDate,
     series,
-    launchDayViews,
-    totalViews,
+    launchDayVisitors,
+    totalUniqueVisitors,
     unavailable: false,
   };
 }

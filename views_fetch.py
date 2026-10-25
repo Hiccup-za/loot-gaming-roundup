@@ -1,4 +1,12 @@
-"""Databuddy pageview snapshots for edition publish windows (stdlib only)."""
+"""Databuddy unique-visitor snapshots for edition publish windows (stdlib only).
+
+Series come from ``events_by_date`` (``visitors`` per bucket). The edition total
+is ``summary_metrics`` ``unique_visitors`` for each dated path, and the higher
+of those two figures. Hourly or daily ``visitors`` are not added up: the same
+person in two buckets is counted twice (a checked example summed to 29 against
+a true unique of 19). ``/`` is not included. Unique visitors on the home page
+overlap the dated URLs and there is no union query.
+"""
 from __future__ import annotations
 
 import json
@@ -16,18 +24,23 @@ TRACKING_START = datetime(2026, 10, 22, 15, 0, 0, tzinfo=TZ)
 DEFAULT_PUBLISH_TIME = (8, 0)  # 08:00 Africa/Johannesburg when published_at omitted
 
 TRACKING_NOTE_PARTIAL = (
-    "View tracking began on 22 October 2026 at about 15:00 SAST. "
-    "Views before that time in this window are not measured."
+    "Visitor tracking began on 22 October 2026 at about 15:00 SAST. "
+    "Visitors before that time in this window are not measured."
 )
 TRACKING_NOTE_BEFORE = (
-    "View tracking began on 22 October 2026 at about 15:00 SAST. "
+    "Visitor tracking began on 22 October 2026 at about 15:00 SAST. "
     "This edition's measurement window ended before tracking was live."
 )
 
-VIEWS_PATHS_TOOLTIP = (
-    "Page views for this edition's publish window "
-    "(/YYYY-MM-DD.html, clean URL, and / while this edition was the home page)."
+VISITORS_PATHS_TOOLTIP = (
+    "Unique visitors for this edition's publish window "
+    "(/YYYY-MM-DD.html and /YYYY-MM-DD). "
+    "The line shows when they arrived. "
+    "Reloading the page does not increase the total. "
+    "Home-page (/) visits are not added, because unique visitors cannot be combined across paths."
 )
+# Older name kept so callers written against the page-view tooltip still resolve.
+VIEWS_PATHS_TOOLTIP = VISITORS_PATHS_TOOLTIP
 
 
 def now_jhb() -> datetime:
@@ -56,6 +69,25 @@ def infer_published_at(data: dict) -> datetime:
 def add_days(iso: str, days: int) -> str:
     d = date.fromisoformat(iso)
     return (d + timedelta(days=days)).isoformat()
+
+
+def query_date_bounds(start: datetime, end: datetime) -> tuple[str, str]:
+    """Inclusive calendar dates overlapping ``[start, end)``.
+
+    Databuddy ``summary_metrics`` and ``events_by_date`` take calendar dates,
+    not hours. The end date is the last instant inside the window, so an
+    exclusive midnight boundary does not pull in the next day. A window that
+    ends at 08:00 still includes that calendar day, and the unique total can
+    therefore include later the same day on that dated URL. The series is
+    clipped to the hour window afterwards. The total is never the sum of the
+    series.
+    """
+    start_d = start.astimezone(TZ).date()
+    last = end.astimezone(TZ) - timedelta(microseconds=1)
+    end_d = last.date()
+    if end_d < start_d:
+        end_d = start_d
+    return start_d.isoformat(), end_d.isoformat()
 
 
 def _unwrap_parameter_blocks(items: list) -> list:
@@ -99,14 +131,61 @@ def extract_rows(payload) -> list:
     return []
 
 
-def row_pageviews(row: dict) -> int:
-    for key in ("pageviews", "page_views", "views", "count", "value"):
-        if key in row:
-            try:
-                return int(row[key]) or 0
-            except (TypeError, ValueError):
-                return 0
+def _coerce_int(value) -> int | None:
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def row_visitors(row: dict) -> int:
+    """Visitors in one ``events_by_date`` bucket. Never pageviews."""
+    for key in ("visitors", "unique_visitors"):
+        if key in row and row[key] is not None:
+            return _coerce_int(row[key]) or 0
     return 0
+
+
+def summary_unique_visitors(payload) -> int | None:
+    """``summary_metrics`` → ``data[0].unique_visitors``, or None if absent."""
+    rows = [r for r in extract_rows(payload) if isinstance(r, dict)]
+    if rows and "unique_visitors" in rows[0]:
+        return _coerce_int(rows[0].get("unique_visitors")) or 0
+    data = payload.get("data") if isinstance(payload, dict) else None
+    if isinstance(data, list) and data and isinstance(data[0], dict):
+        row = data[0]
+        if "unique_visitors" in row:
+            return _coerce_int(row.get("unique_visitors")) or 0
+        inner = row.get("data")
+        if (
+            isinstance(inner, list)
+            and inner
+            and isinstance(inner[0], dict)
+            and "unique_visitors" in inner[0]
+        ):
+            return _coerce_int(inner[0].get("unique_visitors")) or 0
+    return None
+
+
+def top_pages_visitors(payload, path: str) -> int | None:
+    """``top_pages`` → ``visitors`` for ``path``, else the first row."""
+    rows = [r for r in extract_rows(payload) if isinstance(r, dict)]
+    first = None
+    for row in rows:
+        if "visitors" in row and row["visitors"] is not None:
+            n = _coerce_int(row.get("visitors")) or 0
+        elif "unique_visitors" in row and row["unique_visitors"] is not None:
+            n = _coerce_int(row.get("unique_visitors")) or 0
+        else:
+            continue
+        if first is None:
+            first = n
+        row_path = row.get("path") or row.get("name") or row.get("page")
+        if row_path == path:
+            return n
+    return first
 
 
 def parse_bucket_datetime(row: dict) -> datetime | None:
@@ -128,36 +207,42 @@ def parse_bucket_datetime(row: dict) -> datetime | None:
     return None
 
 
-def query_path_pageviews(
+def post_query(api_key: str, body: dict):
+    qs = urllib.parse.urlencode({"website_id": WEBSITE_ID, "timezone": "Africa/Johannesburg"})
+    url = f"https://api.databuddy.cc/v1/query?{qs}"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        method="POST",
+        headers={"Content-Type": "application/json", "x-api-key": api_key},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")[:300]
+        raise RuntimeError(f"Databuddy HTTP {e.code}: {detail}") from e
+
+
+def query_path_visitors(
     api_key: str,
     path: str,
     start: datetime,
     end: datetime,
     granularity: str,
 ) -> dict[datetime, int]:
-    qs = urllib.parse.urlencode({"website_id": WEBSITE_ID, "timezone": "Africa/Johannesburg"})
-    url = f"https://api.databuddy.cc/v1/query?{qs}"
-    body = json.dumps(
+    start_s, end_s = query_date_bounds(start, end)
+    payload = post_query(
+        api_key,
         {
             "parameters": ["events_by_date"],
-            "startDate": start.date().isoformat(),
-            "endDate": end.date().isoformat(),
+            "startDate": start_s,
+            "endDate": end_s,
             "granularity": granularity,
+            "limit": 10000,
             "filters": [{"field": "path", "op": "eq", "value": path}],
-        }
-    ).encode("utf-8")
-    req = urllib.request.Request(
-        url,
-        data=body,
-        method="POST",
-        headers={"Content-Type": "application/json", "x-api-key": api_key},
+        },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", errors="replace")[:300]
-        raise RuntimeError(f"Databuddy HTTP {e.code}: {detail}") from e
     rows = extract_rows(payload)
     by_bucket: dict[datetime, int] = {}
     for row in rows:
@@ -165,21 +250,61 @@ def query_path_pageviews(
         if ts is None:
             continue
         ts = ts.astimezone(TZ)
-        by_bucket[ts] = by_bucket.get(ts, 0) + row_pageviews(row)
+        # Same bucket on one path: keep the higher visitors figure, do not add.
+        n = row_visitors(row)
+        prev = by_bucket.get(ts)
+        by_bucket[ts] = n if prev is None else max(prev, n)
     if os.environ.get("VIEWS_FETCH_DEBUG"):
         total = sum(by_bucket.values())
         print(
-            f"views_fetch: path={path!r} {granularity} rows={len(rows)} buckets={len(by_bucket)} pv={total}",
+            f"views_fetch: path={path!r} {granularity} rows={len(rows)} "
+            f"buckets={len(by_bucket)} visitors={total}",
             file=sys.stderr,
         )
     return by_bucket
 
 
-def merge_path_maps(*maps: dict[datetime, int]) -> dict[datetime, int]:
+def query_path_unique_visitors(
+    api_key: str,
+    path: str,
+    start: datetime,
+    end: datetime,
+) -> int:
+    """True uniques for ``path`` over the calendar dates overlapping the window."""
+    start_s, end_s = query_date_bounds(start, end)
+    summary = post_query(
+        api_key,
+        {
+            "parameters": ["summary_metrics"],
+            "startDate": start_s,
+            "endDate": end_s,
+            "filters": [{"field": "path", "op": "eq", "value": path}],
+        },
+    )
+    unique = summary_unique_visitors(summary)
+    if unique is not None:
+        return unique
+    pages = post_query(
+        api_key,
+        {
+            "parameters": ["top_pages"],
+            "startDate": start_s,
+            "endDate": end_s,
+            "limit": 5,
+            "filters": [{"field": "path", "op": "eq", "value": path}],
+        },
+    )
+    n = top_pages_visitors(pages, path)
+    return 0 if n is None else n
+
+
+def merge_visitor_maps(*maps: dict[datetime, int]) -> dict[datetime, int]:
+    """Per bucket, the higher visitors count. Do not add paths together."""
     out: dict[datetime, int] = {}
     for m in maps:
         for ts, n in m.items():
-            out[ts] = out.get(ts, 0) + n
+            prev = out.get(ts)
+            out[ts] = n if prev is None else max(prev, n)
     return out
 
 
@@ -228,44 +353,64 @@ def iter_bucket_starts(start: datetime, end: datetime, granularity: str) -> list
     return out
 
 
-def bucket_pageviews(
+def align_hourly_buckets(
+    buckets: dict[datetime, int], start: datetime, end: datetime
+) -> dict[datetime, int]:
+    """Use on-grid hours. If every hit is an hour early, shift the map once.
+
+    A missing hour must stay zero. Looking back one hour per bucket copies the
+    previous hour into the gap (a reload-free visitor in hour N would also
+    appear in hour N+1).
+    """
+    starts = iter_bucket_starts(start, end, "hourly")
+    exact = sum(1 for b in starts if b in buckets)
+    shifted = sum(
+        1 for b in starts if b not in buckets and (b - timedelta(hours=1)) in buckets
+    )
+    if exact >= shifted:
+        return buckets
+    return {ts + timedelta(hours=1): n for ts, n in buckets.items()}
+
+
+def bucket_visitors(
     buckets: dict[datetime, int], bucket_start: datetime, granularity: str
 ) -> int:
-    """Look up pageviews for a bucket start, tolerating off-by-one-hour API keys."""
+    """Look up visitors for a bucket start. Hourly keys are already aligned."""
     if granularity == "hourly":
-        for key in (bucket_start, bucket_start - timedelta(hours=1)):
-            if key in buckets:
-                return buckets[key]
-        return 0
+        return buckets.get(bucket_start, 0)
     day = bucket_start.date()
-    total = 0
+    best = 0
+    found = False
     for ts, n in buckets.items():
         if ts.date() == day:
-            total += n
-    return total
+            found = True
+            best = max(best, n)
+    return best if found else 0
 
 
-def fetch_window_pageviews(
+def fetch_window_visitors(
     api_key: str,
     paths: list[str],
     start: datetime,
     end: datetime,
 ) -> tuple[dict[datetime, int], str]:
-    """Query paths; prefer hourly inside 30d windows, fall back to daily if hourly is empty."""
+    """Query dated paths. Prefer hourly inside 30-day windows; fall back to daily if empty."""
     granularity = choose_granularity(start, end)
     merged = filter_buckets(
-        merge_path_maps(
-            *(query_path_pageviews(api_key, p, start, end, granularity) for p in paths)
+        merge_visitor_maps(
+            *(query_path_visitors(api_key, p, start, end, granularity) for p in paths)
         ),
         start,
         end,
         granularity,
     )
+    if granularity == "hourly":
+        merged = align_hourly_buckets(merged, start, end)
     if granularity == "hourly" and sum(merged.values()) == 0:
         granularity = "daily"
         merged = filter_buckets(
-            merge_path_maps(
-                *(query_path_pageviews(api_key, p, start, end, granularity) for p in paths)
+            merge_visitor_maps(
+                *(query_path_visitors(api_key, p, start, end, granularity) for p in paths)
             ),
             start,
             end,
@@ -275,18 +420,18 @@ def fetch_window_pageviews(
 
 
 def build_tracked_series(
-    bucket_pv: dict[datetime, int],
+    bucket_visitors_map: dict[datetime, int],
     window_start: datetime,
     window_end: datetime,
     effective_start: datetime,
     granularity: str,
 ) -> list[dict]:
-    """Non-cumulative pageview buckets only for the tracked portion of the window."""
+    """Non-cumulative visitor buckets for the tracked portion of the window."""
     series: list[dict] = []
     for bucket_start in iter_bucket_starts(effective_start, window_end, granularity):
-        pv = bucket_pageviews(bucket_pv, bucket_start, granularity)
+        n = bucket_visitors(bucket_visitors_map, bucket_start, granularity)
         point: dict = {
-            "pageviews": pv,
+            "visitors": n,
             "tracked": True,
         }
         if granularity == "hourly":
@@ -298,7 +443,20 @@ def build_tracked_series(
 
 
 def edition_view_paths(edition_date: str) -> list[str]:
-    return [f"/{edition_date}.html", f"/{edition_date}", "/"]
+    """Dated URLs only.
+
+    ``/YYYY-MM-DD.html`` and ``/YYYY-MM-DD``. Home (``/``) is intentionally
+    omitted: its unique visitors overlap these paths and cannot be added on.
+    """
+    return [f"/{edition_date}.html", f"/{edition_date}"]
+
+
+def choose_primary_total(path_totals: dict[str, int]) -> tuple[str, int]:
+    """Higher unique total. On a tie, prefer the ``.html`` path."""
+    if not path_totals:
+        return "", 0
+    primary = max(path_totals, key=lambda p: (path_totals[p], p.endswith(".html")))
+    return primary, path_totals[primary]
 
 
 def build_views_snapshot(
@@ -317,7 +475,7 @@ def build_views_snapshot(
     if window_end <= TRACKING_START:
         return {
             **base,
-            "total_views": 0,
+            "total_unique_visitors": 0,
             "series": [],
             "tracking_note": TRACKING_NOTE_BEFORE,
         }
@@ -326,28 +484,40 @@ def build_views_snapshot(
     tracking_note = TRACKING_NOTE_PARTIAL if window_start < TRACKING_START else None
 
     if effective_start >= window_end:
-        return {**base, "total_views": 0, "series": [], "tracking_note": tracking_note}
+        snap = {**base, "total_unique_visitors": 0, "series": []}
+        if tracking_note:
+            snap["tracking_note"] = tracking_note
+        return snap
 
     paths = edition_view_paths(edition_date)
-    bucket_pv, granularity = fetch_window_pageviews(
+    path_totals = {
+        path: query_path_unique_visitors(api_key, path, effective_start, window_end)
+        for path in paths
+    }
+    primary_path, total_unique = choose_primary_total(path_totals)
+    bucket_map, granularity = fetch_window_visitors(
         api_key, paths, effective_start, window_end
     )
     series = build_tracked_series(
-        bucket_pv, window_start, window_end, effective_start, granularity
+        bucket_map, window_start, window_end, effective_start, granularity
     )
-    total_views = sum(int(p.get("pageviews") or 0) for p in series)
+    # Do not use this sum as the edition total. It double-counts people who
+    # appear in more than one hour or day.
+    series_sum = sum(int(p.get("visitors") or 0) for p in series)
 
     if os.environ.get("VIEWS_FETCH_DEBUG"):
         print(
             f"views_fetch: edition={edition_date} granularity={granularity} "
-            f"buckets={len(series)} total={total_views}",
+            f"buckets={len(series)} series_sum={series_sum} unique={total_unique} "
+            f"primary={primary_path}",
             file=sys.stderr,
         )
 
     snap = {
         **base,
         "granularity": granularity,
-        "total_views": total_views,
+        "total_unique_visitors": total_unique,
+        "primary_path": primary_path,
         "series": series,
     }
     if tracking_note:
