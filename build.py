@@ -187,7 +187,13 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
 .views-line{stroke:var(--accent);fill:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
 .views-stop-top{stop-color:var(--accent-tint)}
 .views-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
-@media(max-width:479px){.edition-views{width:100%;justify-content:flex-end}}
+@media(max-width:479px){
+  .intro{align-items:flex-start;row-gap:4px}
+  .intro>.edition-views{flex:1 1 100%;flex-wrap:nowrap;align-items:center;gap:10px;min-width:0;
+    min-height:28px;padding:2px 0}
+  .intro>.edition-views .views-num,.intro>.edition-views .views-word{flex:0 0 auto}
+  .intro>.edition-views .views-spark{flex:1 1 auto;width:auto;min-width:0;height:28px;max-width:none;
+    overflow:hidden}}
 
 /* Archive: one card per edition, newest first */
 .archive-cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -446,7 +452,7 @@ def views_sparkline(
     if line_d:
         svg = (
             f'<svg class="views-spark" viewBox="0 0 {spark_w} {spark_h}" width="{spark_w}" height="{spark_h}" '
-            f'aria-hidden="true" focusable="false">'
+            f'preserveAspectRatio="none" aria-hidden="true" focusable="false">'
             f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
             f'<stop class="views-stop-top" offset="0%"/><stop class="views-stop-bottom" offset="100%"/>'
             f"</linearGradient></defs>"
