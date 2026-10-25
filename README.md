@@ -1,6 +1,6 @@
 # Loot's Gaming Roundup: page generator
 
-Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages are **generated** — do not edit them by hand. All CSS is inline (the theme lives in `brand/theme.css` and is copied into the `CSS` string in `build.py`). Edition pages show a compact **views sparkline and total** in the header intro; those numbers are **fetched once at build time** from Databuddy and stored in the JSON (`views_snapshot`). There is no client-side stats fetch on archive pages (or on today's page for now). Fonts (Inter Tight, Inter, JetBrains Mono) come from Google Fonts with system-font fallbacks. The logo, favicons and share image live in `brand/` and are referenced from every page, so keep `brand/` deployed alongside the pages.
+Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages are **generated** — do not edit them by hand. All CSS is inline (the theme lives in `brand/theme.css` and is copied into the `CSS` string in `build.py`). Edition pages show a compact **unique-visitor sparkline and total** in the header intro; those numbers are **fetched once at build time** from Databuddy and stored in the JSON (`views_snapshot`). There is no client-side stats fetch on archive pages (or on today's page for now). Fonts (Inter Tight, Inter, JetBrains Mono) come from Google Fonts with system-font fallbacks. The logo, favicons and share image live in `brand/` and are referenced from every page, so keep `brand/` deployed alongside the pages.
 
 ## Source of truth and publishing
 
@@ -9,7 +9,7 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | `YYYY-MM-DD.json` | **Source of truth** for each day's stories and **views snapshot** |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
-| `archive.html` | Generated archive: KPI and views-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
+| `archive.html` | Generated archive: KPI and visitors-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
 | `badges.html` | Generated index of every story/release tag across all editions, with occurrence counts |
 | `sitemap.xml` | Generated sitemap for search engines |
 
@@ -29,7 +29,7 @@ Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `verce
    export DATABUDDY_API_KEY='…'   # same secret name as Vercel / GitHub
    python3 build.py YYYY-MM-DD.json
    ```
-   This writes HTML, **finalises the previous edition's views window** (publish-to-publish), fetches or refreshes snapshots per the lock rules, and **writes `views_snapshot` back into the JSON**.
+   This writes HTML, **finalises the previous edition's measurement window** (publish-to-publish), fetches or refreshes unique-visitor snapshots per the lock rules, and **writes `views_snapshot` back into the JSON**.
 5. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, `badges.html`, and `sitemap.xml` if you ran `--all`.
 6. Push to `main` (or open a PR). Vercel runs the full build on every deployment.
 
@@ -38,39 +38,50 @@ Each edition page links to **Past roundups** (`/archive.html`) in the footer and
 ## Files
 
 - `build.py`: the generator (Python 3 standard library only)
-- `views_fetch.py`: Databuddy queries for publish-window page views (used by `build.py`)
-- `api/views.js`: Vercel serverless route — **reserved for a future live "today" page**; archive and static editions do not call it
+- `views_fetch.py`: Databuddy queries for publish-window unique visitors (used by `build.py`)
+- `api/views.js`: Vercel serverless route — **reserved for a future live "today" page**; archive and static editions do not call it. It uses the same unique-visitor rules (dated paths, `summary_metrics` total, `visitors` per day)
 - `vercel.json`: Vercel build command and clean-URL rewrites
 - `.github/workflows/build.yml`: CI build; passes **`DATABUDDY_API_KEY`** from GitHub Actions secrets when set
 
-## Databuddy page views (build time)
+## Databuddy unique visitors (build time)
 
 - **Website ID:** `d2f227a9-4c59-4917-b672-37f4eb3d81f9`, timezone **Africa/Johannesburg**
 - **API:** `POST https://api.databuddy.cc/v1/query` with header **`x-api-key`** from env **`DATABUDDY_API_KEY`**
 - **Measurement window:** from this edition's **`published_at`** until the **next** edition's `published_at` (not calendar midnight). If `published_at` is omitted, the build assumes **08:00 Africa/Johannesburg** on the edition `date` (override in JSON when you publish at a different time).
-- **Paths merged:** `/YYYY-MM-DD.html`, `/YYYY-MM-DD`, and **`/`** (home page while that edition was live)
-- **Tracking live from ~15:00 SAST on 22 October 2026** — older portions of a window get an honest `tracking_note`; the build does not invent zero views before tracking existed.
-- **`views_snapshot.series`** stores **non-cumulative** pageviews per **hour** (or per day when the window is longer than 30 days). The header sparkline plots the **cumulative** sum across those buckets so you can see *when* views landed inside the publish window, not just the total.
+- **Dated paths:** `/YYYY-MM-DD.html` and `/YYYY-MM-DD`. Home (`/`) is **not** included. Unique visitors on `/` overlap the dated URLs, and Databuddy does not give a union of paths, so adding `/` would inflate the edition.
+- **Series:** `events_by_date` with the path filter. Each bucket stores **`visitors`** (people in that hour or day), not pageviews. Where both dated URLs have a figure for the same bucket, the snapshot keeps the **higher** one. It does not add them.
+- **Total:** `summary_metrics` with the same path filter, reading **`data[0].unique_visitors`**. If that field is missing, the fetch falls back to `top_pages` → `visitors` for that path. The edition total is the **higher** of the two dated URLs (`primary_path` records which one). **Do not sum** hourly or daily `visitors` — the same person in two buckets is counted twice (a checked case summed to 29 against a true unique of 19). Reloading the page does not increase the total.
+- **Calendar dates:** `summary_metrics` is bounded by calendar dates that overlap the window, not by the hour. A window that ends at 08:00 still includes that calendar day, so the unique total can include later the same day on that dated URL. The sparkline buckets are clipped to the hour window. The labelled total is the summary figure, not the end of the line.
+- **Tracking live from ~15:00 SAST on 22 October 2026** — older portions of a window get an honest `tracking_note`; the build does not invent zero visitors before tracking existed.
+- **`views_snapshot.series`** stores **non-cumulative** visitors per **hour** (or per day when the window is longer than 30 days). The header sparkline plots the **cumulative** sum of those buckets so you can see *when* visitors arrived inside the publish window. That running total can be higher than `total_unique_visitors`; the number next to the line is the summary unique count.
 
 Set **`DATABUDDY_API_KEY`** in:
 
 - **Vercel** project environment (Production and Preview) for deploy builds
 - **GitHub Actions** repository secret with the **same name** (`DATABUDDY_API_KEY`) for CI
 
-Do **not** commit the key. Without it, builds still succeed; edition pages show a muted **Views not recorded** line instead of a sparkline.
+Do **not** commit the key. Without it, builds still succeed; edition pages show a muted **Visitors not recorded** line instead of a sparkline.
+
+Snapshots written before this change store `total_views` and `pageviews`. The build still reads those so the pages render. The labels say unique visitors, and the tooltip says the figure is still a page-view count until the next refresh.
 
 ### Snapshot lock
 
-Once an edition's **`window_end`** is in the past and a **`views_snapshot`** exists, a normal `build.py` run **does not** refetch Databuddy unless you pass **`--refresh-views`** or **`--backfill-views`**. The latest (still-open) window may still be updated on each build when a key is present.
+Once a **`views_snapshot`** exists and the edition's **`window_end`** is at or before now, a normal `build.py` run **does not** refetch Databuddy. The open edition's window end is "now" at build time, so an existing snapshot is left as-is. **`--refresh-views`** and **`--backfill-views`** both bypass that lock.
 
-One-off backfill for all editions in the repo:
+Vercel runs `python3 build.py --all` (see `vercel.json`). That rebuilds HTML from the JSON already in the repo. It does **not** replace page-view snapshots with unique visitors, even when `DATABUDDY_API_KEY` is set.
+
+To refresh every edition, run a build that has the key and one of the flags, then commit the JSON and HTML:
 
 ```bash
 export DATABUDDY_API_KEY='…'
-python3 build.py --backfill-views
+python3 build.py --all --refresh-views
 ```
 
-Then commit updated JSON files and regenerated HTML.
+`--backfill-views` does the same fetch. GitHub Actions workflow **Backfill views** (`.github/workflows/backfill-views.yml`) runs `python3 build.py --backfill-views --refresh-views` on **workflow dispatch**, or when `.github/backfill-views.request` is pushed to `main`, and commits the updated snapshots.
+
+### Refresh needed for the numbers on the site
+
+The snapshots committed with the unique-visitor change are still the previous **page-view** totals until that refresh runs. The UI already says unique visitors / visitors. After the refresh, `total_unique_visitors` replaces `total_views` and each bucket's `visitors` replaces `pageviews`. A plain Vercel redeploy is not enough.
 
 ## Making a single edition (local)
 
@@ -90,8 +101,8 @@ Options:
 
 - `-o path.html` — custom output (skips index/archive/sitemap side effects)
 - `--no-index` — skip updating `index.html` when building one edition
-- `--backfill-views` — fetch views for all editions (bypasses snapshot lock)
-- `--refresh-views` — refetch even when a closed edition already has a snapshot (combine with `--all` or `--backfill-views`)
+- `--backfill-views` — fetch unique visitors for all editions (bypasses the snapshot lock)
+- `--refresh-views` — refetch even when an edition already has a snapshot (combine with `--all` or `--backfill-views`)
 
 ## JSON schema
 
@@ -104,10 +115,11 @@ Options:
     "window_start": "2026-10-11T08:00:00+02:00",
     "window_end": "2026-10-12T08:00:00+02:00",
     "granularity": "hourly",
-    "total_views": 42,
+    "total_unique_visitors": 19,
+    "primary_path": "/2026-10-11.html",
     "series": [
-      {"timestamp": "2026-10-11T08:00:00+02:00", "pageviews": 5, "tracked": true},
-      {"timestamp": "2026-10-11T09:00:00+02:00", "pageviews": 37, "tracked": true}
+      {"timestamp": "2026-10-11T08:00:00+02:00", "visitors": 5, "tracked": true},
+      {"timestamp": "2026-10-11T09:00:00+02:00", "visitors": 8, "tracked": true}
     ],
     "fetched_at": "2026-10-13T10:00:00+02:00",
     "tracking_note": "optional string when tracking started mid-window"
@@ -123,6 +135,8 @@ Options:
 ```
 
 `published_at` and `views_snapshot` are optional in hand-authored JSON; the build fills or updates `views_snapshot` when `DATABUDDY_API_KEY` is set.
+
+Older snapshots may still have `total_views` and series `pageviews`. The generator reads those when `total_unique_visitors` / `visitors` are absent. New fetches write `total_unique_visitors` and `visitors` only. The series sum is not the edition total.
 
 STORY = `{"title": "...", "tags": ["PS5"], "body": "...", "links": [{"label": "Source", "url": "https://..."}]}`
 

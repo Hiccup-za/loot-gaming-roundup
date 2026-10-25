@@ -4,7 +4,7 @@
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
     python3 build.py --all                      # rebuild every edition, index, archive, badges, sitemap
-    python3 build.py --backfill-views           # fetch views snapshots for all editions (needs DATABUDDY_API_KEY)
+    python3 build.py --backfill-views           # fetch unique-visitor snapshots for all editions (needs DATABUDDY_API_KEY)
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
 """
@@ -376,6 +376,106 @@ def fmt_views(n):
     return f"{int(n):,}"
 
 
+def visitors_word(n):
+    return "unique visitor" if int(n) == 1 else "unique visitors"
+
+
+def visitors_phrase(n):
+    return f"{fmt_views(n)} {visitors_word(n)}"
+
+
+LEGACY_PAGEVIEW_NOTE = (
+    "This figure is still a page-view count from before unique visitors were stored. "
+    "It updates on the next refresh."
+)
+ARCHIVE_VISITORS_TIP = (
+    "Sum of each edition's unique visitors. "
+    "Someone who reads two editions is counted in each. "
+    "Home-page visits are not included."
+)
+
+
+def point_visitor_count(point):
+    """Bucket visitors, or legacy pageviews when a snapshot has not been refreshed."""
+    if not isinstance(point, dict):
+        return None
+    for key in ("visitors", "unique_visitors", "pageviews"):
+        if point.get(key) is not None:
+            try:
+                return int(point.get(key) or 0)
+            except (TypeError, ValueError):
+                return 0
+    return None
+
+
+def tracked_series_points(series):
+    out = []
+    for point in series or []:
+        if not isinstance(point, dict) or not point.get("tracked", True):
+            continue
+        if point_visitor_count(point) is None:
+            continue
+        out.append(point)
+    return out
+
+
+def snapshot_unique_total(snap):
+    """Edition total. Prefer unique visitors; fall back to a legacy page-view total."""
+    if not snap:
+        return None
+    if snap.get("total_unique_visitors") is not None:
+        try:
+            return int(snap.get("total_unique_visitors") or 0)
+        except (TypeError, ValueError):
+            return 0
+    if snap.get("total_views") is not None:
+        try:
+            return int(snap.get("total_views") or 0)
+        except (TypeError, ValueError):
+            return 0
+    return None
+
+
+def snapshot_is_legacy_pageviews(snap):
+    if not snap or snap.get("total_unique_visitors") is not None:
+        return False
+    if snap.get("total_views") is not None:
+        return True
+    for point in snap.get("series") or []:
+        if not isinstance(point, dict):
+            continue
+        if point.get("pageviews") is not None and point.get("visitors") is None and point.get("unique_visitors") is None:
+            return True
+    return False
+
+
+def display_tracking_note(note):
+    """Show the current visitor wording for notes stored before the copy change."""
+    if not note:
+        return None
+    if note == views_fetch.TRACKING_NOTE_BEFORE or "ended before tracking was live" in note:
+        return views_fetch.TRACKING_NOTE_BEFORE
+    if note == views_fetch.TRACKING_NOTE_PARTIAL or "are not measured" in note:
+        return views_fetch.TRACKING_NOTE_PARTIAL
+    return note
+
+
+def _window_ended_before_tracking(snap):
+    note = (snap or {}).get("tracking_note") or ""
+    return (
+        note == views_fetch.TRACKING_NOTE_BEFORE
+        or "ended before tracking was live" in note
+    )
+
+
+def visitor_tooltip(snap):
+    note = display_tracking_note((snap or {}).get("tracking_note"))
+    parts = [note or views_fetch.VISITORS_PATHS_TOOLTIP]
+    if snapshot_is_legacy_pageviews(snap) and not _window_ended_before_tracking(snap):
+        parts.append(LEGACY_PAGEVIEW_NOTE)
+    return " ".join(parts)
+
+
 def sparkline_paths(cum_vals, *, width=88, height=28, pad=2):
     w, h = width, height
     if not cum_vals:
@@ -415,38 +515,34 @@ def views_sparkline(
     muted_only=False,
 ):
     snap = data.get("views_snapshot")
-    muted = f'<{elem} class="edition-views edition-views-muted">Views not recorded</{elem}>'
+    muted = f'<{elem} class="edition-views edition-views-muted">Visitors not recorded</{elem}>'
     if not snap:
         return muted
     series = sorted(snap.get("series") or [], key=_series_sort_key)
-    tracked = [
-        p
-        for p in series
-        if p.get("tracked", True) and p.get("pageviews") is not None
-    ]
-    total = snap.get("total_views")
+    tracked = tracked_series_points(series)
+    total = snapshot_unique_total(snap)
     if total is None:
-        total = sum(int(p.get("pageviews") or 0) for p in tracked)
-    note = snap.get("tracking_note")
+        total = sum(point_visitor_count(p) or 0 for p in tracked)
+    note = display_tracking_note(snap.get("tracking_note"))
     if not tracked and total == 0:
         if muted_only:
             tip = escape(note) if note else ""
             title_attr = f' title="{tip}"' if tip else ""
             return (
                 f'<span class="archive-card-meta archive-card-meta-muted"{title_attr}>'
-                f"Views not recorded</span>"
+                f"Visitors not recorded</span>"
             )
         if not note:
             return muted
     cum, cum_vals = 0, []
     for p in tracked:
-        cum += int(p.get("pageviews") or 0)
+        cum += point_visitor_count(p) or 0
         cum_vals.append(cum)
     if len(cum_vals) == 1:
         cum_vals = [0, cum_vals[0]]
     line_d, fill_d = sparkline_paths(cum_vals, width=spark_w, height=spark_h)
-    tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
-    label = escape(f"{fmt_views(total)} total views")
+    tip = escape(visitor_tooltip(snap))
+    label = escape(visitors_phrase(total))
     grad_id = f"views-grad-{data.get('date', 'x').replace('-', '')}"
     svg = ""
     if line_d:
@@ -464,7 +560,7 @@ def views_sparkline(
     return (
         f'<{elem} class="edition-views" title="{tip}" aria-label="{label}">'
         f'<span class="views-num">{fmt_views(total)}</span>'
-        f'<span class="views-word">total views</span>{svg}</{elem}>'
+        f'<span class="views-word">{visitors_word(total)}</span>{svg}</{elem}>'
     )
 
 
@@ -685,25 +781,21 @@ def archive_views_untracked(ed):
 def archive_cumulative_series(ed):
     snap = ed.get("views_snapshot") or {}
     series = sorted(snap.get("series") or [], key=_series_sort_key)
-    tracked = [
-        p
-        for p in series
-        if p.get("tracked", True) and p.get("pageviews") is not None
-    ]
-    total = snap.get("total_views")
+    tracked = tracked_series_points(series)
+    total = snapshot_unique_total(snap)
     if total is None:
-        total = sum(int(p.get("pageviews") or 0) for p in tracked)
+        total = sum(point_visitor_count(p) or 0 for p in tracked)
     cum, cum_vals = 0, []
     for p in tracked:
-        cum += int(p.get("pageviews") or 0)
+        cum += point_visitor_count(p) or 0
         cum_vals.append(cum)
     if len(cum_vals) == 1:
         cum_vals = [0, cum_vals[0]]
-    return int(total), cum_vals, snap.get("tracking_note")
+    return int(total), cum_vals, visitor_tooltip(snap)
 
 
-def edition_total_views(ed):
-    """Page views for an edition's publish window (Databuddy snapshot in JSON)."""
+def edition_unique_visitors(ed):
+    """Unique visitors for an edition's publish window (Databuddy snapshot in JSON)."""
     snap = ed.get("views_snapshot")
     if not snap:
         return 0
@@ -711,12 +803,21 @@ def edition_total_views(ed):
     return int(total)
 
 
-def collect_views_by_edition(editions):
-    """Per-edition page view totals, sorted by edition date."""
+def collect_visitors_by_edition(editions):
+    """Per-edition unique visitors, sorted by edition date."""
     return [
-        (ed["date"], edition_total_views(ed))
+        (ed["date"], edition_unique_visitors(ed))
         for ed in sorted(editions, key=lambda d: d["date"])
     ]
+
+
+def archive_has_legacy_counts(editions):
+    for ed in editions:
+        if archive_views_untracked(ed):
+            continue
+        if snapshot_is_legacy_pageviews(ed.get("views_snapshot")):
+            return True
+    return False
 
 
 def archive_stat_block(label, value, *, muted=False):
@@ -734,16 +835,16 @@ def archive_chart_panel(ed):
     if archive_views_untracked(ed):
         return (
             '<div class="archive-chart-panel" aria-hidden="true">'
-            '<p class="archive-chart-empty">Views not tracked yet</p></div>'
+            '<p class="archive-chart-empty">Visitors not tracked yet</p></div>'
         )
-    total, cum_vals, note = archive_cumulative_series(ed)
+    total, cum_vals, tip_text = archive_cumulative_series(ed)
     if not cum_vals:
         cum_vals = [0, 0]
     line_d, fill_d = sparkline_paths(
         cum_vals, width=chart_w, height=chart_h, pad=chart_pad
     )
     grad_id = f"archive-grad-{ed.get('date', 'x').replace('-', '')}"
-    tip = escape(note or views_fetch.VIEWS_PATHS_TOOLTIP)
+    tip = escape(tip_text)
     svg = (
         f'<svg class="archive-chart-svg" viewBox="0 0 {chart_w} {chart_h}" '
         f'preserveAspectRatio="none" aria-hidden="true" focusable="false">'
@@ -757,7 +858,7 @@ def archive_chart_panel(ed):
     )
     return (
         f'<div class="archive-chart-panel" title="{tip}" '
-        f'aria-label="{escape(f"{fmt_views(total)} total views chart")}">{svg}</div>'
+        f'aria-label="{escape(visitors_phrase(total) + " chart")}">{svg}</div>'
     )
 
 
@@ -776,7 +877,7 @@ def archive_card(ed):
     stats = (
         archive_stat_block("Stories", str(stories))
         + archive_stat_block("Out today", str(out_today))
-        + archive_stat_block("Views", views_val, muted=views_muted)
+        + archive_stat_block("Visitors", views_val, muted=views_muted)
     )
     return (
         f'<a class="archive-card" href="/{slug}.html" aria-label="{full_label}">'
@@ -873,7 +974,7 @@ def render_trend_chart(
     tip_for,
     aria_for,
 ):
-    """Shared KPI line chart (badges uses or archive page views per edition)."""
+    """Shared KPI line chart (badges uses or archive unique visitors per edition)."""
     chart_w, chart_h = 560, 96
     pad_l, pad_r, pad_t, pad_b = 40, 14, 14, 30
     if not series:
@@ -952,13 +1053,13 @@ def _badge_chart_aria(series, peak):
 
 
 def _views_chart_tip(iso, val):
-    return escape(f"{edition_short_label(iso)}: {fmt_views(val)} page views")
+    return escape(f"{edition_short_label(iso)}: {visitors_phrase(val)}")
 
 
 def _views_chart_aria(series, peak):
     return escape(
-        f"Page views per edition from {series[0][0]} to {series[-1][0]}. "
-        f"Peak day: {fmt_views(peak)} views."
+        f"Unique visitors per edition from {series[0][0]} to {series[-1][0]}. "
+        f"Peak edition: {visitors_phrase(peak)}."
     )
 
 
@@ -1029,22 +1130,25 @@ def render_archive(editions):
             f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
             f"</section>"
         )
-    views_series = collect_views_by_edition(editions)
-    total_views = sum(v for _, v in views_series)
+    views_series = collect_visitors_by_edition(editions)
+    total_visitors = sum(v for _, v in views_series)
     n_editions = len(editions)
     total_stories = sum(edition_story_count(ed) for ed in editions)
+    hero_tip = ARCHIVE_VISITORS_TIP
+    if archive_has_legacy_counts(editions):
+        hero_tip = f"{hero_tip} {LEGACY_PAGEVIEW_NOTE}"
     kpi = (
         '<div class="badges-summary">'
         '<div class="badges-kpi-panel">'
-        '<div class="badges-kpi-hero">'
-        '<span class="badges-kpi-hero-label">Total page views</span>'
-        f'<span class="badges-kpi-hero-value">{fmt_views(total_views)}</span>'
+        f'<div class="badges-kpi-hero" title="{escape(hero_tip)}">'
+        '<span class="badges-kpi-hero-label">Unique visitors</span>'
+        f'<span class="badges-kpi-hero-value">{fmt_views(total_visitors)}</span>'
         "</div>"
         '<div class="badges-kpi-row">'
         f"{archive_stat_block('Editions', str(n_editions))}"
         f"{archive_stat_block('Stories', str(total_stories))}"
         "</div></div>"
-        f"{render_trend_chart(views_series, panel_title='Views per edition', grad_id='archive-trend-grad', empty_message='No view data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria)}"
+        f"{render_trend_chart(views_series, panel_title='Visitors per edition', grad_id='archive-trend-grad', empty_message='No visitor data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria)}"
         "</div>"
     )
     nav = (
@@ -1131,12 +1235,12 @@ def main():
     ap.add_argument(
         "--backfill-views",
         action="store_true",
-        help="fetch views snapshots for all editions (respects lock unless combined with --refresh-views)",
+        help="fetch unique-visitor snapshots for all editions (bypasses the snapshot lock)",
     )
     ap.add_argument(
         "--refresh-views",
         action="store_true",
-        help="refetch views even when a closed edition already has a snapshot",
+        help="refetch unique visitors even when a closed edition already has a snapshot",
     )
     ap.add_argument("-o", "--output")
     ap.add_argument("--no-index", action="store_true")
