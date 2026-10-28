@@ -390,8 +390,8 @@
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2, and any official word on the Silent Hill remake's release window.",
   "views_snapshot": {
     "window_start": "2026-10-27T08:00:00+02:00",
-    "window_end": "2026-10-27T08:00:11.104276+02:00",
-    "fetched_at": "2026-10-27T08:00:11.104322+02:00",
+    "window_end": "2026-10-28T08:00:00+02:00",
+    "fetched_at": "2026-10-28T07:57:30.790762+02:00",
     "granularity": "daily",
     "total_unique_visitors": 0,
     "primary_path": "/2026-10-27.html",
@@ -400,6 +400,11 @@
         "visitors": 0,
         "tracked": true,
         "date": "2026-10-27"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-28"
       }
     ]
   }

@@ -1,0 +1,444 @@
+{
+  "date": "2026-10-28",
+  "date_label": "Wednesday 28 October 2026",
+  "your_games": [
+    {
+      "title": "Palworld's boss would \"love to have conversations\" about a Switch 2 version",
+      "tags": [
+        "Switch 2",
+        "Palworld"
+      ],
+      "body": "Pocketpair CEO Takuru Mizobe told VGC the Switch 2 is \"a really amazing platform\" and that the studio would welcome talks about bringing Palworld to Switch. There's a catch: Nintendo's patent lawsuit against Pocketpair is still going, and the Tokyo District Court is due to share its preliminary view on 9 Nov.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/pocketpair-would-love-to-have-conversations-to-bring-palworld-to-switch-2-ceo-says/"
+        }
+      ]
+    },
+    {
+      "title": "Nintendo Indie World showcase airs today at 16:00 SAST",
+      "tags": [
+        "Switch",
+        "Switch 2"
+      ],
+      "body": "Nintendo has announced a roughly 15-minute Indie World presentation for this afternoon, 14:00 UK time, which is 16:00 SAST. It's the second Indie World of the year, so expect a mix of new reveals and possibly a shadow-drop or two.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/nintendo-indie-world-showcase-announced-for-tomorrow-28th-october-2026"
+        },
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/10/nintendo-indie-world-showcase-set-for-october-28"
+        }
+      ]
+    },
+    {
+      "title": "Conan Exiles Enhanced and Aloft are both heading to PS5 in early 2027",
+      "tags": [
+        "PS5",
+        "Survival"
+      ],
+      "body": "Funcom's Unreal Engine 5 remaster of its open-world survival game brings Nanite and Lumen visuals, better performance, quality-of-life fixes and a new UI. It's a free upgrade for PS4 owners, with DLC and Bazaar purchases carrying over. Its floating-islands survival-crafting game Aloft, in PC early access since January 2025, is getting a PS5 1.0 launch around the same time.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/conan-exiles-enhanced-is-a-major-visual-upgrade-for-ps5-free-for-existing-players"
+        },
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/10/aloft-adds-ps5-version-launches-in-early-2027"
+        }
+      ]
+    },
+    {
+      "title": "Minecraft is out now on Switch 2, with a discount for physical Switch owners",
+      "tags": [
+        "Switch 2",
+        "Minecraft"
+      ],
+      "body": "Digital Switch owners get the Switch 2 version free until the end of January 2027. If you own a physical Switch copy, you'll get an in-game message offering the digital Ultimate Collection (base game plus five add-ons) at a reduced price. The Switch 2 version supports Vibrant Visuals and includes the Super Mario Mash-Up Pack.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/psa-minecraft-switch-2-now-available-switch-physical-owners-get-a-digital-discount"
+        }
+      ]
+    },
+    {
+      "title": "Cyberpunk 2077's Edgerunners 2 update is live on Switch 2, but it's buggy",
+      "tags": [
+        "Switch 2",
+        "Cyberpunk"
+      ],
+      "body": "Update 2.5 brings mod support and dual-wielded pistols, but Switch 2 players are reporting crashes, loading bugs, performance problems and save glitches, and Nintendo Life confirmed some crashes itself. No word from CD Projekt Red on a fix yet.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/cyberpunks-edgerunners-2-update-isnt-in-the-best-state-on-switch-2"
+        }
+      ]
+    },
+    {
+      "title": "GTA 6's reported PS5 install size is a monster",
+      "tags": [
+        "PS5",
+        "GTA"
+      ],
+      "body": "Going by a reliable PS5 file-size tracker on X, GTA 6 will take up roughly a third of a launch PS5's SSD. Pre-loading opens a week before the 19 Nov launch, so it's worth clearing space now.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/gta-6-ps5-file-size-has-been-reported-and-its-an-absolute-monster"
+        }
+      ]
+    },
+    {
+      "title": "Rumour: a batch of Capcom console classics is on the way",
+      "tags": [
+        "PS5",
+        "Switch",
+        "Capcom",
+        "Rumour"
+      ],
+      "body": "Korea's ratings board has classified a string of classic Capcom games, including Ghosts 'n Goblins, Captain Commando, Knights of the Round and The King of Dragons, which points to a new collection. Nothing announced yet.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/10/several-capcom-console-classics-rated-in-korea"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/capcoms-classic-console-games-could-be-coming-to-ps5"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Microsoft offers voluntary redundancy to around 60,000 staff",
+      "tags": [
+        "Microsoft",
+        "Xbox"
+      ],
+      "body": "That's roughly a quarter of the company. The Voluntary Exit Offer covers eligible staff in Canada, India, the UK and the US, after heavy AI spending. It lands in a year when Xbox has already cut thousands of jobs and closed or sold studios, though Xbox boss Asha Sharma insists \"Xbox is not for sale\".",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/microsoft-has-offered-a-quarter-of-its-entire-workforce-redundancy/"
+        }
+      ]
+    },
+    {
+      "title": "Kingdom Come studio Warhorse hit by a cyberattack",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Warhorse confirmed unauthorised access to its systems and company data and is working with security specialists. It hasn't said what was taken. It comes less than a week after Capcom's Capcom ID data breach.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/kingdom-come-developer-warhorse-studios-suffers-cyberattack-full-impact-unknown"
+        }
+      ]
+    },
+    {
+      "title": "Capcom: 92.4% of its sales are now digital",
+      "tags": [
+        "Capcom"
+      ],
+      "body": "Capcom's half-year results show only 7.6% of game sales came from physical copies, and it expects digital to pass 95% next quarter. Back-catalogue titles drove its best-ever first half, with Devil May Cry 5 outselling Onimusha: Way of the Sword last quarter.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/10/physical-copies-barely-register-for-capcom-plans-for-95percent-digital-sales"
+        },
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/10/capcoms-2026-bangers-continue-to-shine-in-latest-financial-report"
+        }
+      ]
+    },
+    {
+      "title": "Street Fighter 5 pulled from sale and taken offline over a PHP security flaw",
+      "tags": [
+        "Capcom",
+        "PC"
+      ],
+      "body": "Capcom has shut off online features for the PS4 and Steam versions and is suspending sales while it fixes vulnerabilities in the PHP language. Offline modes still work.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/capcom-has-temporarily-delisted-street-fighter-5-and-turned-off-its-servers-as-it-works-on-php-security-issue/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://pogwire.com/releases/new-games-this-week",
+  "releases": [
+    {
+      "date": "28 Oct",
+      "title": "Nintendo Indie World",
+      "note": "16:00 SAST, about 15 min",
+      "tags": [
+        "Switch",
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "28 Oct",
+      "title": "Minecraft for Switch 2",
+      "note": "Out now; physical owners get a discount",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "28 Oct",
+      "title": "The Outlast Trials",
+      "note": "Now on Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "28 Oct",
+      "title": "Sulfur 1.0",
+      "note": "Leaves early access",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Phantom Blade Zero",
+      "note": "About 04:00 SAST, $59.99",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Crimson Desert: Charting the Unknown",
+      "note": "$24.99 DLC",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "The Wolf Among Us Remastered",
+      "note": "$24.99; Switch delayed",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "PlayStation Pulse pre-orders",
+      "note": "10:00 local time",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Pokémon TCG Pocket: Dual Fusion",
+      "note": "First dual-type cards",
+      "tags": [
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Mouthwashing",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "29 Oct",
+      "title": "Assassin's Creed franchise update",
+      "note": "No major reveals",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "30 Oct",
+      "title": "Look Outside",
+      "note": "Console debut",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "2 Nov",
+      "title": "Top Hat Studios Fall Showcase",
+      "note": "Indie showcase",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Nov",
+      "title": "ArcheAge Chronicles",
+      "note": "PC early access",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "4 Nov",
+      "title": "Genshin Impact 7.2",
+      "note": "'Hour of Ruin'",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "4 Nov",
+      "title": "Hitman: Absolution free Switch 2 upgrade ends",
+      "note": "$9.99 after",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "5 Nov",
+      "title": "Zelda: Ocarina of Time",
+      "note": "Switch 2 remake",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Marvel Cosmic Invasion: Siege of Castle Doom",
+      "note": "DLC with roguelike mode",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pokémon UNITE farewell update",
+      "note": "Special event and library",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pikmin 4",
+      "note": "Switch 2 return",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Sonic Pico Park",
+      "note": "Co-op puzzler",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "Plus the new Pulse headset",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Luma Island",
+      "note": "$19.99, 4-player crossplay",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Until Dawn 2",
+      "note": "Firesprite's horror sequel",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Original game reimagined",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Conan Exiles Enhanced",
+      "note": "Free upgrade for PS4 owners",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Aloft",
+      "note": "PS5 1.0 launch",
+      "tags": [
+        "PS5"
+      ]
+    }
+  ],
+  "footer_note": "Still waiting: a CD Projekt Red fix for Cyberpunk on Switch 2, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and any official word on the Silent Hill remake's release window.",
+  "views_snapshot": {
+    "window_start": "2026-10-28T08:00:00+02:00",
+    "window_end": "2026-10-28T07:57:30.790720+02:00",
+    "fetched_at": "2026-10-28T07:57:33.305814+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
