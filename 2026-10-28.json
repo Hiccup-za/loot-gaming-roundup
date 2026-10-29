@@ -436,9 +436,22 @@
   "footer_note": "Still waiting: a CD Projekt Red fix for Cyberpunk on Switch 2, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and any official word on the Silent Hill remake's release window.",
   "views_snapshot": {
     "window_start": "2026-10-28T08:00:00+02:00",
-    "window_end": "2026-10-28T07:57:30.790720+02:00",
-    "fetched_at": "2026-10-28T07:57:33.305814+02:00",
+    "window_end": "2026-10-29T08:00:00+02:00",
+    "fetched_at": "2026-10-29T07:55:56.986171+02:00",
+    "granularity": "daily",
     "total_unique_visitors": 0,
-    "series": []
+    "primary_path": "/2026-10-28.html",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-28"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-29"
+      }
+    ]
   }
 }
