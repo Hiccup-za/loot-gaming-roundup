@@ -495,9 +495,22 @@
   "footer_note": "Still waiting: a CD Projekt Red fix for Cyberpunk on Switch 2, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and whether Activision edits Modern Warfare 4's intro.",
   "views_snapshot": {
     "window_start": "2026-10-29T08:00:00+02:00",
-    "window_end": "2026-10-29T07:55:56.986128+02:00",
-    "fetched_at": "2026-10-29T07:55:59.683494+02:00",
+    "window_end": "2026-10-30T08:00:00+02:00",
+    "fetched_at": "2026-10-30T23:29:34.014904+02:00",
+    "granularity": "daily",
     "total_unique_visitors": 0,
-    "series": []
+    "primary_path": "/2026-10-29.html",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-29"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-30"
+      }
+    ]
   }
 }

@@ -463,16 +463,91 @@
   "footer_note": "Still waiting: The Duskbloods' new date, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and whether Bethesda really names The Elder Scrolls VI around 11 Nov.",
   "views_snapshot": {
     "window_start": "2026-10-30T08:00:00+02:00",
-    "window_end": "2026-10-30T08:05:22.573026+02:00",
-    "fetched_at": "2026-10-30T08:05:22.573069+02:00",
-    "granularity": "daily",
-    "total_unique_visitors": 0,
-    "primary_path": "/2026-10-30.html",
+    "window_end": "2026-10-30T23:29:24.096728+02:00",
+    "fetched_at": "2026-10-30T23:29:35.297071+02:00",
+    "granularity": "hourly",
+    "total_unique_visitors": 1,
+    "primary_path": "/2026-10-30",
     "series": [
       {
         "visitors": 0,
         "tracked": true,
-        "date": "2026-10-30"
+        "timestamp": "2026-10-30T08:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T09:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T10:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T11:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T12:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T13:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T14:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T15:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T16:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T17:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T18:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T19:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T20:00:00+02:00"
+      },
+      {
+        "visitors": 1,
+        "tracked": true,
+        "timestamp": "2026-10-30T21:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T22:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-30T23:00:00+02:00"
       }
     ]
   }

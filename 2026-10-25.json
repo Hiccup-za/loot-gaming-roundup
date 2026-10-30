@@ -315,8 +315,8 @@
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2, and what carries over in AC Black Flag Resynced's New Game Plus.",
   "views_snapshot": {
     "window_start": "2026-10-25T08:00:00+02:00",
-    "window_end": "2026-10-25T13:03:06.509365+02:00",
-    "fetched_at": "2026-10-25T13:03:13.514408+02:00",
+    "window_end": "2026-10-26T08:00:00+02:00",
+    "fetched_at": "2026-10-30T23:29:28.486054+02:00",
     "granularity": "hourly",
     "total_unique_visitors": 1,
     "primary_path": "/2026-10-25",
@@ -350,6 +350,96 @@
         "visitors": 0,
         "tracked": true,
         "timestamp": "2026-10-25T13:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T14:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T15:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T16:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T17:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T18:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T19:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T20:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T21:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T22:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-25T23:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T00:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T01:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T02:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T03:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T04:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T05:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T06:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-10-26T07:00:00+02:00"
       }
     ]
   }
