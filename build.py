@@ -17,6 +17,74 @@ import views_fetch
 EDITION_JSON = re.compile(r"^\d{4}-\d{2}-\d{2}\.json$")
 SITE_URL = os.environ.get("LOOT_SITE_URL", "https://loot-gaming-roundup.vercel.app")
 
+X_POST_TEMPLATES = frozenset(
+    {
+        "headline",
+        "haul",
+        "out-this-week",
+        "games",
+        "industry",
+        "stats",
+        "weekly-wrap",
+    }
+)
+X_POST_URL_RE = re.compile(r"https?://[^\s]+", re.IGNORECASE)
+X_POST_IMAGE_RE = re.compile(r"^/x/\d{4}-\d{2}-\d{2}\.png$")
+X_POST_TIME_RE = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
+
+
+def x_post_effective_length(text):
+    """X post limit: each http(s) URL counts as 23 characters."""
+    length = len(text)
+    for match in X_POST_URL_RE.finditer(text):
+        length -= len(match.group()) - 23
+    return length
+
+
+def validate_x_post(data, root, *, warn=None):
+    """Light checks for optional x_post; warnings only (never fail the build)."""
+    if warn is None:
+        warn = lambda msg: print(msg, file=sys.stderr)
+    x_post = data.get("x_post")
+    if not x_post:
+        return
+    edition = data.get("date", "?")
+    prefix = f"{edition}: x_post"
+    if not isinstance(x_post, dict):
+        warn(f"{prefix} must be an object")
+        return
+    template = x_post.get("template")
+    if template not in X_POST_TEMPLATES:
+        warn(
+            f"{prefix} template must be one of: "
+            + ", ".join(sorted(X_POST_TEMPLATES))
+        )
+    data_block = x_post.get("data")
+    if not isinstance(data_block, dict):
+        warn(f"{prefix} data must be an object (template fields)")
+    text = x_post.get("text")
+    if not isinstance(text, str) or not text.strip():
+        warn(f"{prefix} text must be a non-empty string")
+    elif x_post_effective_length(text) > 280:
+        warn(
+            f"{prefix} text exceeds 280 characters "
+            f"(X counts each URL as 23 chars; effective length "
+            f"{x_post_effective_length(text)})"
+        )
+    image = x_post.get("image")
+    if not isinstance(image, str) or not X_POST_IMAGE_RE.match(image):
+        warn(f"{prefix} image must be a path like /x/YYYY-MM-DD.png")
+    else:
+        img_date = image.rsplit("/", 1)[-1][:10]
+        if data.get("date") and img_date != data["date"]:
+            warn(f"{prefix} image date {img_date} does not match edition date")
+        image_path = os.path.join(root, image.lstrip("/"))
+        if not os.path.isfile(image_path):
+            warn(f"{prefix} image file missing on disk: {image_path}")
+    time_val = x_post.get("time")
+    if not isinstance(time_val, str) or not X_POST_TIME_RE.match(time_val):
+        warn(f"{prefix} time must be HH:MM in SAST (24-hour clock)")
+
 TAG_CLASS = {
     "ps5": "ps", "playstation": "ps", "ps plus": "ps",
     "switch": "nin", "switch 2": "nin", "nintendo": "nin", "pokémon": "nin", "pokemon": "nin",
@@ -1204,6 +1272,7 @@ def write_site_extras(root, editions, latest_html=None, update_index=False):
 
 
 def build_edition(root, data, output=None, no_index=False):
+    validate_x_post(data, root)
     out = output or os.path.join(root, f'{data["date"]}.html')
     with open(out, "w", encoding="utf-8") as f:
         f.write(render(data))
