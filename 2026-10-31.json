@@ -443,9 +443,17 @@
   "footer_note": "Still waiting: whether EA confirms the Mass Effect report, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and Bethesda's rumoured Elder Scrolls VI name around 11 Nov.",
   "views_snapshot": {
     "window_start": "2026-10-31T08:00:00+02:00",
-    "window_end": "2026-10-31T07:58:13.889431+02:00",
-    "fetched_at": "2026-10-31T07:58:19.419777+02:00",
+    "window_end": "2026-10-31T18:35:59.847388+02:00",
+    "fetched_at": "2026-10-31T18:36:15.313783+02:00",
+    "granularity": "daily",
     "total_unique_visitors": 0,
-    "series": []
+    "primary_path": "/2026-10-31.html",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-10-31"
+      }
+    ]
   }
 }
