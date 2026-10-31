@@ -7,7 +7,7 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | File | Role |
 |------|------|
 | `YYYY-MM-DD.json` | **Source of truth** for each day's stories, optional **X post** (`x_post`), and **views snapshot** |
-| `x/YYYY-MM-DD.png` | Optional hosted image for that day's `@LootRoundup` post (not shown on roundup pages) |
+| `x/YYYY-MM-DD.png` | Optional hosted image for that day's `@LootRoundup` post (not shown on roundup pages). The `x/` directory is kept in git (see `x/.gitkeep`); PNGs are static assets via `vercel.json` `outputDirectory: "."` (no build copy step). |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
 | `archive.html` | Generated archive: KPI and visitors-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
@@ -136,8 +136,10 @@ Options:
   "x_post": {
     "template": "headline",
     "data": {
-      "headline": "…",
-      "subhead": "optional"
+      "kicker": "Daily gaming news",
+      "headline": "Your main headline (required)",
+      "dek": "Optional supporting line for the card",
+      "tags": ["PS5", "Switch 2", "Indie"]
     },
     "text": "Post copy for @LootRoundup (≤280 chars; each https:// link counts as 23). https://loot-gaming-roundup.vercel.app/YYYY-MM-DD",
     "image": "/x/YYYY-MM-DD.png",
@@ -156,7 +158,16 @@ Options:
 | `image` | string | Site path to the PNG, e.g. `/x/2026-10-28.png` |
 | `time` | string | Suggested post time, `HH:MM` in SAST (24-hour) |
 
-See `tests/fixtures/x_post_sample.json` for a minimal example. A missing PNG under `x/` logs a build warning but does not fail CI.
+**`headline` template `data` fields** (1200×675 card):
+
+| Field | Max length | Required |
+|-------|------------|----------|
+| `kicker` | 28 chars | no |
+| `headline` | 90 chars | yes |
+| `dek` | 120 chars | no |
+| `tags` | up to 3 strings, each ≤14 chars | no |
+
+See `tests/fixtures/x_post_sample.json` for a minimal example (fixture date only — not a published edition). A missing PNG under `x/` logs a build warning but does not fail CI. Any committed `x/*.png` is served at `/x/<filename>.png` (rewrites only apply to `/YYYY-MM-DD`, not `/x/`).
 
 `published_at` and `views_snapshot` are optional in hand-authored JSON; the build fills or updates `views_snapshot` when `DATABUDDY_API_KEY` is set.
 

@@ -1,14 +1,16 @@
 {
-  "date": "2026-10-28",
-  "date_label": "Wednesday 28 October 2026",
+  "date": "2099-01-01",
+  "date_label": "Example edition (fixture only)",
   "x_post": {
     "template": "headline",
     "data": {
-      "headline": "Indie World lands at 16:00 SAST",
-      "subhead": "Palworld on Switch 2 still a lawsuit away"
+      "kicker": "Daily gaming news",
+      "headline": "Indie World lands at 16:00 SAST today",
+      "dek": "Palworld on Switch 2 still tied up in court; Minecraft is out on Switch 2.",
+      "tags": ["Switch", "Switch 2", "Indie"]
     },
-    "text": "Today's Loot roundup: Nintendo Indie World at 16:00 SAST, Minecraft on Switch 2, Cyberpunk bugs, and more. https://loot-gaming-roundup.vercel.app/2026-10-28",
-    "image": "/x/2026-10-28.png",
+    "text": "Today's Loot roundup: Nintendo Indie World at 16:00 SAST, Minecraft on Switch 2, and more. https://loot-gaming-roundup.vercel.app/2099-01-01",
+    "image": "/x/2099-01-01.png",
     "time": "09:30"
   }
 }

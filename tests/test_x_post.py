@@ -65,8 +65,30 @@ class XPostValidationTests(unittest.TestCase):
             data = json.load(f)
         warnings = []
         build.validate_x_post(data, os.path.dirname(here), warn=warnings.append)
-        image_warns = [w for w in warnings if "missing" in w.lower()]
-        self.assertEqual(image_warns, [])
+        self.assertFalse(any("template" in w for w in warnings))
+        self.assertFalse(any("text exceeds" in w for w in warnings))
+        self.assertFalse(any("time must" in w for w in warnings))
+        headline = data["x_post"]["data"]
+        self.assertIn("headline", headline)
+        self.assertNotIn("subhead", headline)
+        self.assertLessEqual(len(headline.get("kicker", "")), 28)
+        self.assertLessEqual(len(headline["headline"]), 90)
+        self.assertLessEqual(len(headline.get("dek", "")), 120)
+        self.assertLessEqual(len(headline.get("tags", [])), 3)
+        for tag in headline.get("tags", []):
+            self.assertLessEqual(len(tag), 14)
+
+    def test_vercel_config_serves_x_directory_statically(self):
+        import json
+
+        with open(
+            os.path.join(os.path.dirname(os.path.dirname(__file__)), "vercel.json"),
+            encoding="utf-8",
+        ) as f:
+            cfg = json.load(f)
+        self.assertEqual(cfg.get("outputDirectory"), ".")
+        sources = [r.get("source", "") for r in cfg.get("rewrites", [])]
+        self.assertFalse(any("/x/" in s or s.startswith("/x") for s in sources))
 
 
 if __name__ == "__main__":
