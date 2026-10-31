@@ -6,7 +6,8 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 
 | File | Role |
 |------|------|
-| `YYYY-MM-DD.json` | **Source of truth** for each day's stories and **views snapshot** |
+| `YYYY-MM-DD.json` | **Source of truth** for each day's stories, optional **X post** (`x_post`), and **views snapshot** |
+| `x/YYYY-MM-DD.png` | Optional hosted image for that day's `@LootRoundup` post (not shown on roundup pages) |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
 | `archive.html` | Generated archive: KPI and visitors-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
@@ -22,16 +23,17 @@ Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `verce
 ## Daily steps for Loot (assistant)
 
 1. Copy the previous day's `YYYY-MM-DD.json` to today's filename (e.g. `2026-10-25.json`).
-2. Edit the JSON: update `date`, `date_label`, story content, and optionally **`published_at`** (ISO8601, SAST or Z) if the edition went live at a time other than the default **08:00 Africa/Johannesburg** on that date.
-3. Commit the JSON.
-4. Build with Databuddy credentials available (local export or CI/Vercel):
+2. Edit the JSON: update `date`, `date_label`, story content, and optionally **`published_at`** (ISO8601, SAST or Z) if the edition went live at a time other than the default **08:00 Africa/Johannesburg** on that date. When you want the X dashboard to show that day's post, add optional **`x_post`** (see JSON schema): `template`, opaque `data` for the image renderer, `text` (≤280 chars on X, each link counts as 23), `image` path like `/x/YYYY-MM-DD.png`, and suggested `time` (HH:MM SAST).
+3. Commit the JSON (including `x_post` when used). The public edition feed at `/YYYY-MM-DD.json` is the same file — it is not stripped at build time.
+4. After the 1200×675 image is rendered from the template, commit the PNG under **`x/`** (e.g. `x/2026-10-28.png`) in a **separate commit**. It deploys at `https://loot-gaming-roundup.vercel.app/x/YYYY-MM-DD.png`. X images are not linked from roundup HTML and are not listed in `sitemap.xml`.
+5. Build with Databuddy credentials available (local export or CI/Vercel):
    ```bash
    export DATABUDDY_API_KEY='…'   # same secret name as Vercel / GitHub
    python3 build.py YYYY-MM-DD.json
    ```
-   This writes HTML, **finalises the previous edition's measurement window** (publish-to-publish), fetches or refreshes unique-visitor snapshots per the lock rules, and **writes `views_snapshot` back into the JSON**.
-5. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, `badges.html`, and `sitemap.xml` if you ran `--all`.
-6. Push to `main` (or open a PR). Vercel runs the full build on every deployment.
+   This writes HTML, **finalises the previous edition's measurement window** (publish-to-publish), fetches or refreshes unique-visitor snapshots per the lock rules, and **writes `views_snapshot` back into the JSON**. It does not remove or rewrite `x_post`.
+6. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, `badges.html`, and `sitemap.xml` if you ran `--all`.
+7. Push to `main` (or open a PR). Vercel runs the full build on every deployment.
 
 Each edition page links to **Past roundups** (`/archive.html`) in the footer and **Archive** / **Badges** in the header nav.
 
@@ -130,9 +132,31 @@ Options:
   "releases": [
     {"date": "13 Oct", "title": "...", "note": "optional one-liner", "tags": ["PS5","PC"]}
   ],
-  "footer_note": "optional pinned note at the bottom"
+  "footer_note": "optional pinned note at the bottom",
+  "x_post": {
+    "template": "headline",
+    "data": {
+      "headline": "…",
+      "subhead": "optional"
+    },
+    "text": "Post copy for @LootRoundup (≤280 chars; each https:// link counts as 23). https://loot-gaming-roundup.vercel.app/YYYY-MM-DD",
+    "image": "/x/YYYY-MM-DD.png",
+    "time": "09:30"
+  }
 }
 ```
+
+**`x_post` (optional)** — consumed by the separate X dashboard repo; not rendered on roundup pages.
+
+| Field | Type | Notes |
+|-------|------|--------|
+| `template` | string | One of: `headline`, `haul`, `out-this-week`, `games`, `industry`, `stats`, `weekly-wrap` |
+| `data` | object | Template-specific fields for the image renderer (opaque to `build.py`) |
+| `text` | string | Tweet copy; must fit X's 280-character limit (URLs count as 23 chars each) |
+| `image` | string | Site path to the PNG, e.g. `/x/2026-10-28.png` |
+| `time` | string | Suggested post time, `HH:MM` in SAST (24-hour) |
+
+See `tests/fixtures/x_post_sample.json` for a minimal example. A missing PNG under `x/` logs a build warning but does not fail CI.
 
 `published_at` and `views_snapshot` are optional in hand-authored JSON; the build fills or updates `views_snapshot` when `DATABUDDY_API_KEY` is set.
 

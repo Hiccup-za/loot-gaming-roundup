@@ -434,6 +434,16 @@
     }
   ],
   "footer_note": "Still waiting: a CD Projekt Red fix for Cyberpunk on Switch 2, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and any official word on the Silent Hill remake's release window.",
+  "x_post": {
+    "template": "headline",
+    "data": {
+      "headline": "Indie World lands at 16:00 SAST",
+      "subhead": "Palworld on Switch 2 still a lawsuit away"
+    },
+    "text": "Today's Loot roundup: Nintendo Indie World at 16:00 SAST, Minecraft on Switch 2, Cyberpunk bugs, and more. https://loot-gaming-roundup.vercel.app/2026-10-28",
+    "image": "/x/2026-10-28.png",
+    "time": "09:30"
+  },
   "views_snapshot": {
     "window_start": "2026-10-28T08:00:00+02:00",
     "window_end": "2026-10-29T08:00:00+02:00",
