@@ -455,5 +455,28 @@
         "date": "2026-10-31"
       }
     ]
+  },
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "date": "2026-10-31",
+      "items": [
+        {
+          "emoji": "🚀",
+          "text": "EA reportedly axes Mass Effect"
+        },
+        {
+          "emoji": "❄️",
+          "text": "FFXIV Evercold moves to Feb"
+        },
+        {
+          "emoji": "🎭",
+          "text": "Resonance of Fate PS5 remaster"
+        }
+      ]
+    },
+    "text": "🧰 Saturday's haul from Loot:\n\n🚀 EA reportedly axes the next Mass Effect\n❄️ FFXIV Evercold moves to 23 Feb 2027\n🎭 Resonance of Fate gets a PS5 remaster\n\nAll the news worth your time 👇\nhttps://loot-gaming-roundup.vercel.app/2026-10-31",
+    "image": "/x/2026-10-31.png",
+    "time": "21:00"
   }
 }
