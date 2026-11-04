@@ -555,28 +555,24 @@
       "items": [
         {
           "emoji": "📜",
-          "text": "Elder Scrolls VI: Sentinel"
+          "text": "Elder Scrolls VI is \"Sentinel\""
         },
         {
-          "emoji": "🗡️",
-          "text": "Ocarina scores 37/40"
+          "emoji": "🧙",
+          "text": "Witchbrook gets crossplay"
         },
         {
-          "emoji": "💾",
-          "text": "GTA VI preloads 10 Nov"
-        },
-        {
-          "emoji": "🍲",
-          "text": "Dragon's Dogma 2 anime collab"
+          "emoji": "🏢",
+          "text": "Ubisoft reportedly eyes Arkane"
         },
         {
           "emoji": "🛒",
-          "text": "PS Store Black Friday is live"
+          "text": "Black Friday hits PS Store"
         }
       ],
       "date": "2026-11-04"
     },
-    "text": "🪎 Wednesday's loot, in 4:\n\n📜 Elder Scrolls VI: Sentinel\n🗡️ Ocarina 37/40, out 5 Nov\n💾 GTA VI preloads 10 Nov\n🛒 PS Store Black Friday is live\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-04",
+    "text": "🪎 Wednesday's loot:\n\n📜 Elder Scrolls VI is \"Sentinel\"\n🧙 Witchbrook gets crossplay\n🏢 Ubisoft reportedly eyes Arkane\n🛒 Black Friday hits PS Store\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-04",
     "image": "/x/2026-11-04.png",
     "time": "15:30"
   },
