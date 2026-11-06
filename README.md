@@ -11,10 +11,9 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
 | `archive.html` | Generated archive: KPI and visitors-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
-| `badges.html` | Generated index of every story/release tag across all editions, with occurrence counts |
 | `sitemap.xml` | Generated sitemap for search engines |
 
-On every Vercel deploy, the build command runs `python3 build.py --all`, which rebuilds every edition from JSON, refreshes views snapshots when rules allow, and updates `index.html`, `archive.html`, `badges.html`, and `sitemap.xml`.
+On every Vercel deploy, the build command runs `python3 build.py --all`, which rebuilds every edition from JSON, refreshes views snapshots when rules allow, and updates `index.html`, `archive.html`, and `sitemap.xml`.
 
 GitHub Actions runs the same command on every push and pull request (with `DATABUDDY_API_KEY` from repo secrets when configured).
 
@@ -32,10 +31,10 @@ Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `verce
    python3 build.py YYYY-MM-DD.json
    ```
    This writes HTML, **finalises the previous edition's measurement window** (publish-to-publish), fetches or refreshes unique-visitor snapshots per the lock rules, and **writes `views_snapshot` back into the JSON**. It does not remove or rewrite `x_post`.
-6. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, `badges.html`, and `sitemap.xml` if you ran `--all`.
+6. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, and `sitemap.xml` if you ran `--all`.
 7. Push to `main` (or open a PR). Vercel runs the full build on every deployment.
 
-Each edition page links to **Archive** / **Badges** in the header nav.
+Each edition page links to **Archive** / **X** in the header nav.
 
 ## Files
 

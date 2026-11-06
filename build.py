@@ -3,7 +3,7 @@
 
 Usage:
     python3 build.py 2026-10-11.json            # writes 2026-10-11.html + index.html
-    python3 build.py --all                      # rebuild every edition, index, archive, badges, sitemap
+    python3 build.py --all                      # rebuild every edition, index, archive, sitemap
     python3 build.py --backfill-views           # fetch unique-visitor snapshots for all editions (needs DATABUDDY_API_KEY)
     python3 build.py data.json -o out.html      # custom output, no index copy
     python3 build.py data.json --no-index       # skip updating index.html
@@ -91,6 +91,17 @@ TAG_CLASS = {
     "xbox": "xbox", "pc": "pc",
 }
 
+X_URL = "https://x.com/LootRoundup"
+X_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+X_NAV_LINK = (
+    f'<a class="x-link" href="{X_URL}" target="_blank" rel="noopener noreferrer" '
+    f'aria-label="Loot on X (opens in a new tab)">{X_ICON}</a>'
+)
+X_FOOTER_LINK = (
+    f'<div class="footer-x"><a href="{X_URL}" target="_blank" rel="noopener noreferrer">'
+    f'{X_ICON}<span>Follow @LootRoundup</span></a></div>'
+)
+
 def chip(tag):
     cls = TAG_CLASS.get(tag.strip().lower(), "game")
     return f'<span class="chip chip-{cls}">{escape(tag)}</span>'
@@ -118,7 +129,7 @@ def release_row(r):
     note = f'<p class="rel-note">{escape(r["note"])}</p>' if r.get("note") else ""
     day, _, mon = r["date"].partition(" ")
     return (f'<li class="release">'
-            f'<div class="rel-date"><span class="d">{escape(day)}</span><span class="m">{escape(mon)}</span></div>'
+            f'<div class="rel-date{" now" if r["date"].lower() == "out now" else ""}"><span class="d">{escape(day)}</span><span class="m">{escape(mon)}</span></div>'
             f'<div class="rel-body"><h3>{escape(r["title"])}</h3>{note}'
             f'{"<div class=chips>" + chips + "</div>" if chips else ""}</div>'
             f'</li>')
@@ -234,14 +245,21 @@ ul.releases{list-style:none;margin:0;padding:0}
 .rel-date{flex:0 0 64px;padding-top:1px;white-space:nowrap}
 .rel-date .d{display:block;font:700 20px/1.05 var(--head);letter-spacing:-.02em;color:var(--text)}
 .rel-date .m{display:block;margin-top:5px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+.rel-date.now .d,.rel-date.now .m{color:var(--accent)}
 .rel-body h3{margin:0 0 4px;font:600 18px/1.3 var(--head);letter-spacing:-.01em;color:var(--text)}
 .rel-note{margin:0 0 8px;color:var(--text-3);font-size:15px}
 .full-list{display:inline-block;margin-top:14px;color:var(--accent);font:600 14px/1.4 var(--sans);text-decoration:none}
 .full-list:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
 
 /* Footer */
-footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
-.sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 20px}
+.sign{margin-top:0;text-align:center;color:var(--accent);font:500 12px/1.5 var(--mono)}
+
+/* X link */
+.x-link{display:inline-flex;align-items:center;gap:6px}
+.footer-x{display:flex}
+.footer-x a{display:inline-flex;align-items:center;gap:6px;color:var(--text-2);font:500 13px/1.4 var(--sans);text-decoration:none}
+.footer-x a:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
 
 /* Edition views sparkline in sub-header (baked in at build time) */
 .edition-views{display:flex;align-items:center;gap:8px;margin:0;padding:4px 0;
@@ -349,16 +367,7 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 
-/* Badges: every story/release tag across all editions */
-.wrap--badges{--max:960px}
-@media(min-width:1000px){.wrap--badges{--max:1080px}}
-.badges-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
-@media(min-width:560px){.badges-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
-@media(min-width:900px){.badges-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
-.badge-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;
-  background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
-.badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
+/* Archive summary / KPI panels */
 .badges-summary{margin-top:28px;--summary-chart-h:96px;display:flex;flex-direction:column;gap:16px}
 @media(min-width:960px){.badges-summary{flex-direction:row;align-items:stretch;gap:24px}}
 .badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -649,7 +658,7 @@ def render(data):
         side.append(f'<section id="out-this-week"><h2>Out this week</h2>'
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
-    nav.append('<a href="/badges.html">Badges</a>')
+    nav.append(X_NAV_LINK)
     date_label = escape(data.get("date_label", data.get("date", "")))
     parts = []
     if sections:
@@ -700,7 +709,7 @@ def render(data):
 <div class="wrap" id="top">
 <div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(data)}</div>
 {layout}
-<footer><div class="sign">Compiled by Loot</div></footer>
+<footer><div class="sign">Compiled by Loot</div>{X_FOOTER_LINK}</footer>
 </div>
 <script>{SCROLL_SPY_JS}</script>
 </body>
@@ -987,41 +996,10 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 </header>
 <div class="{wrap_class}" id="top">
 {body}
-<footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot</div></footer>
+<footer><div class="sign">Compiled by Loot</div>{X_FOOTER_LINK}</footer>
 </div>
 </body>
 </html>"""
-
-
-def iter_edition_tags(ed):
-    for section in ("your_games", "industry"):
-        for story in ed.get(section) or []:
-            for tag in story.get("tags") or []:
-                t = tag.strip()
-                if t:
-                    yield t
-    for release in ed.get("releases") or []:
-        for tag in release.get("tags") or []:
-            t = tag.strip()
-            if t:
-                yield t
-
-
-def collect_tag_counts(editions):
-    """Occurrences of each tag on stories and releases across all editions."""
-    counts = {}
-    for ed in editions:
-        for t in iter_edition_tags(ed):
-            counts[t] = counts.get(t, 0) + 1
-    return counts
-
-
-def collect_tag_usage_by_edition(editions):
-    """Tag occurrences per edition, sorted by edition date."""
-    series = []
-    for ed in sorted(editions, key=lambda d: d["date"]):
-        series.append((ed["date"], sum(1 for _ in iter_edition_tags(ed))))
-    return series
 
 
 def edition_short_label(iso_date):
@@ -1105,17 +1083,6 @@ def render_trend_chart(
     )
 
 
-def _badge_chart_tip(iso, val):
-    return escape(f"{edition_short_label(iso)}: {val} badge uses")
-
-
-def _badge_chart_aria(series, peak):
-    return escape(
-        f"Badge uses per edition from {series[0][0]} to {series[-1][0]}. "
-        f"Peak day: {peak} uses."
-    )
-
-
 def _views_chart_tip(iso, val):
     return escape(f"{edition_short_label(iso)}: {visitors_phrase(val)}")
 
@@ -1124,56 +1091,6 @@ def _views_chart_aria(series, peak):
     return escape(
         f"Unique visitors per edition from {series[0][0]} to {series[-1][0]}. "
         f"Peak edition: {visitors_phrase(peak)}."
-    )
-
-
-def render_badges(editions):
-    counts = collect_tag_counts(editions)
-    ordered = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
-    usage_series = collect_tag_usage_by_edition(editions)
-    total_uses = sum(c for _, c in usage_series)
-    n_distinct = len(ordered)
-    n_editions = len(editions)
-    edition_word = "edition" if n_editions == 1 else "editions"
-    items = []
-    for tag, count in ordered:
-        label = escape(f"{count} appearances")
-        items.append(
-            f'<li class="badge-item">{chip(tag)}'
-            f'<span class="badge-count" aria-label="{label}">{fmt_views(count)}</span></li>'
-        )
-    kpi = (
-        '<div class="badges-summary">'
-        '<div class="badges-kpi-panel">'
-        '<div class="badges-kpi-hero">'
-        f'<span class="badges-kpi-hero-label">Total badge uses</span>'
-        f'<span class="badges-kpi-hero-value">{fmt_views(total_uses)}</span>'
-        "</div>"
-        '<div class="badges-kpi-row">'
-        f"{archive_stat_block('Distinct tags', str(n_distinct))}"
-        f"{archive_stat_block('Editions', str(n_editions))}"
-        "</div></div>"
-        f"{render_trend_chart(usage_series, panel_title='Uses per edition', grad_id='badges-trend-grad', empty_message='No badge data yet', tip_for=_badge_chart_tip, aria_for=_badge_chart_aria)}"
-        "</div>"
-    )
-    nav = (
-        '<a href="/">Latest</a>'
-        '<a href="/archive.html">Archive</a>'
-        '<a href="/badges.html" aria-current="true">Badges</a>'
-    )
-    body = (
-        '<div class="intro"><div class="kicker"><span class="dot"></span>Badges</div>'
-        f'<div class="date">Platforms and games tagged across every daily roundup</div></div>'
-        f"{kpi}"
-        f'<section id="badges"><h2>All badges<span class="count">sorted by frequency</span></h2>'
-        f'<ul class="badges-list">{"".join(items)}</ul></section>'
-    )
-    return head_common(
-        "Loot's Gaming Roundup · Badges",
-        "Every platform and game tag used across Loot's daily gaming roundups.",
-        nav,
-        body,
-        wrap_class="wrap wrap--badges",
     )
 
 
@@ -1218,7 +1135,7 @@ def render_archive(editions):
     nav = (
         '<a href="/">Latest</a>'
         '<a href="/archive.html" aria-current="true">Archive</a>'
-        '<a href="/badges.html">Badges</a>'
+        + X_NAV_LINK
     )
     body = (
         '<div class="intro"><div class="kicker"><span class="dot"></span>Archive</div>'
@@ -1235,7 +1152,7 @@ def render_archive(editions):
 
 
 def render_sitemap(editions):
-    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html", f"{SITE_URL}/badges.html"]
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/archive.html"]
     for ed in sorted(editions, key=lambda d: d["date"]):
         urls.append(f'{SITE_URL}/{ed["date"]}.html')
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -1253,10 +1170,6 @@ def write_site_extras(root, editions, latest_html=None, update_index=False):
     with open(archive_path, "w", encoding="utf-8") as f:
         f.write(render_archive(editions))
     print("wrote", archive_path)
-    badges_path = os.path.join(root, "badges.html")
-    with open(badges_path, "w", encoding="utf-8") as f:
-        f.write(render_badges(editions))
-    print("wrote", badges_path)
     sitemap_path = os.path.join(root, "sitemap.xml")
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write(render_sitemap(editions))
@@ -1295,7 +1208,7 @@ def main():
     ap.add_argument(
         "--all",
         action="store_true",
-        help="rebuild all editions, index, archive, badges, and sitemap",
+        help="rebuild all editions, index, archive, and sitemap",
     )
     ap.add_argument(
         "--backfill-views",

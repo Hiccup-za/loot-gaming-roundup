@@ -108,16 +108,17 @@ ul.releases{list-style:none;margin:0;padding:0}
 .rel-date{flex:0 0 64px;padding-top:1px;white-space:nowrap}
 .rel-date .d{display:block;font:700 20px/1.05 var(--head);letter-spacing:-.02em;color:var(--text)}
 .rel-date .m{display:block;margin-top:5px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-3)}
+.rel-date.now .d,.rel-date.now .m{color:var(--accent)}
 .rel-body h3{margin:0 0 4px;font:600 18px/1.3 var(--head);letter-spacing:-.01em;color:var(--text)}
 .rel-note{margin:0 0 8px;color:var(--text-3);font-size:15px}
 .full-list{display:inline-block;margin-top:14px;color:var(--accent);font:600 14px/1.4 var(--sans);text-decoration:none}
 .full-list:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
 
 /* Footer */
-footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 20px}
 .note{display:flex;gap:12px;align-items:flex-start;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--text-2);font-size:15.5px;line-height:1.6}
 .note .ico{font-size:15px;line-height:1.6}
-.sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
+.sign{margin-top:0;text-align:center;color:var(--accent);font:500 12px/1.5 var(--mono)}
 
 /* Edition views sparkline in sub-header (baked in at build time) */
 .edition-views{display:flex;align-items:center;gap:8px;margin:0;padding:4px 0;
@@ -225,16 +226,7 @@ a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
 .archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
 
-/* Badges: every story/release tag across all editions */
-.wrap--badges{--max:960px}
-@media(min-width:1000px){.wrap--badges{--max:1080px}}
-.badges-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
-@media(min-width:560px){.badges-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
-@media(min-width:900px){.badges-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
-.badge-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;
-  background:var(--surface);border:1px solid var(--border);border-radius:8px;min-width:0}
-.badge-item .chip{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.badge-count{flex:0 0 auto;font:600 15px/1 var(--mono);color:var(--text-2);font-variant-numeric:tabular-nums}
+/* Archive summary / KPI panels */
 .badges-summary{margin-top:28px;--summary-chart-h:96px;display:flex;flex-direction:column;gap:16px}
 @media(min-width:960px){.badges-summary{flex-direction:row;align-items:stretch;gap:24px}}
 .badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
