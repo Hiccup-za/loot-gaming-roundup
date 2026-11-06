@@ -241,8 +241,6 @@ ul.releases{list-style:none;margin:0;padding:0}
 
 /* Footer */
 footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
-.note{display:flex;gap:12px;align-items:flex-start;padding:2px 0 2px 16px;border-left:2px solid var(--accent);color:var(--text-2);font-size:15.5px;line-height:1.6}
-.note .ico{font-size:15px;line-height:1.6}
 .sign{margin-top:28px;text-align:center;color:var(--text-3);font:500 12px/1.5 var(--mono)}
 
 /* Edition views sparkline in sub-header (baked in at build time) */
@@ -303,7 +301,7 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   .side .rel-body h3{font-size:15.5px;line-height:1.35}
   .side .rel-note{font-size:13.5px;margin-bottom:6px}
   .side .full-list{margin:10px 0 4px}
-  .feed .card p,.feed .card .sources,.note{max-width:38em}
+  .feed .card p,.feed .card .sources{max-width:38em}
 }
 @media(min-width:1440px){
   :root{--max:1280px;--gutter:48px;--side:360px;--col-gap:80px;--bar-h:90px}
@@ -652,8 +650,6 @@ def render(data):
                         f'<ul class="releases">{"".join(release_row(r) for r in releases)}</ul></section>')
     nav.append('<a href="/archive.html">Archive</a>')
     nav.append('<a href="/badges.html">Badges</a>')
-    note = (f'<div class="note"><span class="ico" aria-hidden="true">📌</span><div>{escape(data["footer_note"])}</div></div>'
-            if data.get("footer_note") else "")
     date_label = escape(data.get("date_label", data.get("date", "")))
     parts = []
     if sections:
@@ -704,7 +700,7 @@ def render(data):
 <div class="wrap" id="top">
 <div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(data)}</div>
 {layout}
-<footer>{note}<div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
+<footer><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
 </div>
 <script>{SCROLL_SPY_JS}</script>
 </body>

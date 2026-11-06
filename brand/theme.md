@@ -63,7 +63,7 @@ The chip tints use `color-mix()`, which works in all current browsers (Safari 16
 - **Sources.** A quiet meta row 14px under the body: a mono "SOURCE" label, then the source names in `--text-2` Inter 500 at 14px with a dim ↗. They turn gold on hover. Each has at least a 32px tap height. There is no rule above them.
 - **Chips.** Unchanged: small flat tags with a dot and coloured text on a faint tint.
 - **Out this week.** An unboxed list with hairline rows and 18px of vertical padding. The date sits in a 64px left column: the day in Inter Tight 700 at 20px, which fits "Today" as well as numbers, and the month in mono underneath. Titles are Inter Tight 600 at 18px, notes are `--text-3`, and tags sit below. "See the full release list ↗" is the gold link under the list.
-- **Footer.** A hairline rule above. The pinned `.note` is unboxed: a 2px gold rule on the left with `--text-2` copy and the 📌 icon. `.sign` is centred mono meta.
+- **Footer.** A hairline rule above. `.sign` is centred mono meta.
 - **Mobile.** The same single column with 18px side padding. Headlines step down to 21px, the logo drops to 60px and the masthead wraps to two lines.
 - **Markup.** No changes are needed beyond the optional logo `<img>` and setting `theme-color` to `#0f1012`.
 
