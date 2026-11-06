@@ -225,6 +225,16 @@ class UiReadTests(unittest.TestCase):
         self.assertIn('<span class="views-word">unique visitor</span>', html)
         self.assertIn('aria-label="1 unique visitor"', html)
 
+    def test_zero_visitors_is_hidden(self):
+        data = {
+            "date": "2026-11-06",
+            "views_snapshot": {
+                "total_unique_visitors": 0,
+                "series": [{"date": "2026-11-06", "visitors": 0, "tracked": True}],
+            },
+        }
+        self.assertEqual(build.views_sparkline(data), "")
+
     def test_legacy_pageview_snapshot_still_renders(self):
         data = {
             "date": "2026-10-23",
