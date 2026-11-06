@@ -35,7 +35,7 @@ Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `verce
 6. Commit the updated **JSON and generated HTML** (`YYYY-MM-DD.html`, and `index.html` when you built the latest day). Also commit `archive.html`, `badges.html`, and `sitemap.xml` if you ran `--all`.
 7. Push to `main` (or open a PR). Vercel runs the full build on every deployment.
 
-Each edition page links to **Past roundups** (`/archive.html`) in the footer and **Archive** / **Badges** in the header nav.
+Each edition page links to **Archive** / **Badges** in the header nav.
 
 ## Files
 

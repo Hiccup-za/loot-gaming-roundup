@@ -700,7 +700,7 @@ def render(data):
 <div class="wrap" id="top">
 <div class="intro"><div class="intro-lead"><div class="kicker"><span class="dot"></span>Daily gaming news</div><div class="date">{date_label}</div></div>{views_sparkline(data)}</div>
 {layout}
-<footer><div class="sign"><a class="full-list" href="/archive.html">Past roundups</a> · Compiled by Loot · links open in a new tab</div></footer>
+<footer><div class="sign">Compiled by Loot</div></footer>
 </div>
 <script>{SCROLL_SPY_JS}</script>
 </body>
@@ -987,7 +987,7 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 </header>
 <div class="{wrap_class}" id="top">
 {body}
-<footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot · links open in a new tab</div></footer>
+<footer><div class="sign"><a class="full-list" href="/">Latest roundup</a> · Compiled by Loot</div></footer>
 </div>
 </body>
 </html>"""
