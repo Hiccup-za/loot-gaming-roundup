@@ -2,6 +2,10 @@ name: Backfill views
 
 on:
   workflow_dispatch:
+  schedule:
+    # Local times 08:15, 12:00, 16:00, 20:00 (UTC+2), expressed in UTC
+    - cron: "15 6 * * *"
+    - cron: "0 10,14,18 * * *"
   push:
     branches: [main]
     paths:
