@@ -1,0 +1,420 @@
+{
+  "date": "2026-11-08",
+  "date_label": "Sunday 8 November 2026",
+  "published_at": "2026-11-08T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "Call of Duty: Warzone lands free on Switch 2",
+      "tags": [
+        "Switch 2",
+        "Call of Duty"
+      ],
+      "body": "Warzone arrived on the Switch 2 eShop with the start of Modern Warfare 4's Season 1. It's free-to-play, needs an Activision account but no Switch Online membership, and brings cross-play and cross-progression. Heads up: Nintendo Life's full Call of Duty install now sits at 122GB. PS4 and Xbox One support ended at the same time.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/icymi-call-of-duty-warzone-is-now-available-for-switch-2"
+        },
+        {
+          "label": "Insider Gaming",
+          "url": "https://insider-gaming.com/call-of-duty-warzone-switch-2-release/"
+        }
+      ]
+    },
+    {
+      "title": "Path of Exile 2 goes free-to-play at 1.0 on 11 December",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ],
+      "body": "Grinding Gear Games used ExileCon to lock in the full launch: free-to-play on PC, PS5 and Xbox Series X|S, the dagger-and-trap Shadow and stance-swapping Duelist as new classes, Acts 5 and 6 to finish the campaign, a storyline for the endgame, and the Conquerors of Wraeclast siege league.",
+      "links": [
+        {
+          "label": "KeenGamer",
+          "url": "https://www.keengamer.com/articles/news/path-of-exile-2-adds-the-shadow-and-conquerors-of-wraeclast-league-at-its-december-11-launch/"
+        },
+        {
+          "label": "VideoGamer",
+          "url": "https://www.videogamer.com/news/path-of-exile-2-shadow-class-siege-league-reveal/"
+        }
+      ]
+    },
+    {
+      "title": "Gears of War turns 20 and hands every E-Day player RAAM",
+      "tags": [
+        "Xbox",
+        "PC"
+      ],
+      "body": "The Coalition marked the series' 20th birthday by giving RAAM away as a multiplayer character in Gears of War: E-Day, claimed just by logging in. A two-week event adds limited-time modes, and Season 2, Legacy, starts on 1 December with returning maps, modes and skins.",
+      "links": [
+        {
+          "label": "Xbox Wire",
+          "url": "https://news.xbox.com/en-us/2026/11/06/gears-of-war-e-day-season-2-20th-anniversary/"
+        },
+        {
+          "label": "Warp Pipes",
+          "url": "https://warppipes.com/en/articles/video-game-news-digest-2026-11-07"
+        }
+      ]
+    },
+    {
+      "title": "NieR: Automata's Steam patch balloons the install to 366GB",
+      "tags": [
+        "PC",
+        "RPG"
+      ],
+      "body": "A language update adding Simplified Chinese, Traditional Chinese and Korean made each DLC count as a full copy of the game on download. Square Enix is investigating; until it's fixed, untick the DLC under Properties in Steam to grab the roughly 50GB base game.",
+      "links": [
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/rpg/nier-automata-developer-is-currently-investigating-a-bizarre-update-bug-that-drastically-inflated-the-games-file-size-from-50gb-to-366gb/"
+        },
+        {
+          "label": "Dexerto",
+          "url": "https://www.dexerto.com/gaming/square-enix-responds-after-nier-automata-update-triggers-massive-366gb-storage-requirement-3425350/"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Sony delays its Pulse Elevate speakers days before launch",
+      "tags": [
+        "PlayStation",
+        "Hardware"
+      ],
+      "body": "The PS5 desktop speakers were due on 12 November, but Sony says quality testing found a production issue and has pushed them back with no new date. It echoes the FlexStrike arcade stick, which has sat indefinitely delayed since August.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2025/09/24/introducing-pulse-elevate-sony-interactive-entertainments-first-wireless-speakers-for-desktop-gaming/"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/sony-indefinitely-delays-another-ps5-peripheral-days-before-release"
+        }
+      ]
+    },
+    {
+      "title": "Sony brings back 'PlayStation Exclusive' branding on PS5 games",
+      "tags": [
+        "PlayStation",
+        "Industry"
+      ],
+      "body": "The label has started appearing on tentpole first-party PS5 games, starting with Ghost of Yōtei and Until Dawn 2, as Sony leans back into keeping its single-player games off PC.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/playstation-exclusive-branding-added-to-tentpole-ps5-games-as-sony-doubles-down"
+        }
+      ]
+    },
+    {
+      "title": "Xbox Cloud Gaming tests your phone as a controller on smart TVs",
+      "tags": [
+        "Xbox",
+        "Industry"
+      ],
+      "body": "In a preview on supported smart TVs, you launch a cloud game without a pad, scan a QR code, and get touch controls in your phone's browser. Supported TVs and games are limited for now.",
+      "links": [
+        {
+          "label": "Xbox Wire",
+          "url": "https://news.xbox.com/en-us/2026/11/04/cloud-gaming-inputs-preview/"
+        },
+        {
+          "label": "Android Authority",
+          "url": "https://www.androidauthority.com/xbox-cloud-gaming-phone-controller-smart-tv-3731877/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "9 Nov",
+      "title": "Hozy",
+      "note": "Cleaning reno sim",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "GTA VI preload",
+      "note": "Up to 212GB",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "007 First Light Starter Pack",
+      "note": "Free opening mission on PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Raccoin: Chaos Max Edition",
+      "note": "Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Marvel Cosmic Invasion: Siege of Castle Doom",
+      "note": "Roguelike DLC",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Ova Magica",
+      "note": "Farming life sim",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Football Manager 27",
+      "note": "Joins Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Dragon's Dogma 2 update",
+      "note": "Switch 2, Delicious in Dungeon collab",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Honkai: Star Rail 4.7",
+      "note": "Adds 5-Star Aha",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pokémon UNITE farewell update",
+      "note": "Special event and library",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pikmin 4",
+      "note": "Switch 2 Edition + Dandori Academy",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Sonic Pico Park",
+      "note": "Co-op puzzler",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Path of Exile 3.30",
+      "note": "Covens of Umbra league",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Dec",
+      "title": "Path of Exile 2 1.0",
+      "note": "Free-to-play launch",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Sunday's haul",
+      "items": [
+        {
+          "emoji": "🎯",
+          "text": "Warzone lands on Switch 2"
+        },
+        {
+          "emoji": "⏸️",
+          "text": "Sony delays PS5 speakers"
+        },
+        {
+          "emoji": "🗡️",
+          "text": "Path of Exile 2 goes free"
+        },
+        {
+          "emoji": "🎂",
+          "text": "Gears turns 20 with free RAAM"
+        },
+        {
+          "emoji": "💾",
+          "text": "NieR patch bloats to 366GB"
+        }
+      ],
+      "date": "2026-11-08"
+    },
+    "text": "🪎 Sunday's haul: Warzone hits Switch 2\n\n⏸️ Sony delays PS5 speakers\n🗡️ Path of Exile 2 goes free\n🎂 Gears turns 20 with free RAAM\n💾 NieR patch bloats to 366GB\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-08",
+    "image": "/x/2026-11-08.png",
+    "time": "13:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-08T08:00:00+02:00",
+    "window_end": "2026-11-08T07:57:48.616726+02:00",
+    "fetched_at": "2026-11-08T07:57:56.850966+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
