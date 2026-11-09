@@ -1,0 +1,513 @@
+{
+  "date": "2026-11-09",
+  "date_label": "Monday 9 November 2026",
+  "published_at": "2026-11-09T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "GTA VI preloads open tonight, with up to 212GB to clear",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Digital pre-orders can start downloading from 10 November. PS5 opens at midnight local time, so 00:00 SAST tonight here, while Xbox opens globally at 00:00 GMT (02:00 SAST). Code-in-a-box copies hit shops from 12 November, and the game itself unlocks on 19 November on both consoles.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/rockstar-details-grand-theft-auto-6-pre-load-date-and-time-and-file-size/"
+        },
+        {
+          "label": "Digital Citizen",
+          "url": "https://www.digitalcitizen.life/gta-6-preload-time-xbox-ps5-us-uk/"
+        }
+      ]
+    },
+    {
+      "title": "Ocarina of Time remake files hint at Master Quest as DLC",
+      "tags": [
+        "Switch 2",
+        "Zelda"
+      ],
+      "body": "Dataminers found MQ-tagged rooms and strings like NewGameMQ and ReleaseMQ in the Switch 2 remake. Follow-up digging suggests Master Quest would unlock by owning DLC, with a mirrored world and remixed dungeons. Nintendo hasn't announced anything, and Eiji Aonuma would only say they like to leave the door open.",
+      "links": [
+        {
+          "label": "Nintendo Everything",
+          "url": "https://nintendoeverything.com/master-quest-references-potentially-found-in-zelda-ocarina-of-time-remake-files/"
+        }
+      ]
+    },
+    {
+      "title": "WoW: Forever posts the biggest launch in Warcraft history",
+      "tags": [
+        "PC",
+        "RPG"
+      ],
+      "body": "Blizzard says the stripped-back, modernised take on 2004's World of Warcraft hit the highest peak concurrent players of any WoW launch and drew back the most returning players ever. No numbers were shared. It's on PC with a normal WoW subscription, and Blizzard plans to keep adding content.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/world-of-warcraft-forever-record-breaking-launch/"
+        },
+        {
+          "label": "Windows Central",
+          "url": "https://www.windowscentral.com/gaming/blizzard/blizzard-confirms-world-of-warcraft-forever-is-the-biggest-launch-in-wow-history-beating-wrath-of-the-lich-king-is-wow-retail-cooked"
+        }
+      ]
+    },
+    {
+      "title": "Xbox lines up 14 Game Pass drops for its 25th birthday week",
+      "tags": [
+        "Xbox",
+        "PC"
+      ],
+      "body": "Football Manager 27, Warhammer Survivors and Tanuki: Pon's Summer land day one on 10 November, Thronefall and Hope in the City follow on the 11th, and Toxic Commando on the 12th. On the anniversary itself, 15 November, Essential gets Banjo-Kazooie, Banjo-Tooie, Nuts & Bolts, Perfect Dark, both Viva Piñatas, Gears of War: Judgment and Halo: Spartan Assault.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/11/10plus-game-pass-titles-are-confirmed-for-xboxs-25th-anniversary-week"
+        }
+      ]
+    },
+    {
+      "title": "God of War: Sons of Sparta looks set for a surprise PS4 port",
+      "tags": [
+        "PlayStation"
+      ],
+      "body": "A PlayStation Store listing with a PS4 platform tag has turned up for the 2026 spin-off. Sony hasn't announced it or given a date.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/god-of-war-spin-off-game-seemingly-getting-surprise-ps4-port"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Assassin's Creed Hexe has reportedly slipped to 2028",
+      "tags": [
+        "Ubisoft"
+      ],
+      "body": "Insider Gaming says the witchy Holy Roman Empire entry, expected in 2027, has been pushed back internally after development issues. A leak also points to an Ancient Rome game codenamed Mars, which likely wouldn't surface until 2029 at the earliest, plus a mobile spin-off. None of it is confirmed by Ubisoft.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/assassins-creed-hexe-delay-leak/"
+        },
+        {
+          "label": "GamesRadar+",
+          "url": "https://www.gamesradar.com/games/assassin-s-creed/assassins-creed-hexe-reportedly-delayed-by-a-year-while-ubisoft-is-apparently-making-another-ac-game-set-in-ancient-rome/"
+        }
+      ]
+    },
+    {
+      "title": "Epic confirms its new launcher will support SteamOS",
+      "tags": [
+        "PC",
+        "Steam Deck"
+      ],
+      "body": "Epic's Linux launcher, still in preview, will target SteamOS alongside Fedora, Cachy and others, and AppImage downloads return this month. Fortnite on Steam Deck is a separate question, as its anti-cheat still doesn't support the Deck.",
+      "links": [
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/games/1029557/epic-games-launcher-is-coming-to-steamos"
+        }
+      ]
+    },
+    {
+      "title": "Resident Evil Veronica reportedly slips to autumn 2027",
+      "tags": [
+        "Capcom"
+      ],
+      "body": "Insider Dusk Golem says Capcom could have shipped the remake earlier but wants more polish after feedback on Resident Evil Requiem, and that Requiem's story DLC is getting more time too. Capcom hasn't commented.",
+      "links": [
+        {
+          "label": "TheGamer",
+          "url": "https://www.thegamer.com/resident-evil-veronica-requiem-dlc-delayed-explained-insider-re9-feedback/"
+        }
+      ]
+    },
+    {
+      "title": "Valve hides the Dead by Daylight review bomb on Steam",
+      "tags": [
+        "PC",
+        "Steam"
+      ],
+      "body": "Reviews posted from 1 to 6 November, tied to the backlash over TheBurntPeanut's free content, are now marked off-topic and left out of the default score, which is back to Mostly Positive.",
+      "links": [
+        {
+          "label": "Dexerto",
+          "url": "https://www.dexerto.com/dead-by-daylight/valve-hides-dead-by-daylight-review-bomb-after-theburntpeanut-fallout-3425653/"
+        }
+      ]
+    },
+    {
+      "title": "Warhammer Blood Bowl is delayed into early 2027",
+      "tags": [
+        "PC"
+      ],
+      "body": "Slitherine and Cyanide are taking extra time to act on playtest feedback. There's no exact date yet.",
+      "links": [
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/sports/warhammer-blood-bowl-has-been-delayed-into-2027/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "9 Nov",
+      "title": "Hozy",
+      "note": "Cleaning reno sim",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "GTA VI preload",
+      "note": "Up to 212GB",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "007 First Light Starter Pack",
+      "note": "Free opening mission on PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Raccoin: Chaos Max Edition",
+      "note": "Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Marvel Cosmic Invasion: Siege of Castle Doom",
+      "note": "Roguelike DLC",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Ova Magica",
+      "note": "Farming life sim",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Football Manager 27",
+      "note": "Joins Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Shrek 2 Remastered",
+      "note": "Co-op classic returns",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "10 Nov",
+      "title": "Warhammer Survivors",
+      "note": "Day one on Game Pass",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Dragon's Dogma 2 update",
+      "note": "Switch 2, Delicious in Dungeon collab",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Honkai: Star Rail 4.7",
+      "note": "Adds 5-Star Aha",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Thronefall",
+      "note": "Build by day, defend by night",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pokémon UNITE farewell update",
+      "note": "Special event and library",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pikmin 4",
+      "note": "Switch 2 Edition + Dandori Academy",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Sonic Pico Park",
+      "note": "Co-op puzzler",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Barbie Rewind",
+      "note": "Digital Eclipse retro collection",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "GTA VI boxed copies",
+      "note": "Code in a box, in shops",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Path of Exile 3.30",
+      "note": "Covens of Umbra league",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Nov",
+      "title": "Xbox 25th anniversary",
+      "note": "8 classics join Game Pass Essential",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Dec",
+      "title": "Path of Exile 2 1.0",
+      "note": "Free-to-play launch",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "🚗",
+          "text": "GTA VI preloads open tonight"
+        },
+        {
+          "emoji": "🔮",
+          "text": "Zelda files tease Master Quest"
+        },
+        {
+          "emoji": "🗡️",
+          "text": "Assassin's Creed Hexe slips"
+        },
+        {
+          "emoji": "🐧",
+          "text": "Epic launcher comes to SteamOS"
+        },
+        {
+          "emoji": "🏆",
+          "text": "WoW Forever breaks records"
+        }
+      ],
+      "date": "2026-11-09"
+    },
+    "text": "🪎 Monday's haul: GTA VI preloads open tonight\n\n🔮 Zelda files tease Master Quest\n🗡️ Assassin's Creed Hexe slips\n🐧 Epic launcher comes to SteamOS\n🏆 WoW Forever breaks records\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-09",
+    "image": "/x/2026-11-09.png",
+    "time": "12:45"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-09T08:00:00+02:00",
+    "window_end": "2026-11-09T07:58:13.780361+02:00",
+    "fetched_at": "2026-11-09T07:58:21.375792+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
