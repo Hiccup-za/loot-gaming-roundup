@@ -464,7 +464,7 @@
   "x_post": {
     "template": "haul",
     "data": {
-      "date": "2026-10-31",
+      "title": "Saturday's haul",
       "items": [
         {
           "emoji": "🚀",
@@ -472,13 +472,22 @@
         },
         {
           "emoji": "❄️",
-          "text": "FFXIV Evercold moves to Feb"
+          "text": "FFXIV Evercold slips to 2027"
         },
         {
           "emoji": "🎭",
-          "text": "Resonance of Fate PS5 remaster"
+          "text": "Resonance of Fate hits PS5"
+        },
+        {
+          "emoji": "🏁",
+          "text": "Turn 10 joins Playground"
+        },
+        {
+          "emoji": "🛒",
+          "text": "PS Store pricing fears return"
         }
-      ]
+      ],
+      "date": "2026-10-31"
     },
     "text": "🧰 Saturday's haul from Loot:\n\n🚀 EA reportedly axes the next Mass Effect\n❄️ FFXIV Evercold moves to 23 Feb 2027\n🎭 Resonance of Fate gets a PS5 remaster\n\nAll the news worth your time 👇\nhttps://loot-gaming-roundup.vercel.app/2026-10-31",
     "image": "/x/2026-10-31.png",
