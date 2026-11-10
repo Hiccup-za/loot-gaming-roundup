@@ -23,6 +23,7 @@ if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
 
 from publish.github_client import GitHubAPIError, client_from_env
+from publish.submission_manifest import MANIFEST_PATH, build_manifest
 from publish.submission_ref import submission_ref_head, submission_ref_name
 from publish.validate import PublishValidationError, validate_edition_bundle
 
@@ -32,47 +33,82 @@ def create_submission_commit(
     edition_date: str,
     json_bytes: bytes,
     png_bytes: bytes,
+    hashes: dict[str, str],
+    *,
+    png_only: bool = False,
 ) -> str:
     main_sha = client.ref_sha("heads/main")
     main_commit = client._request("GET", f"/git/commits/{main_sha}")
     base_tree = main_commit["tree"]["sha"]
 
-    json_blob = client.create_blob(json_bytes, binary=False)
+    manifest_blob = client.create_blob(
+        build_manifest(
+            edition_date,
+            hashes["json_sha256"],
+            hashes["png_sha256"],
+            png_only=png_only,
+        ),
+        binary=True,
+    )
     png_blob = client.create_blob(png_bytes, binary=True)
-    tree_sha = client.create_tree(
-        base_tree,
-        [
+    entries = [
+        {
+            "path": MANIFEST_PATH,
+            "mode": "100644",
+            "type": "blob",
+            "sha": manifest_blob,
+        },
+        {
+            "path": f"x/{edition_date}.png",
+            "mode": "100644",
+            "type": "blob",
+            "sha": png_blob,
+        },
+    ]
+    if not png_only:
+        json_blob = client.create_blob(json_bytes, binary=False)
+        entries.insert(
+            1,
             {
                 "path": f"{edition_date}.json",
                 "mode": "100644",
                 "type": "blob",
                 "sha": json_blob,
             },
-            {
-                "path": f"x/{edition_date}.png",
-                "mode": "100644",
-                "type": "blob",
-                "sha": png_blob,
-            },
-        ],
-    )
+        )
+    tree_sha = client.create_tree(base_tree, entries)
     message = f"publish submission: {edition_date}"
     return client.create_commit(message, tree_sha, [main_sha])
 
 
 def file_hashes_match_commit(client, commit_sha: str, edition_date: str, hashes: dict[str, str]) -> bool:
-    """Compare JSON/PNG blob hashes at commit paths to expected content hashes."""
+    """Manifest + artefact blob hashes must match expected content."""
+    from publish.submission_manifest import MANIFEST_PATH, parse_manifest
+
     commit = client._request("GET", f"/git/commits/{commit_sha}")
     tree_sha = commit["tree"]["sha"]
     tree = client._request("GET", f"/git/trees/{tree_sha}?recursive=1")
     paths = {e["path"]: e["sha"] for e in tree.get("tree", []) if e["type"] == "blob"}
-    needed = {f"{edition_date}.json", f"x/{edition_date}.png"}
-    if not needed.issubset(paths):
+    if MANIFEST_PATH not in paths:
         return False
-    for path, blob_sha in paths.items():
-        if path not in needed:
+    man_blob = client._request("GET", f"/git/blobs/{paths[MANIFEST_PATH]}")
+    try:
+        doc = parse_manifest(base64.b64decode(man_blob["content"]))
+    except Exception:
+        return False
+    if doc["edition_date"] != edition_date:
+        return False
+    if doc["json_sha256"] != hashes["json_sha256"] or doc["png_sha256"] != hashes["png_sha256"]:
+        return False
+    png_path = f"x/{edition_date}.png"
+    if png_path not in paths:
+        return False
+    for path in (png_path, f"{edition_date}.json"):
+        if path == f"{edition_date}.json" and doc.get("png_only"):
             continue
-        blob = client._request("GET", f"/git/blobs/{blob_sha}")
+        if path not in paths:
+            return False
+        blob = client._request("GET", f"/git/blobs/{paths[path]}")
         raw = base64.b64decode(blob["content"])
         digest = hashlib.sha256(raw).hexdigest()
         if path.endswith(".json") and digest != hashes["json_sha256"]:
@@ -93,7 +129,9 @@ def upload_submission(
 ) -> tuple[str, str, bool]:
     ref_name = submission_ref_name(edition_date, hashes["json_sha256"], hashes["png_sha256"])
     head = submission_ref_head(ref_name)
-    commit_sha = create_submission_commit(client, edition_date, json_bytes, png_bytes)
+    commit_sha = create_submission_commit(
+        client, edition_date, json_bytes, png_bytes, hashes, png_only=False
+    )
     if dry_run:
         print(f"dry-run: would create ref {ref_name} → {commit_sha}")
         return commit_sha, ref_name, True

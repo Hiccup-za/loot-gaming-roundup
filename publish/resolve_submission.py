@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resolve edition metadata from a publish submission commit tree (not diff names)."""
+"""Resolve edition metadata from explicit .publish/submission.json manifest."""
 from __future__ import annotations
 
 import argparse
@@ -9,16 +9,19 @@ import re
 import subprocess
 import sys
 
-from publish.submission_ref import SUBMISSION_BRANCH_RE
+from publish.submission_manifest import (
+    MANIFEST_PATH,
+    ManifestError,
+    parse_manifest,
+    validate_manifest_against_files,
+    validate_manifest_against_ref,
+)
 from publish.validate import sha256_file
 
-EDITION_JSON = re.compile(r"^(?P<date>\d{4}-\d{2}-\d{2})\.json$")
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 
 
-def git_show_object(
-    commit: str, path: str, dest: str, *, cwd: str | None = None
-) -> None:
+def git_show_bytes(commit: str, path: str, *, cwd: str | None = None) -> bytes:
     proc = subprocess.run(
         ["git", "show", f"{commit}:{path}"],
         capture_output=True,
@@ -27,53 +30,29 @@ def git_show_object(
     )
     if proc.returncode != 0:
         raise RuntimeError(f"git show {commit}:{path} failed: {proc.stderr.decode()}")
+    return proc.stdout
+
+
+def git_show_object(
+    commit: str, path: str, dest: str, *, cwd: str | None = None
+) -> None:
     with open(dest, "wb") as f:
-        f.write(proc.stdout)
+        f.write(git_show_bytes(commit, path, cwd=cwd))
 
 
-def ls_tree_paths(commit: str, *, cwd: str | None = None) -> list[str]:
-    """All blob paths in the commit tree (not the parent diff)."""
-    proc = subprocess.run(
-        ["git", "ls-tree", "-r", "--name-only", commit],
-        capture_output=True,
-        check=True,
-        text=True,
-        cwd=cwd,
-    )
-    return [ln.strip() for ln in proc.stdout.splitlines() if ln.strip()]
-
-
-def edition_date_from_ref(ref_name: str | None) -> str | None:
-    if not ref_name:
-        return None
-    m = SUBMISSION_BRANCH_RE.match(ref_name)
-    return m.group("date") if m else None
-
-
-def detect_edition_date(paths: list[str], ref_name: str | None) -> str:
-    for path in paths:
-        m = EDITION_JSON.match(path)
-        if m:
-            return m.group("date")
-    from_ref = edition_date_from_ref(ref_name)
-    if from_ref:
-        for path in paths:
-            if path == f"x/{from_ref}.png":
-                return from_ref
-    raise RuntimeError(
-        f"cannot determine edition date from tree {paths!r} ref={ref_name!r}"
-    )
-
-
-def materialize_json(
-    commit: str, edition_date: str, paths: list[str], work_dir: str, *, git_cwd: str
+def materialize_edition_json(
+    commit: str,
+    edition_date: str,
+    *,
+    png_only: bool,
+    work_dir: str,
+    git_cwd: str,
 ) -> str:
     json_rel = f"{edition_date}.json"
     dest = os.path.join(work_dir, json_rel)
-    if json_rel in paths:
+    if not png_only:
         git_show_object(commit, json_rel, dest, cwd=git_cwd)
         return dest
-    # PNG-only submission tree: edition JSON already on main.
     for ref in ("origin/main", "main"):
         proc = subprocess.run(
             ["git", "show", f"{ref}:{json_rel}"],
@@ -85,9 +64,7 @@ def materialize_json(
             with open(dest, "wb") as f:
                 f.write(proc.stdout)
             return dest
-    raise RuntimeError(
-        f"{json_rel} not in submission {commit} and not found on main"
-    )
+    raise RuntimeError(f"png_only submission but {json_rel} not on main")
 
 
 def resolve(
@@ -99,32 +76,47 @@ def resolve(
     if not SHA40.match(commit):
         raise RuntimeError(f"invalid commit sha: {commit!r}")
 
+    git_cwd = work_dir if os.path.isdir(os.path.join(work_dir, ".git")) else None
+    if not git_cwd:
+        raise RuntimeError("resolve requires a git work_dir with .git")
+
     os.makedirs(work_dir, exist_ok=True)
     os.makedirs(os.path.join(work_dir, "x"), exist_ok=True)
 
-    git_cwd = work_dir if os.path.isdir(os.path.join(work_dir, ".git")) else None
-    paths = ls_tree_paths(commit, cwd=git_cwd)
-    edition_date = detect_edition_date(paths, ref_name)
+    manifest_raw = git_show_bytes(commit, MANIFEST_PATH, cwd=git_cwd)
+    doc = parse_manifest(manifest_raw)
+    validate_manifest_against_ref(doc, ref_name)
 
+    edition_date = doc["edition_date"]
     png_rel = f"x/{edition_date}.png"
-    if png_rel not in paths:
-        raise RuntimeError(f"missing {png_rel} in submission tree")
+    png_only = bool(doc.get("png_only"))
 
-    if not git_cwd:
-        raise RuntimeError("resolve requires a git work_dir with .git for materialize")
-    json_path = materialize_json(commit, edition_date, paths, work_dir, git_cwd=git_cwd)
+    json_path = materialize_edition_json(
+        commit,
+        edition_date,
+        png_only=png_only,
+        work_dir=work_dir,
+        git_cwd=git_cwd,
+    )
     git_show_object(commit, png_rel, os.path.join(work_dir, png_rel), cwd=git_cwd)
 
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
-    if data.get("date") != edition_date:
-        raise RuntimeError("JSON date field mismatch")
+
+    json_hash = sha256_file(json_path)
+    png_hash = sha256_file(os.path.join(work_dir, png_rel))
+    validate_manifest_against_files(
+        doc,
+        json_sha256=json_hash,
+        png_sha256=png_hash,
+        json_date=data.get("date", ""),
+    )
 
     return {
         "edition_date": edition_date,
         "date_label": data["date_label"],
-        "json_sha256": sha256_file(json_path),
-        "png_sha256": sha256_file(os.path.join(work_dir, png_rel)),
+        "json_sha256": json_hash,
+        "png_sha256": png_hash,
         "source_sha": commit,
     }
 
@@ -132,13 +124,17 @@ def resolve(
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--commit", required=True)
-    ap.add_argument("--ref-name", default=None, help="e.g. publish/submissions/2026-11-11-abc")
+    ap.add_argument(
+        "--ref-name",
+        default=None,
+        help="push event ref (omit on workflow_dispatch replay)",
+    )
     ap.add_argument("--work-dir", default=".")
     ap.add_argument("--github-output", default=None)
     args = ap.parse_args(argv)
     try:
-        meta = resolve(args.commit, ref_name=args.ref_name, work_dir=args.work_dir)
-    except (RuntimeError, json.JSONDecodeError, OSError) as e:
+        meta = resolve(args.commit, ref_name=args.ref_name or None, work_dir=args.work_dir)
+    except (RuntimeError, ManifestError, json.JSONDecodeError, OSError) as e:
         print(f"resolve failed: {e}", file=sys.stderr)
         return 1
     out = args.github_output

@@ -10,6 +10,7 @@ Parent routine (JSON) ──┐
 Artist (PNG on disk) ───┘              │
                                        ▼
               immutable ref publish/submissions/{date}-{contentId}
+              (+ authoritative .publish/submission.json on every commit)
                                        │
                          push triggers publish-edition.yml
                                        ▼
