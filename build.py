@@ -856,10 +856,22 @@ def archive_has_legacy_counts(editions):
     return False
 
 
+ARCHIVE_HAUL_TITLE_RE = re.compile(
+    r"^(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day['\u2019]s haul$", re.IGNORECASE
+)
+
+
 def archive_x_image(ed, root):
-    """Site path of the edition's X post image when the PNG exists on disk, else None."""
+    """Site path of the edition's X image, only for weekday "<Day>'s haul" posts.
+
+    "Today's haul", headline, game-specific and weekly-wrap images are left out.
+    """
+    x_post = ed.get("x_post") or {}
+    title = ((x_post.get("data") or {}).get("title") or "").strip()
+    if x_post.get("template") != "haul" or not ARCHIVE_HAUL_TITLE_RE.match(title):
+        return None
     candidates = []
-    image = (ed.get("x_post") or {}).get("image")
+    image = x_post.get("image")
     if isinstance(image, str) and X_POST_IMAGE_RE.match(image):
         candidates.append(image)
     candidates.append(f'/x/{ed["date"]}.png')
@@ -895,12 +907,9 @@ def archive_card(ed, root):
         )
     d = datetime.strptime(ed["date"], "%Y-%m-%d")
     stats = f"<span><b>{stories}</b> {stories_word}</span>"
-    if visitors is None:
-        stats += "<span>Visitors not tracked</span>"
-    else:
-        stats += f"<span><b>{fmt_views(visitors)}</b> {visitors_word(visitors)}</span>"
+    text_label = f'{ed.get("date_label", ed["date"])}, {stories} {stories_word}'
     return (
-        f'<li><a class="ed-tile ed-tile-text" href="/{slug}.html" aria-label="{escape(summary)}">'
+        f'<li><a class="ed-tile ed-tile-text" href="/{slug}.html" aria-label="{escape(text_label)}">'
         f"<div>"
         f'<div class="ed-tile-kicker">Loot\'s Gaming Roundup</div>'
         f'<h3 class="ed-tile-title">{escape(d.strftime("%A"))}</h3>'
