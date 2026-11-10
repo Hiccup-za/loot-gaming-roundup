@@ -387,6 +387,36 @@
     }
   ],
   "footer_note": "The PS Plus leaving list comes from the Asian PS Stores, so check ours after noon today in case it differs. Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date) and Helldivers 2 Update 7.2 (still undated).",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Tuesday's haul",
+      "items": [
+        {
+          "emoji": "🚗",
+          "text": "GTA V and RDR2 leave PS Plus"
+        },
+        {
+          "emoji": "📺",
+          "text": "ID@Xbox Showcase airs tonight"
+        },
+        {
+          "emoji": "🎯",
+          "text": "Helldivers 2 drops a Warbond"
+        },
+        {
+          "emoji": "💀",
+          "text": "Liquid Swords has now closed"
+        },
+        {
+          "emoji": "🦖",
+          "text": "A Wilds demo lands on Switch 2"
+        }
+      ],
+      "date": "2026-10-20"
+    },
+    "image": "/x/2026-10-20.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-20T08:00:00+02:00",
     "window_end": "2026-10-21T08:00:00+02:00",

@@ -454,19 +454,17 @@
   ],
   "footer_note": "A quiet Halloween weekend. Still waiting: whether EA confirms the Mass Effect report, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and Bethesda's rumoured Elder Scrolls VI name around 11 Nov.",
   "x_post": {
-    "template": "weekly-wrap",
+    "template": "haul",
     "data": {
-      "title": "Sunday wrap",
-      "week": "Week to 1 Nov 2026",
-      "date": "2026-11-01",
+      "title": "Sunday's haul",
       "items": [
         {
           "emoji": "🌱",
-          "text": "Pikmin Day Direct drops a demo"
+          "text": "Pikmin Day brings a demo"
         },
         {
           "emoji": "🗡️",
-          "text": "Ocarina of Time remake out 5 Nov"
+          "text": "Ocarina remake lands 5 Nov"
         },
         {
           "emoji": "🏰",
@@ -474,13 +472,14 @@
         },
         {
           "emoji": "👀",
-          "text": "Persona 1 remake footage leaks?"
+          "text": "A Persona 1 remake leaks"
         },
         {
           "emoji": "🎬",
-          "text": "Netflix PUBG show for Donald Glover"
+          "text": "Netflix makes a PUBG series"
         }
-      ]
+      ],
+      "date": "2026-11-01"
     },
     "text": "🧰 Loot's Sunday haul:\n\n🌱 It's Pikmin Day, demo tomorrow\n🗡️ Ocarina remake out 5 Nov\n🏰 Silver Palace RPG lands 14 Dec\n👀 Persona 1 remake leak?\n\nhttps://loot-gaming-roundup.vercel.app/2026-11-01",
     "image": "/x/2026-11-01.png",

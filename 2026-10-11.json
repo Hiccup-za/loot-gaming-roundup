@@ -197,6 +197,36 @@
     }
   ],
   "footer_note": "Helldivers 2 update 7.2 is still expected in October, but there's no official date yet.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Sunday's haul",
+      "items": [
+        {
+          "emoji": "💣",
+          "text": "Leaker threatens a GTA 6 build"
+        },
+        {
+          "emoji": "📉",
+          "text": "Console sales slump in the US"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Witcher 3 patch fixes PS5 bugs"
+        },
+        {
+          "emoji": "🎮",
+          "text": "Nintendo puts MW4 on Switch 2"
+        },
+        {
+          "emoji": "🎬",
+          "text": "Paramount films Cyberpunk 2077"
+        }
+      ],
+      "date": "2026-10-11"
+    },
+    "image": "/x/2026-10-11.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-11T08:00:00+02:00",
     "window_end": "2026-10-12T08:00:00+02:00",

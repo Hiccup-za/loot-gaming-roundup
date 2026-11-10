@@ -517,15 +517,26 @@
   ],
   "footer_note": "The Pikmin 4 Switch 2 demo is out today, and Ocarina of Time lands Thursday. Still waiting: EA on the Mass Effect report, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and Bethesda's rumoured Elder Scrolls VI name around 11 Nov.",
   "x_post": {
-    "template": "headline",
+    "template": "haul",
     "data": {
-      "kicker": "Monday headline",
-      "headline": "Phantom Blade Zero tops four million sales in 72 hours",
-      "dek": "S-Game's wuxia action RPG launched on PS5 and PC on 29 October. A physical PS5 edition follows in 2027.",
-      "tags": [
-        "PS5",
-        "PC",
-        "RPG"
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "⚔️",
+          "text": "Phantom Blade Zero tops 4M"
+        },
+        {
+          "emoji": "🪐",
+          "text": "Petit Planet heads to Switch 2"
+        },
+        {
+          "emoji": "❄️",
+          "text": "Dune Awakening gets snow 1 Dec"
+        },
+        {
+          "emoji": "🐉",
+          "text": "Yakuza creator's studio closes"
+        }
       ],
       "date": "2026-11-02"
     },

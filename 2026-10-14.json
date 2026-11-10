@@ -315,6 +315,36 @@
     }
   ],
   "footer_note": "Still waiting: RuneScape: Dragonwilds 1.0.1 (save restores) was promised for this week but has no date yet, and Helldivers 2 Update 7.2 is still unnamed and undated. The full PS Plus Extra/Premium October line-up is expected to be revealed today; Mycopunk (20 Oct) is the only confirmed game so far.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Wednesday's haul",
+      "items": [
+        {
+          "emoji": "🔫",
+          "text": "Boltgun 2 launches today"
+        },
+        {
+          "emoji": "🖥️",
+          "text": "GTA 6 hits PC in early 2027"
+        },
+        {
+          "emoji": "🧪",
+          "text": "Xbox forms a new Labs team"
+        },
+        {
+          "emoji": "🌱",
+          "text": "Pikmin 4 is dated for Switch 2"
+        },
+        {
+          "emoji": "📅",
+          "text": "Edge of Memories slips to Dec"
+        }
+      ],
+      "date": "2026-10-14"
+    },
+    "image": "/x/2026-10-14.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-14T08:00:00+02:00",
     "window_end": "2026-10-15T08:00:00+02:00",

@@ -583,15 +583,26 @@
   ],
   "footer_note": "Ocarina of Time and Stellar Blade both hit Switch 2 on Thursday. Still waiting: the Pokémon Company's countdown, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and Bethesda's rumoured Elder Scrolls VI name around 11 Nov.",
   "x_post": {
-    "template": "games",
+    "template": "haul",
     "data": {
-      "kicker": "Tuesday spotlight",
-      "game": "Enshrouded",
-      "headline": "Enshrouded 1.0 is a survival crafting masterpiece, says PC Gamer",
-      "note": "Keen Games' survival-crafter has left early access, and the fog clears around Embervale.",
-      "tags": [
-        "PC",
-        "Survival"
+      "title": "Tuesday's haul",
+      "items": [
+        {
+          "emoji": "🛠️",
+          "text": "Enshrouded 1.0 hailed a gem"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Stellar Blade gets reviewed"
+        },
+        {
+          "emoji": "🕯️",
+          "text": "Thief remaster lands 3 Dec"
+        },
+        {
+          "emoji": "💰",
+          "text": "Borderlands tops 100M sold"
+        }
       ],
       "date": "2026-11-03"
     },

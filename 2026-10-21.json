@@ -408,6 +408,36 @@
     }
   ],
   "footer_note": "Still waiting: The Blood of Dawnwalker Update 1.1 (due on PS5 this week, no exact date). The Cyberpunk 2.5 details come from a leaked video, so tonight's REDstream is the word to trust.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Wednesday's haul",
+      "items": [
+        {
+          "emoji": "📱",
+          "text": "Xbox plans a 2027 handheld"
+        },
+        {
+          "emoji": "🧅",
+          "text": "Shrek 2 remaster lands 10 Nov"
+        },
+        {
+          "emoji": "🌃",
+          "text": "Cyberpunk 2.5 lands tomorrow"
+        },
+        {
+          "emoji": "🥊",
+          "text": "EA brings Fight Night back"
+        },
+        {
+          "emoji": "🏅",
+          "text": "Sports Resort is well reviewed"
+        }
+      ],
+      "date": "2026-10-21"
+    },
+    "image": "/x/2026-10-21.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-21T08:00:00+02:00",
     "window_end": "2026-10-22T08:00:00+02:00",

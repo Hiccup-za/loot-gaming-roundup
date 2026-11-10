@@ -313,6 +313,36 @@
     }
   ],
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2, and what carries over in AC Black Flag Resynced's New Game Plus.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Sunday's haul",
+      "items": [
+        {
+          "emoji": "👋",
+          "text": "Xbox COO Helen Chiang has left"
+        },
+        {
+          "emoji": "📦",
+          "text": "A 30GB MW4 patch hits Switch 2"
+        },
+        {
+          "emoji": "👁️",
+          "text": "Look Outside comes to consoles"
+        },
+        {
+          "emoji": "🎧",
+          "text": "Sony's new Walkman is $5,899"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Wo Long 2 widens parry windows"
+        }
+      ],
+      "date": "2026-10-25"
+    },
+    "image": "/x/2026-10-25.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-25T08:00:00+02:00",
     "window_end": "2026-10-26T08:00:00+02:00",

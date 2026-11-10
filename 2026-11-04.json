@@ -551,7 +551,7 @@
   "x_post": {
     "template": "haul",
     "data": {
-      "title": "Today's haul",
+      "title": "Wednesday's haul",
       "items": [
         {
           "emoji": "📜",

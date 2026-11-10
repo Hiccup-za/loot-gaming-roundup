@@ -337,6 +337,36 @@
     }
   ],
   "footer_note": "A quieter Saturday for news. Still waiting: Dragonwilds' Air Staff fix (targeted for next week), Helldivers 2 Update 7.2 (undated, with Liberty Day in-game on 26 Oct), and the list of games leaving PS Plus Extra in November, due 20 Oct.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Sunday's haul",
+      "items": [
+        {
+          "emoji": "🧝",
+          "text": "Nintendo plans Ocarina restock"
+        },
+        {
+          "emoji": "✂️",
+          "text": "Funcom cuts jobs after Dune"
+        },
+        {
+          "emoji": "🎮",
+          "text": "Steam Next Fest starts Monday"
+        },
+        {
+          "emoji": "🧛",
+          "text": "Dawnwalker 1.1 lands next week"
+        },
+        {
+          "emoji": "🚗",
+          "text": "GTA 6 gets its Japanese rating"
+        }
+      ],
+      "date": "2026-10-18"
+    },
+    "image": "/x/2026-10-18.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-18T08:00:00+02:00",
     "window_end": "2026-10-19T08:00:00+02:00",

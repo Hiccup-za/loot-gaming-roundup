@@ -245,6 +245,36 @@
     }
   ],
   "footer_note": "Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "👑",
+          "text": "Kingdom Hearts hits Switch 2"
+        },
+        {
+          "emoji": "📦",
+          "text": "Nintendo keeps physical games"
+        },
+        {
+          "emoji": "⚠️",
+          "text": "PS5 Pro shortage lasts to 2027"
+        },
+        {
+          "emoji": "🧟",
+          "text": "Resident Evil hits Switch 2"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Valor Mortis launches tomorrow"
+        }
+      ],
+      "date": "2026-10-12"
+    },
+    "image": "/x/2026-10-12.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-12T08:00:00+02:00",
     "window_end": "2026-10-13T08:00:00+02:00",

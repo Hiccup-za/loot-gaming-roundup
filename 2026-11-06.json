@@ -586,7 +586,7 @@
   "x_post": {
     "template": "haul",
     "data": {
-      "title": "Today's haul",
+      "title": "Friday's haul",
       "items": [
         {
           "emoji": "🎮",
@@ -612,6 +612,7 @@
       "date": "2026-11-06"
     },
     "text": "🪎 Friday's haul:\n\n🎮 Switch 2 passes 26 million\n🛑 Warzone ends on last-gen\n💰 Unity draws $25bn buy talks\n⚔️ Stellar Blade gets Bayonetta\n📜 BioWare petition hits Canada\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-06",
+    "image": "/x/2026-11-06.png",
     "time": "14:30"
   },
   "views_snapshot": {
