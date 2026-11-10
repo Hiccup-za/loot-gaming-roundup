@@ -297,14 +297,30 @@ class UiReadTests(unittest.TestCase):
         ]
         html = build.render_archive(editions)
         self.assertIn("Unique visitors", html)
-        self.assertIn("Visitors per edition", html)
-        self.assertIn("Visitors not tracked yet", html)
+        self.assertIn("Editions", html)
+        self.assertIn("Stories", html)
+        self.assertNotIn("Visitors per edition", html)
+        self.assertNotIn("Visitors not tracked", html)
+        self.assertNotIn("ed-tile-stats\"><span><b>2</b> stories</span><span>", html)
         self.assertIn(">19<", html)
         self.assertIn("unique visitors", html)
         self.assertNotIn("Total page views", html)
         self.assertNotIn("page views", html.lower())
         self.assertNotIn("Views per edition", html)
         self.assertNotIn("View tracking began", html)
+
+    def test_archive_only_shows_weekday_haul_images(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "x"))
+            for day in ("2026-11-04", "2026-11-07"):
+                open(os.path.join(root, "x", f"{day}.png"), "wb").close()
+            today = {"date": "2026-11-04", "x_post": {"template": "haul", "image": "/x/2026-11-04.png", "data": {"title": "Today's haul"}}}
+            saturday = {"date": "2026-11-07", "x_post": {"template": "haul", "image": "/x/2026-11-07.png", "data": {"title": "Saturday's haul"}}}
+            self.assertIsNone(build.archive_x_image(today, root))
+            self.assertEqual(build.archive_x_image(saturday, root), "/x/2026-11-07.png")
+            headline = {"date": "2026-11-07", "x_post": {"template": "headline", "data": {"title": "Saturday's haul"}}}
+            self.assertIsNone(build.archive_x_image(headline, root))
 
 
 if __name__ == "__main__":

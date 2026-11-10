@@ -10,7 +10,7 @@ Each daily roundup is built from a **JSON file** (`YYYY-MM-DD.json`). HTML pages
 | `x/YYYY-MM-DD.png` | Optional hosted image for that day's `@LootRoundup` post (not shown on roundup pages). The `x/` directory is kept in git (see `x/.gitkeep`); PNGs are static assets via `vercel.json` `outputDirectory: "."` (no build copy step). |
 | `YYYY-MM-DD.html` | Generated edition page |
 | `index.html` | Copy of the **latest** edition (home page) |
-| `archive.html` | Generated archive: KPI and visitors-per-edition chart from Databuddy `views_snapshot` in JSON, plus one card per edition (newest first) |
+| `archive.html` | Generated archive: unique visitors, editions and stories KPIs (visitors from Databuddy `views_snapshot` in JSON), plus one tile per edition (newest first) showing its `x/YYYY-MM-DD.png` image when one exists, or a text tile otherwise |
 | `sitemap.xml` | Generated sitemap for search engines |
 
 On every Vercel deploy, the build command runs `python3 build.py --all`, which rebuilds every edition from JSON, refreshes views snapshots when rules allow, and updates `index.html`, `archive.html`, and `sitemap.xml`.
@@ -28,7 +28,7 @@ Daily edition JSON + Artist haul PNG are published via **`scripts/submit_edition
 1. Copy the previous day's `YYYY-MM-DD.json` to today's filename (e.g. `2026-10-25.json`).
 2. Edit the JSON: update `date`, `date_label`, story content, and optionally **`published_at`** (ISO8601, SAST or Z) if the edition went live at a time other than the default **08:00 Africa/Johannesburg** on that date. When you want the X dashboard to show that day's post, add optional **`x_post`** (see JSON schema): `template`, opaque `data` for the image renderer, `text` (≤280 chars on X, each link counts as 23), `image` path like `/x/YYYY-MM-DD.png`, and suggested `time` (HH:MM SAST).
 3. Commit the JSON (including `x_post` when used). The public edition feed at `/YYYY-MM-DD.json` is the same file — it is not stripped at build time.
-4. After the 1200×675 image is rendered from the template, commit the PNG under **`x/`** (e.g. `x/2026-10-28.png`) in a **separate commit**. It deploys at `https://loot-gaming-roundup.vercel.app/x/YYYY-MM-DD.png`. X images are not linked from roundup HTML and are not listed in `sitemap.xml`.
+4. After the 1200×675 image is rendered from the template, commit the PNG under **`x/`** (e.g. `x/2026-10-28.png`) in a **separate commit**. It deploys at `https://loot-gaming-roundup.vercel.app/x/YYYY-MM-DD.png`. X images are not linked from roundup pages (only from the archive tiles) and are not listed in `sitemap.xml`.
 5. Build with Databuddy credentials available (local export or CI/Vercel):
    ```bash
    export DATABUDDY_API_KEY='…'   # same secret name as Vercel / GitHub
