@@ -279,24 +279,9 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border-strong
   .intro>.edition-views .views-spark{flex:1 1 auto;width:auto;min-width:0;height:28px;max-width:none;
     overflow:hidden}}
 
-/* Archive: one card per edition, newest first */
-.archive-cards{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.archive-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  transition:border-color .15s ease,background .15s ease}
-.archive-card:hover,.archive-card:focus-within{border-color:var(--border-strong);background:var(--surface-2)}
-.archive-card-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px}
-a.archive-card-title{flex:1 1 auto;min-width:0;font:600 17px/1.3 var(--head);letter-spacing:-.01em;
-  color:var(--accent);text-decoration:none}
-a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
-.archive-card .edition-views{min-height:24px;padding:0}
-.archive-card .views-spark{width:72px;height:24px}
+/* Muted visitors label (shared helper) */
 .archive-card-meta{flex:0 0 auto;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:right;max-width:min(220px,42vw)}
 .archive-card-meta-muted{opacity:.85}
-@media(max-width:479px){
-  .archive-card-inner{flex-wrap:wrap;padding:14px 16px}
-  a.archive-card-title{flex:1 1 100%}
-  .archive-card .edition-views,.archive-card-meta{margin-left:auto}
-}
 
 /* Wide screens: main feed + sticky "Out this week" sidebar (phones and tablets keep the single column above) */
 @media(min-width:1000px){
@@ -340,63 +325,36 @@ a.archive-card-title:hover{color:var(--accent-hover);text-decoration:underline;t
   .feed .card p,.feed .card .sources{max-width:40em}
 }
 
-/* Archive: structured edition cards */
-.archive-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
-@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
-@media(min-width:900px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
-@media(min-width:1680px){.archive-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-a.archive-card{display:flex;flex-direction:column;gap:16px;padding:18px 18px 16px;background:var(--surface);
-  border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;
-  transition:border-color .15s,background .15s,box-shadow .15s}
-a.archive-card:hover{border-color:var(--accent);background:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
-a.archive-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.archive-card-title{margin:0;flex:1 1 auto;font:700 clamp(16px,2.4vw,17px)/1.25 var(--head);letter-spacing:-.015em;
-  color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.archive-year-section+.archive-year-section{margin-top:48px}
-.archive-card-read{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
-  font:600 12px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
-.archive-card-read .arr{font-size:14px;line-height:1}
-.archive-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.archive-stat-block{display:flex;flex-direction:column;gap:4px;padding:10px 8px;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:8px;text-align:center;min-width:0}
-.archive-stat-label{font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
-.archive-stat-value{font:600 18px/1.1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
-.archive-stat-value.is-muted{color:var(--text-3)}
-.archive-chart-panel{flex:0 0 auto;height:72px;padding:10px 12px;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.archive-chart-panel svg{width:100%;height:100%;display:block}
-.archive-chart-line{stroke:var(--accent);fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;
-  stroke-linecap:round;stroke-linejoin:round}
-.archive-chart-stop-top{stop-color:var(--accent-tint)}
-.archive-chart-stop-bottom{stop-color:var(--accent-tint);stop-opacity:0}
-.archive-chart-empty{margin:0;font:500 12px/1.35 var(--sans);color:var(--text-3);text-align:center}
-
-/* Archive summary / KPI panels */
-.badges-summary{margin-top:28px;--summary-chart-h:96px;display:flex;flex-direction:column;gap:16px}
-@media(min-width:960px){.badges-summary{flex-direction:row;align-items:stretch;gap:24px}}
-.badges-kpi-panel{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0}
-@media(min-width:960px){.badges-kpi-panel{flex:0 0 min(300px,34%);align-self:stretch}}
-.badges-kpi-hero{display:flex;flex-direction:column;gap:8px;padding:20px 18px;background:var(--surface);
+/* Archive KPI strip: three equal tiles */
+.archive-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:24px}
+@media(min-width:720px){.archive-kpis{gap:16px;margin-top:28px}}
+.archive-kpi{display:flex;flex-direction:column;justify-content:space-between;gap:8px;min-width:0;padding:14px 12px;background:var(--surface);
   border:1px solid var(--border);border-radius:12px}
-@media(min-width:960px){.badges-kpi-hero{flex:1 1 auto;justify-content:center;min-height:0}}
-.badges-kpi-hero-value{font:700 clamp(34px,4.5vw,44px)/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
-.badges-kpi-hero-label{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
-.badges-kpi-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;flex:0 0 auto}
-@media(min-width:960px){.badges-kpi-row .archive-stat-block{padding:14px 10px}}
-.badges-trend-panel{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px 18px 14px;
-  background:var(--surface);border:1px solid var(--border);border-radius:12px}
-@media(min-width:960px){.badges-trend-panel{align-self:stretch}}
-.badges-trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex:0 0 auto}
-.badges-trend-title{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
-.badges-trend-range{font:500 12px/1.35 var(--mono);color:var(--text-3);white-space:nowrap}
-.badges-trend-chart{flex:0 0 auto;display:flex;align-items:center;height:var(--summary-chart-h)}
-.badges-trend-chart svg{width:100%;height:var(--summary-chart-h);display:block}
-.badges-trend-axis{font:500 10px/1 var(--mono);fill:var(--text-3)}
-.badges-trend-line{stroke:var(--accent);fill:none;stroke-width:1.75;vector-effect:non-scaling-stroke;
-  stroke-linecap:round;stroke-linejoin:round}
-.badges-trend-dot{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
-.badges-trend-fill{stroke:none}
+@media(min-width:720px){.archive-kpi{padding:20px 20px 18px}}
+.archive-kpi-label{font:600 10.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+@media(min-width:720px){.archive-kpi-label{font-size:11px}}
+.archive-kpi-value{font:700 clamp(22px,6vw,44px)/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
+.archive-kpi.is-hero .archive-kpi-value{color:var(--accent)}
+
+/* Archive edition grid: X post image per edition, text tile when there is none */
+.archive-year-section+.archive-year-section{margin-top:48px}
+.archive-grid{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0 0}
+@media(min-width:560px){.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(min-width:1000px){.archive-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+.ed-tile{display:block;position:relative;aspect-ratio:1200/675;overflow:hidden;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);color:inherit;text-decoration:none;
+  transition:border-color .15s,box-shadow .15s,transform .15s}
+.ed-tile:hover{border-color:var(--accent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 45%,transparent);transform:translateY(-2px)}
+a.ed-tile:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:12px}
+.ed-tile img{display:block;width:100%;height:100%;object-fit:cover}
+.ed-tile-text{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:18px 18px 16px;
+  background:linear-gradient(135deg,var(--surface-2),var(--surface))}
+.ed-tile-kicker{font:600 11px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.ed-tile-title{margin:6px 0 0;font:800 clamp(22px,3vw,28px)/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+.ed-tile-date{margin-top:6px;font:500 12.5px/1.3 var(--mono);color:var(--text-3)}
+.ed-tile-stats{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 12.5px/1.3 var(--mono);color:var(--text-2)}
+.ed-tile-stats b{font-weight:600;color:var(--text)}
+@media(prefers-reduced-motion:reduce){.ed-tile{transition:none}.ed-tile:hover{transform:none}}
 """
 
 # Scroll-spy for the masthead nav. A 1px line just below the sticky header is the
@@ -854,13 +812,6 @@ def edition_out_today_count(ed):
     return count
 
 
-def archive_card_title_html(ed):
-    d = datetime.strptime(ed["date"], "%Y-%m-%d")
-    wd = escape(d.strftime("%a"))
-    rest = escape(f"{d.day} {d.strftime('%B')}")
-    return f'<h3 class="archive-card-title">{wd} · {rest}</h3>'
-
-
 def archive_views_untracked(ed):
     snap = ed.get("views_snapshot")
     if not snap:
@@ -896,14 +847,6 @@ def edition_unique_visitors(ed):
     return int(total)
 
 
-def collect_visitors_by_edition(editions):
-    """Per-edition unique visitors, sorted by edition date."""
-    return [
-        (ed["date"], edition_unique_visitors(ed))
-        for ed in sorted(editions, key=lambda d: d["date"])
-    ]
-
-
 def archive_has_legacy_counts(editions):
     for ed in editions:
         if archive_views_untracked(ed):
@@ -913,74 +856,69 @@ def archive_has_legacy_counts(editions):
     return False
 
 
-def archive_stat_block(label, value, *, muted=False):
-    val_cls = "archive-stat-value is-muted" if muted else "archive-stat-value"
-    return (
-        f'<div class="archive-stat-block">'
-        f'<span class="archive-stat-label">{escape(label)}</span>'
-        f'<span class="{val_cls}">{escape(value)}</span>'
-        f"</div>"
-    )
+def archive_x_image(ed, root):
+    """Site path of the edition's X post image when the PNG exists on disk, else None."""
+    candidates = []
+    image = (ed.get("x_post") or {}).get("image")
+    if isinstance(image, str) and X_POST_IMAGE_RE.match(image):
+        candidates.append(image)
+    candidates.append(f'/x/{ed["date"]}.png')
+    for path in candidates:
+        if os.path.isfile(os.path.join(root, path.lstrip("/"))):
+            return path
+    return None
 
 
-def archive_chart_panel(ed):
-    chart_w, chart_h, chart_pad = 400, 72, 8
+def archive_visitors_total(ed):
+    """Unique visitors for the archive, or None when the window predates tracking."""
     if archive_views_untracked(ed):
-        return (
-            '<div class="archive-chart-panel" aria-hidden="true">'
-            '<p class="archive-chart-empty">Visitors not tracked yet</p></div>'
-        )
-    total, cum_vals, tip_text = archive_cumulative_series(ed)
-    if not cum_vals:
-        cum_vals = [0, 0]
-    line_d, fill_d = sparkline_paths(
-        cum_vals, width=chart_w, height=chart_h, pad=chart_pad
-    )
-    grad_id = f"archive-grad-{ed.get('date', 'x').replace('-', '')}"
-    tip = escape(tip_text)
-    svg = (
-        f'<svg class="archive-chart-svg" viewBox="0 0 {chart_w} {chart_h}" '
-        f'preserveAspectRatio="none" aria-hidden="true" focusable="false">'
-        f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
-        f'<stop class="archive-chart-stop-top" offset="0%"/>'
-        f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
-        f"</linearGradient></defs>"
-        f'<path class="archive-chart-fill" fill="url(#{grad_id})" stroke="none" d="{fill_d}"/>'
-        f'<path class="archive-chart-line" d="{line_d}"/>'
-        f"</svg>"
-    )
-    return (
-        f'<div class="archive-chart-panel" title="{tip}" '
-        f'aria-label="{escape(visitors_phrase(total) + " chart")}">{svg}</div>'
-    )
+        return None
+    total, _, _ = archive_cumulative_series(ed)
+    return total
 
 
-def archive_card(ed):
+def archive_card(ed, root):
     slug = escape(ed["date"])
-    full_label = escape(ed.get("date_label", ed["date"]))
     stories = edition_story_count(ed)
-    out_today = edition_out_today_count(ed)
-    if archive_views_untracked(ed):
-        views_val = "—"
-        views_muted = True
+    stories_word = "story" if stories == 1 else "stories"
+    visitors = archive_visitors_total(ed)
+    summary = f'{ed.get("date_label", ed["date"])}, {stories} {stories_word}'
+    if visitors is not None:
+        summary += f", {visitors_phrase(visitors)}"
+    image = archive_x_image(ed, root)
+    if image:
+        alt = ((ed.get("x_post") or {}).get("data") or {}).get("title") or "Daily haul"
+        return (
+            f'<li><a class="ed-tile" href="/{slug}.html" aria-label="{escape(summary)}" title="{escape(summary)}">'
+            f'<img src="{escape(image)}" alt="{escape(alt)}" width="1200" height="675" loading="lazy" decoding="async">'
+            f"</a></li>"
+        )
+    d = datetime.strptime(ed["date"], "%Y-%m-%d")
+    stats = f"<span><b>{stories}</b> {stories_word}</span>"
+    if visitors is None:
+        stats += "<span>Visitors not tracked</span>"
     else:
-        total, _, _ = archive_cumulative_series(ed)
-        views_val = fmt_views(total)
-        views_muted = False
-    stats = (
-        archive_stat_block("Stories", str(stories))
-        + archive_stat_block("Out today", str(out_today))
-        + archive_stat_block("Visitors", views_val, muted=views_muted)
-    )
+        stats += f"<span><b>{fmt_views(visitors)}</b> {visitors_word(visitors)}</span>"
     return (
-        f'<a class="archive-card" href="/{slug}.html" aria-label="{full_label}">'
-        f'<div class="archive-card-head">'
-        f"{archive_card_title_html(ed)}"
-        f'<span class="archive-card-read">Read<span class="arr" aria-hidden="true">→</span></span>'
+        f'<li><a class="ed-tile ed-tile-text" href="/{slug}.html" aria-label="{escape(summary)}">'
+        f"<div>"
+        f'<div class="ed-tile-kicker">Loot\'s Gaming Roundup</div>'
+        f'<h3 class="ed-tile-title">{escape(d.strftime("%A"))}</h3>'
+        f'<div class="ed-tile-date">{d.strftime("%a")} {d.day} {d.strftime("%b %Y")}</div>'
         f"</div>"
-        f'<div class="archive-stat-grid">{stats}</div>'
-        f"{archive_chart_panel(ed)}"
-        f"</a>"
+        f'<div class="ed-tile-stats">{stats}</div>'
+        f"</a></li>"
+    )
+
+
+def archive_kpi(label, value, *, hero=False, tip=None):
+    cls = "archive-kpi is-hero" if hero else "archive-kpi"
+    title = f' title="{escape(tip)}"' if tip else ""
+    return (
+        f'<div class="{cls}"{title}>'
+        f'<span class="archive-kpi-label">{escape(label)}</span>'
+        f'<span class="archive-kpi-value">{escape(value)}</span>'
+        f"</div>"
     )
 
 
@@ -1022,99 +960,8 @@ def head_common(title, description, nav, body, wrap_class="wrap"):
 </html>"""
 
 
-def edition_short_label(iso_date):
-    d = datetime.strptime(iso_date, "%Y-%m-%d")
-    return d.strftime("%d %b")
-
-
-def render_trend_chart(
-    series,
-    *,
-    panel_title,
-    grad_id,
-    empty_message,
-    tip_for,
-    aria_for,
-):
-    """Shared KPI line chart (badges uses or archive unique visitors per edition)."""
-    chart_w, chart_h = 560, 96
-    pad_l, pad_r, pad_t, pad_b = 40, 14, 14, 30
-    if not series:
-        return (
-            '<div class="badges-trend-panel">'
-            f'<p class="archive-chart-empty">{escape(empty_message)}</p></div>'
-        )
-    vals = [c for _, c in series]
-    mx = max(vals) if vals else 1
-    if mx == 0:
-        mx = 1
-    n = len(series)
-    iw = chart_w - pad_l - pad_r
-    ih = chart_h - pad_t - pad_b
-    xs, ys = [], []
-    for i, val in enumerate(vals):
-        x = pad_l + (iw * i / (n - 1) if n > 1 else iw / 2)
-        y = pad_t + ih - (val / mx) * ih if val else pad_t + ih
-        xs.append(x)
-        ys.append(y)
-    line = f"M{xs[0]:.2f},{ys[0]:.2f}"
-    for k in range(1, len(xs)):
-        line += f" L{xs[k]:.2f},{ys[k]:.2f}"
-    base = pad_t + ih
-    area = f"{line} L{xs[-1]:.2f},{base:.2f} L{xs[0]:.2f},{base:.2f} Z"
-    dots = []
-    for (iso, val), x, y in zip(series, xs, ys):
-        dots.append(
-            f'<circle class="badges-trend-dot" cx="{x:.2f}" cy="{y:.2f}" r="3.5">'
-            f"<title>{tip_for(iso, val)}</title></circle>"
-        )
-    y_max_val = max(c for _, c in series)
-    y_max_y = pad_t
-    y_zero_y = pad_t + ih
-    y_max_lbl = escape(fmt_views(y_max_val) if y_max_val else "0")
-    x_first = escape(edition_short_label(series[0][0]))
-    x_last = escape(edition_short_label(series[-1][0]))
-    x_first_x = xs[0]
-    x_last_x = xs[-1]
-    first_date, last_date = series[0][0], series[-1][0]
-    range_lbl = escape(f"{edition_short_label(first_date)} – {edition_short_label(last_date)}")
-    svg = (
-        f'<svg viewBox="0 0 {chart_w} {chart_h}" preserveAspectRatio="none" '
-        f'role="img" aria-label="{aria_for(series, y_max_val)}">'
-        f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="0" y2="1">'
-        f'<stop class="archive-chart-stop-top" offset="0%"/>'
-        f'<stop class="archive-chart-stop-bottom" offset="100%"/>'
-        f"</linearGradient></defs>"
-        f'<text class="badges-trend-axis" x="{pad_l - 6}" y="{y_max_y + 4}" text-anchor="end">{y_max_lbl}</text>'
-        f'<text class="badges-trend-axis" x="{pad_l - 6}" y="{y_zero_y + 4}" text-anchor="end">0</text>'
-        f'<text class="badges-trend-axis" x="{x_first_x:.2f}" y="{chart_h - 6}" text-anchor="start">{x_first}</text>'
-        f'<text class="badges-trend-axis" x="{x_last_x:.2f}" y="{chart_h - 6}" text-anchor="end">{x_last}</text>'
-        f'<path class="badges-trend-fill" fill="url(#{grad_id})" d="{area}"/>'
-        f'<path class="badges-trend-line" d="{line}"/>'
-        f'{"".join(dots)}'
-        f"</svg>"
-    )
-    return (
-        f'<div class="badges-trend-panel">'
-        f'<div class="badges-trend-head">'
-        f'<span class="badges-trend-title">{escape(panel_title)}</span>'
-        f'<span class="badges-trend-range">{range_lbl}</span></div>'
-        f'<div class="badges-trend-chart">{svg}</div></div>'
-    )
-
-
-def _views_chart_tip(iso, val):
-    return escape(f"{edition_short_label(iso)}: {visitors_phrase(val)}")
-
-
-def _views_chart_aria(series, peak):
-    return escape(
-        f"Unique visitors per edition from {series[0][0]} to {series[-1][0]}. "
-        f"Peak edition: {visitors_phrase(peak)}."
-    )
-
-
-def render_archive(editions):
+def render_archive(editions, root=None):
+    root = root or os.path.dirname(os.path.abspath(__file__))
     ordered = sorted(editions, key=lambda d: d["date"], reverse=True)
     by_year = {}
     for ed in ordered:
@@ -1123,34 +970,25 @@ def render_archive(editions):
     for year in sorted(by_year.keys(), reverse=True):
         year_eds = by_year[year]
         sec_id = "archive" if len(by_year) == 1 else f"archive-{year}"
-        sec_cls = "archive-year-section" if len(by_year) > 1 else ""
-        cls_attr = f' class="{sec_cls}"' if sec_cls else ""
+        cls_attr = ' class="archive-year-section"' if len(by_year) > 1 else ""
+        noun = "edition" if len(year_eds) == 1 else "editions"
         year_sections.append(
             f'<section id="{sec_id}"{cls_attr}>'
-            f'<h2>Past roundups - {year}<span class="count">{len(year_eds)} editions</span></h2>'
-            f'<div class="archive-grid">{"".join(archive_card(ed) for ed in year_eds)}</div>'
+            f'<h2>Past editions<span class="count">{year} · {len(year_eds)} {noun}</span></h2>'
+            f'<ul class="archive-grid">{"".join(archive_card(ed, root) for ed in year_eds)}</ul>'
             f"</section>"
         )
-    views_series = collect_visitors_by_edition(editions)
-    total_visitors = sum(v for _, v in views_series)
-    n_editions = len(editions)
+    total_visitors = sum(edition_unique_visitors(ed) for ed in editions)
     total_stories = sum(edition_story_count(ed) for ed in editions)
     hero_tip = ARCHIVE_VISITORS_TIP
     if archive_has_legacy_counts(editions):
         hero_tip = f"{hero_tip} {LEGACY_PAGEVIEW_NOTE}"
     kpi = (
-        '<div class="badges-summary">'
-        '<div class="badges-kpi-panel">'
-        f'<div class="badges-kpi-hero" title="{escape(hero_tip)}">'
-        '<span class="badges-kpi-hero-label">Unique visitors</span>'
-        f'<span class="badges-kpi-hero-value">{fmt_views(total_visitors)}</span>'
-        "</div>"
-        '<div class="badges-kpi-row">'
-        f"{archive_stat_block('Editions', str(n_editions))}"
-        f"{archive_stat_block('Stories', str(total_stories))}"
-        "</div></div>"
-        f"{render_trend_chart(views_series, panel_title='Visitors per edition', grad_id='archive-trend-grad', empty_message='No visitor data yet', tip_for=_views_chart_tip, aria_for=_views_chart_aria)}"
-        "</div>"
+        '<div class="archive-kpis">'
+        + archive_kpi("Unique visitors", fmt_views(total_visitors), hero=True, tip=hero_tip)
+        + archive_kpi("Editions", str(len(editions)))
+        + archive_kpi("Stories", str(total_stories))
+        + "</div>"
     )
     nav = (
         '<a href="/">Latest</a>'
@@ -1188,7 +1026,7 @@ def render_sitemap(editions):
 def write_site_extras(root, editions, latest_html=None, update_index=False):
     archive_path = os.path.join(root, "archive.html")
     with open(archive_path, "w", encoding="utf-8") as f:
-        f.write(render_archive(editions))
+        f.write(render_archive(editions, root))
     print("wrote", archive_path)
     sitemap_path = os.path.join(root, "sitemap.xml")
     with open(sitemap_path, "w", encoding="utf-8") as f:

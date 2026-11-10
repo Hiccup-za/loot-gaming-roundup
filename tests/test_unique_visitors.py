@@ -297,8 +297,10 @@ class UiReadTests(unittest.TestCase):
         ]
         html = build.render_archive(editions)
         self.assertIn("Unique visitors", html)
-        self.assertIn("Visitors per edition", html)
-        self.assertIn("Visitors not tracked yet", html)
+        self.assertIn("Editions", html)
+        self.assertIn("Stories", html)
+        self.assertNotIn("Visitors per edition", html)
+        self.assertIn("Visitors not tracked", html)
         self.assertIn(">19<", html)
         self.assertIn("unique visitors", html)
         self.assertNotIn("Total page views", html)
