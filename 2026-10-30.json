@@ -461,6 +461,36 @@
     }
   ],
   "footer_note": "Still waiting: The Duskbloods' new date, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and whether Bethesda really names The Elder Scrolls VI around 11 Nov.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Friday's haul",
+      "items": [
+        {
+          "emoji": "🌙",
+          "text": "Duskbloods is delayed to 2027"
+        },
+        {
+          "emoji": "📜",
+          "text": "Elder Scrolls VI is \"Sentinel\""
+        },
+        {
+          "emoji": "🕯️",
+          "text": "Sir Patrick Stewart has died"
+        },
+        {
+          "emoji": "📉",
+          "text": "Konami game profits jump 75%"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Valhalla adds New Game Plus"
+        }
+      ],
+      "date": "2026-10-30"
+    },
+    "image": "/x/2026-10-30.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-30T08:00:00+02:00",
     "window_end": "2026-10-31T08:00:00+02:00",

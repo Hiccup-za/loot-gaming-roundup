@@ -241,6 +241,36 @@
     }
   ],
   "footer_note": "Helldivers 2 Update 7.2 is still planned for October (Liberty Day is 26 Oct) but Arrowhead has not named a day or published patch notes yet.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Tuesday's haul",
+      "items": [
+        {
+          "emoji": "⚔️",
+          "text": "Valor Mortis launches today"
+        },
+        {
+          "emoji": "🎮",
+          "text": "Battlefield 6 joins Game Pass"
+        },
+        {
+          "emoji": "⬛",
+          "text": "Japan gets a black PS5 model"
+        },
+        {
+          "emoji": "⚡",
+          "text": "Flareon and Jolteon join UNITE"
+        },
+        {
+          "emoji": "🏔️",
+          "text": "Enshrouded 1.0 lands Thursday"
+        }
+      ],
+      "date": "2026-10-13"
+    },
+    "image": "/x/2026-10-13.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-13T08:00:00+02:00",
     "window_end": "2026-10-14T08:00:00+02:00",

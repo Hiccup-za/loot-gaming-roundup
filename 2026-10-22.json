@@ -353,6 +353,36 @@
     }
   ],
   "footer_note": "Still waiting: The Blood of Dawnwalker Update 1.1 on PS5 (no exact date yet) and the Cyberpunk 2.5 date for Switch 2.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Thursday's haul",
+      "items": [
+        {
+          "emoji": "🕯️",
+          "text": "EA shuts BioWare for good"
+        },
+        {
+          "emoji": "🌃",
+          "text": "Cyberpunk 2.5 update is out"
+        },
+        {
+          "emoji": "🚀",
+          "text": "Battlefront 3 is in the works"
+        },
+        {
+          "emoji": "☁️",
+          "text": "Xbox tests pay-as-you-go cloud"
+        },
+        {
+          "emoji": "🏅",
+          "text": "Switch Sports Resort launches"
+        }
+      ],
+      "date": "2026-10-22"
+    },
+    "image": "/x/2026-10-22.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-22T08:00:00+02:00",
     "window_end": "2026-10-23T08:00:00+02:00",

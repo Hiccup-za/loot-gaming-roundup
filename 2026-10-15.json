@@ -350,6 +350,36 @@
     }
   ],
   "footer_note": "Still waiting: Helldivers 2 Update 7.2 is still undated, and The Witcher 3 Remastered's Switch 2 patch is \"on the way\" with no date. The list of games leaving PS Plus Extra in November (GTA V is already confirmed) lands on 20 Oct.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Thursday's haul",
+      "items": [
+        {
+          "emoji": "🏔️",
+          "text": "Enshrouded 1.0 launches today"
+        },
+        {
+          "emoji": "🧛",
+          "text": "Castlevania launches to praise"
+        },
+        {
+          "emoji": "✂️",
+          "text": "Ubisoft moves to close RedLynx"
+        },
+        {
+          "emoji": "🎮",
+          "text": "Xbox unveils a tiny controller"
+        },
+        {
+          "emoji": "🔫",
+          "text": "007 First Light is dated March"
+        }
+      ],
+      "date": "2026-10-15"
+    },
+    "image": "/x/2026-10-15.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-15T08:00:00+02:00",
     "window_end": "2026-10-16T08:00:00+02:00",

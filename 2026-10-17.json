@@ -420,6 +420,36 @@
     }
   ],
   "footer_note": "Still waiting: Helldivers 2 Update 7.2 is still undated (Liberty Day in-game is 26 Oct), and The Witcher 3 Remastered's Switch 2 patch is still \"on the way\". The list of games leaving PS Plus Extra in November lands on 20 Oct.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Saturday's haul",
+      "items": [
+        {
+          "emoji": "🛑",
+          "text": "Sega pulls the Shogun remaster"
+        },
+        {
+          "emoji": "🌑",
+          "text": "Ocarina remake shows Dark Link"
+        },
+        {
+          "emoji": "💸",
+          "text": "Liquid Swords goes bankrupt"
+        },
+        {
+          "emoji": "💿",
+          "text": "Kutaragi backs ending PS discs"
+        },
+        {
+          "emoji": "⭐",
+          "text": "MW4's campaign earns praise"
+        }
+      ],
+      "date": "2026-10-17"
+    },
+    "image": "/x/2026-10-17.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-17T08:00:00+02:00",
     "window_end": "2026-10-18T08:00:00+02:00",

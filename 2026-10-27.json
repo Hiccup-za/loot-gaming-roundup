@@ -388,6 +388,36 @@
     }
   ],
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2, and any official word on the Silent Hill remake's release window.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Tuesday's haul",
+      "items": [
+        {
+          "emoji": "🛑",
+          "text": "Pokémon UNITE ends next March"
+        },
+        {
+          "emoji": "⭐",
+          "text": "MW4 earns CoD's best reviews"
+        },
+        {
+          "emoji": "✂️",
+          "text": "Sucker Punch lays off staff"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Black Flag adds New Game Plus"
+        },
+        {
+          "emoji": "🧊",
+          "text": "Arkane Lyon gets another month"
+        }
+      ],
+      "date": "2026-10-27"
+    },
+    "image": "/x/2026-10-27.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-27T08:00:00+02:00",
     "window_end": "2026-10-28T08:00:00+02:00",

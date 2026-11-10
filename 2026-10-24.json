@@ -369,6 +369,36 @@
     }
   ],
   "footer_note": "Still waiting: the Cyberpunk 2.5 date for Switch 2 (CD Projekt says \"in the days to follow\").",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Saturday's haul",
+      "items": [
+        {
+          "emoji": "⏳",
+          "text": "Arkane must find a buyer soon"
+        },
+        {
+          "emoji": "📺",
+          "text": "Netflix's Xbox TV bid fails"
+        },
+        {
+          "emoji": "🏅",
+          "text": "Miyamoto is honoured by Japan"
+        },
+        {
+          "emoji": "🧪",
+          "text": "Half-Life 3 talk grows again"
+        },
+        {
+          "emoji": "🐑",
+          "text": "Cult of the Lamb hits Switch 2"
+        }
+      ],
+      "date": "2026-10-24"
+    },
+    "image": "/x/2026-10-24.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-24T08:00:00+02:00",
     "window_end": "2026-10-25T08:00:00+02:00",

@@ -352,6 +352,36 @@
     }
   ],
   "footer_note": "A quiet Sunday for news. Still waiting: Dragonwilds' Air Staff 4th-hit fix (targeted for this week), Helldivers 2 Update 7.2 (undated, with Liberty Day in-game on 26 Oct), and the full list of games leaving PS Plus Extra in November, due 20 Oct.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "💸",
+          "text": "PS6 memory may cost over $680"
+        },
+        {
+          "emoji": "🥊",
+          "text": "Street Fighter film wins in US"
+        },
+        {
+          "emoji": "🌃",
+          "text": "Edgerunners 2 lands tomorrow"
+        },
+        {
+          "emoji": "⭐",
+          "text": "MW4 earns strong Steam reviews"
+        },
+        {
+          "emoji": "👋",
+          "text": "Eight games leave Game Pass"
+        }
+      ],
+      "date": "2026-10-19"
+    },
+    "image": "/x/2026-10-19.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-19T08:00:00+02:00",
     "window_end": "2026-10-20T08:00:00+02:00",

@@ -493,6 +493,36 @@
     }
   ],
   "footer_note": "Still waiting: a CD Projekt Red fix for Cyberpunk on Switch 2, the Tokyo court's 9 Nov view on Nintendo v Pocketpair, and whether Activision edits Modern Warfare 4's intro.",
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Thursday's haul",
+      "items": [
+        {
+          "emoji": "🧙",
+          "text": "Witchbrook finally has a date"
+        },
+        {
+          "emoji": "🎮",
+          "text": "Indie World unveils 23 games"
+        },
+        {
+          "emoji": "🎁",
+          "text": "November PS Plus games are set"
+        },
+        {
+          "emoji": "🔍",
+          "text": "Sony brings back clear PS5s"
+        },
+        {
+          "emoji": "🛒",
+          "text": "Walmart pulls Zelda pre-orders"
+        }
+      ],
+      "date": "2026-10-29"
+    },
+    "image": "/x/2026-10-29.png"
+  },
   "views_snapshot": {
     "window_start": "2026-10-29T08:00:00+02:00",
     "window_end": "2026-10-30T08:00:00+02:00",
