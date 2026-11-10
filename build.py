@@ -349,8 +349,7 @@ a.ed-tile:focus-visible{outline:2px solid var(--accent);outline-offset:3px;borde
 .ed-tile img{display:block;width:100%;height:100%;object-fit:cover}
 .ed-tile-text{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:18px 18px 16px;
   background:linear-gradient(135deg,var(--surface-2),var(--surface))}
-.ed-tile-kicker{font:600 11px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.ed-tile-title{margin:6px 0 0;font:800 clamp(22px,3vw,28px)/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
+.ed-tile-title{margin:0;font:800 clamp(22px,3vw,28px)/1.1 var(--head);letter-spacing:-.025em;color:var(--text)}
 .ed-tile-date{margin-top:6px;font:500 12.5px/1.3 var(--mono);color:var(--text-3)}
 .ed-tile-stats{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 12.5px/1.3 var(--mono);color:var(--text-2)}
 .ed-tile-stats b{font-weight:600;color:var(--text)}
@@ -911,7 +910,6 @@ def archive_card(ed, root):
     return (
         f'<li><a class="ed-tile ed-tile-text" href="/{slug}.html" aria-label="{escape(text_label)}">'
         f"<div>"
-        f'<div class="ed-tile-kicker">Loot\'s Gaming Roundup</div>'
         f'<h3 class="ed-tile-title">{escape(d.strftime("%A"))}</h3>'
         f'<div class="ed-tile-date">{d.strftime("%a")} {d.day} {d.strftime("%b %Y")}</div>'
         f"</div>"
