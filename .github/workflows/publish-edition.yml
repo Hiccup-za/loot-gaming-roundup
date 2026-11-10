@@ -1,0 +1,107 @@
+name: Publish edition
+
+# Automated daily publish: parent uploads to publish/inbox via scripts/submit_edition.py,
+# then dispatches this workflow. No pull request. Does not post to X.
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition_date:
+        description: Edition date (YYYY-MM-DD)
+        required: true
+        type: string
+      json_sha256:
+        description: SHA-256 of edition JSON (hex)
+        required: true
+        type: string
+      png_sha256:
+        description: SHA-256 of Artist PNG (hex)
+        required: true
+        type: string
+      source_sha:
+        description: Commit SHA on publish/inbox with JSON + PNG
+        required: true
+        type: string
+      skip_production_verify:
+        description: Skip HTTP production checks (emergency / drill only)
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: publish-edition
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      DATABUDDY_API_KEY: ${{ secrets.DATABUDDY_API_KEY }}
+      EDITION_DATE: ${{ inputs.edition_date }}
+      EXPECTED_JSON_SHA256: ${{ inputs.json_sha256 }}
+      EXPECTED_PNG_SHA256: ${{ inputs.png_sha256 }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
+      LOOT_SITE_URL: https://loot-gaming-roundup.vercel.app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Fetch publish inbox commit
+        run: |
+          git fetch origin "$SOURCE_SHA" || git fetch origin publish/inbox
+          git cat-file -e "$SOURCE_SHA^{commit}"
+
+      - name: Materialize edition artefacts from inbox
+        run: |
+          git show "$SOURCE_SHA:${EDITION_DATE}.json" > "${EDITION_DATE}.json"
+          mkdir -p x
+          git show "$SOURCE_SHA:x/${EDITION_DATE}.png" > "x/${EDITION_DATE}.png"
+
+      - name: Validate bundle (strict)
+        run: |
+          python3 -m publish.validate --edition-date "$EDITION_DATE" --root . --print-hashes
+          ACTUAL_JSON=$(sha256sum "${EDITION_DATE}.json" | awk '{print $1}')
+          ACTUAL_PNG=$(sha256sum "x/${EDITION_DATE}.png" | awk '{print $1}')
+          test "$ACTUAL_JSON" = "$EXPECTED_JSON_SHA256"
+          test "$ACTUAL_PNG" = "$EXPECTED_PNG_SHA256"
+
+      - name: Build site
+        run: python3 build.py --all
+
+      - name: Commit and push to main
+        id: push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${EDITION_DATE}.json" "${EDITION_DATE}.html" "x/${EDITION_DATE}.png" \
+            index.html archive.html sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes to commit (already published)"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "publish: ${EDITION_DATE} edition + Artist haul PNG"
+          git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Verify production (edition JSON date + PNG hash)
+        if: inputs.skip_production_verify != true
+        run: |
+          python3 -m publish.verify_production \
+            --edition-date "$EDITION_DATE" \
+            --expected-png-sha256 "$EXPECTED_PNG_SHA256"
+
+      - name: Revert failed publish on main
+        if: failure() && steps.push.outputs.pushed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --ff-only
+          git revert HEAD --no-edit
+          git push
+          echo "::error::Production verification failed; reverted publish commit on main."
