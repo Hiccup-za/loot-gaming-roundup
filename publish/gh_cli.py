@@ -62,3 +62,25 @@ def gh_auth_ok() -> bool:
         check=False,
     )
     return proc.returncode == 0
+
+
+def gh_workflow_run(
+    workflow_file: str,
+    repo: str,
+    *,
+    ref: str = "main",
+    inputs: dict[str, str] | None = None,
+) -> None:
+    """Re-trigger publish-edition.yml (idempotent recovery). Needs Actions write on gh token."""
+    require_gh()
+    cmd = ["gh", "workflow", "run", workflow_file, "--repo", repo, "--ref", ref]
+    if inputs:
+        for key, value in inputs.items():
+            cmd.extend(["-f", f"{key}={value}"])
+    proc = subprocess.run(cmd, capture_output=True, check=False)
+    if proc.returncode != 0:
+        raise GhCliError(
+            proc.returncode,
+            proc.stderr.decode("utf-8", errors="replace"),
+            proc.stdout.decode("utf-8", errors="replace"),
+        )

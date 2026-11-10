@@ -52,7 +52,7 @@ Artefact paths:
 
 ## Authentication
 
-**Use existing `gh auth login` on the parent executor** (`Hiccup-za` with `permissions.push=true`). `submit_edition.py` uses **`gh api` only** — no token env vars, no Actions `workflow_dispatch`, no Cursor workflow mutation tools.
+**Use existing `gh auth login` on the parent executor** (`Hiccup-za` with `permissions.push=true`). `submit_edition.py` uses **`gh api`** for submission refs and **`gh workflow run`** only for **idempotent replay** (optional **Actions: write** on the same `gh` session).
 
 A **new credential is only required** if `publish_readiness.py` reports `permissions.push=false`. Minimum capability: **repository contents write** (create refs under `publish/submissions/*`). Configure through the same `gh login` used for other repo writes — not a separate PAT product unless `gh` is unavailable.
 
@@ -67,8 +67,8 @@ Cloud agents typically have read-only GitHub integration; they must **not** run 
 
 | Case | Behaviour |
 |------|-----------|
-| Same JSON+PNG resubmit | Same `publish/submissions/{date}-{contentId}`; existing ref reused; workflow may no-op on `main`. |
-| Different content same day | New `contentId` → new submission ref; `concurrency` serialises workflow runs. |
+| Same JSON+PNG resubmit | Same ref reused; `submit_edition.py` **re-triggers** workflow (`gh workflow run` + `submission_sha`); **production verify always runs** even if `main` no-op. |
+| Different content same day | New `contentId` → new submission ref; concurrency **per ref** queues runs. |
 | Validation failure | Fails **before** `main` push. |
 | Verify **pending deploy** (stale `/`, slow Vercel) | Workflow **fails** with warning; **`main` publish commit kept**; recorded `publish_sha` in logs. |
 | Verify **content error** (wrong PNG hash, bad JSON) | Workflow fails; **no automatic revert** — revert the recorded `publish_sha` manually if needed. |

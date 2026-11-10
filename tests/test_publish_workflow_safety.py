@@ -15,10 +15,15 @@ class PublishWorkflowSafetyTests(unittest.TestCase):
         with open(path, encoding="utf-8") as f:
             body = f.read()
         self.assertNotIn("git revert", body.lower())
-        self.assertIsNone(
-            re.search(r"^\s*workflow_dispatch\s*:", body, re.MULTILINE),
-            "workflow must not expose workflow_dispatch trigger",
+        dispatch = re.search(
+            r"workflow_dispatch:\s*\n\s*inputs:\s*\n\s*submission_sha:",
+            body,
         )
+        self.assertIsNotNone(
+            dispatch,
+            "only workflow_dispatch allowed is validated submission_sha replay",
+        )
+        self.assertNotIn("edition_date", body.split("workflow_dispatch")[1][:400])
 
     def test_publish_workflow_records_publish_sha(self):
         path = os.path.join(
@@ -30,7 +35,7 @@ class PublishWorkflowSafetyTests(unittest.TestCase):
         with open(path, encoding="utf-8") as f:
             body = f.read()
         self.assertIn("publish_sha", body)
-        self.assertIn("NOT reverted", body)
+        self.assertIn("not auto-reverted", body.lower())
 
 
 if __name__ == "__main__":

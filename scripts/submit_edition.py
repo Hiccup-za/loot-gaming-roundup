@@ -90,25 +90,27 @@ def upload_submission(
     hashes: dict[str, str],
     *,
     dry_run: bool,
-) -> tuple[str, str]:
+) -> tuple[str, str, bool]:
     ref_name = submission_ref_name(edition_date, hashes["json_sha256"], hashes["png_sha256"])
     head = submission_ref_head(ref_name)
     commit_sha = create_submission_commit(client, edition_date, json_bytes, png_bytes)
     if dry_run:
         print(f"dry-run: would create ref {ref_name} → {commit_sha}")
-        return commit_sha, ref_name
+        return commit_sha, ref_name, True
 
+    created = True
     try:
         client.create_ref(head, commit_sha)
         print(f"created {ref_name} → {commit_sha}")
-        return commit_sha, ref_name
+        return commit_sha, ref_name, created
     except GitHubAPIError as e:
         if e.status != 422:
             raise
         existing_sha = client.ref_sha(head)
         if file_hashes_match_commit(client, existing_sha, edition_date, hashes):
             print(f"idempotent: {ref_name} already exists with same content ({existing_sha})")
-            return existing_sha, ref_name
+            created = False
+            return existing_sha, ref_name, created
         raise RuntimeError(
             f"ref {ref_name} exists but content differs; use new artefacts or inspect {existing_sha}"
         ) from e
@@ -159,7 +161,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         client = client_from_env()
-        commit_sha, ref_name = upload_submission(
+        commit_sha, ref_name, created = upload_submission(
             client,
             args.edition_date,
             json_bytes,
@@ -170,6 +172,27 @@ def main(argv: list[str] | None = None) -> int:
     except (RuntimeError, GitHubAPIError) as e:
         print(f"submit failed: {e}", file=sys.stderr)
         return 1
+
+    if not created:
+        from publish.gh_cli import GhCliError, gh_workflow_run
+
+        repo = f"{client.owner}/{client.repo}"
+        try:
+            gh_workflow_run(
+                "publish-edition.yml",
+                repo,
+                ref="main",
+                inputs={"submission_sha": commit_sha},
+            )
+            print(f"re-triggered publish-edition.yml for idempotent recovery ({commit_sha})")
+        except GhCliError as e:
+            print(
+                f"warning: could not re-trigger workflow ({e}). "
+                f"Parent gh may need Actions:write for recovery, or run manually: "
+                f"gh workflow run publish-edition.yml --repo {repo} "
+                f"-f submission_sha={commit_sha}",
+                file=sys.stderr,
+            )
 
     print(
         f"queued {ref_name} ({commit_sha}). "
