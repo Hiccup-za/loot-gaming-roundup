@@ -97,23 +97,15 @@ Emergency drill without HTTP checks (not for routine use):
 
 ## Cutover from manual PNG PRs
 
-**PR #22** (`x/2026-11-10.png` only) becomes **redundant** after the first successful automated publish for `2026-11-10` with the same PNG bytes. Close #22 without merging once publish verifies.
+**2026-11-10 (manual ship, complete):** Image-only PR #22 was squash-merged to `main` at `17ca210`. Production `/x/2026-11-10.png` is live (HTTP 200, `image/png`, 893 484 bytes, SHA-256 `58eebc7cee7f739317e6b58633e264ab81d48c96a4c18ce356b4d82bcedf0b04`). That edition does **not** need to be republished via this automation.
 
-**Suggested cutover (after this setup PR merges):**
+**After the one-time setup PR merges:**
 
-1. Merge the one-time **automated publishing** setup PR (not the image-only PR).
-2. Configure `LOOT_PUBLISH_GITHUB_TOKEN` on the parent executor.
-3. Run submit for today using Artist PNG + edition JSON (JSON may already be on `main`; submit still sends both):
+1. Configure `LOOT_PUBLISH_GITHUB_TOKEN` on the parent executor (see above).
+2. Point the daily routine at `scripts/submit_edition.py` for **the next edition onward** (e.g. 2026-11-11+). Each run still sends that day's JSON + Artist PNG together.
+3. Watch [Publish edition](https://github.com/Hiccup-za/loot-gaming-roundup/actions/workflows/publish-edition.yml) until production verify succeeds.
 
-   ```bash
-   python3 scripts/submit_edition.py \
-     --edition-date 2026-11-10 \
-     --json-path ./2026-11-10.json \
-     --png-path /workspace/marketing/loot-x/out/2026-11-10.png
-   ```
-
-4. Watch [Publish edition](https://github.com/Hiccup-za/loot-gaming-roundup/actions/workflows/publish-edition.yml) until verify succeeds.
-5. Close PR #22.
+Re-submitting 2026-11-10 with unchanged hashes is idempotent (no `main` commit if already present); use only if you intentionally need to rebuild HTML or recover from a partial failure.
 
 ## Operator checklist
 
