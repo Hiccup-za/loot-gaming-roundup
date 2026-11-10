@@ -1,35 +1,12 @@
 name: Publish edition
 
-# Parent calls scripts/submit_edition.py → force-push publish/inbox (via gh API).
-# This workflow runs on that push — no workflow_dispatch from the parent required.
-# Manual re-runs: Actions → Publish edition → Run workflow.
+# Triggered by push to publish/submissions/* (scripts/submit_edition.py on parent via gh).
+# No workflow_dispatch — avoids unvalidated manual inputs and shell injection.
 
 on:
   push:
-    branches: [publish/inbox]
-  workflow_dispatch:
-    inputs:
-      edition_date:
-        description: Edition date (YYYY-MM-DD) — manual runs only
-        required: true
-        type: string
-      json_sha256:
-        description: SHA-256 of edition JSON (hex) — manual runs only
-        required: true
-        type: string
-      png_sha256:
-        description: SHA-256 of Artist PNG (hex) — manual runs only
-        required: true
-        type: string
-      source_sha:
-        description: Inbox commit SHA — manual runs only
-        required: true
-        type: string
-      skip_production_verify:
-        description: Skip HTTP production checks (emergency / drill only)
-        required: false
-        type: boolean
-        default: false
+    branches:
+      - "publish/submissions/**"
 
 concurrency:
   group: publish-edition
@@ -44,52 +21,25 @@ jobs:
     env:
       DATABUDDY_API_KEY: ${{ secrets.DATABUDDY_API_KEY }}
       LOOT_SITE_URL: https://loot-gaming-roundup.vercel.app
+      SUBMISSION_SHA: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
 
-      - name: Resolve edition metadata
+      - name: Fetch submission commit
+        run: git fetch origin "$SUBMISSION_SHA" && git cat-file -e "$SUBMISSION_SHA^{commit}"
+
+      - name: Resolve submission metadata
         id: meta
-        run: |
-          set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "edition_date=${{ inputs.edition_date }}" >> "$GITHUB_OUTPUT"
-            echo "json_sha256=${{ inputs.json_sha256 }}" >> "$GITHUB_OUTPUT"
-            echo "png_sha256=${{ inputs.png_sha256 }}" >> "$GITHUB_OUTPUT"
-            echo "source_sha=${{ inputs.source_sha }}" >> "$GITHUB_OUTPUT"
-            echo "skip_verify=${{ inputs.skip_production_verify }}" >> "$GITHUB_OUTPUT"
-          else
-            SRC="${{ github.sha }}"
-            git fetch origin "$SRC"
-            EDITION=$(git show --name-only --pretty=format: "$SRC" | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' | head -1 | sed 's/.json$//')
-            if [ -z "$EDITION" ]; then
-              echo "::error::No YYYY-MM-DD.json on publish/inbox commit $SRC"
-              exit 1
-            fi
-            echo "edition_date=$EDITION" >> "$GITHUB_OUTPUT"
-            echo "source_sha=$SRC" >> "$GITHUB_OUTPUT"
-            echo "skip_verify=false" >> "$GITHUB_OUTPUT"
-            git show "$SRC:${EDITION}.json" > "/tmp/${EDITION}.json"
-            git show "$SRC:x/${EDITION}.png" > "/tmp/${EDITION}.png"
-            echo "json_sha256=$(sha256sum /tmp/${EDITION}.json | awk '{print $1}')" >> "$GITHUB_OUTPUT"
-            echo "png_sha256=$(sha256sum /tmp/${EDITION}.png | awk '{print $1}')" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Fetch publish inbox commit
         env:
-          SOURCE_SHA: ${{ steps.meta.outputs.source_sha }}
-        run: git cat-file -e "$SOURCE_SHA^{commit}"
-
-      - name: Materialize edition artefacts from inbox
-        env:
-          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
-          SOURCE_SHA: ${{ steps.meta.outputs.source_sha }}
+          SUBMISSION_SHA: ${{ github.sha }}
         run: |
-          git show "$SOURCE_SHA:${EDITION_DATE}.json" > "${EDITION_DATE}.json"
-          mkdir -p x
-          git show "$SOURCE_SHA:x/${EDITION_DATE}.png" > "x/${EDITION_DATE}.png"
+          python3 -m publish.resolve_submission \
+            --commit "$SUBMISSION_SHA" \
+            --work-dir . \
+            --github-output "$GITHUB_OUTPUT"
 
       - name: Validate bundle (strict, content paths only)
         env:
@@ -98,10 +48,8 @@ jobs:
           EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
         run: |
           python3 -m publish.validate --edition-date "$EDITION_DATE" --root . --print-hashes
-          ACTUAL_JSON=$(sha256sum "${EDITION_DATE}.json" | awk '{print $1}')
-          ACTUAL_PNG=$(sha256sum "x/${EDITION_DATE}.png" | awk '{print $1}')
-          test "$ACTUAL_JSON" = "$EXPECTED_JSON_SHA256"
-          test "$ACTUAL_PNG" = "$EXPECTED_PNG_SHA256"
+          test "$(sha256sum "${EDITION_DATE}.json" | awk '{print $1}')" = "$EXPECTED_JSON_SHA256"
+          test "$(sha256sum "x/${EDITION_DATE}.png" | awk '{print $1}')" = "$EXPECTED_PNG_SHA256"
 
       - name: Build site
         run: python3 build.py --all
@@ -111,8 +59,10 @@ jobs:
         env:
           EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --ff-only origin main
           git add "${EDITION_DATE}.json" "${EDITION_DATE}.html" "x/${EDITION_DATE}.png" \
             index.html archive.html sitemap.xml
           if git diff --staged --quiet; then
@@ -121,25 +71,42 @@ jobs:
             exit 0
           fi
           git commit -m "publish: ${EDITION_DATE} edition + Artist haul PNG"
-          git push
+          git push origin HEAD:main
           echo "pushed=true" >> "$GITHUB_OUTPUT"
+          echo "publish_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: Verify production (edition JSON date + PNG hash)
-        if: steps.meta.outputs.skip_verify != 'true'
+      - name: Verify production (HTML + JSON + PNG)
+        id: verify
+        if: steps.push.outputs.pushed == 'true'
         env:
           EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          DATE_LABEL: ${{ steps.meta.outputs.date_label }}
           EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
+          PUBLISH_SHA: ${{ steps.push.outputs.publish_sha }}
         run: |
+          set -euo pipefail
+          if [ "${{ steps.push.outputs.pushed }}" != "true" ]; then
+            echo "Skipped production verify (no new main commit)."
+            echo "outcome=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set +e
           python3 -m publish.verify_production \
             --edition-date "$EDITION_DATE" \
+            --expected-date-label "$DATE_LABEL" \
             --expected-png-sha256 "$EXPECTED_PNG_SHA256"
-
-      - name: Revert failed publish on main
-        if: failure() && steps.push.outputs.pushed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --ff-only
-          git revert HEAD --no-edit
-          git push
-          echo "::error::Production verification failed; reverted publish commit on main."
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then
+            echo "outcome=ok" >> "$GITHUB_OUTPUT"
+            echo "Published commit on main: $PUBLISH_SHA (left in place; verify OK)."
+            exit 0
+          fi
+          if [ "$code" -eq 2 ]; then
+            echo "outcome=pending_deploy" >> "$GITHUB_OUTPUT"
+            echo "::error::Production not fully visible yet (Vercel deploy pending). Main commit $PUBLISH_SHA was NOT reverted. Re-check / and /$EDITION_DATE, then re-run verify or publish workflow from submission ref."
+            exit 1
+          fi
+          echo "outcome=content_error" >> "$GITHUB_OUTPUT"
+          echo "::error::Production content check failed after publish $PUBLISH_SHA. Main was NOT auto-reverted (may include unrelated concurrent commits). Fix content or revert $PUBLISH_SHA explicitly if needed."
+          exit 1

@@ -62,16 +62,9 @@ def check(*, owner: str, repo: str, require_workflow_on_main: bool) -> int:
     except GhCliError as e:
         errors.append(f"cannot read main ref: {e}")
 
-    try:
-        gh_api("GET", f"{prefix}/git/ref/heads/publish/inbox")
-        notes.append("read ref publish/inbox: OK (branch exists)")
-    except GhCliError as e:
-        if "404" in str(e):
-            notes.append(
-                "publish/inbox not created yet (expected before first submit; push will create it)"
-            )
-        else:
-            errors.append(f"cannot query publish/inbox ref: {e}")
+    notes.append(
+        "submit path: create immutable ref publish/submissions/{date}-{contentId} (no force-push)"
+    )
 
     if require_workflow_on_main:
         try:
@@ -89,9 +82,8 @@ def check(*, owner: str, repo: str, require_workflow_on_main: bool) -> int:
                 "(merge setup PR #23 first)"
             )
 
-    # Actions workflow_dispatch is not required for the parent path (push-triggered).
     notes.append(
-        "trigger path: force-push to publish/inbox (no workflow_dispatch / Actions write needed on parent)"
+        "trigger path: push to publish/submissions/* (no workflow_dispatch / Actions write on parent)"
     )
 
     for line in notes:
@@ -110,7 +102,7 @@ def check(*, owner: str, repo: str, require_workflow_on_main: bool) -> int:
         )
         return 1
 
-    print("\nReadiness: OK for submit_edition.py (validate + inbox push)")
+    print("\nReadiness: OK for submit_edition.py (validate + submission ref create)")
     return 0
 
 
