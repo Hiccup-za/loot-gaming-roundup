@@ -6,19 +6,20 @@ Daily **edition JSON** and **Artist haul PNG** publish to `main` without a morni
 
 ```
 Parent routine (JSON) ──┐
-                        ├──► scripts/submit_edition.py (validate + GitHub API)
+                        ├──► scripts/submit_edition.py (validate + gh api → publish/inbox)
 Artist (PNG on disk) ───┘              │
                                        ▼
-                         branch publish/inbox (one commit / day)
+                         branch publish/inbox (force-push, one commit / day)
                                        │
-                         workflow_dispatch publish-edition.yml
+                         push triggers publish-edition.yml (no parent dispatch)
                                        ▼
               validate → build.py --all → push main → verify production
 ```
 
 | Piece | Role |
 |--------|------|
-| `scripts/submit_edition.py` | Runs on the **parent executor** (has the PNG path). Validates, uploads inbox commit, triggers workflow. |
+| `scripts/submit_edition.py` | Runs on the **parent executor** (has the PNG path). Validates, force-pushes inbox via **`gh api`**. |
+| `scripts/publish_readiness.py` | Non-destructive check: gh auth + `permissions.push` + optional workflow-on-main. **Fail closed.** |
 | `publish/inbox` branch | Short-lived staging ref; **force-pushed** each submit. Never merged via PR. |
 | `.github/workflows/publish-edition.yml` | Validates hashes, builds site, pushes `main`, confirms live JSON date + PNG **SHA-256**. Reverts `main` if verification fails. |
 | `publish/validate.py` | Strict checks (1200×675 PNG, `x_post.image` path, template fields). |
@@ -38,45 +39,43 @@ After the daily routine and Artist render:
 The parent **must not** rely on the cloud agent reading that filesystem. It should call `submit_edition.py` from a checkout of this repo (or `PYTHONPATH` pointing at repo root):
 
 ```bash
-export LOOT_PUBLISH_GITHUB_TOKEN='…'   # fine-grained PAT — see below
+python3 scripts/publish_readiness.py --require-workflow-on-main   # after setup PR merges
 
 python3 scripts/submit_edition.py \
-  --edition-date 2026-11-10 \
-  --json-path /path/to/2026-11-10.json \
-  --png-path /workspace/marketing/loot-x/out/2026-11-10.png
+  --edition-date YYYY-MM-DD \
+  --json-path /path/to/YYYY-MM-DD.json \
+  --png-path /workspace/marketing/loot-x/out/YYYY-MM-DD.png
 ```
 
-Dry-run (validate only):
+Dry-run (validate only, no GitHub calls):
 
 ```bash
 python3 scripts/submit_edition.py --edition-date … --json-path … --png-path … --dry-run
 ```
 
-The script prints `json_sha256` and `png_sha256`; the workflow requires these to match the inbox commit (tamper detection).
+The script prints `json_sha256` and `png_sha256`. The workflow recomputes hashes from the inbox commit and rejects content that fails strict validation.
 
-## One-time authentication setup (operator)
+## Authentication: existing `gh` vs new credentials
 
-Create a **fine-grained personal access token** (or machine user) for the parent executor:
+| Approach | When it applies |
+|----------|-----------------|
+| **Existing `gh auth login` on the parent executor** (preferred) | Parent already uses GitHub CLI for this repo. `submit_edition.py` calls **`gh api` only** — it never prints, exports, or copies tokens. |
+| **New credential** | Only if `publish_readiness.py` reports `permissions.push=false` for the active `gh` session. Minimum need: **repository contents write** so the account can force-push `refs/heads/publish/inbox`. Configure via the same `gh auth login` / host you use for other repo writes — **not** a separate env var unless you intentionally run without `gh`. |
 
-| Permission | Access |
-|------------|--------|
-| Repository access | `Hiccup-za/loot-gaming-roundup` only |
-| Contents | Read and write |
-| Actions | Read and write |
-| Metadata | Read |
+**Not required on the parent:** `workflow_dispatch`, Actions write, or Cursor GitHub workflow-mutation tools. The inbox **push** starts the workflow (same pattern as `.github/backfill-views.request` on `main`, but scoped to `publish/inbox`).
 
-Store as **`LOOT_PUBLISH_GITHUB_TOKEN`** in the parent executor secrets (not in this repo).
+**Cloud agents** often have a read-only GitHub integration token (`permissions.push=false`). They must **not** run `submit_edition.py` for real publishes; parent executor only.
 
 ### Branch rules
 
-- **`main`**: must already allow **GitHub Actions** to push (same as existing `backfill-views.yml`). If `main` requires PR reviews for all pushes, automated publish will fail until an exception is added for `github-actions[bot]`.
-- **`publish/inbox`**: allow the PAT holder to **force-push** this branch only (or leave the branch unprotected). The submit script force-updates inbox each day.
+- **`main`**: must allow **GitHub Actions** to push (same as `backfill-views.yml`).
+- **`publish/inbox`**: submitter's `gh` identity must be allowed to **force-push** this branch (unprotected branch or ruleset exception).
 
 ### What we cannot configure from the repo alone
 
-- Minting the PAT (Christopher / org admin).
-- Branch protection exceptions on `main` / `publish/inbox`.
-- Vercel project settings (production deploy on `main` is assumed).
+- Granting push to the parent's `gh` identity (org/repo access).
+- Branch protection exceptions.
+- Vercel production deploy settings.
 
 ## Idempotency and failure behaviour
 
@@ -109,8 +108,9 @@ Re-submitting 2026-11-10 with unchanged hashes is idempotent (no `main` commit i
 
 ## Operator checklist
 
-- [ ] Fine-grained PAT created and stored on parent as `LOOT_PUBLISH_GITHUB_TOKEN`
-- [ ] `publish/inbox` force-push allowed for PAT
+- [ ] `python3 scripts/publish_readiness.py` exits 0 on the **parent** executor (after setup PR merge, use `--require-workflow-on-main`)
+- [ ] Parent `gh` session has `permissions.push=true` on this repo (readiness script checks via API)
+- [ ] `publish/inbox` force-push allowed for that identity
 - [ ] `github-actions[bot]` can push `main` (backfill already proves this if green)
 - [ ] `DATABUDDY_API_KEY` present in GitHub Actions (optional; build succeeds without)
 - [ ] Parent routine updated to invoke `scripts/submit_edition.py` after Artist completes

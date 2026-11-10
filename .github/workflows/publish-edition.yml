@@ -1,25 +1,28 @@
 name: Publish edition
 
-# Automated daily publish: parent uploads to publish/inbox via scripts/submit_edition.py,
-# then dispatches this workflow. No pull request. Does not post to X.
+# Parent calls scripts/submit_edition.py → force-push publish/inbox (via gh API).
+# This workflow runs on that push — no workflow_dispatch from the parent required.
+# Manual re-runs: Actions → Publish edition → Run workflow.
 
 on:
+  push:
+    branches: [publish/inbox]
   workflow_dispatch:
     inputs:
       edition_date:
-        description: Edition date (YYYY-MM-DD)
+        description: Edition date (YYYY-MM-DD) — manual runs only
         required: true
         type: string
       json_sha256:
-        description: SHA-256 of edition JSON (hex)
+        description: SHA-256 of edition JSON (hex) — manual runs only
         required: true
         type: string
       png_sha256:
-        description: SHA-256 of Artist PNG (hex)
+        description: SHA-256 of Artist PNG (hex) — manual runs only
         required: true
         type: string
       source_sha:
-        description: Commit SHA on publish/inbox with JSON + PNG
+        description: Inbox commit SHA — manual runs only
         required: true
         type: string
       skip_production_verify:
@@ -40,10 +43,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABUDDY_API_KEY: ${{ secrets.DATABUDDY_API_KEY }}
-      EDITION_DATE: ${{ inputs.edition_date }}
-      EXPECTED_JSON_SHA256: ${{ inputs.json_sha256 }}
-      EXPECTED_PNG_SHA256: ${{ inputs.png_sha256 }}
-      SOURCE_SHA: ${{ inputs.source_sha }}
       LOOT_SITE_URL: https://loot-gaming-roundup.vercel.app
     steps:
       - uses: actions/checkout@v4
@@ -51,18 +50,52 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      - name: Fetch publish inbox commit
+      - name: Resolve edition metadata
+        id: meta
         run: |
-          git fetch origin "$SOURCE_SHA" || git fetch origin publish/inbox
-          git cat-file -e "$SOURCE_SHA^{commit}"
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "edition_date=${{ inputs.edition_date }}" >> "$GITHUB_OUTPUT"
+            echo "json_sha256=${{ inputs.json_sha256 }}" >> "$GITHUB_OUTPUT"
+            echo "png_sha256=${{ inputs.png_sha256 }}" >> "$GITHUB_OUTPUT"
+            echo "source_sha=${{ inputs.source_sha }}" >> "$GITHUB_OUTPUT"
+            echo "skip_verify=${{ inputs.skip_production_verify }}" >> "$GITHUB_OUTPUT"
+          else
+            SRC="${{ github.sha }}"
+            git fetch origin "$SRC"
+            EDITION=$(git show --name-only --pretty=format: "$SRC" | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' | head -1 | sed 's/.json$//')
+            if [ -z "$EDITION" ]; then
+              echo "::error::No YYYY-MM-DD.json on publish/inbox commit $SRC"
+              exit 1
+            fi
+            echo "edition_date=$EDITION" >> "$GITHUB_OUTPUT"
+            echo "source_sha=$SRC" >> "$GITHUB_OUTPUT"
+            echo "skip_verify=false" >> "$GITHUB_OUTPUT"
+            git show "$SRC:${EDITION}.json" > "/tmp/${EDITION}.json"
+            git show "$SRC:x/${EDITION}.png" > "/tmp/${EDITION}.png"
+            echo "json_sha256=$(sha256sum /tmp/${EDITION}.json | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+            echo "png_sha256=$(sha256sum /tmp/${EDITION}.png | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch publish inbox commit
+        env:
+          SOURCE_SHA: ${{ steps.meta.outputs.source_sha }}
+        run: git cat-file -e "$SOURCE_SHA^{commit}"
 
       - name: Materialize edition artefacts from inbox
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          SOURCE_SHA: ${{ steps.meta.outputs.source_sha }}
         run: |
           git show "$SOURCE_SHA:${EDITION_DATE}.json" > "${EDITION_DATE}.json"
           mkdir -p x
           git show "$SOURCE_SHA:x/${EDITION_DATE}.png" > "x/${EDITION_DATE}.png"
 
-      - name: Validate bundle (strict)
+      - name: Validate bundle (strict, content paths only)
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          EXPECTED_JSON_SHA256: ${{ steps.meta.outputs.json_sha256 }}
+          EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
         run: |
           python3 -m publish.validate --edition-date "$EDITION_DATE" --root . --print-hashes
           ACTUAL_JSON=$(sha256sum "${EDITION_DATE}.json" | awk '{print $1}')
@@ -75,13 +108,15 @@ jobs:
 
       - name: Commit and push to main
         id: push
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${EDITION_DATE}.json" "${EDITION_DATE}.html" "x/${EDITION_DATE}.png" \
             index.html archive.html sitemap.xml
           if git diff --staged --quiet; then
-            echo "No changes to commit (already published)"
+            echo "No changes to commit (idempotent — already published)"
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -90,7 +125,10 @@ jobs:
           echo "pushed=true" >> "$GITHUB_OUTPUT"
 
       - name: Verify production (edition JSON date + PNG hash)
-        if: inputs.skip_production_verify != true
+        if: steps.meta.outputs.skip_verify != 'true'
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
         run: |
           python3 -m publish.verify_production \
             --edition-date "$EDITION_DATE" \

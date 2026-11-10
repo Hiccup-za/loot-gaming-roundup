@@ -2,15 +2,13 @@
 """Parent-side entry point: validate artefacts and queue automated publish.
 
 Reads edition JSON and Artist PNG from the parent routine's paths, validates,
-uploads a single commit to ``publish/inbox`` on GitHub, and triggers
-``.github/workflows/publish-edition.yml``. No pull request is created.
+uploads a single commit to ``publish/inbox`` on GitHub via the **``gh`` CLI**
+(``gh api`` — credentials stay inside gh; this script never reads or prints tokens).
+A push to ``publish/inbox`` starts ``publish-edition.yml`` on GitHub Actions.
+No pull request and **no workflow_dispatch** from the parent.
 
-Environment (parent / executor — never commit secrets):
-
-  LOOT_PUBLISH_GITHUB_TOKEN
-    Fine-grained PAT with: Contents read/write, Actions read/write, Metadata read.
-    Limit repository access to loot-gaming-roundup. For inbox uploads, allow
-    force-push on branch publish/inbox (see docs/AUTOMATED_PUBLISHING.md).
+Prerequisite: parent executor has normal ``gh auth login`` with permission to
+**push** this repository (see ``scripts/publish_readiness.py``).
 
   LOOT_PUBLISH_REPO_OWNER (optional, default Hiccup-za)
   LOOT_PUBLISH_REPO       (optional, default loot-gaming-roundup)
@@ -35,7 +33,6 @@ from publish.github_client import GitHubAPIError, client_from_env
 from publish.validate import PublishValidationError, validate_edition_bundle
 
 INBOX_REF = "heads/publish/inbox"
-WORKFLOW_FILE = "publish-edition.yml"
 
 
 def upload_inbox(
@@ -133,8 +130,18 @@ def main(argv: list[str] | None = None) -> int:
         png_bytes = f.read()
 
     if args.dry_run:
-        print("dry-run: skipping GitHub upload and workflow dispatch")
+        print("dry-run: skipping GitHub inbox upload")
         return 0
+
+    from publish.gh_cli import gh_auth_ok
+
+    if not gh_auth_ok():
+        print(
+            "submit failed: gh is not authenticated. "
+            "Run scripts/publish_readiness.py on the parent executor.",
+            file=sys.stderr,
+        )
+        return 1
 
     try:
         client = client_from_env()
@@ -145,23 +152,14 @@ def main(argv: list[str] | None = None) -> int:
             png_bytes,
             dry_run=False,
         )
-        client.dispatch_workflow(
-            WORKFLOW_FILE,
-            ref="main",
-            inputs={
-                "edition_date": args.edition_date,
-                "json_sha256": hashes["json_sha256"],
-                "png_sha256": hashes["png_sha256"],
-                "source_sha": commit_sha,
-            },
-        )
     except (RuntimeError, GitHubAPIError) as e:
         print(f"submit failed: {e}", file=sys.stderr)
         return 1
 
     print(
-        f"triggered {WORKFLOW_FILE} for {args.edition_date}; "
-        f"track: https://github.com/{client.owner}/{client.repo}/actions"
+        f"pushed publish/inbox → {commit_sha} for {args.edition_date}; "
+        f"GitHub Actions publish workflow should start from the push. "
+        f"Track: https://github.com/{client.owner}/{client.repo}/actions"
     )
     return 0
 

@@ -21,7 +21,7 @@ Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `verce
 
 ## Automated publishing (production)
 
-Daily edition JSON + Artist haul PNG are published via **`scripts/submit_edition.py`** and the **Publish edition** GitHub Actions workflow — no morning pull request. See **[docs/AUTOMATED_PUBLISHING.md](docs/AUTOMATED_PUBLISHING.md)** for the parent-routine contract, PAT setup, cutover, and failure behaviour. X posting is **not** automated.
+Daily edition JSON + Artist haul PNG are published via **`scripts/submit_edition.py`** (parent `gh` auth → `publish/inbox`) and the **Publish edition** GitHub Actions workflow — no morning pull request. Run **`scripts/publish_readiness.py`** on the parent executor first (fail closed). See **[docs/AUTOMATED_PUBLISHING.md](docs/AUTOMATED_PUBLISHING.md)**. X posting is **not** automated.
 
 ## Daily steps for Loot (assistant)
 
