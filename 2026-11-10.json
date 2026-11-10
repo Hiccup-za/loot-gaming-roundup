@@ -557,8 +557,8 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-10T08:00:00+02:00",
-    "window_end": "2026-11-10T16:51:40.184077+02:00",
-    "fetched_at": "2026-11-10T16:52:07.389081+02:00",
+    "window_end": "2026-11-10T19:33:38.823010+02:00",
+    "fetched_at": "2026-11-10T19:34:15.302893+02:00",
     "granularity": "daily",
     "total_unique_visitors": 0,
     "primary_path": "/2026-11-10.html",
