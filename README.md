@@ -19,6 +19,10 @@ GitHub Actions runs the same command on every push and pull request (with `DATAB
 
 Clean URLs: `/2026-10-22` serves the same page as `/2026-10-22.html` (see `vercel.json` rewrites).
 
+## Automated publishing (production)
+
+Daily edition JSON + Artist haul PNG are published via **`scripts/submit_edition.py`** (parent `gh` auth → `publish/inbox`) and the **Publish edition** GitHub Actions workflow — no morning pull request. Run **`scripts/publish_readiness.py`** on the parent executor first (fail closed). See **[docs/AUTOMATED_PUBLISHING.md](docs/AUTOMATED_PUBLISHING.md)**. X posting is **not** automated.
+
 ## Daily steps for Loot (assistant)
 
 1. Copy the previous day's `YYYY-MM-DD.json` to today's filename (e.g. `2026-10-25.json`).

@@ -1,0 +1,128 @@
+name: Publish edition
+
+# Push to publish/submissions/* or workflow_dispatch submission_sha (idempotent recovery).
+
+on:
+  push:
+    branches:
+      - "publish/submissions/**"
+  workflow_dispatch:
+    inputs:
+      submission_sha:
+        description: 40-char submission commit to replay (recovery)
+        required: true
+        type: string
+
+concurrency:
+  group: publish-edition-${{ github.event_name == 'workflow_dispatch' && inputs.submission_sha || github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      DATABUDDY_API_KEY: ${{ secrets.DATABUDDY_API_KEY }}
+      LOOT_SITE_URL: https://loot-gaming-roundup.vercel.app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Validate submission SHA
+        id: sha
+        env:
+          RAW_SUBMISSION_SHA: ${{ github.event_name == 'workflow_dispatch' && inputs.submission_sha || github.sha }}
+        run: |
+          python3 -m publish.workflow_context \
+            --raw "$RAW_SUBMISSION_SHA" \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Fetch submission commit
+        env:
+          SUBMISSION_SHA: ${{ steps.sha.outputs.submission_sha }}
+        run: git fetch origin "$SUBMISSION_SHA" && git cat-file -e "$SUBMISSION_SHA^{commit}"
+
+      - name: Resolve submission metadata
+        id: meta
+        env:
+          SUBMISSION_SHA: ${{ steps.sha.outputs.submission_sha }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          python3 -m publish.resolve_submission \
+            --commit "$SUBMISSION_SHA" \
+            --ref-name "$REF_NAME" \
+            --work-dir . \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Validate bundle (strict, content paths only)
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          EXPECTED_JSON_SHA256: ${{ steps.meta.outputs.json_sha256 }}
+          EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
+        run: |
+          python3 -m publish.validate --edition-date "$EDITION_DATE" --root . --print-hashes
+          test "$(sha256sum "${EDITION_DATE}.json" | awk '{print $1}')" = "$EXPECTED_JSON_SHA256"
+          test "$(sha256sum "x/${EDITION_DATE}.png" | awk '{print $1}')" = "$EXPECTED_PNG_SHA256"
+
+      - name: Build site
+        run: python3 build.py --all
+
+      - name: Commit and push to main
+        id: push
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --ff-only origin main
+          git add "${EDITION_DATE}.json" "${EDITION_DATE}.html" "x/${EDITION_DATE}.png" \
+            index.html archive.html sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes to commit (idempotent — already published)"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "publish: ${EDITION_DATE} edition + Artist haul PNG"
+          git push origin HEAD:main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+          echo "publish_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Verify production (HTML + JSON + PNG)
+        id: verify
+        env:
+          EDITION_DATE: ${{ steps.meta.outputs.edition_date }}
+          DATE_LABEL: ${{ steps.meta.outputs.date_label }}
+          EXPECTED_PNG_SHA256: ${{ steps.meta.outputs.png_sha256 }}
+          PUBLISH_SHA: ${{ steps.push.outputs.publish_sha }}
+          PUSHED: ${{ steps.push.outputs.pushed }}
+        run: |
+          set -euo pipefail
+          if [ "$PUSHED" = "true" ]; then
+            echo "Verifying production after new main commit $PUBLISH_SHA"
+          else
+            echo "Verifying production (no new main commit; idempotent replay)"
+          fi
+          set +e
+          python3 -m publish.verify_production \
+            --edition-date "$EDITION_DATE" \
+            --expected-date-label "$DATE_LABEL" \
+            --expected-png-sha256 "$EXPECTED_PNG_SHA256"
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then
+            echo "outcome=ok" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$code" -eq 2 ]; then
+            echo "outcome=pending_deploy" >> "$GITHUB_OUTPUT"
+            echo "::error::Deploy still pending on production checks. Main not auto-reverted. Re-run submit (same content) or workflow_dispatch submission_sha=${{ steps.sha.outputs.submission_sha }}."
+            exit 1
+          fi
+          echo "outcome=content_error" >> "$GITHUB_OUTPUT"
+          echo "::error::Production content check failed. Main not auto-reverted."
+          exit 1
