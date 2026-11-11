@@ -1,0 +1,511 @@
+{
+  "date": "2026-11-11",
+  "date_label": "Wednesday 11 November 2026",
+  "published_at": "2026-11-11T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🎮 PS5 passes 100 million consoles shipped",
+      "tags": [
+        "PS5",
+        "Sony"
+      ],
+      "body": "Sony updated its official figures to say PS5 has shipped more than 100 million units worldwide as of 10 November. That's 2.1 million more in the 40 days since the 97.9 million it reported at the end of September.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/ps5-shipments-top-100-million"
+        }
+      ]
+    },
+    {
+      "title": "Sony cancels its live-service heist shooter Fairgames",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "Bloomberg reports PlayStation scrapped Haven Studios' game after a playtest where player feedback and retention were mixed and fell short of goals. Nobody is being laid off, and Haven will support other PlayStation studios instead.",
+      "links": [
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/games/1031242/sony-playstation-fairgames-canceled"
+        },
+        {
+          "label": "GameSpot",
+          "url": "https://www.gamespot.com/articles/sony-cancels-live-service-ps5-game-fairgames-but-no-layoffs/"
+        }
+      ]
+    },
+    {
+      "title": "GTA VI targets 30fps, with extra polish on PS5 Pro",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Rockstar's preload post confirms a 30 frames per second target on PS5 and Xbox Series X|S. PS5 Pro adds PSSR upscaling and ray-traced shadows, and Xbox One owners will be able to stream it through Xbox Cloud Gaming. It's out on 19 November.",
+      "links": [
+        {
+          "label": "Sixth Star",
+          "url": "https://sixthstar.net/news/gta-6-pre-load-now-30fps-ps5-pro-xbox-cloud/"
+        }
+      ]
+    },
+    {
+      "title": "🐧 RuneScape: Dragonwilds 1.0.2 adds Earth Magic and penguin hunting",
+      "tags": [
+        "PS5",
+        "PC",
+        "Survival"
+      ],
+      "body": "Earth Magic joins Air, Fire and Water, with Earth Runes usable from level 14 Magic. Over 200 Killer Gentoo Penguins are hiding across Ashenfall for coins and cosmetics, and there's a new fishing quest, A Reel Downer, plus fixes for multiplayer sync, crafting and dedicated servers.",
+      "links": [
+        {
+          "label": "MP1st",
+          "url": "https://mp1st.com/title-updates-and-patches/runescape-dragonwilds-version-1-0-2-released-november-10-update-1-002"
+        },
+        {
+          "label": "Twisted Voxel",
+          "url": "https://twistedvoxel.com/runescape-dragonwilds-update-1-0-2-patch-notes/"
+        }
+      ]
+    },
+    {
+      "title": "Metaphor: ReFantazio lands on Switch 2 tomorrow",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ],
+      "body": "Atlus's fantasy RPG arrives on 12 November with a limited Steelbook Edition at launch. A new Heismay trailer is out, and the free prologue demo with the first four dungeons is on the eShop now.",
+      "links": [
+        {
+          "label": "GoNintendo",
+          "url": "https://www.gonintendo.com/contents/67106-metaphor-refantazio-heismay-character-trailer"
+        }
+      ]
+    },
+    {
+      "title": "Death Stranding 2 leads November's PS Plus catalogue",
+      "tags": [
+        "PS5",
+        "PS Plus"
+      ],
+      "body": "Extra adds Death Stranding 2, Like a Dragon: Pirate Yakuza in Hawaii, Atomfall and Dragon Quest III HD-2D Remake among others, with Soul Reaver 2 and Freedom Wars Remastered for Premium. Games arrive from 17 November.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/10/playstation-plus-game-catalog-for-november-death-stranding-2-on-the-beach-like-a-dragon-pirate-yakuza-in-hawaii-atomfall-dragon-quest-iii-hd-2d-remake-and-more/"
+        },
+        {
+          "label": "GameSpot",
+          "url": "https://www.gamespot.com/articles/death-stranding-2-headlines-playstation-plus-game-catalog-for-november/"
+        }
+      ]
+    },
+    {
+      "title": "Marathon's Symbiosis update brings PvE and deathmatch on 8 December",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "Bungie's shooter adds a PvE-only Expedition mode, a 3v3 Deathmatch beta, the Bishop Runner shell and new weapons, with an Open Play Week from 8 to 15 December.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/10/marathon-symbiosis-update-launches-december-8-adding-new-pve-and-pvp-modes-weapons-and-more/"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Bandai Namco shuts down Unknown 9 studio Reflector",
+      "tags": [
+        "Bandai Namco"
+      ],
+      "body": "Bandai Namco is dissolving the Montreal studio it bought in 2020 and expects an extraordinary loss of about €21 million in its third quarter.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/bandai-namco-closes-reflector-entertainment-expects-to-post-21m-loss-in-q3-as-a-result"
+        }
+      ]
+    },
+    {
+      "title": "Nexon axes eight projects in its biggest restructuring yet",
+      "tags": [
+        "Nexon"
+      ],
+      "body": "KED Global says Korea's Nexon is running the most aggressive cost-cutting drive in its 30-year history, as NC, Kakao Games and others also turn to layoffs and hiring freezes.",
+      "links": [
+        {
+          "label": "KED Global",
+          "url": "https://www.kedglobal.com/korean-games/newsView/ked202611100008"
+        }
+      ]
+    },
+    {
+      "title": "Stellar Blade studio Shift Up sees profit fall 58%",
+      "tags": [
+        "Shift Up"
+      ],
+      "body": "Third-quarter revenue dropped 38.8% as Nikke and Stellar Blade sales cooled. Shift Up says early sales of the Switch 2 version, out on 6 November, are in line with expectations.",
+      "links": [
+        {
+          "label": "Gamemeca",
+          "url": "https://www.gamemeca.com/en/view.php?gid=1783263"
+        }
+      ]
+    },
+    {
+      "title": "Star Wars Zero Company studio Bit Reactor lays off staff",
+      "tags": [
+        "Industry"
+      ],
+      "body": "Developers posted about the cuts a month after the studio started bringing back furloughed staff. The game passed 1 million sales in October.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/star-wars-zero-company-studio-bit-reactor-is-laying-off-staff-a-month-after-it-started-bringing-back-furloughed-devs/"
+        }
+      ]
+    },
+    {
+      "title": "Microsoft's Auto SR upscaling now works handheld on Xbox Ally X",
+      "tags": [
+        "Xbox",
+        "PC"
+      ],
+      "body": "The full release supports undocked play and 1080p games, with a Performance mode up to 120fps coming through Windows updates.",
+      "links": [
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/tech/1031446/microsoft-automatic-super-resolution-auto-sr-upscaling"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "11 Nov",
+      "title": "Dragon's Dogma 2 update",
+      "note": "Switch 2, Delicious in Dungeon collab",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Honkai: Star Rail 4.7",
+      "note": "Adds 5-Star Aha",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "11 Nov",
+      "title": "Thronefall",
+      "note": "Build by day, defend by night",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pokémon UNITE farewell update",
+      "note": "Special event and library",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pikmin 4",
+      "note": "Switch 2 Edition + Dandori Academy",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Sonic Pico Park",
+      "note": "Co-op puzzler",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Barbie Rewind",
+      "note": "Digital Eclipse retro collection",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "GTA VI boxed copies",
+      "note": "Code in a box, in shops",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Metaphor: ReFantazio",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Path of Exile 3.30",
+      "note": "Covens of Umbra league",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Nov",
+      "title": "Xbox 25th anniversary",
+      "note": "8 classics join Game Pass Essential",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Nintendo eShop gifting",
+      "note": "Family group gifts go live",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "PS Plus Extra and Premium",
+      "note": "Death Stranding 2 leads",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "Switch 2",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "11 Dec",
+      "title": "Path of Exile 2 1.0",
+      "note": "Free-to-play launch",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Wednesday's haul",
+      "items": [
+        {
+          "emoji": "🎮",
+          "text": "PS5 ships 100 million consoles"
+        },
+        {
+          "emoji": "🚫",
+          "text": "Sony cancels Fairgames"
+        },
+        {
+          "emoji": "🎯",
+          "text": "GTA VI confirms 30fps target"
+        },
+        {
+          "emoji": "🐧",
+          "text": "Dragonwilds adds Earth Magic"
+        },
+        {
+          "emoji": "🏚️",
+          "text": "Bandai Namco shuts Reflector"
+        }
+      ],
+      "date": "2026-11-11"
+    },
+    "text": "🪎 Wednesday's haul: 🎮 PS5 ships 100 million consoles\n\n🚫 Sony cancels Fairgames\n🎯 GTA VI confirms 30fps target\n🐧 Dragonwilds adds Earth Magic\n🏚️ Bandai Namco shuts Reflector\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-11",
+    "image": "/x/2026-11-11.png",
+    "time": "08:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-11T08:00:00+02:00",
+    "window_end": "2026-11-11T06:58:00.050240+02:00",
+    "fetched_at": "2026-11-11T06:58:02.311277+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
