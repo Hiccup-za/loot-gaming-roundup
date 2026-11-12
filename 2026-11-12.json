@@ -1,0 +1,497 @@
+{
+  "date": "2026-11-12",
+  "date_label": "Thursday 12 November 2026",
+  "published_at": "2026-11-12T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🗡️ Zelda: Ocarina of Time sells 5.2 million in four days",
+      "tags": [
+        "Switch 2",
+        "Nintendo"
+      ],
+      "body": "Nintendo says the Switch 2 remake sold over 5.2 million copies worldwide in its first four days, including 810,000 in Japan. That's the best four-day launch for any Nintendo-published Switch 2 game, and Polygon reckons it's already the console's second-best seller behind Mario Kart World.",
+      "links": [
+        {
+          "label": "Nintendo",
+          "url": "https://www.nintendo.co.jp/corporate/release/en/2026/261111.html"
+        },
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/zelda-ocarina-of-time-sales-second-best-selling-switch-2-game/"
+        }
+      ]
+    },
+    {
+      "title": "💻 Sony is shutting the PS Plus PC app on 10 December",
+      "tags": [
+        "PS5",
+        "PS Plus",
+        "PC"
+      ],
+      "body": "Sony says fewer than 0.4% of eligible Premium members used the PC streaming app, so it's going. Premium subscribers can still stream games on a console or PlayStation Portal.",
+      "links": [
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/games/1031144/sony-playstation-plus-windows-pc-app-shutting-down"
+        },
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/gaming-industry/playstation-plus-pc-app-is-being-shut-down-in-december-because-less-than-0-4-percent-of-eligible-subscribers-are-using-it/"
+        }
+      ]
+    },
+    {
+      "title": "☁️ Xbox opens its free, ad-supported cloud gaming tier",
+      "tags": [
+        "Xbox"
+      ],
+      "body": "Rolled out on 11 November: watch ads, then stream select games you own or free-to-play titles in 30-minute sessions. Game Pass cloud playtime limits are kicking in too, with paid top-ups such as 10 hours for £2.99 in the UK.",
+      "links": [
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/11/xbox-brings-its-free-tier-of-cloud-gaming-to-loads-more-players-today"
+        }
+      ]
+    },
+    {
+      "title": "🔮 Metaphor: ReFantazio is out today on Switch 2",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ],
+      "body": "Atlus's fantasy RPG lands on Switch 2 today, with a limited Steelbook Edition at launch and a free prologue demo on the eShop if you want to try before you buy.",
+      "links": [
+        {
+          "label": "GoNintendo",
+          "url": "https://www.gonintendo.com/contents/67106-metaphor-refantazio-heismay-character-trailer"
+        }
+      ]
+    },
+    {
+      "title": "🐉 Dragon Quest Monsters: The Withered World gets a free demo",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ],
+      "body": "The demo runs from the start of the story to the end of Witherwood. You can carry up to eight monsters and a bonus item bundle into the full game, which arrives on 3 December.",
+      "links": [
+        {
+          "label": "Nintendo Everything",
+          "url": "https://nintendoeverything.com/dragon-quest-monsters-the-withered-world-gets-nintendo-switch-2-and-switch-demo-new-trailer/"
+        }
+      ]
+    },
+    {
+      "title": "🪖 Hell Let Loose joins PS Plus Extra",
+      "tags": [
+        "PS5",
+        "PS Plus"
+      ],
+      "body": "The 100-player WWII shooter is the first November addition to the Extra and Premium catalogue, ahead of Death Stranding 2, Atomfall and Dragon Quest III HD-2D Remake on 17 November.",
+      "links": [
+        {
+          "label": "Game Rant",
+          "url": "https://gamerant.com/ps-plus-extra-games-november-hell-let-loose/"
+        }
+      ]
+    },
+    {
+      "title": "🪆 WitchSpring studio reveals action RPG Shade of the Marionette",
+      "tags": [
+        "PS5",
+        "Switch",
+        "RPG"
+      ],
+      "body": "Kiwi Walks' first action RPG stars Piyorita, a doll who absorbs boss dolls' life force and can summon them to fight beside her, with crafting and weapon upgrades. It's due on PlayStation, Xbox, Nintendo consoles and PC in the second half of 2027.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/shade-of-the-marionette-the-story-of-piyorita-debut-trailer"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Fortis Games shuts down, with up to 440 jobs affected",
+      "tags": [
+        "Mobile"
+      ],
+      "body": "The Las Vegas Sands-backed mobile publisher behind Bloom & Breakfast and Twilight Towers has closed after its funding ended. Twilight Towers shuts on 16 November.",
+      "links": [
+        {
+          "label": "GameDev.net",
+          "url": "https://gamedev.net/news/7057-mobile-publisher-fortis-games-shuts-down-up-to-440-workers-affected/"
+        },
+        {
+          "label": "This Week in Videogames",
+          "url": "https://thisweekinvideogames.com/news/mobile-publisher-fortis-games-shuts-down-over-400-jobs-reportedly-impacted/"
+        }
+      ]
+    },
+    {
+      "title": "Xbox signs a 10-year partnership with Take-Two",
+      "tags": [
+        "Xbox",
+        "Take-Two"
+      ],
+      "body": "Xbox CEO Asha Sharma called GTA VI the most pre-ordered game ever on the Microsoft Store and said it will stream to Xbox One on 19 November as the first step. More Rockstar games such as GTA V and Red Dead Redemption 2 are heading to Xbox Cloud Gaming.",
+      "links": [
+        {
+          "label": "IGN India",
+          "url": "https://in.ign.com/xbox/276686/xbox-ceo-asha-sharma-confirms-a-10-year-strategic-partnership-with-take-two-interactive-as-gta-6-pre"
+        }
+      ]
+    },
+    {
+      "title": "Skydance confirms game layoffs and scales back projects",
+      "tags": [
+        "Skydance"
+      ],
+      "body": "In a statement to Variety, Skydance said it is reorganising Skydance Games and scaling down some projects, a month after its $110 billion Warner Bros merger. It didn't say how many roles are affected.",
+      "links": [
+        {
+          "label": "Vertical Slice",
+          "url": "https://www.verticalslice.news/report-skydance-laying-off-game-workers-one-month-after-buying-warner-bros-for-110-billion/"
+        }
+      ]
+    },
+    {
+      "title": "Square Enix announces Dragon Quest RPG for mobile",
+      "tags": [
+        "Square Enix",
+        "RPG"
+      ],
+      "body": "The Cursed Tree and the Chosen Isle is a turn-based Dragon Quest for iOS and Android, due in 2027. Closed beta sign-ups run until 23 November, with the test from 8 to 15 December.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/dragon-quest-rpg-the-cursed-tree-and-the-chosen-isle-unveiled"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "12 Nov",
+      "title": "Pokémon UNITE farewell update",
+      "note": "Special event and library",
+      "tags": [
+        "Switch",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Pikmin 4",
+      "note": "Switch 2 Edition + Dandori Academy",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Sonic Pico Park",
+      "note": "Co-op puzzler",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Barbie Rewind",
+      "note": "Digital Eclipse retro collection",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "GTA VI boxed copies",
+      "note": "Code in a box, in shops",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Metaphor: ReFantazio",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Nov",
+      "title": "Supermarket Simulator",
+      "note": "Console debut",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Path of Exile 3.30",
+      "note": "Covens of Umbra league",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Bombanana",
+      "note": "Three-player co-op bomb defusal",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Leaf Blower Co.",
+      "note": "Chilled work sim",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "15 Nov",
+      "title": "Xbox 25th anniversary",
+      "note": "8 classics join Game Pass Essential",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "Twilight Towers shutdown",
+      "note": "Fortis closes the game",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Nintendo eShop gifting",
+      "note": "Family group gifts go live",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "PS Plus Extra and Premium",
+      "note": "Death Stranding 2 leads",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Thursday's haul",
+      "items": [
+        {
+          "emoji": "🗡️",
+          "text": "Zelda remake sells 5.2 million"
+        },
+        {
+          "emoji": "💻",
+          "text": "Sony retires PS Plus PC app"
+        },
+        {
+          "emoji": "☁️",
+          "text": "Xbox opens free cloud gaming"
+        },
+        {
+          "emoji": "🔮",
+          "text": "Metaphor hits Switch 2 today"
+        },
+        {
+          "emoji": "🏚️",
+          "text": "Fortis Games shuts its doors"
+        }
+      ],
+      "date": "2026-11-12"
+    },
+    "text": "Thursday's haul:\n\n🗡️ Zelda remake sells 5.2 million\n💻 Sony retires PS Plus PC app\n☁️ Xbox opens free cloud gaming\n🔮 Metaphor hits Switch 2 today\n🏚️ Fortis Games shuts its doors\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-12",
+    "image": "/x/2026-11-12.png",
+    "time": "08:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-12T08:00:00+02:00",
+    "window_end": "2026-11-12T06:58:05.586855+02:00",
+    "fetched_at": "2026-11-12T06:58:07.525001+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
