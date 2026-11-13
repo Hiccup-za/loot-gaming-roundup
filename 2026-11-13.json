@@ -1,0 +1,491 @@
+{
+  "date": "2026-11-13",
+  "date_label": "Friday 13 November 2026",
+  "published_at": "2026-11-13T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🐺 Wolfenstein 3 is officially in production at MachineGames",
+      "tags": [
+        "Xbox",
+        "PS5",
+        "PC"
+      ],
+      "body": "Xbox CEO Asha Sharma confirmed it during Xbox's 25th anniversary, with a peek at the first page of the script. Brian Bloom and Debra Wilson return as BJ Blazkowicz and Grace Walker. No platforms or release window yet.",
+      "links": [
+        {
+          "label": "Xbox Wire",
+          "url": "https://news.xbox.com/en-us/2026/11/12/xbox-25th-anniversary-news-recap/"
+        },
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/news/1032431/xbox-bethesda-wolfenstein-3"
+        }
+      ]
+    },
+    {
+      "title": "✨ Pokémon Legends: Z-A is giving away a level 100 shiny Xerneas",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Pokémon"
+      ],
+      "body": "Enter CELEBRATE30TH under Mystery Gift (Get with Code/Password) until 7 January. The same code gets you a stylish furniture set in Pokémon Pokopia, and a shiny Yveltal follows on 10 December.",
+      "links": [
+        {
+          "label": "The Pokémon Company",
+          "url": "https://asia-press.portal-pokemon.com/press-release/pokemon-legends-z-a_20261112/"
+        }
+      ]
+    },
+    {
+      "title": "⚔️ Vindictus: Defying Fate is coming to PS5 next year",
+      "tags": [
+        "PS5",
+        "RPG"
+      ],
+      "body": "Nexon's Celtic-myth action RPG has you taking on colossal foes, mostly solo, with multiplayer content in the works. The PlayStation Store wishlist page is live now.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/"
+        }
+      ]
+    },
+    {
+      "title": "🛡️ Halo: Campaign Evolved gets Firefight in a free Winter Update",
+      "tags": [
+        "Xbox",
+        "PS5",
+        "PC"
+      ],
+      "body": "Halo's co-op survival mode is coming to the remake. Xbox also added 25 original Xbox games to backward compatibility on PC, including Knights of the Old Republic and Morrowind, some with achievements.",
+      "links": [
+        {
+          "label": "Xbox Wire",
+          "url": "https://news.xbox.com/en-us/2026/11/12/xbox-25th-anniversary-news-recap/"
+        }
+      ]
+    },
+    {
+      "title": "🧙 Fable shows four minutes of real quest gameplay",
+      "tags": [
+        "Xbox",
+        "PS5",
+        "RPG"
+      ],
+      "body": "Playground's reboot heads into Deepwood to find out why the forest's magic has been corrupted. Fable launches on 23 February 2027 on Xbox, PC and PS5.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11"
+        },
+        {
+          "label": "PPRGaming",
+          "url": "https://pprgaming.com/news/xbox-25th-anniversary-id-software-new-game-fable-gameplay-halo-firefight/"
+        }
+      ]
+    },
+    {
+      "title": "🎩 Professor Layton and the New World of Steam opens PS5 pre-orders",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "Digital pre-orders are live at £53.99 ahead of the 10 December launch, with a bonus series soundtrack. Switch 2 and Switch pre-orders open later.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/professor-layton-and-the-new-world-of-steam-digital-pre-orders-now-available-for-ps5-and-pc-international-voice-cast-announced"
+        }
+      ]
+    },
+    {
+      "title": "🌫️ Once Human Season 5 lands on 18 November",
+      "tags": [
+        "PS5",
+        "PC",
+        "Survival"
+      ],
+      "body": "Dissonant Resonance adds a four-player Colossus raid where the boss reacts to your gunfire, plus a new Deviant called Silent Statue.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/12/once-human-season-5-gameplay-showcases-co-op-colossus-boss-battle-live-november-18/"
+        }
+      ]
+    },
+    {
+      "title": "🐉 Dragonkin: The Banished adds the Harrower and a permadeath Survival mode",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ],
+      "body": "The free update is out now. The Harrower can equip up to 10 Wyvern skills of any element, and Survival mode gives each character one life.",
+      "links": [
+        {
+          "label": "RPG Site",
+          "url": "https://www.rpgsite.net/news/21753-the-harrower-free-update-for-dragonkin-the-banished-adds-new-playable-character-survival-mode"
+        }
+      ]
+    },
+    {
+      "title": "🔒 Switch 2 firmware 23.5.0 shuts down the latest jailbreaks",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ],
+      "body": "The update blocks the SmileBASIC 4 and Civilization VII exploits, and both games now need the new firmware to run when online.",
+      "links": [
+        {
+          "label": "GoNintendo",
+          "url": "https://www.gonintendo.com/contents/67084-latest-switch-2-firmware-update-patches-jailbreak-exploit"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "id Software confirms it's working on its next game",
+      "tags": [
+        "Xbox",
+        "PC"
+      ],
+      "body": "Teams in Texas and Frankfurt are on it, with Hugo Martin directing again. It follows Xbox layoffs that hit the studio hard this year. DOOM: The Dark Ages gets a free Slaughter Mode for Revelations owners on 16 November.",
+      "links": [
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/fps/doom-studio-id-software-confirms-its-working-on-a-new-game/"
+        },
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/id-software-confirms-its-working-on-a-new-game-after-layoffs/"
+        }
+      ]
+    },
+    {
+      "title": "Tripwire Interactive lays off 36 staff",
+      "tags": [
+        "PC"
+      ],
+      "body": "The Killing Floor studio says work continues on Maneater 2 and Killing Floor 3, days after it announced its Tripwire Presents publishing label.",
+      "links": [
+        {
+          "label": "Game Developer",
+          "url": "https://www.gamedeveloper.com/business/tripwire-interactive-layoffs-come-after-announcing-new-publishing-initiative"
+        }
+      ]
+    },
+    {
+      "title": "Final Strike Games cuts under 6% of its team",
+      "tags": [
+        "PC"
+      ],
+      "body": "The Star Wars Zero Company co-developer says no projects were cancelled and its new IP still ships next year.",
+      "links": [
+        {
+          "label": "Vertical Slice",
+          "url": "https://www.verticalslice.news/report-star-wars-zero-company-co-developer-final-strike-games-is-cutting-jobs/"
+        }
+      ]
+    },
+    {
+      "title": "Rovio lays off about two-thirds of Ruby Games",
+      "tags": [
+        "Mobile"
+      ],
+      "body": "Twenty staff are gone at the Turkish studio, which will now only support existing games while Rovio focuses on Angry Birds.",
+      "links": [
+        {
+          "label": "App2top",
+          "url": "https://app2top.com/news/rovio-laid-off-most-of-the-staff-at-ruby-games-leaving-only-a-few-people-in-the-studio-to-support-the-existing-games-298790.html"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "13 Nov",
+      "title": "Path of Exile 3.30",
+      "note": "Covens of Umbra league",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Bombanana",
+      "note": "Three-player co-op bomb defusal",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "13 Nov",
+      "title": "Leaf Blower Co.",
+      "note": "Chilled work sim",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "15 Nov",
+      "title": "Xbox 25th anniversary",
+      "note": "8 classics join Game Pass Essential",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "Twilight Towers shutdown",
+      "note": "Fortis closes the game",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "DOOM: The Dark Ages Slaughter Mode",
+      "note": "Free for Revelations owners",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Nintendo eShop gifting",
+      "note": "Family group gifts go live",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "PS Plus Extra and Premium",
+      "note": "Death Stranding 2 leads",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Disney Dreamlight Valley: The Keepsake Sea",
+      "note": "Paid expansion",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Friday's haul",
+      "items": [
+        {
+          "emoji": "🐺",
+          "text": "Xbox confirms Wolfenstein 3"
+        },
+        {
+          "emoji": "💀",
+          "text": "id Software starts a new game"
+        },
+        {
+          "emoji": "✨",
+          "text": "Pokémon gifts a shiny Xerneas"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Vindictus RPG heads to PS5"
+        },
+        {
+          "emoji": "📉",
+          "text": "Tripwire lays off 36 staff"
+        }
+      ],
+      "date": "2026-11-13"
+    },
+    "text": "Friday's haul:\n\n🐺 Xbox confirms Wolfenstein 3\n💀 id Software starts a new game\n✨ Pokémon gifts a shiny Xerneas\n⚔️ Vindictus RPG heads to PS5\n📉 Tripwire lays off 36 staff\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-13",
+    "image": "/x/2026-11-13.png",
+    "time": "08:30"
+  }
+}
