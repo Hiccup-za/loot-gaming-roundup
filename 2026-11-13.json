@@ -490,8 +490,8 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-13T08:00:00+02:00",
-    "window_end": "2026-11-13T19:34:39.352588+02:00",
-    "fetched_at": "2026-11-13T19:35:30.033532+02:00",
+    "window_end": "2026-11-14T01:23:42.533076+02:00",
+    "fetched_at": "2026-11-14T01:24:09.871950+02:00",
     "granularity": "hourly",
     "total_unique_visitors": 1,
     "primary_path": "/2026-11-13",
@@ -555,6 +555,36 @@
         "visitors": 0,
         "tracked": true,
         "timestamp": "2026-11-13T19:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T20:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T21:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T22:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T23:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T00:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T01:00:00+02:00"
       }
     ]
   }
