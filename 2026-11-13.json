@@ -490,9 +490,57 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-13T08:00:00+02:00",
-    "window_end": "2026-11-13T06:59:20.192749+02:00",
-    "fetched_at": "2026-11-13T06:59:21.980126+02:00",
-    "total_unique_visitors": 0,
-    "series": []
+    "window_end": "2026-11-13T16:33:35.584174+02:00",
+    "fetched_at": "2026-11-13T16:34:17.669106+02:00",
+    "granularity": "hourly",
+    "total_unique_visitors": 1,
+    "primary_path": "/2026-11-13",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T08:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T09:00:00+02:00"
+      },
+      {
+        "visitors": 1,
+        "tracked": true,
+        "timestamp": "2026-11-13T10:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T11:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T12:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T13:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T14:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T15:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-13T16:00:00+02:00"
+      }
+    ]
   }
 }
