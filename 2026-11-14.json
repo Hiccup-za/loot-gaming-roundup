@@ -1,0 +1,445 @@
+{
+  "date": "2026-11-14",
+  "date_label": "Saturday 14 November 2026",
+  "published_at": "2026-11-14T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "✨ PS5's AI upscaling is coming to six more games",
+      "tags": [
+        "PS5"
+      ],
+      "body": "Quick Spectral Super Resolution (QSSR), the base-PS5 cousin of PS5 Pro's PSSR, is live in Marvel's Spider-Man 2 now. Control Resonant, ARC Raiders, The Finals, No Man's Sky and Hell Let Loose: Vietnam follow over the coming weeks.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/13/qssr-arrives-in-marvels-spider-man-2-control-resonant-the-finals-arc-raiders-and-hell-let-loose-vietnam/"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/base-ps5s-qssr-enhancer-coming-to-6-more-games-in-spider-man-2-now"
+        }
+      ]
+    },
+    {
+      "title": "⚔️ Romancing SaGa 3: Destinies United now launches early, on 4 February",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ],
+      "body": "Square Enix has pulled the HD remake forward from 16 February. Pre-orders are open on PS5, Xbox and PC, with digital Switch 2 and Switch pre-orders from 19 November.",
+      "links": [
+        {
+          "label": "Square Enix",
+          "url": "https://press.na.square-enix.com/ROMANCING-SAGA-3-DESTINIES-UNITED-LAUNCHING-EARLY-ON-FEBRUARY-4"
+        },
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/romancing-saga-3-destinies-united-release-date-moved-up-to-february-4-2027"
+        }
+      ]
+    },
+    {
+      "title": "🧭 Guild Saga: Vanished Worlds brings its tactical RPG to PS5 in May 2027",
+      "tags": [
+        "PS5",
+        "RPG"
+      ],
+      "body": "A story-driven tactical RPG where a maelstrom strands your Heroes Guild party on an island. Build a hero with free-form skills across disciplines rather than a rigid class system.",
+      "links": [
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/13/guild-saga-vanished-worlds-brings-tactical-adventure-to-ps5-in-may-2027/"
+        }
+      ]
+    },
+    {
+      "title": "🏛️ God of War: Sons of Sparta hits PS4 with two new modes on 16 November",
+      "tags": [
+        "PS5",
+        "PS4"
+      ],
+      "body": "The same patch adds Hermes Mode, a speedrun mode with split timers, and Erebus Mode, where you and enemies die in a single hit, on PS5 and PS4.",
+      "links": [
+        {
+          "label": "PlayStation Universe",
+          "url": "https://www.psu.com/news/god-of-war-sons-of-sparta-comes-to-ps4-with-new-content-on-nov-16/"
+        }
+      ]
+    },
+    {
+      "title": "🎨 Metaphor: ReFantazio on Switch 2 is getting a colour-glitch fix",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ],
+      "body": "Atlus says some objects and characters can briefly show the wrong colours after a long play session. It doesn't affect progress, and a patch is on the way.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/metaphor-refantazio-switch-2-patch-to-resolve-colour-glitch"
+        }
+      ]
+    },
+    {
+      "title": "🚨 Xbox gets caught up in Microsoft's global outage",
+      "tags": [
+        "Xbox"
+      ],
+      "body": "Players reported sign-in failures, digital games not launching, broken cloud saves and Cloud Gaming trouble, even while the Xbox status page stayed green.",
+      "links": [
+        {
+          "label": "Windows Central",
+          "url": "https://www.windowscentral.com/gaming/xbox/xbox-has-been-affected-by-microsofts-ongoing-tech-outage-xbox-cloud-gaming-cloud-saves-and-account-sign-ins-are-reportedly-down"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Jensen Huang resigns as Nvidia CEO",
+      "tags": [
+        "PC"
+      ],
+      "body": "The GeForce maker's founder has quit as president, CEO and board member, effective immediately. CFO Colette Kress is interim CEO while the board searches for a permanent replacement.",
+      "links": [
+        {
+          "label": "NVIDIA",
+          "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition"
+        },
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1031689/jensen-huang-fired-nvidia"
+        }
+      ]
+    },
+    {
+      "title": "Paradox Interactive names Mattias Lilja its next CEO",
+      "tags": [
+        "PC"
+      ],
+      "body": "The deputy CEO takes over on 4 January 2027. Fredrik Wester stays on the board and remains the largest shareholder.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/fredrik-wester-steps-down-as-paradox-interactive-ceo"
+        }
+      ]
+    },
+    {
+      "title": "Nintendo takes down 144 GitHub repositories of Switch modchip firmware",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ],
+      "body": "A DMCA notice shifts Nintendo's anti-piracy push from modchip sellers to the firmware that powers the chips.",
+      "links": [
+        {
+          "label": "TechSpot",
+          "url": "https://www.techspot.com/news/114554-nintendo-takes-down-144-github-repositories-hosting-switch.html"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "15 Nov",
+      "title": "Xbox 25th anniversary",
+      "note": "8 classics join Game Pass Essential",
+      "tags": [
+        "Xbox"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "Twilight Towers shutdown",
+      "note": "Fortis closes the game",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "DOOM: The Dark Ages Slaughter Mode",
+      "note": "Free for Revelations owners",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "God of War: Sons of Sparta",
+      "note": "PS4 version plus two new modes",
+      "tags": [
+        "PS5",
+        "PS4"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Nintendo eShop gifting",
+      "note": "Family group gifts go live",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "PS Plus Extra and Premium",
+      "note": "Death Stranding 2 leads",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Disney Dreamlight Valley: The Keepsake Sea",
+      "note": "Paid expansion",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Switch digital pre-orders open",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Saturday's haul",
+      "items": [
+        {
+          "emoji": "👋",
+          "text": "Nvidia's Jensen Huang resigns"
+        },
+        {
+          "emoji": "✨",
+          "text": "PS5 upscaling adds six games"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Romancing SaGa 3 arrives early"
+        },
+        {
+          "emoji": "👔",
+          "text": "Paradox names a new CEO"
+        },
+        {
+          "emoji": "🧭",
+          "text": "Guild Saga RPG heads to PS5"
+        }
+      ],
+      "date": "2026-11-14"
+    },
+    "text": "Saturday's haul:\n\n👋 Nvidia's Jensen Huang resigns\n✨ PS5 upscaling adds six games\n⚔️ Romancing SaGa 3 arrives early\n👔 Paradox names a new CEO\n🧭 Guild Saga RPG heads to PS5\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-14",
+    "image": "/x/2026-11-14.png",
+    "time": "08:30"
+  }
+}
