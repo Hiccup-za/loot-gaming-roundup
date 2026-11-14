@@ -444,9 +444,52 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-14T08:00:00+02:00",
-    "window_end": "2026-11-14T07:03:26.799762+02:00",
-    "fetched_at": "2026-11-14T07:03:28.342818+02:00",
-    "total_unique_visitors": 0,
-    "series": []
+    "window_end": "2026-11-14T15:29:27.687826+02:00",
+    "fetched_at": "2026-11-14T15:30:17.980041+02:00",
+    "granularity": "hourly",
+    "total_unique_visitors": 1,
+    "primary_path": "/2026-11-14",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T08:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T09:00:00+02:00"
+      },
+      {
+        "visitors": 1,
+        "tracked": true,
+        "timestamp": "2026-11-14T10:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T11:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T12:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T13:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T14:00:00+02:00"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "timestamp": "2026-11-14T15:00:00+02:00"
+      }
+    ]
   }
 }
