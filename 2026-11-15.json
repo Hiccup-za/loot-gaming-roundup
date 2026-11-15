@@ -503,9 +503,22 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-15T08:00:00+02:00",
-    "window_end": "2026-11-15T06:51:43.106919+02:00",
-    "fetched_at": "2026-11-15T06:51:44.305752+02:00",
+    "window_end": "2026-11-16T00:37:43.068446+02:00",
+    "fetched_at": "2026-11-16T00:38:22.045814+02:00",
+    "granularity": "daily",
     "total_unique_visitors": 0,
-    "series": []
+    "primary_path": "/2026-11-15.html",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-11-15"
+      },
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-11-16"
+      }
+    ]
   }
 }
