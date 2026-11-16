@@ -1,0 +1,462 @@
+{
+  "date": "2026-11-16",
+  "date_label": "Monday 16 November 2026",
+  "published_at": "2026-11-16T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🍄 Minecraft Dungeons II's first DLC, The Humblers Awaken, lands on 1 December",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ],
+      "body": "Mojang's paid expansion sends you into fungal sporefields and underground burrows to deal with the waking humblers, with new quests, three artifacts and four talismans. A free update lands alongside it with trial dungeons, more weapons and armour, and the original Dungeons heroes as skins. A second DLC, Illusions of Grandeur, follows in spring 2027.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/minecraft-dungeons-ii-first-dlc-the-humblers-awaken-arrives-next-month"
+        },
+        {
+          "label": "Minecraft.net",
+          "url": "https://www.minecraft.net/en-us/article/the-humblers-awaken"
+        }
+      ]
+    },
+    {
+      "title": "🏷️ PS Plus goes on sale today, but only for new members",
+      "tags": [
+        "PS5",
+        "PS4"
+      ],
+      "body": "Sony's Black Friday PS Plus offer runs from 16 to 30 November and only applies to people joining. Existing Essential and Extra members get a discounted upgrade to Premium; current Premium members get nothing.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/ps-plus-subscriptions-on-sale-from-tomorrow-but-theres-a-big-catch"
+        },
+        {
+          "label": "PlayStation Blog",
+          "url": "https://blog.playstation.com/2026/11/03/playstations-black-friday-deals-2026/"
+        }
+      ]
+    },
+    {
+      "title": "🖱️ Minecraft on Switch 2 is getting Joy-Con 2 mouse controls",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "Mouse mode is in the closed beta now, using either Joy-Con 2, with adjustable cursor and camera sensitivity. ZL places blocks and ZR breaks them. There's no date yet for the public update.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/minecraft-is-getting-joy-con-mouse-controls-on-switch-2-in-a-future-update"
+        }
+      ]
+    },
+    {
+      "title": "🎵 GTA VI: The Album tracklist leaks days before launch",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "A photo of the vinyl's back cover appears to show all 34 songs, adding Dua Lipa, Jennie, Lana Del Rey and Zara Larsson to the already-known Travis Scott, Cardi B and SZA. Rockstar hasn't confirmed it. GTA VI launches on Thursday, 19 November.",
+      "links": [
+        {
+          "label": "GamesRadar+",
+          "url": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-the-album-seemingly-leaks-with-dua-lipa-and-lana-del-rey-as-part-of-the-full-34-song-tracklist/"
+        },
+        {
+          "label": "NME",
+          "url": "https://www.nme.com/news/music/lana-del-rey-dua-lipa-zara-larsson-gta-vi-the-album-full-tracklist-3975990"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Xbox says Project Helix is a console, not a PC",
+      "tags": [
+        "Xbox"
+      ],
+      "body": "In Xbox's 25th anniversary magazine, VP of Next Generation Jason Ronald calls Helix a console that can also play games from your PC, with four generations of Xbox games and progress available instantly. Power users still get deeper settings and performance options.",
+      "links": [
+        {
+          "label": "Windows Central",
+          "url": "https://www.windowscentral.com/gaming/xbox/microsoft-says-xbox-helix-is-a-console-not-a-pc-but-it-will-be-able-to-play-your-pc-games-helix-is-designed-to-be-a-console-that-can-also-play-games-from-your-pc"
+        },
+        {
+          "label": "Pure Xbox",
+          "url": "https://www.purexbox.com/news/2026/11/the-ultimate-gaming-machine-xbox-reveals-tons-of-new-project-helix-information"
+        }
+      ]
+    },
+    {
+      "title": "Treyarch lays off Call of Duty Zombies writer Craig Houston",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ],
+      "body": "Houston, senior lead writer and the main Zombies writer since World at War in 2008, says he was hit by recent layoffs after about 20 years at the studio. The wider scale of the cuts hasn't been confirmed.",
+      "links": [
+        {
+          "label": "Destructoid",
+          "url": "https://www.destructoid.com/cod-veteran-fired-after-20-years/"
+        }
+      ]
+    },
+    {
+      "title": "Palworld studio Pocketpair grants staff GTA VI leave",
+      "tags": [
+        "PC",
+        "Survival"
+      ],
+      "body": "Employees who want to play GTA VI are excused from 19 to 23 November for a 'business trip to Vice City'. With the weekend, that's three working days. Pocketpair says Palworld and Craftopia updates stay on schedule.",
+      "links": [
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/palworld-developer-pocketpair-gives-employees-time-off-for-a-5-day-business-trip-in-vice-city-when-gta-6-launches/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "16 Nov",
+      "title": "Twilight Towers shutdown",
+      "note": "Fortis closes the game",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "DOOM: The Dark Ages Slaughter Mode",
+      "note": "Free for Revelations owners",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "God of War: Sons of Sparta",
+      "note": "PS4 version plus two new modes",
+      "tags": [
+        "PS5",
+        "PS4"
+      ]
+    },
+    {
+      "date": "16 Nov",
+      "title": "PS Plus Black Friday sale",
+      "note": "New members only, until 30 Nov",
+      "tags": [
+        "PS5",
+        "PS4"
+      ]
+    },
+    {
+      "date": "Next week",
+      "title": "The Blood of Dawnwalker 1.2",
+      "note": "New Game+ on PS5",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Moonlight Peaks",
+      "note": "PS5 version",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Popucom",
+      "note": "Co-op platformer hits PS5",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "Nintendo eShop gifting",
+      "note": "Family group gifts go live",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "PS Plus Extra and Premium",
+      "note": "Death Stranding 2 leads",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Nov",
+      "title": "The Game Awards nominees",
+      "note": "Livestream at 19:00 SAST",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Once Human Season 5",
+      "note": "Dissonant Resonance",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "18 Nov",
+      "title": "Disney Dreamlight Valley: The Keepsake Sea",
+      "note": "Paid expansion",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Fatal Fury: City of the Wolves",
+      "note": "Laocorn joins Season 3",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Switch digital pre-orders open",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Minecraft Dungeons II: The Humblers Awaken",
+      "note": "First paid DLC plus free update",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "🎮",
+          "text": "Xbox calls Helix a console"
+        },
+        {
+          "emoji": "✂️",
+          "text": "Treyarch cuts Zombies writer"
+        },
+        {
+          "emoji": "🌴",
+          "text": "Pocketpair grants GTA VI leave"
+        },
+        {
+          "emoji": "🍄",
+          "text": "Dungeons II DLC lands December"
+        },
+        {
+          "emoji": "🏷️",
+          "text": "PS Plus deal skips subscribers"
+        }
+      ],
+      "date": "2026-11-16"
+    },
+    "text": "Monday's haul:\n\n🎮 Xbox calls Helix a console\n✂️ Treyarch cuts Zombies writer\n🌴 Pocketpair grants GTA VI leave\n🍄 Dungeons II DLC lands December\n🏷️ PS Plus deal skips subscribers\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-16",
+    "image": "/x/2026-11-16.png",
+    "time": "08:30"
+  }
+}
