@@ -461,9 +461,17 @@
   },
   "views_snapshot": {
     "window_start": "2026-11-16T08:00:00+02:00",
-    "window_end": "2026-11-16T06:56:31.436903+02:00",
-    "fetched_at": "2026-11-16T06:56:33.593206+02:00",
+    "window_end": "2026-11-16T17:43:58.765036+02:00",
+    "fetched_at": "2026-11-16T17:45:18.820605+02:00",
+    "granularity": "daily",
     "total_unique_visitors": 0,
-    "series": []
+    "primary_path": "/2026-11-16.html",
+    "series": [
+      {
+        "visitors": 0,
+        "tracked": true,
+        "date": "2026-11-16"
+      }
+    ]
   }
 }
