@@ -1,0 +1,571 @@
+{
+  "date": "2026-11-19",
+  "date_label": "Thursday 19 November 2026",
+  "published_at": "2026-11-19T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🌴 GTA VI is out now and is Metacritic's highest-rated game ever",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Rockstar's game is unlocking at midnight local time around the world on PS5 and Xbox Series X|S, with Xbox One owners able to stream it through Xbox Cloud Gaming. Reviews landed yesterday and put it on a 99 Metascore from more than 150 critics, tying the original Ocarina of Time's 99 (which came from just 22 reviews) and topping Metacritic's all-time list. It's on 98 at OpenCritic. Critics praise Leonida's detail and Jason and Lucia's relationship, with the main gripes being a story that occasionally sags and some performance dips.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/gta-6-highest-rated-game-all-time-metacritic-review-score/"
+        },
+        {
+          "label": "Xbox Wire",
+          "url": "https://news.xbox.com/en-us/2026/11/10/grand-theft-auto-6-comes-to-xbox-cloud-gaming-november-19/"
+        }
+      ]
+    },
+    {
+      "title": "🐌 GTA VI is locked to 30fps, and even the PS5 Pro won't get a 60fps mode",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Rockstar's technology production director Marc Chambers says the PS5 Pro's processor is only slightly better than the base PS5's and isn't powerful enough to run the game's simulation at higher frame rates, so the Pro's extra muscle goes on ray-traced shadows and PSSR clarity instead. Digital Foundry found the Pro holds 30fps steadily, while the base PS5 sees more dips. The Series S version cuts back on detail and still drops frames.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/rockstar-says-ps5-pro-cant-handle-gta-6-at-60-fps/"
+        }
+      ]
+    },
+    {
+      "title": "🎟️ Claiming GTA VI's free GTA+ month? It auto-renews",
+      "tags": [
+        "PS5"
+      ],
+      "body": "Every GTA VI pre-order comes with a free month of GTA+, but auto-renew is switched on, so you'll be charged $7.99/£6.99/€7.99 a month once it ends. On PS5, go to the PS Store, select '...' then Subscriptions, pick GTA+ and cancel; you keep the rest of the free month. PSN also wobbled for some as the game unlocked, because digital copies need to verify their licence; a console restart usually sorts it.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/new-gta-6-players-be-careful-when-claiming-your-gtaplus-pre-order-bonus"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/psn-down-sporadically-for-some-as-gta-6-launches-around-the-world"
+        }
+      ]
+    },
+    {
+      "title": "🐉 RuneScape: Dragonwilds hotfix 1.0.2.2 fixes the Earth Magic armour bug",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "Survival"
+      ],
+      "body": "Jagex's hotfix makes Armour of the Earth actually reduce damage when you only have one stack, fixes audio dropping out, stops doors and windows opening halfway or swinging the wrong way, and stops the camera snapping into first person around Dowdun Reach. Dedicated servers need a restart to apply it. Auto-save stutter and Xbox-hosted worlds only letting one client join are still being investigated.",
+      "links": [
+        {
+          "label": "RuneScape: Dragonwilds",
+          "url": "https://dragonwilds.runescape.com/news/1.0.2.2-update"
+        },
+        {
+          "label": "MP1st",
+          "url": "https://mp1st.com/title-updates-and-patches/runescape-dragonwilds-version-1-02-2-live-november-18-update-1-002-002"
+        }
+      ]
+    },
+    {
+      "title": "🃏 Pokémon TCG Pocket's first Limited Battles event is live",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ],
+      "body": "Dual Fusion Limited Battles has you play a restricted format for booster packs and rewards, with missions offering eight promo cards, including Mega Mewtwo Y ex. Nine wins earns a Mega Mewtwo X playmat. It runs until 2 December.",
+      "links": [
+        {
+          "label": "Serebii",
+          "url": "https://www.serebii.net/news/2026/18-November-2026.shtml"
+        },
+        {
+          "label": "PokéNews",
+          "url": "https://www.pokenews.eu/pokemon-pocket-lotte-limitate-mega-mewtwo-y-en/"
+        }
+      ]
+    },
+    {
+      "title": "🏝️ Coral Island farms its way onto Switch 2 on 7 December",
+      "tags": [
+        "Switch 2",
+        "PS5",
+        "Xbox",
+        "PC"
+      ],
+      "body": "The cosy farming sim arrives with four-player multiplayer and cross-play. The free 1.4 Kids Grow Up update lands the same day on every platform, letting your children grow from babies to teenagers with their own hobbies, plus new cosmetics, Fishing Mastery bobbers and lighting improvements.",
+      "links": [
+        {
+          "label": "Gematsu",
+          "url": "https://www.gematsu.com/2026/11/coral-island-for-switch-2-launches-december-7-alongside-version-1-4-update"
+        }
+      ]
+    },
+    {
+      "title": "🎮 8BitDo reveals its own GameCube-style controller for Switch 2",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "PC"
+      ],
+      "body": "The GC Bluetooth Gamepad celebrates the GameCube's 25th anniversary, works with Switch, Switch 2 and Windows, and undercuts Nintendo's own GameCube pad. It's due on 10 December.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/8bitdo-reveals-its-own-gamecube-controller-for-switch-2"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "GTA VI breaks the all-time livestream record before most of the world can play",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Streams Charts counted a combined peak of about 7.89 million concurrent viewers across Twitch, YouTube, Kick and others, far ahead of Valorant's 1.74 million beta record. On Twitch alone it hit 3.29 million, the platform's most-watched gaming category ever, passing League of Legends' 3.11 million.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/gta-6-streaming-record-twitch-viewers-reviews/"
+        }
+      ]
+    },
+    {
+      "title": "Console shipments fall 36.5% in Q3 as prices bite",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox"
+      ],
+      "body": "S&P Global Market Intelligence Kagan says 6.4 million consoles shipped in the quarter. Switch 2 fell from 5.5 million to 3.3 million after its launch rush, PlayStation dropped 35.3% to 2.6 million and Xbox 14.2% to 500,000. Analyst Neil Barbour says GTA VI and Ocarina of Time can only do so much when hardware costs more than many people will spend, though PS5 Pro has gained traction ahead of GTA VI.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/analyst-console-shipments-drop-365-to-64m-units-during-q3-on-run-up-to-major-releases"
+        }
+      ]
+    },
+    {
+      "title": "Take-Two shares jump on GTA VI's reviews",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Take-Two's stock rose 6.4% in premarket trading on Wednesday after the 99 Metascore. Oppenheimer expects about 20 million copies sold and more than $1.85 billion in revenue in the first three days, and Take-Two's first sales update could come as early as 20 November.",
+      "links": [
+        {
+          "label": "Investing.com",
+          "url": "https://www.investing.com/news/stock-market-news/taketwo-shares-climb-as-gta-vi-reviews-impress-ahead-of-blockbuster-launch-5035826"
+        }
+      ]
+    },
+    {
+      "title": "Clair Obscur: Expedition 33's lead writer has left Sandfall",
+      "tags": [
+        "RPG"
+      ],
+      "body": "Jennifer Svedberg-Yen, who won a BAFTA Breakthrough award for the game's writing, says she left in July after wrapping up final work on Expedition 33 and wants to pursue her own projects and mentor new writers. Sandfall hasn't revealed its next game yet.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/clair-obscur-expedition-33-writer-has-parted-ways-with-sandfall/"
+        }
+      ]
+    },
+    {
+      "title": "MindsEye studio Build A Rocket Boy wants to sue alleged saboteurs to pay off £62m",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox"
+      ],
+      "body": "An administration filing repeats the studio's claim that a coordinated campaign of negative reviews hurt MindsEye, and says lawsuits against the third parties it blames could help repay creditors. It has asked investors for more money to fund the legal action.",
+      "links": [
+        {
+          "label": "VGC",
+          "url": "https://www.videogameschronicle.com/news/mindseye-studio-wants-to-sue-saboteurs-to-pay-off-62-million-debt/"
+        },
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/build-a-rocket-boy-pursuing-litigation-against-alleged-saboteurs-to-repay-617m-in-debt"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "19 Nov",
+      "title": "Grand Theft Auto VI",
+      "note": "Out now on PS5 and Xbox",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Sea of Thieves update",
+      "note": "Install size almost halved",
+      "tags": [
+        "Xbox",
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Fatal Fury: City of the Wolves",
+      "note": "Laocorn joins Season 3",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "19 Nov",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Switch digital pre-orders open",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "20 Nov",
+      "title": "Xbox Black Friday sale",
+      "note": "Starts 07:00 SAST",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "21 Nov",
+      "title": "Ranger Rumble store removal",
+      "note": "Servers live until 1 May 2027",
+      "tags": [
+        "Mobile"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "Arkheron",
+      "note": "Joins Game Pass Ultimate and PC",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "NBA 2K27 joins GTA+",
+      "note": "Until 15 Jan",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Minecraft Dungeons II: The Humblers Awaken",
+      "note": "First paid DLC plus free update",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Hela: Of Mice & Magic",
+      "note": "Day one on Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "The Outer Worlds 2: Side Effects Guaranteed",
+      "note": "First expansion",
+      "tags": [
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon Champions balance update",
+      "note": "Move and ability changes",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon TCG Pocket Limited Battles",
+      "note": "Event ends",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Coral Island",
+      "note": "Switch 2 version plus 1.4 update",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "The Game Awards 2026",
+      "note": "Fan voting closes 9 Dec",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "8BitDo GC Bluetooth Gamepad",
+      "note": "GameCube-style pad",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "15 Dec",
+      "title": "PS Plus Extra departures",
+      "note": "Granblue Fantasy: Relink and Somerville leave",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Star Wars: Galactic Racer Free Play",
+      "note": "Adds split-screen",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "2 Apr 2027",
+      "title": "Sea of Stars: Sunset Edition",
+      "note": "Switch 2 physical, all DLC",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Thursday's haul",
+      "items": [
+        {
+          "emoji": "🌴",
+          "text": "GTA VI launches to a record 99"
+        },
+        {
+          "emoji": "📺",
+          "text": "GTA VI breaks viewing records"
+        },
+        {
+          "emoji": "📉",
+          "text": "Console shipments fall 36.5%"
+        },
+        {
+          "emoji": "🐌",
+          "text": "GTA VI stays 30fps on PS5 Pro"
+        },
+        {
+          "emoji": "🐉",
+          "text": "Dragonwilds fixes Earth Magic"
+        }
+      ],
+      "date": "2026-11-19"
+    },
+    "text": "Thursday's haul:\n\n🌴 GTA VI launches to a record 99\n📺 GTA VI breaks viewing records\n📉 Console shipments fall 36.5%\n🐌 GTA VI stays 30fps on PS5 Pro\n🐉 Dragonwilds fixes Earth Magic\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-19",
+    "image": "/x/2026-11-19.png",
+    "time": "08:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-19T08:00:00+02:00",
+    "window_end": "2026-11-19T06:56:21.344065+02:00",
+    "fetched_at": "2026-11-19T06:56:22.953399+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
