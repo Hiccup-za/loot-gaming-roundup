@@ -1,0 +1,575 @@
+{
+  "date": "2026-11-22",
+  "date_label": "Sunday 22 November 2026",
+  "published_at": "2026-11-22T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "💰 GTA VI makes $3.79 billion on day one, the biggest entertainment launch ever",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Take-Two says Rockstar's game sold 32.5 million copies before release, a record across all platforms, and brought in $3.79 billion in retail sales by the end of launch day on 19 November. That's nearly five times GTA V's $800 million first day in 2013, and well above third-party estimates of around 25 million copies. The figures are Take-Two's own worldwide estimates.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/gta-6-official-sales-figure-how-much-made/"
+        },
+        {
+          "label": "Take-Two",
+          "url": "https://www.take2games.com/ir/news/grand-theft-auto-vi-shatters-entertainment-box-office-records"
+        }
+      ]
+    },
+    {
+      "title": "💥 Some PS5 owners can't get GTA VI past the opening because of error CE-108255-1",
+      "tags": [
+        "PS5"
+      ],
+      "body": "Players on base and Slim PS5s, plus some PS5 Pro owners, report crashes at launch, on loading screens, in the opening cutscene and in early missions. Sony's support page just says the game crashed and suggests updating it, and Rockstar hasn't released a fix or commented. Clearing the cache, rebuilding the database and reinstalling haven't reliably helped, and some players say they're being bounced between Sony and Rockstar support.",
+      "links": [
+        {
+          "label": "Notebookcheck",
+          "url": "https://www.notebookcheck.net/GTA-6-crashes-on-PS5-with-error-CE-108255-1-leaving-players-stuck-between-Sony-and-Rockstar-support.1456098.0.html"
+        },
+        {
+          "label": "PlayStation",
+          "url": "https://www.playstation.com/en-us/support/error-codes/ps5/ce-108255-1/"
+        }
+      ]
+    },
+    {
+      "title": "🗑️ GTA VI gets review-bombed on Metacritic, and Ocarina of Time takes revenge zeros",
+      "tags": [
+        "PS5",
+        "Switch 2"
+      ],
+      "body": "A flood of bogus '0' user reviews pushed GTA VI's Metacritic user score down to 5.4, despite its 99 from critics. Some GTA fans, blaming Nintendo players, hit back at the Switch 2 Ocarina of Time remake, whose user score fell from 9.6 to 8.9. On the PS Store, where you have to buy the game to rate it, GTA VI sits at 4.84 out of 5 from about 170,000 ratings.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/gta-6-ps5-review-bombing-out-of-control-as-zelda-receives-revenge-ratings"
+        }
+      ]
+    },
+    {
+      "title": "🏜️ Dune: Awakening can now be played fully offline",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox",
+        "Survival"
+      ],
+      "body": "Funcom's patch 1.5.20.0 lets you play single-player without an internet connection at any point, including creating and deleting characters, with a Go Online button to reconnect. DLC isn't available while fully offline yet. Follow-up hotfixes fixed a Recycler crash, players stuck in Arrakeen or Harko Village and vehicles going missing after Overland Map travel. The free Blood and Ice expansion follows on 1 December.",
+      "links": [
+        {
+          "label": "Dune: Awakening",
+          "url": "https://duneawakening.com/news/dune-awakening-1-5-20-0-patch-notes/"
+        },
+        {
+          "label": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/survival-crafting/former-survival-mmo-dune-awakening-can-now-be-played-without-requiring-an-internet-connection-at-any-point-as-its-much-requested-offline-mode-arrives/"
+        }
+      ]
+    },
+    {
+      "title": "🛒 The eShop Black Friday sale discounts Dragonwilds, Kirby and Xenoblade",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Survival"
+      ],
+      "body": "Vooks counts more than 1,200 Switch and Switch 2 games on sale. RuneScape: Dragonwilds is 20% off, Monster Hunter Stories 67% off and The Witcher 3 30% off, with most deals ending on 29 November. Nintendo later added the Switch 2 Editions of Kirby and the Forgotten Land + Star-Crossed World and Xenoblade Chronicles: Definitive Edition at around 30% off until 2 December. Vooks lists the Australian store, so check your own eShop.",
+      "links": [
+        {
+          "label": "Vooks",
+          "url": "https://www.vooks.net/nintendo-eshop-black-friday-sale-brings-over-1200-switch-and-switch-2-deals/"
+        }
+      ]
+    },
+    {
+      "title": "🦊 Eevee Day brings a free Pokémon Sleep gift and a Masters EX rerun",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ],
+      "body": "Pokémon Sleep is giving everyone who'd logged in before 21 November an Eevee Incense, an Eevee Main Skill Seed and 1,121 Sleep Points, redeemable until 21 February 2027. Pokémon Masters EX's Eevee Tales event is back with a new story stage and Eevee scouts until 6 December. Pokémon GO's Pawniard Community Day and Eternatus Max Battle Day also ran yesterday.",
+      "links": [
+        {
+          "label": "Serebii",
+          "url": "https://www.serebii.net/news/2026/21-November-2026.shtml"
+        }
+      ]
+    },
+    {
+      "title": "👻 Survival horror Ugly Within is coming to Switch 2",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "Serafini Productions and Yamaitachi's third-person game follows Shu, who can see the past in rooms and objects, and exorcist Reiko as they explore the Kamata family's estate. You switch between Shu's stealth and puzzle-solving and Reiko's exorcisms, with limited resources. A release date will be shared later.",
+      "links": [
+        {
+          "label": "Nintendo Everything",
+          "url": "https://nintendoeverything.com/survival-horror-game-ugly-within-announced-for-nintendo-switch-2/"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "GTA VI players averaged more than eight hours on launch day, says Circana",
+      "tags": [
+        "PS5",
+        "Xbox"
+      ],
+      "body": "Circana's Mat Piscatella says PS5 players of GTA VI averaged 513 minutes on 19 November and Xbox players 494. 61% of US PS5 players and 56% of Xbox Series players engaged with it that day, against 10% for Fortnite, the second most-played game.",
+      "links": [
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/gta-6-playtime-stats-launch-day-ps5-xbox-series-x/"
+        }
+      ]
+    },
+    {
+      "title": "Ubisoft cuts 166 more jobs at its Montreal and Quebec studios",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ],
+      "body": "128 roles go in Montreal and 38 in Quebec City, hitting teams on projects that were cancelled or refocused, according to IGN's reporting. Ubisoft Montreal is working on Assassin's Creed Codename Hexe. Ubisoft says its €1.25 billion cost-cutting plan remains 'firmly on track'.",
+      "links": [
+        {
+          "label": "GameSpot",
+          "url": "https://www.gamespot.com/articles/more-mass-layoffs-at-ubisoft-underway-affecting-two-of-its-biggest-studios/"
+        },
+        {
+          "label": "CBC News",
+          "url": "https://www.cbc.ca/news/business/ubisoft-layoffs-166-montreal-quebec-city-9.7428473"
+        }
+      ]
+    },
+    {
+      "title": "Jam City lays off around 10% of its staff",
+      "tags": [
+        "Mobile"
+      ],
+      "body": "The Harry Potter: Hogwarts Mystery and Cookie Jam publisher says about 60 people are affected worldwide, but no studios or games will close.",
+      "links": [
+        {
+          "label": "PocketGamer.biz",
+          "url": "https://www.pocketgamer.biz/jam-city-lays-off-10-of-staff/"
+        }
+      ]
+    },
+    {
+      "title": "Marvel's Wolverine drops from first to 14th in the US sales chart",
+      "tags": [
+        "PS5"
+      ],
+      "body": "Circana's October chart shows Insomniac's game falling from the top spot it took in its launch month of September, and it's now 15th for the year so far. Sony is discounting it for Black Friday.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/wolverine-ps5s-sales-absolutely-plunged-in-october"
+        }
+      ]
+    },
+    {
+      "title": "Sony cuts off third-party app Asobi from PS5 cloud streaming",
+      "tags": [
+        "PS5",
+        "PC",
+        "Mobile"
+      ],
+      "body": "Since 16 November, Sony's servers have rejected Asobi's PS5 cloud-streaming connections on every platform. Ordinary Remote Play from your own PS5 still works, and the developer says buyers of the Premium unlock can ask their store for a refund.",
+      "links": [
+        {
+          "label": "TwistedVoxel",
+          "url": "https://twistedvoxel.com/sony-blocks-asobi-ps5-cloud-streaming/"
+        }
+      ]
+    },
+    {
+      "title": "Atlus says fans won't wait as long for the Persona game after Persona 6",
+      "tags": [
+        "RPG"
+      ],
+      "body": "P-Studio's Kazuhisa Wada says large RPGs take five years or more and that 'Persona 6 is not the end'. Atlus has been working to shorten the gap between numbered games, though he didn't say how.",
+      "links": [
+        {
+          "label": "GamesRadar+",
+          "url": "https://www.gamesradar.com/games/persona/persona-6-is-not-the-end-for-the-series-lead-hints-and-atlus-is-working-to-ensure-fans-wont-have-to-wait-as-long-for-the-next-game/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "24 Nov",
+      "title": "Gothic 3 Classic",
+      "note": "Overhauled console version",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "24 Nov",
+      "title": "Motorslice and Sniper Ghost Warrior Contracts 2",
+      "note": "Join Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "26 Nov",
+      "title": "Station to Station",
+      "note": "Relaxing railway builder",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "Arkheron",
+      "note": "Joins Game Pass Ultimate and PC",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "NBA 2K27 joins GTA+",
+      "note": "Until 15 Jan",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Nov",
+      "title": "eShop Black Friday sale",
+      "note": "Most deals end",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "30 Nov",
+      "title": "Game Pass departures",
+      "note": "Banishers and Aliens: Dark Descent leave",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Minecraft Dungeons II: The Humblers Awaken",
+      "note": "First paid DLC plus free update",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Hela: Of Mice & Magic",
+      "note": "Day one on Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "The Outlast Trials",
+      "note": "Joins Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "The Outer Worlds 2: Side Effects Guaranteed",
+      "note": "First expansion",
+      "tags": [
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon Champions balance update",
+      "note": "Move and ability changes",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon TCG Pocket Limited Battles",
+      "note": "Event ends",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Coral Island",
+      "note": "Switch 2 version plus 1.4 update",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "The Game Awards 2026",
+      "note": "Fan voting closes 9 Dec",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "8BitDo GC Bluetooth Gamepad",
+      "note": "GameCube-style pad",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "15 Dec",
+      "title": "PS Plus Extra departures",
+      "note": "Granblue Fantasy: Relink and Somerville leave",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Star Wars: Galactic Racer Free Play",
+      "note": "Adds split-screen",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "2 Apr 2027",
+      "title": "Sea of Stars: Sunset Edition",
+      "note": "Switch 2 physical, all DLC",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Sunday's haul",
+      "items": [
+        {
+          "emoji": "💰",
+          "text": "GTA VI earns $3.79bn day one"
+        },
+        {
+          "emoji": "⏱️",
+          "text": "GTA VI fans play 8+ hours"
+        },
+        {
+          "emoji": "💥",
+          "text": "GTA VI crash hits some PS5s"
+        },
+        {
+          "emoji": "✂️",
+          "text": "Ubisoft cuts 166 more jobs"
+        },
+        {
+          "emoji": "🏜️",
+          "text": "Dune: Awakening goes offline"
+        }
+      ],
+      "date": "2026-11-22"
+    },
+    "text": "Sunday's haul:\n\n💰 GTA VI earns $3.79bn day one\n⏱️ GTA VI fans play 8+ hours\n💥 GTA VI crash hits some PS5s\n✂️ Ubisoft cuts 166 more jobs\n🏜️ Dune: Awakening goes offline\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-22",
+    "image": "/x/2026-11-22.png",
+    "time": "08:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-22T08:00:00+02:00",
+    "window_end": "2026-11-22T06:51:03.534051+02:00",
+    "fetched_at": "2026-11-22T06:51:05.744791+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
