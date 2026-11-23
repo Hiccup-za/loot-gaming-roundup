@@ -1,0 +1,586 @@
+{
+  "date": "2026-11-23",
+  "date_label": "Monday 23 November 2026",
+  "published_at": "2026-11-23T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🎵 The Binding of Isaac pulls AI-generated music from its GTA VI parody run",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox",
+        "Switch 2"
+      ],
+      "body": "A Reddit user found Suno metadata in the music for Repentance+'s GTA-themed daily run, added on 19 November alongside the console launch, and the game was review-bombed on Steam. Creator Edmund McMillen said he 'had no idea' generated music was used, and Nicalis patched the tracks out on PC on 21 November. The console patch has been submitted to Sony, Microsoft and Nintendo with no date yet, and recent Steam reviews are still overwhelmingly negative.",
+      "links": [
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music"
+        },
+        {
+          "label": "Polygon",
+          "url": "https://www.polygon.com/gta-6-parody-binding-of-isaac-ai-use/"
+        }
+      ]
+    },
+    {
+      "title": "🛒 The Switch 2 Mario Kart World bundle drops $50 for Black Friday",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ],
+      "body": "From 22 November to 5 December the bundle, with the console, a Mario Kart World download and three months of Switch Online, is $499.99 instead of $549.99 at the Nintendo Store and select US retailers. That temporarily undoes September's $50 price rise; the Switch Sports Resort bundle stays at $529.99. Select games such as Donkey Kong Bananza and Super Mario Galaxy + Super Mario Galaxy 2 are $20 off until 29 November. These are US prices, so check local retailers.",
+      "links": [
+        {
+          "label": "Nintendo",
+          "url": "https://www.nintendo.com/us/whatsnew/nintendo-announces-black-friday-offers-to-help-spread-joy-this-holiday-season/"
+        },
+        {
+          "label": "The Verge",
+          "url": "https://www.theverge.com/gadgets/1038181/nintendo-switch-2-black-friday-deal-mario-kart-world-bundle-2026-sale"
+        }
+      ]
+    },
+    {
+      "title": "⚔️ Darkest Dungeon II reveals The Butcher's Asylum, an arena DLC for 2027",
+      "tags": [
+        "PC",
+        "RPG"
+      ],
+      "body": "Red Hook's paid expansion adds a standalone gladiatorial arena mode where you draft your team, face new enemy combinations and spin the Ringmaster's wheel for prizes. The Ringmaster herself becomes the 16th hero and is playable for the first time, after debuting in the first game's Butcher's Circus DLC. It's on Steam to wishlist now, with no exact date.",
+      "links": [
+        {
+          "label": "Red Hook Studios",
+          "url": "https://www.darkestdungeon.com/news/the-butcher-s-asylum-coming-2027/"
+        },
+        {
+          "label": "Warp Pipes",
+          "url": "https://warppipes.com/en/articles/video-game-news-digest-2026-11-22"
+        }
+      ]
+    },
+    {
+      "title": "🏜️ Dune: Awakening opens a short Blood and Ice test from 26 November",
+      "tags": [
+        "PC",
+        "Survival"
+      ],
+      "body": "Funcom's Public Test Client for the free Polar Cap expansion runs from 26 to 30 November, kept short to limit spoilers and hunt critical bugs, before Blood and Ice launches on 1 December. The double mining output weekend ends today at 09:00 UTC (11:00 SAST), and a Water Crisis event follows several days after the expansion.",
+      "links": [
+        {
+          "label": "PPRGaming",
+          "url": "https://pprgaming.com/news/daily-roundup-2026-11-22/"
+        }
+      ]
+    },
+    {
+      "title": "🏆 Ocarina of Time holds No. 1 on the Switch 2 eShop as Isaac debuts third",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "Nintendo's weekly Switch 2 eShop chart keeps the Zelda remake on top, with Switch Sports Resort second and The Binding of Isaac: Repentance+ entering at No. 3. Pokémon Pokopia, Fire Emblem: Fortune's Weave and Final Fantasy Resonance are also in the top 20.",
+      "links": [
+        {
+          "label": "Nintendo Everything",
+          "url": "https://nintendoeverything.com/nintendo-switch-2-eshop-charts-november-22-2026-zelda-stays-winning/"
+        }
+      ]
+    },
+    {
+      "title": "🦉 Pokémon GO's Duolingo event details are out",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ],
+      "body": "Serebii has the full Timed Research tasks and rewards for the Pokémon GO x Duolingo 'Catch a New Language' event. You earn a code by completing a seven-day streak in Duolingo, and codes are available until 21 December. The Latin America International Championships also wrapped up yesterday with the GO, TCG and Pokémon Champions finals.",
+      "links": [
+        {
+          "label": "Serebii",
+          "url": "https://www.serebii.net/news/2026/22-November-2026.shtml"
+        }
+      ]
+    },
+    {
+      "title": "📸 A GTA VI player says sharing an in-game nudist photo got them a 30-day PSN ban",
+      "tags": [
+        "PS5"
+      ],
+      "body": "The player says they lost PSN social features for 30 days after messaging a friend a photo of the game's nudist colony taken with the in-game camera. PlayStation's Code of Conduct bans obscene content in messages, so think twice before sharing GTA VI snaps over PSN. Sony and Rockstar haven't commented.",
+      "links": [
+        {
+          "label": "Dexerto",
+          "url": "https://www.dexerto.com/gta/gta-6-player-hit-with-30-day-psn-ban-after-sharing-nude-in-game-photos-with-friend-3430333/"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "A US congressman's Protect Our Games Act aims to keep bought games playable",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox",
+        "Switch 2"
+      ],
+      "body": "Rep. Maxwell Alejandro Frost announced the federal bill at a 18 November town hall. It would require developers to give players access to their own servers when official online services end, and keep purchased games playable as hardware and software move on. No bill text or number has been published yet, so coverage and enforcement are unclear. It drew fresh attention on X over the weekend.",
+      "links": [
+        {
+          "label": "Notebookcheck",
+          "url": "https://www.notebookcheck.net/US-lawmaker-wants-your-games-playable-forever-even-after-servers-shut-down.1453886.0.html"
+        }
+      ]
+    },
+    {
+      "title": "AION 2 puts cross-server trading behind a membership and a 20% tax",
+      "tags": [
+        "PC"
+      ],
+      "body": "NCSoft's World Market and World Exchange go live after maintenance on 25 November, letting players trade across servers in the same faction and region. Sales carry a 20% tax, are capped at 10 listings a day and are for Membership users only, as the team keeps banning bots and gold farmers.",
+      "links": [
+        {
+          "label": "PPRGaming",
+          "url": "https://pprgaming.com/news/daily-roundup-2026-11-22/"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "23 Nov",
+      "title": "Jaden Industries: Cozy Automation Puzzler",
+      "note": "Floating-island factory builder, Play Anywhere",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "24 Nov",
+      "title": "Gothic 3 Classic",
+      "note": "Overhauled console version",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "24 Nov",
+      "title": "Motorslice and Sniper Ghost Warrior Contracts 2",
+      "note": "Join Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "24 Nov",
+      "title": "Dead by Daylight: Terrifier",
+      "note": "Art the Clown joins as a killer",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "25 Nov",
+      "title": "Company of Heroes 3: Operation Torch",
+      "note": "15-mission single-player campaign",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "25 Nov",
+      "title": "Arctic Drive",
+      "note": "Co-op Arctic survival road trip, early access",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "26 Nov",
+      "title": "Station to Station",
+      "note": "Relaxing railway builder",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "26 Nov",
+      "title": "GRIME II",
+      "note": "Arrives on Switch and Switch 2",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "26 Nov",
+      "title": "Dune: Awakening Blood and Ice test",
+      "note": "Public test until 30 Nov",
+      "tags": [
+        "PC",
+        "Survival"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "Arkheron",
+      "note": "Joins Game Pass Ultimate and PC",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "NBA 2K27 joins GTA+",
+      "note": "Until 15 Jan",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "29 Nov",
+      "title": "eShop Black Friday sale",
+      "note": "Most deals end",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "30 Nov",
+      "title": "Game Pass departures",
+      "note": "Banishers and Aliens: Dark Descent leave",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Minecraft Dungeons II: The Humblers Awaken",
+      "note": "First paid DLC plus free update",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Hela: Of Mice & Magic",
+      "note": "Day one on Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "The Outlast Trials",
+      "note": "Joins Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "The Outer Worlds 2: Side Effects Guaranteed",
+      "note": "First expansion",
+      "tags": [
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon Champions balance update",
+      "note": "Move and ability changes",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon TCG Pocket Limited Battles",
+      "note": "Event ends",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Aeterna Lucis",
+      "note": "Aeterna Noctis sequel",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "5 Dec",
+      "title": "Switch 2 Mario Kart World bundle deal",
+      "note": "$50 off ends",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Coral Island",
+      "note": "Switch 2 version plus 1.4 update",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "The Game Awards 2026",
+      "note": "Fan voting closes 9 Dec",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "8BitDo GC Bluetooth Gamepad",
+      "note": "GameCube-style pad",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "15 Dec",
+      "title": "PS Plus Extra departures",
+      "note": "Granblue Fantasy: Relink and Somerville leave",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Star Wars: Galactic Racer Free Play",
+      "note": "Adds split-screen",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "2 Apr 2027",
+      "title": "Sea of Stars: Sunset Edition",
+      "note": "Switch 2 physical, all DLC",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Monday's haul",
+      "items": [
+        {
+          "emoji": "🎵",
+          "text": "Isaac dev pulls AI music"
+        },
+        {
+          "emoji": "🛒",
+          "text": "Switch 2 bundle drops $50"
+        },
+        {
+          "emoji": "⚔️",
+          "text": "Darkest Dungeon II reveals DLC"
+        },
+        {
+          "emoji": "⚖️",
+          "text": "US bill fights game shutdowns"
+        },
+        {
+          "emoji": "🏜️",
+          "text": "Dune opens Blood and Ice test"
+        }
+      ],
+      "date": "2026-11-23"
+    },
+    "text": "Monday's haul:\n\n🎵 Isaac dev pulls AI music\n🛒 Switch 2 bundle drops $50\n⚔️ Darkest Dungeon II reveals DLC\n⚖️ US bill fights game shutdowns\n🏜️ Dune opens Blood and Ice test\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-23",
+    "image": "/x/2026-11-23.png",
+    "time": "08:30"
+  },
+  "views_snapshot": {
+    "window_start": "2026-11-23T08:00:00+02:00",
+    "window_end": "2026-11-23T06:49:40.569418+02:00",
+    "fetched_at": "2026-11-23T06:49:42.980851+02:00",
+    "total_unique_visitors": 0,
+    "series": []
+  }
+}
