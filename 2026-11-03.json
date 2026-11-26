@@ -613,7 +613,7 @@
   "views_snapshot": {
     "window_start": "2026-11-03T08:00:00+02:00",
     "window_end": "2026-11-04T08:00:00+02:00",
-    "fetched_at": "2026-11-26T18:52:39.435831+02:00",
+    "fetched_at": "2026-11-26T21:27:34.022372+02:00",
     "granularity": "daily",
     "total_unique_visitors": 0,
     "primary_path": "/2026-11-03.html",
