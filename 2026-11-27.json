@@ -1,0 +1,734 @@
+{
+  "date": "2026-11-27",
+  "date_label": "Friday 27 November 2026",
+  "published_at": "2026-11-27T08:00:00+02:00",
+  "your_games": [
+    {
+      "title": "🪓 Valheim hotfix 1.0.31 fixes PS5 frame drops and two broken achievements",
+      "tags": [
+        "PS5",
+        "PC",
+        "Xbox",
+        "Survival"
+      ],
+      "body": "A day after patch 1.0.30, Iron Gate has made The Artisan and The Master Chef achievements unlockable again, fixed a memory leak in the build menu and fixed choppy, regular frame drops on PS5. The hotfix stays network-compatible with 1.0.30, so crossplay keeps working while consoles catch up, and the studio says it isn't finished adjusting the Forge of Potential yet.",
+      "links": [
+        {
+          "label": "Valheim",
+          "url": "https://www.valheim.com/news/hotfix-1-0-31/"
+        }
+      ]
+    },
+    {
+      "title": "🐺 The Witcher 3 Remastered patch 5.02 adds 40 cross-platform mods and fixes game-breaking bugs",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC",
+        "RPG"
+      ],
+      "body": "CD Projekt Red's latest patch, out on all platforms, brings 40 more mods to consoles (with more promised), fixes bugs that could crash the game, send time backwards or leave Geralt bald, and keeps working through the remaster's overly bright or dark lighting and flickering.",
+      "links": [
+        {
+          "label": "Eurogamer",
+          "url": "https://www.eurogamer.net/the-witcher-3-patch-40-mods-bugs"
+        }
+      ]
+    },
+    {
+      "title": "🌱 Nintendo promises a fix for long load times in Pikmin 4's Switch 2 Edition",
+      "tags": [
+        "Switch 2"
+      ],
+      "body": "Nintendo says it is preparing an update for the slow loading when travelling to surface areas, including the Rescue Camp, in Pikmin 4 – Nintendo Switch 2 Edition + Dandori Academy. It is also investigating slow launches and Dandori Challenge loads on unstable connections, and suggests a stable network in the meantime.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/nintendo-promises-to-fix-the-long-load-times-on-pikmin-4-switch-2-edition"
+        }
+      ]
+    },
+    {
+      "title": "🗡️ Phantom Blade Zero's 7GB PS5 update on Saturday adds Combat Assist and cuts stutter",
+      "tags": [
+        "PS5",
+        "PC"
+      ],
+      "body": "S-Game's update 1.0304629 arrives on 28 November with a new Combat Assist settings section and an option to tame the strong camera assist, lower memory use in cutscenes and snowy areas, smoother boss fights, better lock-on and a long list of combat, quest and progression fixes.",
+      "links": [
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/new-phantom-blade-zero-ps5-update-brings-features-upgrades-and-fixes"
+        },
+        {
+          "label": "S-Game",
+          "url": "https://pbz.s-game.com/zh-CN/news/patch-notes-1-0304629/"
+        }
+      ]
+    },
+    {
+      "title": "🎯 Lenny Kravitz brings his 007 First Light pirate king to a free Hitman Elusive Target",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch",
+        "Xbox",
+        "PC"
+      ],
+      "body": "IO Interactive's new Elusive Target, The Mutiny, has Kravitz's Bawma guiding Agent 47 round Ambrose Island to take out three rogue lieutenants. It is free in Hitman World of Assassination and its free demo until 24 December, and owners keep the Arcade version afterwards.",
+      "links": [
+        {
+          "label": "IO Interactive",
+          "url": "https://ioi.dk/hitman/news/2026/lenny-kravitz-stars-in-the-latest-elusive-target-mission"
+        },
+        {
+          "label": "Push Square",
+          "url": "https://www.pushsquare.com/news/2026/11/hitman-007-first-light-ps5-crossover-makes-lenny-kravitz-your-new-ally"
+        }
+      ]
+    },
+    {
+      "title": "🦑 Splatoon 3 update 12.0.1 fixes Anarchy Battle matchmaking getting stuck",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ],
+      "body": "Out today, the small follow-up to last week's big 12.0.0 update fixes Anarchy Battle (Series) matchmaking that sometimes failed to complete. You need it to play online, and local wireless needs everyone on the same version.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/splatoon-3-version-12-0-1-update-out-now-here-are-the-patch-notes"
+        }
+      ]
+    },
+    {
+      "title": "🎮 Absolum is free to try for Switch Online members in Europe until 3 December",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ],
+      "body": "Dotemu's roguelike beat 'em up is the latest Nintendo Switch Online Game Trial in Europe, playable in full from today, and the free Switch 2 upgrade pack works during the trial too.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/one-of-2025s-best-roguelikes-will-soon-be-free-for-switch-online-members"
+        }
+      ]
+    },
+    {
+      "title": "🛹 EA ends Skate's seasons and battle pass in favour of more regular updates",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ],
+      "body": "Skate's fifth and final season ends on 1 December. Full Circle is dropping the skate.Pass by the end of the year, retiring the Tix currency, unlocking some paywalled maps and shipping smaller, more frequent updates, starting with 0.33.1.",
+      "links": [
+        {
+          "label": "Eurogamer",
+          "url": "https://www.eurogamer.net/ea-removes-live-service-skate-seasons"
+        }
+      ]
+    },
+    {
+      "title": "🦙 Palworld and Dune: Awakening get a 10%-off Steam bundle",
+      "tags": [
+        "PC",
+        "Survival"
+      ],
+      "body": "Pocketpair has paired its creature-catching survival game with Funcom's Arrakis survival game, and Steam's Complete the Set pricing means owners of one get the other at the discount. Palworld's v1.1 Side by Side update is still due this winter, and Dune's free Blood and Ice expansion arrives on 1 December.",
+      "links": [
+        {
+          "label": "Steam",
+          "url": "https://store.steampowered.com/news/app/1623730/view/1850460852986596"
+        }
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "title": "Rockstar staff vote three to one against union recognition",
+      "tags": [
+        "Industry"
+      ],
+      "body": "With a 93.2% turnout across Rockstar's UK studios, 75.3% of 1,544 staff voted against recognising the IWGB Rockstar Game Workers Union, which would have been the UK games industry's biggest recognised union. The union says it will keep organising but can't re-apply for three years, and the tribunal over 34 sacked staff is still waiting on a judgement.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/staff-at-grand-theft-auto-maker-rockstar-vote-against-union-recognition-deal"
+        },
+        {
+          "label": "Eurogamer",
+          "url": "https://www.eurogamer.net/rockstar-games-employees-vote-against-union-recognition"
+        }
+      ]
+    },
+    {
+      "title": "GTA VI nearly doubles UK games retail spending in its launch week",
+      "tags": [
+        "Industry",
+        "PS5",
+        "Xbox"
+      ],
+      "body": "NielsenIQ says UK games retail revenue rose 99% week-on-week to £142m from 19 to 21 November. GTA VI made £32m at physical retail despite shipping as a code in a box, the biggest boxed week since Christmas 2018, while PS5 sales rose 46% and Xbox Series X|S 75%.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/nielseniq-gta-6-boosts-uk-games-retail-revenue-by-99-to-142m-during-launch-period"
+        },
+        {
+          "label": "Eurogamer",
+          "url": "https://www.eurogamer.net/gta-6-boxed-physical-sales-uk"
+        }
+      ]
+    },
+    {
+      "title": "Analysts put GTA VI past 40 million sales but say console supply caps its growth",
+      "tags": [
+        "Industry"
+      ],
+      "body": "Ampere, Sensor Tower and Enders analysts expect 50 million or more by the end of the year, but warn a quarter of the roughly 137 million current-gen consoles already bought it, so the unconfirmed PC version is the next big growth step.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/this-was-unlike-anything-else-weve-ever-seen-before-but-gta-6s-success-is-limited-by-the-console-install-base-and-its-future-rests-on-pc"
+        }
+      ]
+    },
+    {
+      "title": "Square Enix credits Switch 2 support for a jump in console game profits",
+      "tags": [
+        "Industry",
+        "Switch 2"
+      ],
+      "body": "President Takashi Kiryu says supporting new hardware, including Switch 2, helped lift HD Games sales from ¥24bn to ¥35.6bn and operating income from ¥5bn to ¥13bn year on year, with Dragon Quest Monsters: The Withered World next in December.",
+      "links": [
+        {
+          "label": "Nintendo Life",
+          "url": "https://www.nintendolife.com/news/2026/11/square-enix-says-its-efforts-supporting-switch-2-have-contributed-to-its-strong-financial-results"
+        },
+        {
+          "label": "Square Enix",
+          "url": "https://www.hd.square-enix.com/eng/ir/pdf/27q2outline.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Ubisoft denies teams must justify not using generative AI",
+      "tags": [
+        "Industry"
+      ],
+      "body": "Responding to yesterday's Vertical Slice report, Ubisoft says it encourages teams to explore where AI is useful but projects are not required to use it, and each team decides whether it fits their game.",
+      "links": [
+        {
+          "label": "GamesIndustry.biz",
+          "url": "https://www.gamesindustry.biz/ubisoft-staff-must-justify-not-using-generative-ai-in-pitches-report-claims"
+        }
+      ]
+    }
+  ],
+  "releases_link": "https://www.pushsquare.com/guides/new-ps5-games-release-dates-in-2026",
+  "releases": [
+    {
+      "date": "27 Nov",
+      "title": "Cherry Time! broadcast",
+      "note": "Silksong Sea of Sorrow update, 5pm SAST",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Switch",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "Arkheron",
+      "note": "Joins Game Pass Ultimate and PC",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "NBA 2K27 joins GTA+",
+      "note": "Until 15 Jan",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "27 Nov",
+      "title": "Absolum Game Trial",
+      "note": "Free for Switch Online members in Europe until 3 Dec",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "28 Nov",
+      "title": "Phantom Blade Zero update",
+      "note": "7GB patch adds Combat Assist",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "29 Nov",
+      "title": "The Wolf Among Us Remastered",
+      "note": "Delayed Switch version arrives on the eShop",
+      "tags": [
+        "Switch"
+      ]
+    },
+    {
+      "date": "29 Nov",
+      "title": "eShop Black Friday sale",
+      "note": "Most deals end",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "30 Nov",
+      "title": "Game Pass departures",
+      "note": "Banishers and Aliens: Dark Descent leave",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "30 Nov",
+      "title": "Steam Awards nominations",
+      "note": "Close; voting opens 17 Dec",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Skate Season 5 ends",
+      "note": "Last season before regular updates",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Minecraft Dungeons II: The Humblers Awaken",
+      "note": "First paid DLC plus free update",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Dune: Awakening: Blood and Ice",
+      "note": "Free expansion",
+      "tags": [
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Gears of War: E-Day Season 2",
+      "note": "Legacy",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Hela: Of Mice & Magic",
+      "note": "Day one on Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "The Outlast Trials",
+      "note": "Joins Game Pass",
+      "tags": [
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Pokémon GO: Daydream Destinations",
+      "note": "New season begins",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "Diablo 4: Season of Tyrael's Gambit",
+      "note": "Season 16 begins",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "1 Dec",
+      "title": "PS Plus Essential December games",
+      "note": "THPS 3 + 4, Dragon Ball Xenoverse 2, Amnesia: The Bunker",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "The Outer Worlds 2: Side Effects Guaranteed",
+      "note": "First expansion",
+      "tags": [
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon Champions balance update",
+      "note": "Move and ability changes",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "2 Dec",
+      "title": "Pokémon TCG Pocket Limited Battles",
+      "note": "Event ends",
+      "tags": [
+        "Pokémon",
+        "Mobile"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Xenoblade Chronicles 3",
+      "note": "Switch 2 Edition",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Dragon Quest Monsters: The Withered World",
+      "note": "Monster-raising RPG, demo out now",
+      "tags": [
+        "Switch 2",
+        "Switch",
+        "RPG"
+      ]
+    },
+    {
+      "date": "3 Dec",
+      "title": "Aeterna Lucis",
+      "note": "Aeterna Noctis sequel",
+      "tags": [
+        "PC",
+        "PS5",
+        "Xbox"
+      ]
+    },
+    {
+      "date": "4 Dec",
+      "title": "Monster Hunter Wilds",
+      "note": "Switch 2 version",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "5 Dec",
+      "title": "Switch 2 Mario Kart World bundle deal",
+      "note": "$50 off ends",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Mouse Work",
+      "note": "Nitrome party game",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "7 Dec",
+      "title": "Coral Island",
+      "note": "Switch 2 version plus 1.4 update",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "8 Dec",
+      "title": "Marathon: Symbiosis",
+      "note": "PvE and deathmatch modes",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "9 Dec",
+      "title": "Pokémon Pokopia: Dazzling Decorations",
+      "note": "Expansion Pass Part 2",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "Professor Layton and the New World of Steam",
+      "note": "PS5 pre-orders open",
+      "tags": [
+        "PS5",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "The Game Awards 2026",
+      "note": "Fan voting closes 9 Dec",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "10 Dec",
+      "title": "8BitDo GC Bluetooth Gamepad",
+      "note": "GameCube-style pad",
+      "tags": [
+        "Switch 2",
+        "Switch"
+      ]
+    },
+    {
+      "date": "15 Dec",
+      "title": "Yooka-Laylee and the Impossible Lair: Definitive Edition",
+      "note": "Free upgrade for owners",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "15 Dec",
+      "title": "PS Plus Extra departures",
+      "note": "Granblue Fantasy: Relink and Somerville leave",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "17 Dec",
+      "title": "Nioh 3: Bloody Insurrection",
+      "note": "Second DLC",
+      "tags": [
+        "PS5",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "24 Dec",
+      "title": "Hitman: The Mutiny",
+      "note": "Free Lenny Kravitz Elusive Target ends",
+      "tags": [
+        "PS5",
+        "Switch 2",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "Dec",
+      "title": "RuneScape: Dragonwilds Luminance",
+      "note": "Elves, Prayer skill, the Lyre",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "Switch 2",
+        "Survival"
+      ]
+    },
+    {
+      "date": "21 Jan 2027",
+      "title": "HARK THE GHOUL",
+      "note": "Dungeon crawler",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "Switch",
+        "PC"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Metroid Ravenous",
+      "note": "New 2D Metroid",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "28 Jan 2027",
+      "title": "Nioh 3 Complete Edition",
+      "note": "Adds Xbox Series X|S",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "PS5 Prism Collection",
+      "note": "See-through DualSense",
+      "tags": [
+        "PS5"
+      ]
+    },
+    {
+      "date": "4 Feb 2027",
+      "title": "Romancing SaGa 3: Destinies United",
+      "note": "Moved up from 16 Feb",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC",
+        "RPG"
+      ]
+    },
+    {
+      "date": "12 Feb 2027",
+      "title": "Tomb Raider: Legacy of Atlantis",
+      "note": "Multiplat incl Switch 2",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "Switch 2",
+        "PC"
+      ]
+    },
+    {
+      "date": "Early 2027",
+      "title": "Star Wars: Galactic Racer Free Play",
+      "note": "Adds split-screen",
+      "tags": [
+        "PS5",
+        "Xbox",
+        "PC"
+      ]
+    },
+    {
+      "date": "May 2027",
+      "title": "Guild Saga: Vanished Worlds",
+      "note": "Tactical RPG",
+      "tags": [
+        "PS5",
+        "RPG"
+      ]
+    },
+    {
+      "date": "2027",
+      "title": "Pokémon Winds / Waves",
+      "note": "Crucial Switch 2 release, per Nintendo",
+      "tags": [
+        "Switch 2",
+        "Pokémon"
+      ]
+    },
+    {
+      "date": "2 Apr 2027",
+      "title": "Sea of Stars: Sunset Edition",
+      "note": "Switch 2 physical, all DLC",
+      "tags": [
+        "Switch 2",
+        "RPG"
+      ]
+    },
+    {
+      "date": "8 Apr 2027",
+      "title": "Final Fantasy VII Revelation",
+      "note": "Switch 2 day-one among others",
+      "tags": [
+        "Switch 2"
+      ]
+    },
+    {
+      "date": "20 May 2027",
+      "title": "God of War Laufey",
+      "note": "Delayed from 16 Feb",
+      "tags": [
+        "PS5"
+      ]
+    }
+  ],
+  "x_post": {
+    "template": "haul",
+    "data": {
+      "title": "Friday's haul",
+      "items": [
+        {
+          "emoji": "✊",
+          "text": "Rockstar staff vote down union"
+        },
+        {
+          "emoji": "🪓",
+          "text": "Valheim fixes PS5 frame drops"
+        },
+        {
+          "emoji": "🐺",
+          "text": "Witcher 3 patch adds 40 mods"
+        },
+        {
+          "emoji": "🌱",
+          "text": "Nintendo promises Pikmin 4 fix"
+        },
+        {
+          "emoji": "📈",
+          "text": "GTA 6 nearly doubles UK sales"
+        }
+      ],
+      "date": "2026-11-27"
+    },
+    "text": "Friday's haul:\n\n✊ Rockstar staff vote down union\n🪓 Valheim fixes PS5 frame drops\n🐺 Witcher 3 patch adds 40 mods\n🌱 Nintendo promises Pikmin 4 fix\n📈 GTA 6 nearly doubles UK sales\n\nFull roundup 👇\nhttps://loot-gaming-roundup.vercel.app/2026-11-27",
+    "image": "/x/2026-11-27.png",
+    "time": "08:30"
+  }
+}
